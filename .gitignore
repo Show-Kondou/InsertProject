@@ -1,0 +1,36 @@
+# =============== #
+# Unity generated #
+# =============== #
+Program/Project/InsertProject/[Tt]emp/
+Program/Project/InsertProject/[Oo]bj/
+Program/Project/InsertProject/[Bb]uild
+Program/Project/InsertProject/[Ll]ibrary/
+sysinfo.txt
+*.stackdump
+
+ 
+# ============================================= #
+# Visual Studio / MonoDevelop / Rider generated #
+# ============================================= #
+[Ee]xported[Oo]bj/
+.vs/
+Program/Project/InsertProject/*.userprefs
+Program/Project/InsertProject/*.csproj
+Program/Project/InsertProject/*.pidb
+Program/Project/InsertProject/*.suo
+Program/Project/InsertProject/*.sln*
+/*.user
+/*.unityproj
+/*.booproj
+Program/Project/InsertProject/.idea*/
+ 
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store*
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+[Tt]humbs.db
+[Dd]esktop.ini
