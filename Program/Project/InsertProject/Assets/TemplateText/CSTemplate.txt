@@ -1,0 +1,27 @@
+ : ObjectBase {
+
+	// Use this for initialization
+	void Start () {
+		m_OrderNumber = 0;
+		ObjectManager.Instance.RegistrationList(this, m_OrderNumber);
+
+	}
+
+	public override void Execute(float deltaTime) {
+		
+	}
+
+	public override void LateExecute(float deltaTime) {
+		
+	}
+}
+
+
+/*
+制作者 佐々木瑞生
+☆使い方☆
+まず新しく作ったCSの
+public class hoge : MonoBehaviour {←このコロンからを後ろを消します。
+上のテンプレートをコピーして貼り付けます。
+Executeの順番を変更したい場合はm_OrderNumberの値を大きくしてください。
+*/
