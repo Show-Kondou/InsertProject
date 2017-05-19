@@ -22,26 +22,43 @@ public class CSParticleManager : SingletonMonoBehaviour<CSParticleManager> {
     void Start() {
     }
 
+    /// <summary>
+    /// リストへ追加
+    /// </summary>
+    /// <param name="particle">パーティクルオブジェクト</param>
+    /// <returns>リストの番号</returns>
     public int AddListParticle(CSParticleObject particle) {
         m_ParticleList.Add(particle);
         return m_ParticleList.Count;
     }
 
-    public void Play(string name) {
+    /// <summary>
+    /// パーティクルの再生
+    /// </summary>
+    /// <param name="name">再生させるパーティクル</param>
+    /// <returns>成功か否か(そのparticleが存在したかどうか)</returns>
+    public bool Play(string name) {
         for(int i = 0; i < m_ParticleList.Count; i++) {
             if(m_ParticleList[i].name == name) {
                 m_ParticleList[i].m_Particle.Play();
-                break;
+                return true;
             }
         }
+        return false;
     }
 
-    public void Stop(string name) {
+    /// <summary>
+    /// パーティクルの停止
+    /// </summary>
+    /// <param name="name">停止させるパーティクル</param>
+    /// <returns>成功か否か(そのパーティクルが存在したかどうか)</returns>
+    public bool Stop(string name) {
         for(int i = 0; i < m_ParticleList.Count; i++) {
             if(m_ParticleList[i].name == name) {
                 m_ParticleList[i].m_Particle.Play();
-                break;
+                return true;
             }
         }
+        return false;
     }
 }
