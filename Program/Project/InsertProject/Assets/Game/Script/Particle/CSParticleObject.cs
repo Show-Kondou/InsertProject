@@ -1,5 +1,5 @@
 ﻿//_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
-//	CSPartcleScript.cs
+//	CSPartcleObject.cs
 //	
 //	作成者:佐々木瑞生
 //==================================================
@@ -15,13 +15,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CSParticleObject : MonoBehaviour {
+public class CSParticleObject : ObjectBase {
     public ParticleSystem m_Particle;  // particleオブジェクト
     private int m_ListToNumber;     // リストの何番目か
     private string m_ParticleName;
 
     // Use this for initialization
     void Start() {
+        m_OrderNumber = 0;
+        ObjectManager.Instance.RegistrationList(this, m_OrderNumber);
         m_ParticleName = transform.name;
         m_Particle.Stop();
         m_ListToNumber = CSParticleManager.Instance.AddListParticle(this);
