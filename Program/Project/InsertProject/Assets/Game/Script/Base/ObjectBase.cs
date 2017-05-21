@@ -41,9 +41,10 @@ public class ObjectBase : MonoBehaviour {
 
     }
 
-	/*
+	
 	public void ChangeOrderNumber(int OrderNumber) {
+        m_OrderNumber = OrderNumber;
 
-	}
-	*/
+    }
+	
 }
