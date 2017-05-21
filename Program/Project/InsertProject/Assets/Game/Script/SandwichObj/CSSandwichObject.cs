@@ -39,22 +39,29 @@ public class CSSandwichObject : ObjectBase {
     /// </summary>
     /// <param name="col"></param>
     public void OnTriggerStay(Collider col) {
-        if(col.tag != "" && col.tag != "") {
+        string colName = col.name;
+        colName = col.name;
+        Debug.Log(colName);
+        if(!colName.Contains("startPress") && !colName.Contains("endPress")) {
             return;
         }
 
-        if(col.tag == "") {
-            if(m_bHitFlagB)
+        if(colName.Contains("startPress")) {
+            if(m_bHitFlagB) {
                 m_bInsert = true;
-            else
+                Debug.Log("挟まれた");
+            } else {
                 m_bHitFlagA = true;
+            }
         }
 
-        if(col.tag == "") {
-            if(m_bHitFlagA)
+        if(colName.Contains("endPress")) {
+            if(m_bHitFlagA) {
                 m_bInsert = true;
-            else
+                Debug.Log("挟まれた");
+            } else {
                 m_bHitFlagB = true;
+            }
         }
 
     }
