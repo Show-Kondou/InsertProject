@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 65118493853185722}
   - component: {fileID: 23958505053376030}
   - component: {fileID: 114609863824369816}
+  - component: {fileID: 54534565502844758}
   m_Layer: 0
   m_Name: Press
   m_TagString: Untagged
@@ -73,6 +74,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &33013774281373958
 MeshFilter:
@@ -81,6 +83,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1271344774731840}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54534565502844758
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1271344774731840}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &65118493853185722
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -88,7 +105,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1271344774731840}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -104,8 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 180fc891478680646bb719a43333befc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lvStorage: []
-  nListCnt: 0
-  nListCntDiv: 0
-  nNextList: 0
+  nPressID: 0
   bWallStart: 0
+  lvStorage: []
+  vLookPos: {x: 0, y: 0, z: 0}
+  bStop: 0

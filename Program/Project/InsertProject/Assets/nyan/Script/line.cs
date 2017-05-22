@@ -5,6 +5,9 @@ using System;
 
 public class line : MonoBehaviour {
 
+    //ID
+    public int nLineID;
+
     //ゲームオブジェクト
     private LineRenderer lRendere;
     public GameObject CameraObj;
@@ -19,7 +22,7 @@ public class line : MonoBehaviour {
 	private Vector3 vWMousePos;     //ワールド
 
     //差分計算用
-    public bool bDiffCheck = false;
+    private bool bDiffCheck = false;
     private Vector3 vNewPos;
     private Vector3 vOldPos;
     private float   fDiffX;
@@ -34,8 +37,8 @@ public class line : MonoBehaviour {
     private int nPointCnt = 1;
 
     //マウスチェックフラグ
-    public bool bFirstClick;
-    public bool bReleaseCheck;
+    private bool bFirstClick;
+    private bool bReleaseCheck;
 
 	private Vector3 initialPosition;
 
@@ -114,22 +117,6 @@ public class line : MonoBehaviour {
             //New座標に代入
             vNewPos = vWMousePos;
             bDiffCheck = true;
-
-
-
-            ////トリガー時処理
-            //if (Input.GetMouseButtonDown(0))
-            //{
-            //    //ダウン時格納場所を作り直す
-            //    nPointCnt = 1;
-            //    lRendere.SetVertexCount(nPointCnt);
-
-            //    //マウスクリック時の座標を格納
-            //    vStartPos = vWMousePos;
-            //    lRendere.SetPosition(0, vStartPos);
-            //    lvPointStorage.Clear();
-            //    lvPointStorage.Add(vStartPos);
-            //}
 
             //ホールド時処理
             if (Input.GetMouseButton(0))
@@ -220,7 +207,7 @@ public class line : MonoBehaviour {
                             lvPointStorage.Add(vWMousePos);
 
                             //ポイントごとにPointObjを表示(デバッグ用)
-                            GameObject gStartPress = Instantiate(PointPrefab, vWMousePos, transform.rotation) as GameObject;
+                            //GameObject gStartPress = Instantiate(PointPrefab, vWMousePos, transform.rotation) as GameObject;
 
 
                             Color c1 = new Color(1, 1, 0, 1);
@@ -256,14 +243,18 @@ public class line : MonoBehaviour {
                 vStartPress = lvPointStorage[0];
                 GameObject gStartPress = Instantiate(PressPrefab, vStartPress, transform.rotation) as GameObject;
                 gStartPress.name = "startPress" + _touch.nLineNum;
+                gStartPress.tag = "StartPress";
                 gStartPress.transform.parent = transform;
                 gStartPress.GetComponent<Press>().bWallStart = true;
+                gStartPress.GetComponent<Press>().nPressID = nLineID;
 
                 vEndPress = lvPointStorage[nPointCnt - 1];
                 GameObject gEndPress = Instantiate(PressPrefab, vEndPress, transform.rotation) as GameObject;
                 gEndPress.name = "endPress" + _touch.nLineNum;
+                gEndPress.tag = "EndPress";
                 gEndPress.transform.parent = transform;
                 gEndPress.GetComponent<Press>().bWallStart = false;
+                gEndPress.GetComponent<Press>().nPressID = nLineID;
 
                 //リリースチェックをtrueにして線を引けないようにする
                 bReleaseCheck = true;
