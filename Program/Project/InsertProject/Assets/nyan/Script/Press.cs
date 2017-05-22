@@ -24,8 +24,13 @@ public class Press : MonoBehaviour {
     private Vector3 vSpeed = new Vector3(0.05f, 0.05f, 0.05f);
     private float fRad;
     private Vector3 vPos;
-    private float fGrace = 0.025f;
+    private float fGrace = 0.025f;      //差
     public bool bStop = false;
+
+    //ベクトル計算用
+    public Vector3 vStartVec;
+    public Vector3 vEndVec;
+    public float fVec;
 
 
     // Use this for initialization
@@ -33,11 +38,13 @@ public class Press : MonoBehaviour {
 
         gParentObj = gameObject.transform.parent.gameObject;
         
+        //ラインの座標リストを取得
         lvStorage = gParentObj.GetComponent<line>().lvPointStorage;
 
         nListCnt = lvStorage.Count;
         nListCntDiv = nListCnt / 2;
 
+        //どちらのプレス機か
         if (bWallStart == true)
         {
             vLookPos = lvStorage[0];
@@ -57,13 +64,15 @@ public class Press : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        //どちらのプレス機か
         if (bWallStart == true)
         {
             if (/*nNextList <= nListCntDiv &&*/ bStop == false)
             {
-
+                //移動目標
                 vLookPos = lvStorage[nNextList];
 
+                //移動
                 fRad = Mathf.Atan2(vLookPos.y - transform.position.y, vLookPos.x - transform.position.x);
 
                 vPos = transform.position;
@@ -75,7 +84,7 @@ public class Press : MonoBehaviour {
 
                 transform.LookAt(vLookPos);
 
-
+                //目標位置と現在位置の差を確認
                 if (vLookPos.x - fGrace <= transform.position.x && transform.position.x <= vLookPos.x + fGrace &&
                     vLookPos.y - fGrace <= transform.position.y && transform.position.y <= vLookPos.y + fGrace)
                 {
@@ -84,15 +93,14 @@ public class Press : MonoBehaviour {
             }
 
         }
-
-
         if (bWallStart == false)
         {
             if (/*nListCntDiv <= nNextList &&*/ bStop == false)
             {
-
+                //移動目標
                 vLookPos = lvStorage[nNextList];
 
+                //移動・方向転換
                 fRad = Mathf.Atan2(vLookPos.y - transform.position.y, vLookPos.x - transform.position.x);
 
                 vPos = transform.position;
@@ -104,6 +112,7 @@ public class Press : MonoBehaviour {
 
                 transform.LookAt(vLookPos);
 
+                //目標位置と現在位置の差を確認
                 if (vLookPos.x - fGrace <= transform.position.x && transform.position.x <= vLookPos.x + fGrace &&
                     vLookPos.y - fGrace <= transform.position.y && transform.position.y <= vLookPos.y + fGrace)
                 {
@@ -118,11 +127,18 @@ public class Press : MonoBehaviour {
     {
         if (gameObject.tag == "StartPress")
         {
+            //衝突したのが自分の対なら止める
             if (collider.gameObject.tag == "EndPress")
             {
                 if (collider.gameObject.GetComponent<Press>().nPressID == nPressID)
                 {
                     bStop = true;
+
+                    //衝突時角度計算
+                    vStartVec = vLookPos - transform.position;
+                    vEndVec = collider.gameObject.GetComponent<Press>().vLookPos - collider.gameObject.GetComponent<Press>().transform.position;
+                    fVec = Vector3.Angle(vStartVec, vEndVec);
+
                 }
 
             }
@@ -131,48 +147,21 @@ public class Press : MonoBehaviour {
 
         if (gameObject.tag == "EndPress")
         {
+            //衝突したのが自分の対なら止める
             if (collider.gameObject.tag == "StartPress")
             {
                 if (collider.gameObject.GetComponent<Press>().nPressID == nPressID)
                 {
                     bStop = true;
+
+                    //衝突時角度計算
+                    vEndVec = vLookPos - transform.position;
+                    vStartVec = collider.gameObject.GetComponent<Press>().vLookPos - collider.gameObject.GetComponent<Press>().transform.position;
+                    fVec = Vector3.Angle(vEndVec, vStartVec);
+
                 }
             }
 
         }
     }
-
-    //void OnCollisionEnter(Collision collision)
-    //{
-    //    if (gameObject.tag == "StartPress")
-    //    {
-    //        if (collision.gameObject.tag == "EndPress")
-    //        {
-    //            if (collision.gameObject.GetComponent<Press>().nPressID == nPressID)
-    //            {
-    //                bStop = true;
-    //            }
-                
-    //        }
-
-    //    }
-
-    //    if (gameObject.tag == "EndPress")
-    //    {
-    //        if (collision.gameObject.tag == "StartPress")
-    //        {
-    //            if (collision.gameObject.GetComponent<Press>().nPressID == nPressID)
-    //            {
-    //                bStop = true;
-    //            }
-    //        }
-
-    //    }
-
-    //}
-
-
-
-
-
 }

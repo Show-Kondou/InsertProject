@@ -179,7 +179,7 @@ public class line : MonoBehaviour {
                             if (0 < vNewPos.y)
                                 fDiffY = (vOldPos.y * -1.0f) - vNewPos.y;
 
-                            if (vNewPos.x < 0)
+                            if (vNewPos.y < 0)
                                 fDiffY = (vOldPos.y * -1.0f) - (vNewPos.y * -1.0f);
                         }
 
@@ -207,7 +207,7 @@ public class line : MonoBehaviour {
                             lvPointStorage.Add(vWMousePos);
 
                             //ポイントごとにPointObjを表示(デバッグ用)
-                            //GameObject gStartPress = Instantiate(PointPrefab, vWMousePos, transform.rotation) as GameObject;
+                            GameObject gStartPress = Instantiate(PointPrefab, vWMousePos, transform.rotation) as GameObject;
 
 
                             Color c1 = new Color(1, 1, 0, 1);
@@ -228,8 +228,15 @@ public class line : MonoBehaviour {
             }
 
             //リリース時処理
-            if (Input.GetMouseButtonUp(0)/* && FIrstDown == true*/)
+            if (Input.GetMouseButtonUp(0))
             {
+                //線の長さが基準値に達していなかったら線を引かずオブジェクトも消す。
+                if (lvPointStorage.Count < 2)
+                {
+                    this.gameObject.SetActive(false);
+                    Destroy(this.gameObject);
+                }
+
                 //アップ時格納場所を増やす
                 nPointCnt += 1;
                 lRendere.SetVertexCount(nPointCnt);
