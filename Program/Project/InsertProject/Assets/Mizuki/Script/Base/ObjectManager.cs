@@ -28,13 +28,12 @@ public class ObjectManager : SingletonMonoBehaviour<ObjectManager> {
 	
 	// Update is called once per frame
 	void Update () {
-        int i;
         float deltaTime = Time.deltaTime;
-        for(i = 0; i < m_OrderList.Count; i++) {
-			m_OrderList[i].Execute(deltaTime);
+        foreach(OrderControl orderControl in m_OrderList) {
+            orderControl.Execute(deltaTime);
         }
-        for(i = 0; i < m_OrderList.Count; i++) {
-			m_OrderList[i].LateExecute(deltaTime);
+        foreach(OrderControl orderControl in m_OrderList) {
+            orderControl.LateExecute(deltaTime);
         }
 	}
 
