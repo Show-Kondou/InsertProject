@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class touch : MonoBehaviour {
 
+    //プレファブ
     public GameObject LinePrefab;
 
+    //ライン連番
     public int nLineNum;
 
 	// Use this for initialization
@@ -24,10 +26,11 @@ public class touch : MonoBehaviour {
         {
             nLineNum++;
 
+            //ラインプレファブ生成
             GameObject Line =  Instantiate(LinePrefab) as GameObject;
-
             Line.name = "Line" + nLineNum;
 
+            //ラインにID付与
             Line.GetComponent<line>().nLineID = nLineNum;
 
         }
