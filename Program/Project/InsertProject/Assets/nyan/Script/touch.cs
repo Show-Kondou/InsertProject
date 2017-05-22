@@ -28,6 +28,8 @@ public class touch : MonoBehaviour {
 
             Line.name = "Line" + nLineNum;
 
+            Line.GetComponent<line>().nLineID = nLineNum;
+
         }
 
 

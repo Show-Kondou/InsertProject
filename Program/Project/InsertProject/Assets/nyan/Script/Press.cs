@@ -6,20 +6,26 @@ public class Press : MonoBehaviour {
 
     GameObject gParentObj;
 
-    public List<Vector3> lvStorage = new List<Vector3>();
-    public int nListCnt;
-    public int nListCntDiv;
-    public int nNextList;
-
-    Vector3 vLookPos;
-    Vector3 vOldPos;
-
+    //ID
+    public int nPressID;
     public bool bWallStart;
 
+    //リスト関連
+    public List<Vector3> lvStorage = new List<Vector3>();
+    private int nListCnt;
+    private int nListCntDiv;
+    private int nNextList;
+
+    //座標
+    public Vector3 vLookPos;
+    Vector3 vOldPos;
+
+    //移動関連
     private Vector3 vSpeed = new Vector3(0.05f, 0.05f, 0.05f);
     private float fRad;
     private Vector3 vPos;
     private float fGrace = 0.025f;
+    public bool bStop = false;
 
 
     // Use this for initialization
@@ -53,7 +59,7 @@ public class Press : MonoBehaviour {
 
         if (bWallStart == true)
         {
-            if (nNextList <= nListCntDiv)
+            if (/*nNextList <= nListCntDiv &&*/ bStop == false)
             {
 
                 vLookPos = lvStorage[nNextList];
@@ -82,7 +88,7 @@ public class Press : MonoBehaviour {
 
         if (bWallStart == false)
         {
-            if (nListCntDiv <= nNextList)
+            if (/*nListCntDiv <= nNextList &&*/ bStop == false)
             {
 
                 vLookPos = lvStorage[nNextList];
@@ -106,42 +112,67 @@ public class Press : MonoBehaviour {
             }
         }
 
-
-
-        //if (bWallStart == true)
-        //{
-        //    if (nNextList <= nListCntDiv)
-        //    {
-        //        vLookPos = lvStorage[nNextList];
-        //        vOldPos = transform.position;
-        //        transform.LookAt(vLookPos);
-
-        //        transform.position = transform.position + new Vector3(0.01f, 0.01f, 0.0f);
-
-        //        //transform.position = Vector3.Lerp(transform.position, vLookPos,0.5f);
-
-        //        if (transform.position == vLookPos)
-        //        {
-        //            nNextList++;
-        //        }
-
-        //        //vLookPos = lvStorage[nNextList];
-        //        //transform.LookAt(vLookPos);
-        //        //transform.position = vLookPos;
-        //        //nNextList++;
-        //    }
-        //}
-
-        //if (bWallStart == false)
-        //{
-        //    if (nListCntDiv <= nNextList)
-        //    {
-        //        vLookPos = lvStorage[nNextList];
-        //        transform.LookAt(vLookPos);
-        //        transform.position = vLookPos;
-        //        nNextList--;
-        //    }
-        //}
-
     }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (gameObject.tag == "StartPress")
+        {
+            if (collider.gameObject.tag == "EndPress")
+            {
+                if (collider.gameObject.GetComponent<Press>().nPressID == nPressID)
+                {
+                    bStop = true;
+                }
+
+            }
+
+        }
+
+        if (gameObject.tag == "EndPress")
+        {
+            if (collider.gameObject.tag == "StartPress")
+            {
+                if (collider.gameObject.GetComponent<Press>().nPressID == nPressID)
+                {
+                    bStop = true;
+                }
+            }
+
+        }
+    }
+
+    //void OnCollisionEnter(Collision collision)
+    //{
+    //    if (gameObject.tag == "StartPress")
+    //    {
+    //        if (collision.gameObject.tag == "EndPress")
+    //        {
+    //            if (collision.gameObject.GetComponent<Press>().nPressID == nPressID)
+    //            {
+    //                bStop = true;
+    //            }
+                
+    //        }
+
+    //    }
+
+    //    if (gameObject.tag == "EndPress")
+    //    {
+    //        if (collision.gameObject.tag == "StartPress")
+    //        {
+    //            if (collision.gameObject.GetComponent<Press>().nPressID == nPressID)
+    //            {
+    //                bStop = true;
+    //            }
+    //        }
+
+    //    }
+
+    //}
+
+
+
+
+
 }
