@@ -15,8 +15,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CSSandwichObject : ObjectBase {
-    // プレス機のステータス格納用
-    public struct PressObject { 
+	[SerializeField]
+	float m_PressRangeLow;	// 挟まれ判定をする角度の下限。
+	[SerializeField]
+	float m_PressRangeHigh;	// 挟まれ判定をする角度の上限。
+
+	// プレス機のステータス格納用
+	public struct PressObject { 
         public bool bHitFlagA;   // 一個目に当たったかのチェック
         public bool bHitFlagB;   // 二個目に当たったかのチェック
         public int  HitID;       // 当たったオブジェクトの番号
@@ -24,7 +29,7 @@ public class CSSandwichObject : ObjectBase {
         public string HitObjName;  // 名前(前後確認)
     };
 
-    private List<PressObject> m_PressObjList;  // プレス機のリスト
+    private List<PressObject> m_PressObjList = new List<PressObject>();  // プレス機のリスト
     public bool m_bInsert;      // 挟まりました
 
     float life = 5.0f;
@@ -37,9 +42,15 @@ public class CSSandwichObject : ObjectBase {
     }
 
     public override void Execute(float deltaTime) {
-		for(int i = 0; i < m_PressObjList.Count - 1; ++i) {
-			for(int j = i + 1; j < m_PressObjList.Count; ++j) {
-				Vector3.Dot(m_PressObjList[i].DirectionVec, m_PressObjList[j].DirectionVec);
+		// 挟まれチェック
+		if(m_PressObjList.Count > 1) {
+			for(int i = 0; i < m_PressObjList.Count - 1; ++i) {
+				for(int j = i + 1; j < m_PressObjList.Count; ++j) {
+					if(Mathematics.VectorRange(m_PressObjList[i].DirectionVec, m_PressObjList[j].DirectionVec) > m_PressRangeLow &&
+						Mathematics.VectorRange(m_PressObjList[i].DirectionVec, m_PressObjList[j].DirectionVec) > m_PressRangeHigh) {
+						Debug.Log("挟まれました。");
+					}
+				}
 			}
 		}
     }

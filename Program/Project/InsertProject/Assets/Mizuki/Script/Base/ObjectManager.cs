@@ -17,7 +17,7 @@ using UnityEngine;
 
 public class ObjectManager : SingletonMonoBehaviour<ObjectManager> {
 	[SerializeField]
-	private List<OrderControl> m_OrderList;
+	private List<OrderControl> m_OrderList = new List<OrderControl>();
 	[SerializeField]
 	private OrderControl m_OrderControlPrefab;
 
