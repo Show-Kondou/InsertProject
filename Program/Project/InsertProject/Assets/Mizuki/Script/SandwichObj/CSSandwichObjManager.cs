@@ -17,9 +17,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CSSandwichObjManager : ObjectBase{
-    public List<CSSandwichObject> m_SandwichObjList;
+    public List<CSSandwichObject> m_SandwichObjList = new List<CSSandwichObject>();
     [SerializeField]
-    private List<CSSandwichObject> m_ObjTypeList;
+    private List<CSSandwichObject> m_ObjTypeList = new List<CSSandwichObject>();
 
     float m_Timer = 0;
 
@@ -31,9 +31,7 @@ public class CSSandwichObjManager : ObjectBase{
     }
 
     public override void Execute(float deltaTime) {
-        m_Timer += deltaTime;
-        if(m_Timer > 3.0f)
-            CreateSandwichObj(0, new Vector2(10, 0));
+
     }
 
     public override void LateExecute(float deltaTime) {
