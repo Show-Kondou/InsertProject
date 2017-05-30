@@ -16,9 +16,10 @@ public class line : MonoBehaviour {
 
     //カメラ座標
     private Vector3 vCameraPos = new Vector3(0, 0, 0);
+    private Vector3 initialPosition;
 
-	//マウス座標
-	private Vector3 vSMousePos;     //スクリーン
+    //マウス座標
+    private Vector3 vSMousePos;     //スクリーン
 	private Vector3 vWMousePos;     //ワールド
 
     //差分計算用
@@ -40,31 +41,29 @@ public class line : MonoBehaviour {
     private bool bFirstClick;
     private bool bReleaseCheck;
 
-	private Vector3 initialPosition;
-
     //Press召喚座標
     Vector3 vStartPress;
     Vector3 vEndPress;
-
-
-    private Vector3 StartPosition;  // マウスを押した位置を格納
-    private Vector3 EndPosition;    // マウスを離した位置を格納
 
     //タッチオブジェクト呼び出し
     GameObject TouchObj;
     touch _touch;
 
-    
+    //距離計算
+    public float fDistanceTotal;
+
+
 
     //------
 
     void Start()
 	{
-
+        //LineRenderer生成
         lRendere = gameObject.GetComponent<LineRenderer>();
         // 線の幅
         lRendere.SetWidth(0.05f, 0.05f);
 
+        //タッチ判定
         bFirstClick = false;
         bReleaseCheck = false;
 
@@ -104,13 +103,12 @@ public class line : MonoBehaviour {
             initialPosition = new Vector3(0.0f, 1.0f, -10.0f);
             vCameraPos = initialPosition;
 
-            ////Old座標に代入
-            //vOldPos = vSMousePos;
-
             // Vector3でマウス位置座標を取得する
             vSMousePos = Input.mousePosition;
+
             // Z軸修正
             vSMousePos.z = -vCameraPos.z;
+
             // マウス位置座標をスクリーン座標からワールド座標に変換する
             vWMousePos = Camera.main.ScreenToWorldPoint(vSMousePos);
 
@@ -146,7 +144,7 @@ public class line : MonoBehaviour {
                     if (bDiffCheck == true)
                     {
 
-                        //差分計算
+                        //差分計算(値を正の数にする)
                         if (0 < vOldPos.x)
                         {
                             if (0 < vNewPos.x)
@@ -183,7 +181,7 @@ public class line : MonoBehaviour {
                                 fDiffY = (vOldPos.y * -1.0f) - (vNewPos.y * -1.0f);
                         }
 
-                        //
+                        //差分計算
                         if (fDiffX < 0)
                         {
                             fDiffX = fDiffX * -1.0f;
@@ -195,7 +193,7 @@ public class line : MonoBehaviour {
 
 
                         //一定量移動で処理
-                        float fDiffAbout = 0.5f;
+                        float fDiffAbout = 0.125f;
                         if (fDiffAbout < fDiffX || fDiffAbout < fDiffY)//仮
                         {
                             //一定量移動時格納場所を増やす
@@ -206,9 +204,13 @@ public class line : MonoBehaviour {
                             lRendere.SetPosition(nPointCnt - 1, vWMousePos);
                             lvPointStorage.Add(vWMousePos);
 
-                            //ポイントごとにPointObjを表示(デバッグ用)
-                            GameObject gStartPress = Instantiate(PointPrefab, vWMousePos, transform.rotation) as GameObject;
+                            ////ポイントごとにPointObjを表示(デバッグ用)
+                            //GameObject gStartPress = Instantiate(PointPrefab, vWMousePos, transform.rotation) as GameObject;
 
+
+                            //距離を加算
+                            fDistanceTotal += (vOldPos - vWMousePos).magnitude;
+                            //Debug.Log((vOldPos - vWMousePos).magnitude);
 
                             Color c1 = new Color(1, 1, 0, 1);
                             Color c2 = new Color(0, 1, 1, 1);
