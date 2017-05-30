@@ -17,8 +17,9 @@ using UnityEngine;
 public class CSSandwichObject : ObjectBase {
 	[SerializeField]
 	float m_PressRangeLow;	// 挟まれ判定をする角度の下限。
+
 	[SerializeField]
-	float m_PressRangeHigh;	// 挟まれ判定をする角度の上限。
+	ParticleSystem testPart;	// 後で消すこと！！！！！！
 
 	// プレス機のステータス格納用
 	public struct PressObject { 
@@ -43,17 +44,31 @@ public class CSSandwichObject : ObjectBase {
 
     public override void Execute(float deltaTime) {
 		// 挟まれチェック
-		if(m_PressObjList.Count > 1) {
-			for(int i = 0; i < m_PressObjList.Count - 1; ++i) {
-				for(int j = i + 1; j < m_PressObjList.Count; ++j) {
-					if(Mathematics.VectorRange(m_PressObjList[i].DirectionVec, m_PressObjList[j].DirectionVec) > m_PressRangeLow &&
-						Mathematics.VectorRange(m_PressObjList[i].DirectionVec, m_PressObjList[j].DirectionVec) > m_PressRangeHigh) {
-						Debug.Log("挟まれました。");
+		if(m_PressObjList.Count < 2) {
+			return;
+		}
+		for(int i = 0; i < m_PressObjList.Count - 1; ++i) {
+			for(int j = i + 1; j < m_PressObjList.Count; ++j) {
+				// 挟まれ判定
+				Debug.Log(Mathematics.VectorRange(m_PressObjList[i].DirectionVec, m_PressObjList[j].DirectionVec));
+				if((m_PressObjList[i].bHitFlagA && m_PressObjList[j].bHitFlagA && m_PressObjList[i].HitID == m_PressObjList[j].HitID) ||
+					m_PressObjList[i].bHitFlagB && m_PressObjList[j].bHitFlagB && m_PressObjList[i].HitID == m_PressObjList[j].HitID) {
+					continue;
+				}
+				if(Mathematics.VectorRange(m_PressObjList[i].DirectionVec, m_PressObjList[j].DirectionVec) > m_PressRangeLow) {
+					//CSParticleManager.Instance.Play("Explosion");
+
+					// テスト表示。あとで消すこと！！！！！！
+					{
+						Instantiate(testPart, transform.position, Quaternion.identity); 
+						Destroy(gameObject);
 					}
+					break;
 				}
 			}
 		}
-    }
+		m_PressObjList.Clear(); // 毎フレームリセット。重そうなので別案考え中。
+	}
 
     public override void LateExecute(float deltaTime) {
 		m_PressObjList.Clear();	// 毎フレームリセット。重そうなので別案考え中。

@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 54815814179519412}
   - component: {fileID: 135785870408280992}
   - component: {fileID: 114841034499628204}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,8 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3f4c2945d8f49044af5d2e39e820058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PressRangeLow: 170
-  m_PressRangeHigh: 190
+  m_PressRangeLow: 0
+  testPart: {fileID: 198439245744141002, guid: 68e6e5532306f864486d96c4d89ed710, type: 2}
   m_bInsert: 0
 --- !u!135 &135289504531930748
 SphereCollider:
