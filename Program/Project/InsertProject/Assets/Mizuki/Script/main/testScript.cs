@@ -14,7 +14,7 @@ public class testScript : ObjectBase {
 	public override void Execute(float deltaTime) {
 		transform.position += new Vector3(1,0,0);
         if(Input.anyKeyDown) {
-            CSParticleManager.Instance.Play("test");
+            //CSParticleManager.Instance.Play("test");
         }
 	}
 
