@@ -193,7 +193,7 @@ public class line : MonoBehaviour {
 
 
                         //一定量移動で処理
-                        float fDiffAbout = 0.125f;
+                        float fDiffAbout = 0.065f;
                         if (fDiffAbout < fDiffX || fDiffAbout < fDiffY)//仮
                         {
                             //一定量移動時格納場所を増やす

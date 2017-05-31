@@ -94,6 +94,7 @@ public class Press : MonoBehaviour {
                 transform.position = vMovePos;
 
                 transform.LookAt(vLookPos);
+                transform.Rotate(new Vector3 (transform.rotation.x, -90.0f, transform.rotation.z));
 
                 //目標位置と現在位置の差を確認
                 if (vLookPos.x - fGrace <= transform.position.x && transform.position.x <= vLookPos.x + fGrace &&
@@ -128,6 +129,7 @@ public class Press : MonoBehaviour {
                 transform.position = vMovePos;
 
                 transform.LookAt(vLookPos);
+                transform.Rotate(new Vector3(transform.rotation.x, -90.0f, transform.rotation.z));
 
                 //目標位置と現在位置の差を確認
                 if (vLookPos.x - fGrace <= transform.position.x && transform.position.x <= vLookPos.x + fGrace &&
