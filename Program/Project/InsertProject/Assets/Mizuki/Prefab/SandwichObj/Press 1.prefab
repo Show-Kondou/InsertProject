@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114243017069045196}
   - component: {fileID: 54368484304998808}
   - component: {fileID: 65702762307310020}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Press 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,8 +109,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0.6}
-  m_Center: {x: 0, y: 0, z: 0.5}
+  m_Size: {x: 1, y: 0.91, z: 0.76}
+  m_Center: {x: 0, y: 0, z: 0.58}
 --- !u!65 &65702762307310020
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -141,4 +141,7 @@ MonoBehaviour:
   bStop: 0
   vStartVec: {x: 0, y: 0, z: 0}
   vEndVec: {x: 0, y: 0, z: 0}
-  fVec: 0
+  fCollisionVec: 0
+  fVecRange: 150
+  fContainer: 0
+  fDistance: 0

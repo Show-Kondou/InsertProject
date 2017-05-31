@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Press : MonoBehaviour {
 
+    //親オブジェクト
     GameObject gParentObj;
 
     //ID
@@ -18,19 +19,27 @@ public class Press : MonoBehaviour {
 
     //座標
     public Vector3 vLookPos;
-    Vector3 vOldPos;
+    private Vector3 vNewPos;
+    private Vector3 vOldPos;
 
     //移動関連
     private Vector3 vSpeed = new Vector3(0.05f, 0.05f, 0.05f);
-    private float fRad;
-    private Vector3 vPos;
+    private float fRad;                 //進行方向計算用
+    private Vector3 vMovePos;           //移動用
     private float fGrace = 0.025f;      //差
-    public bool bStop = false;
+    public bool bStop = false;          //停止フラグ
 
     //ベクトル計算用
     public Vector3 vStartVec;
     public Vector3 vEndVec;
-    public float fVec;
+    public float fCollisionVec;
+
+    public float fVecRange;
+
+    //距離計算用
+    public float fContainer;
+    public float fDistance;
+
 
 
     // Use this for initialization
@@ -43,6 +52,8 @@ public class Press : MonoBehaviour {
 
         nListCnt = lvStorage.Count;
         nListCntDiv = nListCnt / 2;
+
+        vNewPos = transform.position;
 
         //どちらのプレス機か
         if (bWallStart == true)
@@ -75,20 +86,27 @@ public class Press : MonoBehaviour {
                 //移動
                 fRad = Mathf.Atan2(vLookPos.y - transform.position.y, vLookPos.x - transform.position.x);
 
-                vPos = transform.position;
+                vMovePos = transform.position;
 
-                vPos.x += vSpeed.x * Mathf.Cos(fRad);
-                vPos.y += vSpeed.y * Mathf.Sin(fRad);
+                vMovePos.x += vSpeed.x * Mathf.Cos(fRad);
+                vMovePos.y += vSpeed.y * Mathf.Sin(fRad);
 
-                transform.position = vPos;
+                transform.position = vMovePos;
 
                 transform.LookAt(vLookPos);
+                transform.Rotate(new Vector3 (transform.rotation.x, -90.0f, transform.rotation.z));
 
                 //目標位置と現在位置の差を確認
                 if (vLookPos.x - fGrace <= transform.position.x && transform.position.x <= vLookPos.x + fGrace &&
                     vLookPos.y - fGrace <= transform.position.y && transform.position.y <= vLookPos.y + fGrace)
                 {
                     nNextList++;
+                }
+
+                //衝突条件を満たさず最後まで来たら停止
+                if (nNextList == nListCnt)
+                {
+                    bStop = true;
                 }
             }
 
@@ -103,14 +121,15 @@ public class Press : MonoBehaviour {
                 //移動・方向転換
                 fRad = Mathf.Atan2(vLookPos.y - transform.position.y, vLookPos.x - transform.position.x);
 
-                vPos = transform.position;
+                vMovePos = transform.position;
 
-                vPos.x += vSpeed.x * Mathf.Cos(fRad);
-                vPos.y += vSpeed.y * Mathf.Sin(fRad);
+                vMovePos.x += vSpeed.x * Mathf.Cos(fRad);
+                vMovePos.y += vSpeed.y * Mathf.Sin(fRad);
 
-                transform.position = vPos;
+                transform.position = vMovePos;
 
                 transform.LookAt(vLookPos);
+                transform.Rotate(new Vector3(transform.rotation.x, -90.0f, transform.rotation.z));
 
                 //目標位置と現在位置の差を確認
                 if (vLookPos.x - fGrace <= transform.position.x && transform.position.x <= vLookPos.x + fGrace &&
@@ -118,50 +137,72 @@ public class Press : MonoBehaviour {
                 {
                     nNextList--;
                 }
+
+                //衝突条件を満たさず最後まで来たら停止
+                if (nNextList == -1)
+                {
+                    bStop = true;
+                }
             }
+        }
+
+        vOldPos = vNewPos;
+        vNewPos = transform.position;
+        fContainer = (vNewPos - vOldPos).magnitude;
+        fDistance += fContainer;
+
+        if (gParentObj.GetComponent<line>().fDistanceTotal / 2 < fDistance)
+        {
+            bStop = true;
+
+            Destroy(gParentObj);
+            Destroy(this.gameObject);
         }
 
     }
 
-    private void OnTriggerEnter(Collider collider)
-    {
-        if (gameObject.tag == "StartPress")
-        {
-            //衝突したのが自分の対なら止める
-            if (collider.gameObject.tag == "EndPress")
-            {
-                if (collider.gameObject.GetComponent<Press>().nPressID == nPressID)
-                {
-                    bStop = true;
+    //private void OnTriggerEnter(Collider collider)
+    //{
+    //    if (gameObject.tag == "StartPress")
+    //    {
+    //        //衝突相手が自分の対か
+    //        if (collider.gameObject.tag == "EndPress")
+    //        {
+    //            if (collider.gameObject.GetComponent<Press>().nPressID == nPressID)
+    //            {
+    //                //衝突時角度計算
+    //                vStartVec = vLookPos - transform.position;
+    //                vEndVec = collider.gameObject.GetComponent<Press>().vLookPos - collider.gameObject.GetComponent<Press>().transform.position;
+    //                fCollisionVec = Vector3.Angle(vStartVec, vEndVec);
 
-                    //衝突時角度計算
-                    vStartVec = vLookPos - transform.position;
-                    vEndVec = collider.gameObject.GetComponent<Press>().vLookPos - collider.gameObject.GetComponent<Press>().transform.position;
-                    fVec = Vector3.Angle(vStartVec, vEndVec);
+    //                //一定の角度であればプレス機を止める
+    //                if (fCollisionVec > fVecRange)
+    //                {
+    //                    bStop = true;
+    //                }
+    //            }
+    //        }
+    //    }
 
-                }
+    //    if (gameObject.tag == "EndPress")
+    //    {
+    //        //衝突相手が自分の対か
+    //        if (collider.gameObject.tag == "StartPress")
+    //        {
+    //            if (collider.gameObject.GetComponent<Press>().nPressID == nPressID)
+    //            {
+    //                //衝突時角度計算
+    //                vEndVec = vLookPos - transform.position;
+    //                vStartVec = collider.gameObject.GetComponent<Press>().vLookPos - collider.gameObject.GetComponent<Press>().transform.position;
+    //                fCollisionVec = Vector3.Angle(vEndVec, vStartVec);
 
-            }
-
-        }
-
-        if (gameObject.tag == "EndPress")
-        {
-            //衝突したのが自分の対なら止める
-            if (collider.gameObject.tag == "StartPress")
-            {
-                if (collider.gameObject.GetComponent<Press>().nPressID == nPressID)
-                {
-                    bStop = true;
-
-                    //衝突時角度計算
-                    vEndVec = vLookPos - transform.position;
-                    vStartVec = collider.gameObject.GetComponent<Press>().vLookPos - collider.gameObject.GetComponent<Press>().transform.position;
-                    fVec = Vector3.Angle(vEndVec, vStartVec);
-
-                }
-            }
-
-        }
-    }
+    //                //一定の角度であればプレス機を止める
+    //                if (fCollisionVec > fVecRange)
+    //                {
+    //                    bStop = true;
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
 }
