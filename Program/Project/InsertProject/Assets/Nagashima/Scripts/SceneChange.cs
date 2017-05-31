@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class SceneChange : MonoBehaviour 
 {
     [SerializeField]
-    private string LoadSceneName;
+    private SCENE LoadSceneName;
 
     // ===== シーンチェンジを開始する関数 =====
     public void SceneChangeStart()
@@ -18,7 +18,7 @@ public class SceneChange : MonoBehaviour
             this.GetComponent<Button>().interactable = false;
        
         // シーンチェンジ
-        SceneManager.LoadScene(LoadSceneName);
+        CSceneManager.Instance.LoadScene(LoadSceneName, FADE.BLACK);
     }
 
 	// ===== スタート関数 =====
