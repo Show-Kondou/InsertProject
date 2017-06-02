@@ -52,6 +52,9 @@ public class line : MonoBehaviour {
     //距離計算
     public float fDistanceTotal;
 
+    //線の色
+    public Color c1 = new Color(0, 0, 0, 1);
+    public Color c2 = new Color(0, 0, 0, 1);
 
 
     //------
@@ -62,6 +65,8 @@ public class line : MonoBehaviour {
         lRendere = gameObject.GetComponent<LineRenderer>();
         // 線の幅
         lRendere.SetWidth(0.05f, 0.05f);
+        //線の色
+        lRendere.SetColors(c1, c2);
 
         //タッチ判定
         bFirstClick = false;
@@ -207,14 +212,11 @@ public class line : MonoBehaviour {
                             ////ポイントごとにPointObjを表示(デバッグ用)
                             //GameObject gStartPress = Instantiate(PointPrefab, vWMousePos, transform.rotation) as GameObject;
 
-
                             //距離を加算
                             fDistanceTotal += (vOldPos - vWMousePos).magnitude;
                             //Debug.Log((vOldPos - vWMousePos).magnitude);
 
-                            Color c1 = new Color(1, 1, 0, 1);
-                            Color c2 = new Color(0, 1, 1, 1);
-
+                            //線の色を設定
                             lRendere.SetColors(c1, c2);
 
                             //新しい点を描画したらvOldPosに代入
