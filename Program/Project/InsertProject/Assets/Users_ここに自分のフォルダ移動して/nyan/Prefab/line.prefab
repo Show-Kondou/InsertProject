@@ -54,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nLineID: 0
   CameraObj: {fileID: 0}
-  PressPrefab: {fileID: 1271344774731840, guid: 364eff4a220f45a4b8899cd353593306,
+  PressPrefab: {fileID: 1015269301684834, guid: a772b6f1afea9554dba6e6638529418e,
     type: 2}
   PointPrefab: {fileID: 1402570948096110, guid: b7bef8fb46ca60c4faeade52edd32501,
     type: 2}
