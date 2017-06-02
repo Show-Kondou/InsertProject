@@ -58,5 +58,7 @@ public static class CExtFotTransform {
 		transform.position = pos;
 	}
 
+
+
 	#endregion Method
 }
