@@ -54,11 +54,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nLineID: 0
   CameraObj: {fileID: 0}
-  PressPrefab: {fileID: 1518706063161370, guid: 72dd9607f44f14747966253d25409d15,
+  PressPrefab: {fileID: 1271344774731840, guid: 364eff4a220f45a4b8899cd353593306,
     type: 2}
   PointPrefab: {fileID: 1402570948096110, guid: b7bef8fb46ca60c4faeade52edd32501,
     type: 2}
   lvPointStorage: []
+  fDistanceTotal: 0
 --- !u!120 &120625925224940120
 LineRenderer:
   m_ObjectHideFlags: 1
