@@ -18,20 +18,35 @@ using UnityEngine;
 public class CSParticleObject : ObjectBase {
     public ParticleSystem m_Particle;  // particleオブジェクト
     private int m_ListToNumber;     // リストの何番目か
-    private string m_ParticleName;
+    private CSParticleManager.PARTICLE_TYPE m_ParticleType;		// お名前
+	private int m_nNumberOfSameType;    // 同じ名前のパーティクルで何番目か
+	public int nNumberOfSameType {
+		set
+		{
+			m_nNumberOfSameType = value;
+		}
+		get
+		{
+			return m_nNumberOfSameType;
+		}
+	}
 
     // Use this for initialization
     void Start() {
         m_OrderNumber = 0;
         ObjectManager.Instance.RegistrationList(this, m_OrderNumber);
-        m_ParticleName = transform.name;
         m_Particle.Stop();
         m_ListToNumber = CSParticleManager.Instance.AddListParticle(this);
 
-
-        // 警告消し用(もっといい解決方法あったら教えて)
-        if(m_ParticleName == "ぱーてぃくる") {
-            m_ListToNumber = 0;
-        }
     }
+
+	/// <summary>
+	/// 初期化
+	/// </summary>
+	/// <param name="type">パーティクルタイプ</param>
+	/// <param name="nNumber">同名パーティクルの何番目か</param>
+	public void Create(CSParticleManager.PARTICLE_TYPE type, int nNumber) {
+		m_ParticleType = type;
+		m_nNumberOfSameType = nNumber;
+	}
 }
