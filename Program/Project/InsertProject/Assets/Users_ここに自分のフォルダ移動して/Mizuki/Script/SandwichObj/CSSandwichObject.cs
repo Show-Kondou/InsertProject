@@ -18,9 +18,6 @@ public class CSSandwichObject : ObjectBase {
 	[SerializeField]
 	float m_PressRangeLow;	// 挟まれ判定をする角度の下限。
 
-	[SerializeField]
-	ParticleSystem testPart;	// 後で消すこと！！！！！！
-
 	// プレス機のステータス格納用
 	public struct PressObject { 
         public bool bHitFlagA;   // 一個目に当たったかのチェック
@@ -56,13 +53,8 @@ public class CSSandwichObject : ObjectBase {
 					continue;
 				}
 				if(Mathematics.VectorRange(m_PressObjList[i].DirectionVec, m_PressObjList[j].DirectionVec) > m_PressRangeLow) {
-					//CSParticleManager.Instance.Play("Explosion");
-
-					// テスト表示。あとで消すこと！！！！！！
-					{
-						Instantiate(testPart, transform.position, Quaternion.identity); 
-						Destroy(gameObject);
-					}
+					CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.EXPLOSION, transform.position);
+					Destroy(gameObject);
 					break;
 				}
 			}
