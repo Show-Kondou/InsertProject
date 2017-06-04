@@ -16,10 +16,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CSParticleObject : ObjectBase {
+	[HideInInspector]
     public ParticleSystem m_Particle;  // particleオブジェクト
-    private int m_ListToNumber;     // リストの何番目か
-    private CSParticleManager.PARTICLE_TYPE m_ParticleType;		// お名前
-	private int m_nNumberOfSameType;    // 同じ名前のパーティクルで何番目か
+	public ParticleSystem m_ParticlePrefab;
+    public int m_ListToNumber;     // リストの何番目か
+    public CSParticleManager.PARTICLE_TYPE m_ParticleType;		// お名前
+	public int m_nNumberOfSameType;    // 同じ名前のパーティクルで何番目か
 	public int nNumberOfSameType {
 		set
 		{
@@ -31,13 +33,14 @@ public class CSParticleObject : ObjectBase {
 		}
 	}
 
+
     // Use this for initialization
     void Start() {
         m_OrderNumber = 0;
         ObjectManager.Instance.RegistrationList(this, m_OrderNumber);
-        m_Particle.Stop();
+		m_Particle = Instantiate(m_ParticlePrefab);
+		m_Particle.Stop();
         m_ListToNumber = CSParticleManager.Instance.AddListParticle(this);
-
     }
 
 	/// <summary>
