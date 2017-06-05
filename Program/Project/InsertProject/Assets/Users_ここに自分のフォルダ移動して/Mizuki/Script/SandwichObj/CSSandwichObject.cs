@@ -63,49 +63,54 @@ public class CSSandwichObject : ObjectBase {
 	}
 
     public override void LateExecute(float deltaTime) {
-		m_PressObjList.Clear();	// 毎フレームリセット。重そうなので別案考え中。
-    }
+		m_PressObjList.Clear(); // 毎フレームリセット。重そうなので別案考え中。
+	}
 
-    /// <summary>
-    /// 挟まれチェック
-    /// </summary>
-    /// <param name="col">ぶつかったオブジェクト</param>
-    public void OnTriggerStay(Collider col) {
-        string colName = col.name;
-        colName = col.name;
-        if(!colName.Contains("startPress") && !colName.Contains("endPress")) {  // 名前でプレス機か判定
-            return;
-        }
-        Press pressObj = col.GetComponent<Press>();
-        PressObject hitCheck = new PressObject();
-        hitCheck.HitID = pressObj.nPressID;			// プレス機ID
-        hitCheck.DirectionVec = pressObj.vLookPos;  // 前方ベクトル
-        hitCheck.HitObjName = colName;				// 名前 
-		if(colName.Contains("startPress")) {		// ヒットしたのが上か下かを判定
+	/// <summary>
+	/// 挟まれチェック
+	/// </summary>
+	/// <param name="col">ぶつかったオブジェクト</param>
+	public void OnTriggerStay(Collider col) {
+		string colName = col.name;
+		colName = col.name;
+		if(!colName.Contains("startPress") && !colName.Contains("endPress")) {  // 名前でプレス機か判定
+			return;
+		}
+		Press pressObj = col.GetComponent<Press>();
+		PressObject hitCheck = new PressObject();
+		hitCheck.HitID = pressObj.nPressID;         // プレス機ID
+		hitCheck.DirectionVec = pressObj.vLookPos;  // 前方ベクトル
+		hitCheck.HitObjName = colName;              // 名前 
+		if(colName.Contains("startPress")) {        // ヒットしたのが上か下かを判定
 			hitCheck.bHitFlagA = true;
 		}
 		if(colName.Contains("endPress")) {
 			hitCheck.bHitFlagB = true;
 		}
-		m_PressObjList.Add(hitCheck);				// 当たったプレス機リストに追加
+		m_PressObjList.Add(hitCheck);               // 当たったプレス機リストに追加
+	}
 
-		//}//if(colName.Contains("startPress")) {
-		//    if(m_bHitFlagB) {
-		//        m_bInsert = true;
-		//        Debug.Log("挟まれた");
-		//    } else {
-		//        m_bHitFlagA = true;
-		//    }
-		//}
-
-		//if(colName.Contains("endPress")) {
-		//    if(m_bHitFlagA) {
-		//        m_bInsert = true;
-		//        Debug.Log("挟まれた");
-		//    } else {
-		//        m_bHitFlagB = true;
-		//    }
-		//}
-
-    }
+	/// <summary>
+	/// 挟まれチェック
+	/// </summary>
+	/// <param name="col">ぶつかったオブジェクト</param>
+	public void OnTriggerStay2D(Collider2D col) {
+		string colName = col.name;
+		colName = col.name;
+		if(!colName.Contains("startPress") && !colName.Contains("endPress")) {  // 名前でプレス機か判定
+			return;
+		}
+		Press pressObj = col.GetComponent<Press>();
+		PressObject hitCheck = new PressObject();
+		hitCheck.HitID = pressObj.nPressID;         // プレス機ID
+		hitCheck.DirectionVec = pressObj.vLookPos;  // 前方ベクトル
+		hitCheck.HitObjName = colName;              // 名前 
+		if(colName.Contains("startPress")) {        // ヒットしたのが上か下かを判定
+			hitCheck.bHitFlagA = true;
+		}
+		if(colName.Contains("endPress")) {
+			hitCheck.bHitFlagB = true;
+		}
+		m_PressObjList.Add(hitCheck);               // 当たったプレス機リストに追加
+	}
 }
