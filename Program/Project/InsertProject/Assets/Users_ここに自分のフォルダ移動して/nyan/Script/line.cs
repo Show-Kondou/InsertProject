@@ -56,6 +56,8 @@ public class line : MonoBehaviour {
     public Color c1 = new Color(0, 0, 0, 1);
     public Color c2 = new Color(0, 0, 0, 1);
 
+    //初回生成時移動許可判定
+    public bool bPressMove = false;
 
     //------
 
@@ -95,6 +97,7 @@ public class line : MonoBehaviour {
         //タッチオブジェクト呼び出し
         TouchObj = GameObject.Find("Touch");
         _touch = TouchObj.GetComponent<touch> ();
+
 
     }
 
@@ -198,7 +201,7 @@ public class line : MonoBehaviour {
 
 
                         //一定量移動で処理
-                        float fDiffAbout = 0.065f;
+                        float fDiffAbout = 0.0625f;
                         if (fDiffAbout < fDiffX || fDiffAbout < fDiffY)//仮
                         {
                             //一定量移動時格納場所を増やす
@@ -229,6 +232,19 @@ public class line : MonoBehaviour {
 
                     }
                 }
+
+                if (nPointCnt == 3)
+                {
+                    //最初の壁を召喚
+                    vStartPress = lvPointStorage[0];
+                    GameObject gStartPress = Instantiate(PressPrefab, vStartPress, transform.rotation) as GameObject;
+                    gStartPress.name = "startPress" + _touch.nLineNum;
+                    gStartPress.tag = "StartPress";
+                    gStartPress.transform.parent = transform;
+                    gStartPress.GetComponent<Press>().bWallStart = true;
+                    gStartPress.GetComponent<Press>().nPressID = nLineID;
+                }
+
             }
 
             //リリース時処理
@@ -250,15 +266,16 @@ public class line : MonoBehaviour {
                 lRendere.SetPosition(nPointCnt - 1, vEndPos);
                 lvPointStorage.Add(vEndPos);
 
-                //リリースしたタイミングで壁を召喚
-                vStartPress = lvPointStorage[0];
-                GameObject gStartPress = Instantiate(PressPrefab, vStartPress, transform.rotation) as GameObject;
-                gStartPress.name = "startPress" + _touch.nLineNum;
-                gStartPress.tag = "StartPress";
-                gStartPress.transform.parent = transform;
-                gStartPress.GetComponent<Press>().bWallStart = true;
-                gStartPress.GetComponent<Press>().nPressID = nLineID;
+                ////最初の壁を召喚
+                //vStartPress = lvPointStorage[0];
+                //GameObject gStartPress = Instantiate(PressPrefab, vStartPress, transform.rotation) as GameObject;
+                //gStartPress.name = "startPress" + _touch.nLineNum;
+                //gStartPress.tag = "StartPress";
+                //gStartPress.transform.parent = transform;
+                //gStartPress.GetComponent<Press>().bWallStart = true;
+                //gStartPress.GetComponent<Press>().nPressID = nLineID;
 
+                //終わりの壁を召喚
                 vEndPress = lvPointStorage[nPointCnt - 1];
                 GameObject gEndPress = Instantiate(PressPrefab, vEndPress, transform.rotation) as GameObject;
                 gEndPress.name = "endPress" + _touch.nLineNum;
@@ -266,6 +283,9 @@ public class line : MonoBehaviour {
                 gEndPress.transform.parent = transform;
                 gEndPress.GetComponent<Press>().bWallStart = false;
                 gEndPress.GetComponent<Press>().nPressID = nLineID;
+
+                //プレス機の移動を許可
+                bPressMove = true;
 
                 //リリースチェックをtrueにして線を引けないようにする
                 bReleaseCheck = true;
