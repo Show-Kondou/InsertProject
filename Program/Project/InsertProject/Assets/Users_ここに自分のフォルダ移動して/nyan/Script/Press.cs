@@ -27,7 +27,8 @@ public class Press : MonoBehaviour {
     private float fRad;                 //進行方向計算用
     private Vector3 vMovePos;           //移動用
     private float fGrace = 0.025f;      //差
-    private bool bStop = false;          //停止フラグ
+    private bool bStop = false;         //停止フラグ
+    //private bool bWayPoint = false;     //中間地点フラグ
 
     //ベクトル計算用
     public Vector3 vStartVec;
@@ -202,17 +203,26 @@ public class Press : MonoBehaviour {
             fContainer = (vNewPos - vOldPos).magnitude;
             fDistance += fContainer;
 
-            if (gParentObj.GetComponent<line>().fDistanceTotal / 2 < fDistance)
+            //半分のところでマテリアル非表示
+            if (gParentObj.GetComponent<line>().fDistanceTotal * 0.5f < fDistance)
+            {
+                GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+            }
+
+            //半分とちょっとのところでデストロイ
+            if (gParentObj.GetComponent<line>().fDistanceTotal *0.55f < fDistance)
             {
                 bStop = true;
 
                 Destroy(gParentObj);
                 Destroy(this.gameObject);
+
+                //bWayPoint = true;
             }
         }
     }
 
-    //private void OnTriggerEnter(Collider collider)
+    //private void OnTriggerEnter2D(Collider2D collider)
     //{
     //    if (gameObject.tag == "StartPress")
     //    {
@@ -227,9 +237,11 @@ public class Press : MonoBehaviour {
     //                fCollisionVec = Vector3.Angle(vStartVec, vEndVec);
 
     //                //一定の角度であればプレス機を止める
-    //                if (fCollisionVec > fVecRange)
+    //                if (fCollisionVec > fVecRange && bWayPoint == true)
     //                {
     //                    bStop = true;
+    //                    Destroy(gParentObj);
+    //                    Destroy(this.gameObject);
     //                }
     //            }
     //        }
@@ -248,9 +260,11 @@ public class Press : MonoBehaviour {
     //                fCollisionVec = Vector3.Angle(vEndVec, vStartVec);
 
     //                //一定の角度であればプレス機を止める
-    //                if (fCollisionVec > fVecRange)
+    //                if (fCollisionVec > fVecRange && bWayPoint == true)
     //                {
     //                    bStop = true;
+    //                    Destroy(gParentObj);
+    //                    Destroy(this.gameObject);
     //                }
     //            }
     //        }
