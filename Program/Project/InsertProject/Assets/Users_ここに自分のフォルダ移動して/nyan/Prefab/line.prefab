@@ -54,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nLineID: 0
   CameraObj: {fileID: 0}
-  PressPrefab: {fileID: 1015269301684834, guid: a772b6f1afea9554dba6e6638529418e,
+  PressPrefab: {fileID: 1458231287114228, guid: 72dd9607f44f14747966253d25409d15,
     type: 2}
   PointPrefab: {fileID: 1402570948096110, guid: b7bef8fb46ca60c4faeade52edd32501,
     type: 2}
@@ -62,6 +62,7 @@ MonoBehaviour:
   fDistanceTotal: 0
   c1: {r: 0, g: 1, b: 1, a: 0.78431374}
   c2: {r: 0, g: 1, b: 1, a: 0.78431374}
+  bPressMove: 0
 --- !u!120 &120625925224940120
 LineRenderer:
   m_ObjectHideFlags: 1
