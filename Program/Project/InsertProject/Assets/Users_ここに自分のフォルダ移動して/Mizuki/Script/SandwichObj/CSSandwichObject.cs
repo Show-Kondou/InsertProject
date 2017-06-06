@@ -91,7 +91,7 @@ public class CSSandwichObject : ObjectBase {
 	}
 
 	/// <summary>
-	/// 挟まれチェック
+	/// 挟まれチェック2D
 	/// </summary>
 	/// <param name="col">ぶつかったオブジェクト</param>
 	public void OnTriggerStay2D(Collider2D col) {
