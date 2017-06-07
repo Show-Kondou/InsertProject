@@ -203,11 +203,11 @@ public class Press : MonoBehaviour {
             fContainer = (vNewPos - vOldPos).magnitude;
             fDistance += fContainer;
 
-            //半分のところでマテリアル非表示
-            if (gParentObj.GetComponent<line>().fDistanceTotal * 0.5f < fDistance)
-            {
-                GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-            }
+            ////半分のところでマテリアル非表示
+            //if (gParentObj.GetComponent<line>().fDistanceTotal * 0.5f < fDistance)
+            //{
+            //    GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+            //}
 
             //半分とちょっとのところでデストロイ
             if (gParentObj.GetComponent<line>().fDistanceTotal *0.55f < fDistance)

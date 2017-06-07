@@ -32,9 +32,10 @@ public class CSSandwichObjManager : ObjectBase{
 
     public override void Execute(float deltaTime) {
 		m_Timer += deltaTime;
-		//if(m_Timer > 4.0f) {
-		if(SpecialInput.m_bDoubleTap) { 
-			m_Timer = 0;
+        if (m_Timer > 0.5f)
+        {
+            //if(SpecialInput.m_bDoubleTap) { 
+            m_Timer = 0;
 			float width = Random.Range(-2.0f,2.0f);
 			float height = Random.Range(-4.0f,6.0f);
 			CreateSandwichObj(0, new Vector2(width, height));
