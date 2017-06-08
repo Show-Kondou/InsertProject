@@ -98,6 +98,7 @@ public class TimeLimit : MonoBehaviour
 
             TimerObj.SetActive(false);  // 時間非表示
             Debug.Log("ゲームオーバー");
+			CSceneManager.Instance.LoadScene( SCENE.RESULT, FADE.BLACK );
         }
     }
 }

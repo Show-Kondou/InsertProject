@@ -40,7 +40,8 @@ public class EnemyCount : MonoBehaviour
         else
         {
             Debug.Log("ゲームオーバー");
-        }
+			CSceneManager.Instance.LoadScene( SCENE.RESULT, FADE.BLACK );
+		}
     }
 
 	// ===== スタート関数 =====
