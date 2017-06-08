@@ -15,8 +15,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CSSandwichObject : ObjectBase {
+	private float GravityValue = 9.8f;  // 重力加速度
+
 	[SerializeField]
-	float m_PressRangeLow;	// 挟まれ判定をする角度の下限。
+	float m_PressRangeLow;			// 挟まれ判定をする角度の下限。
+	public float m_WaitTime;		// 移動待機時間
+	[SerializeField]
+	protected float m_MoveSpped;	// 移動速度
+	protected float m_MoveTimer;	// 移動待機時間タイマー
+	protected bool m_Moving;		// 移動中か否か
+	protected Vector3 m_Position;	// ポジション
+	[SerializeField]
+	protected float m_JumpPower;    // ジャンプ力
+	protected float m_JumpTimer;    // 投げ上げ用時間
+	protected float m_Rotation;		// 移動方向
 
 	// プレス機のステータス格納用
 	public struct PressObject { 
@@ -112,5 +124,11 @@ public class CSSandwichObject : ObjectBase {
 			hitCheck.bHitFlagB = true;
 		}
 		m_PressObjList.Add(hitCheck);               // 当たったプレス機リストに追加
+	}
+
+	protected float VerticalThrowingUp(float time, float firstSpeed) {
+		float height = firstSpeed * time - 0.5f * GravityValue * Mathf.Pow(time,2);
+
+		return height;
 	}
 }
