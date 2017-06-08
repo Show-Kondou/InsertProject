@@ -6,6 +6,8 @@ TagManager:
   tags:
   - StartPress
   - EndPress
+  - Friends
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4167042552327474}
   - component: {fileID: 114374880855749974}
   m_Layer: 0
-  m_Name: ObjectManager
+  m_Name: SandwichObjectManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SandwichObjList: []
   m_ObjTypeList:
-  - {fileID: 114841034499628204, guid: e8585a3e8d7ec7e4281bd17de438a433, type: 2}
+  - {fileID: 114904855965234788, guid: 91433d72d3948894b85ff7443229baf6, type: 2}
 --- !u!114 &114426117427548448
 MonoBehaviour:
   m_ObjectHideFlags: 1

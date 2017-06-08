@@ -1,4 +1,17 @@
-﻿using System.Collections;
+﻿//_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+/*	CEnemyMove.cs
+//	
+//	作成者:佐々木瑞生
+//==================================================
+//	概要
+//	エネミースクリプト
+//	
+//==================================================
+//	作成日：2017/06/07
+*/
+//_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/ 
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,7 +44,6 @@ public class CEnemyMove : CSSandwichObject {
 			transform.rotation = Quaternion.Euler(m_Rotation, -90, 90);
 			return;
 		}
-		Debug.Log(m_MoveTimer);
 		m_MoveTimer -= deltaTime;
 		// 待ち時間が0になったらジャンプ
 		if(m_MoveTimer < 0) {
@@ -48,10 +60,14 @@ public class CEnemyMove : CSSandwichObject {
 
 	}
 
-	//void OnCollisionStay(Collision2D hitObj) {
-	//	if(hitObj.transform.tag != "friends") {
-	//		return;
-	//	}
-
-	//}
+	/// <summary>
+	/// 挟まれた時の処理
+	/// </summary>
+	public override void SandwichedAction() {
+		gameObject.AddComponent<CAllyMove>();		// 味方スクリプトを追加
+		gameObject.tag = "Friends";					// タグ変更
+		GetComponent<CEnemyMove>().enabled = false;	// このスクリプトを削除
+		m_Invincible = true;
+		m_InvincibleTimer = 2.0f;
+	}
 }
