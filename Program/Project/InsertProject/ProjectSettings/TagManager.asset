@@ -8,6 +8,7 @@ TagManager:
   - EndPress
   - Friends
   - Enemy
+  - Ally
   layers:
   - Default
   - TransparentFX
