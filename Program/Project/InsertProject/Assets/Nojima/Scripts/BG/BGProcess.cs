@@ -3,36 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BGScroll : MonoBehaviour
+public class BGProcess : MonoBehaviour
 {
     //定数
     const int MAX_PANEL = 2;                        //ヒエラルキーのPanelの数
 
     //変数
-    float SCROLL_SPEED = -2f;                       //スクロールスピード
+    float SCROLL_SPEED = -0.4f;                     //スクロールスピード
 
     [SerializeField]
     bool bSwichingStage = false;                    //ステージ切り替え
     bool[] bTerms = new bool[MAX_PANEL];
-    
-    [SerializeField]
-    GameObject[] BGObj = new GameObject[MAX_PANEL]; //背景オブジェクト
-    Renderer[] Rend = new Renderer[MAX_PANEL];
-    Image[] BGImg = new Image[MAX_PANEL];
-    RectTransform PanelSize;                        //Panel一枚のサイズ
 
     [SerializeField]
-    Sprite[] StageTexture;                          //ステージのテクスチャ
+    GameObject[] BGObj = new GameObject[MAX_PANEL]; //背景オブジェクト
+    Renderer[] BGImg = new Renderer[MAX_PANEL];
+
+    [SerializeField]
+    Texture[] StageTexture;                          //ステージのテクスチャ
     int[] TextureCnt = new int[MAX_PANEL];          //テクスチャ配列のカント用
 
     int PanelNumberStorage = 0;                     //パネル番号格納用
     bool bStrage = false;                           //一度だけ格納するよう
-    
-    RectTransform CanvasSize;                       //キャンバスのサイズ取得用
 
     [SerializeField]
     SwitchingImage SwitchingCanvas;
     public int SwitchCnt = 0;
+
 
     // Use this for initialization
     void Start()
@@ -43,21 +40,16 @@ public class BGScroll : MonoBehaviour
             bTerms[i] = false;
 
             //テクスチャをPanelにセット
-            BGImg[i] = BGObj[i].GetComponent<Image>();
-            BGImg[i].sprite = StageTexture[TextureCnt[i]];
-
-            //Panelをキャンバスのサイズにする
-            PanelSize = BGObj[i].GetComponent<RectTransform>();
-            CanvasSize = GetComponent<RectTransform>();
-            PanelSize.sizeDelta = new Vector2(CanvasSize.sizeDelta.x, CanvasSize.sizeDelta.y);
+            BGImg[i] = BGObj[i].GetComponent<Renderer>();
+            BGImg[i].material.mainTexture = StageTexture[TextureCnt[i]];
         }
-     }
+    }
 
     // Update is called once per frame
     void Update()
     {
-        //2枚のPanelをスクロール
-        for(int i = 0; i < MAX_PANEL; i++)
+        ////2枚のPanelをスクロール
+        for (int i = 0; i < MAX_PANEL; i++)
             Scroll(BGObj[i], i);
 
         //ステージ切り替え
@@ -70,9 +62,8 @@ public class BGScroll : MonoBehaviour
             bSwichingStage = false;
         }
 
-        if((SwitchCnt % 2) != 0)
-            SwitchingCanvas.Scroll(SCROLL_SPEED);
-
+        if ((SwitchCnt % 2) != 0)
+            SwitchingCanvas.Scroll(SCROLL_SPEED - 0.8f);
     }
 
     /// <summary>
@@ -86,16 +77,16 @@ public class BGScroll : MonoBehaviour
         BGObj.transform.Translate(0f, SCROLL_SPEED, 0);
 
         //画面外まで行ったら上に戻す
-        if (BGObj.transform.localPosition.y <= -PanelSize.sizeDelta.y + 20f)
+        if (BGObj.transform.localPosition.y <= -BGObj.transform.localScale.y)
         {
-            BGObj.transform.localPosition = new Vector3(BGObj.transform.localPosition.x, PanelSize.sizeDelta.y, BGObj.transform.localPosition.z);
+            BGObj.transform.localPosition = new Vector3(BGObj.transform.localPosition.x, BGObj.transform.localScale.y, BGObj.transform.localPosition.z);
 
             //ステージ切り替え
             if (bTerms[PanelNumber])
                 SwitchingBG(PanelNumber);
         }
     }
-    
+
     /// <summary>
     /// テクスチャ変更処理
     /// </summary>
@@ -105,13 +96,13 @@ public class BGScroll : MonoBehaviour
         if (bStrage)
         {
             PanelNumberStorage = PanelNumber;   //パネルナンバー格納
-            bStrage = false;                    
+            bStrage = false;
         }
 
         //切り替え画像処理
-        if (PanelNumber == PanelNumberStorage)  
+        if (PanelNumber == PanelNumberStorage)
         {
-            SwitchCnt ++;
+            SwitchCnt++;
 
             TextureCnt[PanelNumber]++;      //次のテクスチャに
             if ((TextureCnt[PanelNumber] % 2) == 0 && TextureCnt[PanelNumber] != 0)
@@ -126,6 +117,6 @@ public class BGScroll : MonoBehaviour
             bTerms[PanelNumber] = false;
         }
 
-        BGImg[PanelNumber].sprite = StageTexture[TextureCnt[PanelNumber]];
+        BGImg[PanelNumber].material.mainTexture = StageTexture[TextureCnt[PanelNumber]];
     }
 }
