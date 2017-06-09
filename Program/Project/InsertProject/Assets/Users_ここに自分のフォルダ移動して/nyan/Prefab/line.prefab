@@ -53,7 +53,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nLineID: 0
-  CameraObj: {fileID: 0}
   PressPrefab: {fileID: 1579113814915524, guid: 9bd1a99365e57c44cbdd27276d581ff3,
     type: 2}
   PointPrefab: {fileID: 1402570948096110, guid: b7bef8fb46ca60c4faeade52edd32501,
@@ -63,6 +62,9 @@ MonoBehaviour:
   c1: {r: 0, g: 1, b: 1, a: 0.78431374}
   c2: {r: 0, g: 1, b: 1, a: 0.78431374}
   bPressMove: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!120 &120625925224940120
 LineRenderer:
   m_ObjectHideFlags: 1

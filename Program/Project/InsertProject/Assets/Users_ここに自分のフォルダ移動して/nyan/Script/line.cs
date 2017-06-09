@@ -10,7 +10,6 @@ public class line : MonoBehaviour {
 
     //ゲームオブジェクト
     private LineRenderer lRendere;
-    public GameObject CameraObj;
     public GameObject PressPrefab;
     public GameObject PointPrefab;
 
@@ -58,6 +57,12 @@ public class line : MonoBehaviour {
 
     //初回生成時移動許可判定
     public bool bPressMove = false;
+
+    //レイ
+    public LayerMask layerMask;
+    private Ray rPointToRay;
+    private RaycastHit rHitInfo;
+    private Vector3 vRayPos;
 
     //------
 
@@ -114,14 +119,31 @@ public class line : MonoBehaviour {
             // Vector3でマウス位置座標を取得する
             vSMousePos = Input.mousePosition;
 
-            // Z軸修正
-            vSMousePos.z = -vCameraPos.z;
+            //// Z軸修正
+            vSMousePos.z = 4.0f;
 
             // マウス位置座標をスクリーン座標からワールド座標に変換する
             vWMousePos = Camera.main.ScreenToWorldPoint(vSMousePos);
+            //vWMousePos.z = 0.0f;
+            //vWMousePos = vSMousePos;
+
+
+            //レイ
+            rPointToRay = Camera.main.ScreenPointToRay(vSMousePos);
+
+            rHitInfo = new RaycastHit();
+            if (Physics.Raycast(rPointToRay, out rHitInfo, 20.0f, layerMask.value))
+            {
+                vRayPos = rHitInfo.point;
+            }
+            
+            Debug.DrawRay(rPointToRay.origin, rPointToRay.direction * 20.0f);
+
+
+
 
             //New座標に代入
-            vNewPos = vWMousePos;
+            vNewPos = vRayPos;
             bDiffCheck = true;
 
             //ホールド時処理
@@ -136,11 +158,11 @@ public class line : MonoBehaviour {
                     lRendere.SetVertexCount(nPointCnt);
 
                     //マウスクリック時の座標を格納
-                    vStartPos = vWMousePos;
+                    vStartPos = vRayPos;
                     lRendere.SetPosition(0, vStartPos);
                     lvPointStorage.Clear();
                     lvPointStorage.Add(vStartPos);
-                    vOldPos = vWMousePos;
+                    vOldPos = vRayPos;
 
                     //クリックチェック切り替え
                     bFirstClick = true;
@@ -209,21 +231,21 @@ public class line : MonoBehaviour {
                             lRendere.SetVertexCount(nPointCnt);
 
                             //移動時の座標を格納
-                            lRendere.SetPosition(nPointCnt - 1, vWMousePos);
-                            lvPointStorage.Add(vWMousePos);
+                            lRendere.SetPosition(nPointCnt - 1, vRayPos);
+                            lvPointStorage.Add(vRayPos);
 
                             ////ポイントごとにPointObjを表示(デバッグ用)
                             //GameObject gStartPress = Instantiate(PointPrefab, vWMousePos, transform.rotation) as GameObject;
 
                             //距離を加算
-                            fDistanceTotal += (vOldPos - vWMousePos).magnitude;
+                            fDistanceTotal += (vOldPos - vRayPos).magnitude;
                             //Debug.Log((vOldPos - vWMousePos).magnitude);
 
                             //線の色を設定
                             lRendere.SetColors(c1, c2);
 
                             //新しい点を描画したらvOldPosに代入
-                            vOldPos = vWMousePos;
+                            vOldPos = vRayPos;
 
                         }
 
@@ -262,7 +284,7 @@ public class line : MonoBehaviour {
                 lRendere.SetVertexCount(nPointCnt);
 
                 //マウスリリース時の座標を格納
-                vEndPos = vWMousePos;
+                vEndPos = vRayPos;
                 lRendere.SetPosition(nPointCnt - 1, vEndPos);
                 lvPointStorage.Add(vEndPos);
 
