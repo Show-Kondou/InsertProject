@@ -28,7 +28,9 @@ public class CSSandwichObject : ObjectBase {
 	[SerializeField]
 	protected float m_JumpPower;    // ジャンプ力
 	protected float m_JumpTimer;    // 投げ上げ用時間
-	protected float m_Rotation;		// 移動方向
+	protected float m_Rotation;     // 移動方向
+	protected bool m_Invincible;    // 無敵判定
+	protected float m_InvincibleTimer;	// 無敵タイマー
 
 	// プレス機のステータス格納用
 	public struct PressObject { 
@@ -52,6 +54,17 @@ public class CSSandwichObject : ObjectBase {
     }
 
     public override void Execute(float deltaTime) {
+		// 無敵中コリジョンをオフ
+		if(m_Invincible) {
+			if(GetComponent<CircleCollider2D>().enabled)
+				GetComponent<CircleCollider2D>().enabled = false;
+			m_InvincibleTimer -= deltaTime;
+			if(m_InvincibleTimer < 0) {
+				m_Invincible = false;
+				GetComponent<CircleCollider2D>().enabled = true;
+			}
+		}
+
 		// 挟まれチェック
 		if(m_PressObjList.Count < 2) {
 			return;
@@ -65,13 +78,11 @@ public class CSSandwichObject : ObjectBase {
 					continue;
 				}
 				if(Mathematics.VectorRange(m_PressObjList[i].DirectionVec, m_PressObjList[j].DirectionVec) > m_PressRangeLow) {
-					CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.EXPLOSION, transform.position);
-					Destroy(gameObject);
+					SandwichedAction();	// 挟まれ処理
 					break;
 				}
 			}
 		}
-		m_PressObjList.Clear(); // 毎フレームリセット。重そうなので別案考え中。
 	}
 
     public override void LateExecute(float deltaTime) {
@@ -126,9 +137,23 @@ public class CSSandwichObject : ObjectBase {
 		m_PressObjList.Add(hitCheck);               // 当たったプレス機リストに追加
 	}
 
+	/// <summary>
+	/// 鉛直投げ上げ計算
+	/// </summary>
+	/// <param name="time">経過時間</param>
+	/// <param name="firstSpeed">初速度</param>
+	/// <returns>高さ</returns>
 	protected float VerticalThrowingUp(float time, float firstSpeed) {
 		float height = firstSpeed * time - 0.5f * GravityValue * Mathf.Pow(time,2);
 
 		return height;
+	}
+
+	/// <summary>
+	/// 挟まれた時の処理。継承先でオーバーライドしてね。
+	/// </summary>
+	virtual public void SandwichedAction() {
+		CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.EXPLOSION, transform.position);
+		Destroy(gameObject);
 	}
 }
