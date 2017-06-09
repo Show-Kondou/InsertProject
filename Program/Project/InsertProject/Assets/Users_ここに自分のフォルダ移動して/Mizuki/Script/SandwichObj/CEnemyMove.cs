@@ -15,7 +15,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CEnemyMove : CSSandwichObject {
+public class CEnemyMove : CSlimeMove {
+	[SerializeField]
+	private GameObject AllyPrefab;	// 味方プレハブ
 
 	// Use this for initialization
 	void Start() {
@@ -29,30 +31,8 @@ public class CEnemyMove : CSSandwichObject {
 	}
 
 	public override void Execute(float deltaTime) {
+		Debug.Log("てき");
 		base.Execute(deltaTime);
-		// ジャンプ中処理
-		if(m_Moving) {
-			m_Position.x += Mathf.Cos(m_Rotation-180) * m_MoveSpped * deltaTime;
-			m_Position.y += Mathf.Sin(m_Rotation-180) * m_MoveSpped * deltaTime;
-			m_Position.z = -VerticalThrowingUp(m_JumpTimer, m_JumpPower);	// 上移動
-			if(VerticalThrowingUp(m_JumpTimer, m_JumpPower) < 0) {			// 地面にめり込んだら終わり
-				m_Moving = false;
-				m_Position.z = 0;
-			}
-			transform.position = m_Position;
-			m_JumpTimer += deltaTime;
-			transform.rotation = Quaternion.Euler(m_Rotation, -90, 90);
-			return;
-		}
-		m_MoveTimer -= deltaTime;
-		// 待ち時間が0になったらジャンプ
-		if(m_MoveTimer < 0) {
-			m_Moving = true;
-			m_MoveTimer = m_WaitTime;
-			m_Position = transform.position;
-			m_JumpTimer = 0;
-			m_Rotation = Random.Range(0, 360);
-		}
 	}
 
 	public override void LateExecute(float deltaTime) {
@@ -64,10 +44,9 @@ public class CEnemyMove : CSSandwichObject {
 	/// 挟まれた時の処理
 	/// </summary>
 	public override void SandwichedAction() {
-		gameObject.AddComponent<CAllyMove>();		// 味方スクリプトを追加
-		gameObject.tag = "Friends";					// タグ変更
-		GetComponent<CEnemyMove>().enabled = false;	// このスクリプトを削除
-		m_Invincible = true;
-		m_InvincibleTimer = 2.0f;
+		var obj = Instantiate(AllyPrefab, transform.position, Quaternion.identity);
+		obj.GetComponent<CAllyMove>().m_Invincible = true;
+		obj.GetComponent<CAllyMove>().m_InvincibleTimer = 2.0f;
+		Destroy(gameObject);	// 役目を終えたので削除
 	}
 }

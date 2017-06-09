@@ -18,10 +18,10 @@ using UnityEngine;
 
 public class ObjectBase : MonoBehaviour {
 	protected int m_OrderNumber = 0;
+	protected bool m_Using = true;
 
 	// Use this for initialization
 	void Start () {
-		Debug.Log("とおった");
         ObjectManager.Instance.RegistrationList(this,m_OrderNumber);
 	}
 	
@@ -30,7 +30,8 @@ public class ObjectBase : MonoBehaviour {
 	/// </summary>
 	/// <param name="deltaTime">デルタタイム</param>
     public virtual void Execute(float deltaTime) {
-
+		if(!m_Using)
+			return;
     }
 
 	/// <summary>

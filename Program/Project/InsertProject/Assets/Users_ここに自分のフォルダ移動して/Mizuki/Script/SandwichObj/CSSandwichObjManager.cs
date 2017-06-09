@@ -31,6 +31,7 @@ public class CSSandwichObjManager : ObjectBase{
     }
 
     public override void Execute(float deltaTime) {
+		base.Execute(deltaTime);
 		m_Timer += deltaTime;
         //if (m_Timer > 4.0f){
         if (SpecialInput.m_bDoubleTap)
@@ -51,10 +52,11 @@ public class CSSandwichObjManager : ObjectBase{
     /// </summary>
     /// <param name="objType">生成するオブジェクトの種類</param>
     /// <param name="Position">生成する座標</param>
-    public void CreateSandwichObj(int objType, Vector2 Position) {
+    public CSSandwichObject CreateSandwichObj(int objType, Vector2 Position) {
         CSSandwichObject obj = Instantiate(m_ObjTypeList[objType], Position, Quaternion.identity);
         m_SandwichObjList.Add(obj);
-        obj.transform.parent = transform;	// 親子設定
+        obj.transform.parent = transform;   // 親子設定
+		return obj;
     }
 
     public void DeleteSandwichObj() {
