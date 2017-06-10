@@ -6,15 +6,16 @@ using UnityEngine.UI;
 public class EnemyGauge : MonoBehaviour
 {
     //定数
-    const float ADD_DAMAGE = 0.02f;//ダメージ量
+    const float ADD_DAMAGE = 2f;//ダメージ量
+    protected const float MAX_HP = 1000f;
+    const float LimitHP = 100f;
 
     //変数
     [SerializeField]
     GameObject EnemyGaugeImg;
     RectTransform GaugeTransform;
     Image GaugeImage;
-
-    float MaxValue;
+    
     float EnemyHP;
 
     [SerializeField]
@@ -29,26 +30,33 @@ public class EnemyGauge : MonoBehaviour
     {
         GaugeImage = EnemyGaugeImg.GetComponent<Image>();
         GaugeTransform = EnemyGaugeImg.GetComponent<RectTransform>();
-        MaxValue = GaugeTransform.sizeDelta.x;
-        EnemyHP = 1f;
-        HPText.text = "100";
+        GaugeTransform.sizeDelta = new Vector2(MAX_HP, GaugeTransform.sizeDelta.y);
+        //if (MAX_HP > LimitHP)
+        //{
+        //    float hp = MAX_HP / (MAX_HP * 10f);
+        //    print(hp);
+        //    GaugeTransform.localScale = new Vector2(hp, GaugeTransform.localScale.y);
+        //}
+
+
+        EnemyHP = GaugeTransform.sizeDelta.x;
     }
 
     // Update is called once per frame
     void Update()
     {
         AddDamage();                //ダメージ
-        GaugeColor(0.8f,0.5f,0.3f); //ゲージの色
+        GaugeColor(400f,250f,150f); //ゲージの色
         DrawHP();                   //HPの数値表示
 
         //倒したとき
         if (EnemyHP <= 0f)
-            EnemyHP = 1f;
+            EnemyHP = MAX_HP;
     }
 
     void GaugeValue(float t)
     {
-        float GaugePos_X = Mathf.Lerp(0f, MaxValue, t);
+        float GaugePos_X = Mathf.Lerp(0f, EnemyHP, t);
         GaugeTransform.sizeDelta = new Vector2(GaugePos_X, GaugeTransform.sizeDelta.y);
     }
 
@@ -60,7 +68,7 @@ public class EnemyGauge : MonoBehaviour
         if (bDamage)
         {
             EnemyHP -= ADD_DAMAGE;
-            bDamage = false;
+           //bDamage = false;
         }
         GaugeValue(EnemyHP);
     }
@@ -89,7 +97,7 @@ public class EnemyGauge : MonoBehaviour
     /// </summary>
     void DrawHP()
     {
-        float DrawingHP = EnemyHP * 100f;
+        float DrawingHP = EnemyHP;// * 100f;
         HPText.text = DrawingHP.ToString("000");    //3桁表示
     }
 }

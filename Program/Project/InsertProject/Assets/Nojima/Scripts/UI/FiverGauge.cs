@@ -15,7 +15,7 @@ public class FiverGauge : MonoBehaviour {
 
     [SerializeField]
     bool bFiver = false;
-
+    float MAX_GAUGE = 48f;
 
     // Use this for initialization
     void Start() {
@@ -24,7 +24,7 @@ public class FiverGauge : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        AddFiver(); //フィーバーゲージ回復
+        AddFiver(ADD_FIVER); //フィーバーゲージ回復
 
         //ゲージ満タン
         if (FiverImg.fillAmount >= 1f)
@@ -34,11 +34,11 @@ public class FiverGauge : MonoBehaviour {
     /// <summary>
     /// フィーバーゲージ回復
     /// </summary>
-    void AddFiver()
+    void AddFiver(float add_fiver)
     {
         if (bFiver)
         {
-            FiverImg.fillAmount += 1f / ADD_FIVER * Time.deltaTime;
+            FiverImg.fillAmount += 1f / add_fiver * Time.deltaTime;
             bFiver = false;
         }
     }

@@ -13,14 +13,15 @@ public class AspectBG : MonoBehaviour
     void Start()
     {
         BGWidth = gameObject.GetComponent<Renderer>().bounds.size.x;
+        float fFocalLength = focalLength(MainCam.fieldOfView, -BGWidth);
+
+        transform.position = new Vector3(transform.position.x, transform.position.y, fFocalLength);
+        transform.SetAsLastSibling();
     }
 
     // Update is called once per frame
     void Update()
     {
-        float fFocalLength = focalLength(MainCam.fieldOfView, -BGWidth);
-
-        MainCam.transform.position = new Vector3(transform.position.x, transform.position.y, fFocalLength);
     }
 
     /// <summary>
