@@ -60,6 +60,7 @@ public class GameStartButton : MonoBehaviour
             {
                 // シーンチェンジ
                 CSceneManager.Instance.LoadScene(LoadSceneName, FADE.BLACK);
+				CSoundManager.Instance.StopBGM(AUDIO_LIST.BGM_TITLE_0);
             }
         }
     }
