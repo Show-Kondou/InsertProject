@@ -31,7 +31,6 @@ public class CEnemyMove : CSlimeMove {
 	}
 
 	public override void Execute(float deltaTime) {
-		Debug.Log("てき");
 		base.Execute(deltaTime);
 	}
 

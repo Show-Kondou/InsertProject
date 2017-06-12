@@ -21,7 +21,7 @@ public class testScript : ObjectBase {
 
 	public override void Execute(float deltaTime) {
         if(Input.anyKeyDown) {
-			CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.EXPLOSION, new Vector3(0,0,0));
+			CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.AllySlimeDeath, new Vector3(0,0,0));
 			//var obj = Instantiate(testpart);
 			//obj.Play();
 		}
