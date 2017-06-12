@@ -18,7 +18,7 @@ public class CSSandwichObject : ObjectBase {
 	private float GravityValue = 9.8f;  // 重力加速度
 
 	[SerializeField]
-	private float m_PressRangeLow;			// 挟まれ判定をする角度の下限。
+	private float m_PressRangeLow;	// 挟まれ判定をする角度の下限。
 	public float m_WaitTime;		// 移動待機時間
 	[SerializeField]
 	protected float m_MoveSpped;	// 移動速度
@@ -29,7 +29,7 @@ public class CSSandwichObject : ObjectBase {
 	protected float m_JumpPower;    // ジャンプ力
 	protected float m_JumpTimer;    // 投げ上げ計算用タイマー
 	protected float m_Rotation;     // 移動方向
-	public bool m_Invincible;    // 無敵判定
+	public bool m_Invincible;		// 無敵判定
 	public float m_InvincibleTimer; // 無敵タイマー
 
 	private CSSandwichObject m_Type;
@@ -37,9 +37,10 @@ public class CSSandwichObject : ObjectBase {
 	// プレス機のステータス格納用
 	public struct PressObject { 
         public bool bHitFlagA;		// 一個目に当たったかのチェック
-        public bool bHitFlagB;		// 二個目に当たったかのチェック
-        public int  HitID;			// 当たったオブジェクトの番号
-        public Vector3 DirectionVec;// 進行方向ベクトル
+        public bool bHitFlagB;      // 二個目に当たったかのチェック
+		public int  HitIDA;          // 当たったオブジェクトの番号
+		public int  HitID;          // 当たったオブジェクトの番号
+		public Vector3 DirectionVec;// 進行方向ベクトル
         public string HitObjName;	// 名前(前後確認)
     };
 
@@ -89,8 +90,10 @@ public class CSSandwichObject : ObjectBase {
 				// 挟まれ判定
 				if((m_PressObjList[i].bHitFlagA && m_PressObjList[j].bHitFlagA && m_PressObjList[i].HitID == m_PressObjList[j].HitID) ||
 					m_PressObjList[i].bHitFlagB && m_PressObjList[j].bHitFlagB && m_PressObjList[i].HitID == m_PressObjList[j].HitID) {
+					// 「同じプレス機に挟まれた」と判定されればスルー
 					continue;
 				}
+				// 違うプレス機と触るかつ角度が一定値で挟まれ判定
 				if(Mathematics.VectorRange(m_PressObjList[i].DirectionVec, m_PressObjList[j].DirectionVec) > m_PressRangeLow) {
 					SandwichedAction();	// 挟まれ処理
 					break;
@@ -139,7 +142,7 @@ public class CSSandwichObject : ObjectBase {
 	/// 挟まれた時の処理。継承先でオーバーライドしてね。
 	/// </summary>
 	public virtual void SandwichedAction() {
-		CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.EXPLOSION, transform.position);
+		CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.AllySlimeDeath, transform.position);
 		Destroy(gameObject);
 	}
 }

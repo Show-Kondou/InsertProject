@@ -15,10 +15,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CSParticleManager : SingletonMonoBehaviour<CSParticleManager> {
+	// パーティクルリスト
 	public enum PARTICLE_TYPE {
-		EXPLOSION = 0,
+		AllySlimeEmarg = 0,		// 味方スライム出現
+		BigAllySlimeEmarg,		// でかスライム出現
+		EnemySlimeEmarg,		// 敵スライム出現
+		MagicWallEmarg,			// マジックウォール出現
+		MagicWallLine,			// マジックウォールのライン用
+		MagicWallUnion,			// マジックウォールがぶつかった時
+		FeverSlimeEmarg,		// フィーバースライム出現
+		FeverSlimeMove,			// フィーバースライムの移動
+		AllySlimeDeath,			// 味方スライム死亡
+		BossEmarg,				// ボス出現
+		SlimeAttack,			// スライム攻撃
+		BrainWashAttack,		// 洗脳攻撃
+		BossDefeat,				// ボス撃破時
 
-		MAX_PARTICLE_TYPE,
+		MAX_PARTICLE_TYPE,		// 総パーティクル数
 	};
 
     private List<CSParticleObject> m_ParticleList;		// 名前の通りですよ
