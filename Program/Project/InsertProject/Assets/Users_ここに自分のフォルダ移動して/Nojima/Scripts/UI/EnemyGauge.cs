@@ -7,7 +7,7 @@ public class EnemyGauge : MonoBehaviour
 {
     //定数
     const float ADD_DAMAGE = 2f;//ダメージ量
-    protected const float MAX_HP = 1000f;
+    protected const float MAX_HP = 100f;
     const float LimitHP = 100f;
 
     //変数
@@ -18,8 +18,7 @@ public class EnemyGauge : MonoBehaviour
     
     float EnemyHP;
 
-    [SerializeField]
-    bool bDamage = false;
+    public bool bDamage = false;
 
     [SerializeField]
     Text HPText;
@@ -31,13 +30,6 @@ public class EnemyGauge : MonoBehaviour
         GaugeImage = EnemyGaugeImg.GetComponent<Image>();
         GaugeTransform = EnemyGaugeImg.GetComponent<RectTransform>();
         GaugeTransform.sizeDelta = new Vector2(MAX_HP, GaugeTransform.sizeDelta.y);
-        //if (MAX_HP > LimitHP)
-        //{
-        //    float hp = MAX_HP / (MAX_HP * 10f);
-        //    print(hp);
-        //    GaugeTransform.localScale = new Vector2(hp, GaugeTransform.localScale.y);
-        //}
-
 
         EnemyHP = GaugeTransform.sizeDelta.x;
     }
@@ -46,7 +38,7 @@ public class EnemyGauge : MonoBehaviour
     void Update()
     {
         AddDamage();                //ダメージ
-        GaugeColor(400f,250f,150f); //ゲージの色
+        GaugeColor(MAX_HP * 0.8f, MAX_HP * 0.5f, MAX_HP * 0.2f); //ゲージの色
         DrawHP();                   //HPの数値表示
 
         //倒したとき
@@ -68,7 +60,7 @@ public class EnemyGauge : MonoBehaviour
         if (bDamage)
         {
             EnemyHP -= ADD_DAMAGE;
-           //bDamage = false;
+           bDamage = false;
         }
         GaugeValue(EnemyHP);
     }
