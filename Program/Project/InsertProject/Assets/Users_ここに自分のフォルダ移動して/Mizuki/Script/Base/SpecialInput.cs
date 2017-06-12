@@ -18,19 +18,25 @@ public class SpecialInput : ObjectBase {
 	}
 
 	public override void Execute(float deltaTime) {
+		DoubleTapCheck(deltaTime);
+	}
 
+	public override void LateExecute(float deltaTime) {
+		m_bDoubleTap = false;
+	}
+
+	private void DoubleTapCheck(float deltaTime) {
+
+		// ダブルタップ判定
 		if(Input.GetMouseButtonDown(0)) {
 			if(m_DoubleTapTimer <= 0) {
 				m_DoubleTapTimer = m_DoubleTapCheckTime;
-			}else {
+			} else {
 				m_bDoubleTap = true;
 				m_DoubleTapTimer = 0;
 			}
 		}
 		m_DoubleTapTimer -= deltaTime;
-	}
 
-	public override void LateExecute(float deltaTime) {
-		m_bDoubleTap = false;
 	}
 }
