@@ -149,7 +149,6 @@ public class CSoundManager : MonoBehaviour {
 	}
 
 	public void PlayThunder() {
-		m_SEChannel[SE_CHANNEL-1].clip = m_AudioList[(int)AUDIO_LIST.SE30];
 		m_SEChannel[SE_CHANNEL - 1].Play();
 
 	}
