@@ -36,7 +36,6 @@ public class CSlimeMove : CSSandwichObject {
 			EnemyNum++;
 			myType = SLIME_TYPE.Enemy;
 			SlimeMesh.GetComponent<Renderer>().material = EnemyMat;
-			// Debug.Log(EnemyNum);
 		}
 	}
 
@@ -90,10 +89,10 @@ public class CSlimeMove : CSSandwichObject {
 			myType = SLIME_TYPE.Ally;   // 属性を味方に
 			m_PressObjList.Clear();
 			EnemyNum--;
-			// Debug.Log(EnemyNum);
 		} else if(myType == SLIME_TYPE.Ally) {
 			// パーティクルを出して削除
-			CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.EXPLOSION, transform.position);
+			CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.AllySlimeDeath, transform.position);
+			CSSandwichObjManager.DeleteSandwichObj(m_ObjectID);
 			Destroy(gameObject);
 		}
 

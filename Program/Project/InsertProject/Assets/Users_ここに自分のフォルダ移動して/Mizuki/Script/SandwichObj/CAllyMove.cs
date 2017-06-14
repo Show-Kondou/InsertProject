@@ -30,7 +30,7 @@ public class CAllyMove : CSlimeMove {
 	public override void SandwichedAction() {
 		if(m_Invincible)
 			return;
-		CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.EXPLOSION, transform.position);
+		CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.AllySlimeDeath, transform.position);
 		Destroy(gameObject);
 	}
 }

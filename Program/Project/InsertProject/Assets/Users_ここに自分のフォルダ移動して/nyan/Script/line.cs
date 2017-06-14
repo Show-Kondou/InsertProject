@@ -255,17 +255,17 @@ public class line : MonoBehaviour {
                     }
                 }
 
-                //if (nPointCnt == 3)
-                //{
-                //    //最初の壁を召喚
-                //    vStartPress = lvPointStorage[0];
-                //    GameObject gStartPress = Instantiate(PressPrefab, vStartPress, transform.rotation) as GameObject;
-                //    gStartPress.name = "startPress" + _touch.nLineNum;
-                //    gStartPress.tag = "StartPress";
-                //    gStartPress.transform.parent = transform;
-                //    gStartPress.GetComponent<Press>().bWallStart = true;
-                //    gStartPress.GetComponent<Press>().nPressID = nLineID;
-                //}
+                if (nPointCnt == 3)
+                {
+                    //最初の壁を召喚
+                    vStartPress = lvPointStorage[0];
+                    GameObject gStartPress = Instantiate(PressPrefab, vStartPress, transform.rotation) as GameObject;
+                    gStartPress.name = "startPress" + _touch.nLineNum;
+                    gStartPress.tag = "StartPress";
+                    gStartPress.transform.parent = transform;
+                    gStartPress.GetComponent<Press>().bWallStart = true;
+                    gStartPress.GetComponent<Press>().nPressID = nLineID;
+                }
 
             }
 
@@ -288,14 +288,14 @@ public class line : MonoBehaviour {
                 lRendere.SetPosition(nPointCnt - 1, vEndPos);
                 lvPointStorage.Add(vEndPos);
 
-                //最初の壁を召喚
-                vStartPress = lvPointStorage[0];
-                GameObject gStartPress = Instantiate(PressPrefab, vStartPress, transform.rotation) as GameObject;
-                gStartPress.name = "startPress" + _touch.nLineNum;
-                gStartPress.tag = "StartPress";
-                gStartPress.transform.parent = transform;
-                gStartPress.GetComponent<Press>().bWallStart = true;
-                gStartPress.GetComponent<Press>().nPressID = nLineID;
+                ////最初の壁を召喚
+                //vStartPress = lvPointStorage[0];
+                //GameObject gStartPress = Instantiate(PressPrefab, vStartPress, transform.rotation) as GameObject;
+                //gStartPress.name = "startPress" + _touch.nLineNum;
+                //gStartPress.tag = "StartPress";
+                //gStartPress.transform.parent = transform;
+                //gStartPress.GetComponent<Press>().bWallStart = true;
+                //gStartPress.GetComponent<Press>().nPressID = nLineID;
 
                 //終わりの壁を召喚
                 vEndPress = lvPointStorage[nPointCnt - 1];

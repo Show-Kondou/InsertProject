@@ -42,8 +42,8 @@ public class Press : MonoBehaviour {
     public float fDistance;
 
     //初回生成時移動許可判定
-    private bool bPressMove = false;
-    private bool bSummon = false;
+    public bool bMoveFirst = false;
+    private bool bCreateCall = false;
 
 
 
@@ -79,56 +79,52 @@ public class Press : MonoBehaviour {
 
     }
 
-    //void Create()
-    //{
-    //    //gParentObj = gameObject.transform.parent.gameObject;
+    void Create()
+    {
+        //gParentObj = gameObject.transform.parent.gameObject;
 
-    //    //ラインの座標リストを取得
-    //    lvStorage = gParentObj.GetComponent<line>().lvPointStorage;
+        //ラインの座標リストを取得
+        lvStorage = gParentObj.GetComponent<line>().lvPointStorage;
 
-    //    nListCnt = lvStorage.Count;
-    //    nListCntDiv = nListCnt / 2;
+        nListCnt = lvStorage.Count;
+        nListCntDiv = nListCnt / 2;
 
-    //    vNewPos = transform.position;
+        vNewPos = transform.position;
 
-    //    //どちらのプレス機か
-    //    if (bWallStart == true)
-    //    {
-    //        vLookPos = lvStorage[2];
-    //        transform.LookAt(vLookPos);
-    //        transform.Rotate(new Vector3(transform.rotation.x, -90.0f, transform.rotation.z));
-    //        nNextList = 1;
-    //    }
+        //どちらのプレス機か
+        if (bWallStart == true)
+        {
+            vLookPos = lvStorage[2];
+            transform.LookAt(vLookPos);
+            transform.Rotate(new Vector3(transform.rotation.x, -90.0f, transform.rotation.z));
+            nNextList = 1;
+        }
 
-    //    if (bWallStart == false)
-    //    {
-    //        vLookPos = lvStorage[nListCnt - 2];
-    //        transform.LookAt(vLookPos);
-    //        transform.Rotate(new Vector3(transform.rotation.x, -90.0f, transform.rotation.z));
-    //        nNextList = nListCnt - 2;
-    //    }
-    //}
+        if (bWallStart == false)
+        {
+            vLookPos = lvStorage[nListCnt - 2];
+            transform.LookAt(vLookPos);
+            transform.Rotate(new Vector3(transform.rotation.x, -90.0f, transform.rotation.z));
+            nNextList = nListCnt - 2;
+        }
+    }
 
     // Update is called once per frame
     void Update () {
 
-        if (bSummon == false)
+        if (bMoveFirst == false)
         {
-            //演出の開始をラインから取得
-            bSummon = gParentObj.GetComponent<line>().bPressMove;
+            bMoveFirst = gParentObj.GetComponent<line>().bPressMove;
+            bCreateCall = true;
         }
 
-        if (bSummon == true)
+        if (bCreateCall == true)
         {
-            //演出終了判定_回転オブジェクトから取得
-            //if ()
-            //{
-                //演出が終了したらプレス機を移動
-                bPressMove = true;
-            //}
+            Create();
+            bCreateCall = false;
         }
 
-        if (bPressMove == true)
+        if (bMoveFirst == true)
         {
 
             //どちらのプレス機か
