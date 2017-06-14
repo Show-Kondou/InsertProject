@@ -9,9 +9,8 @@ public class Title : MonoBehaviour {
 		// TitleBGM再生
 		CSoundManager.Instance.PlayBGM( AUDIO_LIST.BGM_TITLE_0, true );
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	void OnDestroy() {
+		CSoundManager.Instance.StopBGM( AUDIO_LIST.BGM_TITLE_0 );
 	}
 }

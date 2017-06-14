@@ -73,7 +73,7 @@ public class TimeLimit : MonoBehaviour
             bTimeDisplay = true;
 
             TimerObj.SetActive(true);   // 時間表示
-            Debug.Log("時間表示");
+            // Debug.Log("時間表示");
         }
 
         // 針が半周したら時計を黄色に
@@ -82,14 +82,14 @@ public class TimeLimit : MonoBehaviour
             nColorChange = 1;
 
             ClockObj.GetComponent<Image>().color = Color.yellow;
-            Debug.Log("黄色にする");
+            // Debug.Log("黄色にする");
         }
         // 針が3/4周したら時計を赤色に
         if (fLimitTime <= (fOneRoundTime / 4) && nColorChange == 1)
         {
             nColorChange = 2;
             ClockObj.GetComponent<Image>().color = Color.red;
-            Debug.Log("赤色にする");
+            // Debug.Log("赤色にする");
         }
         // 針が一周したらゲームオーバー
         if (fLimitTime <= 0.0f && !bGameOver)
