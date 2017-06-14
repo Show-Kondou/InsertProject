@@ -229,6 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2205b7ca5932f3a44847525d62ea329c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SandwichObjList: []
   m_ObjTypeList:
   - {fileID: 114240778963885186, guid: 88a5b40d42e9e25488e1f3041887254e, type: 2}
   - {fileID: 114532383221439162, guid: a15698f30271bf944a9543ed989a7fbe, type: 2}
