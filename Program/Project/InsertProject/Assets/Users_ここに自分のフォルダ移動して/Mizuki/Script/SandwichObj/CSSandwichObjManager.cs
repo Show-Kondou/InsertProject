@@ -68,7 +68,7 @@ public class CSSandwichObjManager : ObjectBase{
 	/// 指定IDのオブジェクトを削除
 	/// </summary>
 	/// <param name="ID">削除するオブジェクトのID</param>
-    static public void DeleteSandwichObj(int ID) {
+    static public void DeleteSandwichObjToList(int ID) {
 		for(int i = 0; i < m_SandwichObjList.Count; i++) {
 			if(m_SandwichObjList[i].m_ObjectID == ID) {
 				m_SandwichObjList.RemoveAt(i);

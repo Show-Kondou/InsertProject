@@ -166,13 +166,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PressRangeLow: 0
-  m_WaitTime: 3
+  m_WaitTime: 60
   m_MoveSpped: 2
   m_JumpPower: 3
   m_Invincible: 0
   m_InvincibleTimer: 0
+  m_HitIDA: 0
+  m_HitIDB: 0
+  m_ObjectID: 0
   m_bInsert: 0
-  nowMaterial: {fileID: 0}
   SlimeMesh: {fileID: 1460230662348110}
   EnemyMat: {fileID: 2100000, guid: f753ba88ba1c824468f263c58307e4d8, type: 2}
   AllyMat: {fileID: 2100000, guid: 265f78840d6eb2c4c854f76fcbeec72b, type: 2}

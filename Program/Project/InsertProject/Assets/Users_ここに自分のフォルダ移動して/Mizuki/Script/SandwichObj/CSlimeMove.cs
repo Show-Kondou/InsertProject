@@ -6,6 +6,7 @@ public class CSlimeMove : CSSandwichObject {
 	public enum SLIME_TYPE {
 		Ally,
 		Enemy,
+		Nothing,
 
 		MAX_SLIME_TYPE,
 	};
@@ -17,10 +18,14 @@ public class CSlimeMove : CSSandwichObject {
 	private Material EnemyMat;
 	[SerializeField]
 	private Material AllyMat;
-	static public int EnemyNum = 0;	// 敵の総数
+	static public int EnemyNum = 0; // 敵の総数
+	[SerializeField]
+	private float NothingLifeTime = 1.0f;	// 設定時間
+	private float NothingLifeTimer;	// 3段階目になった時に時間で死亡させる。
 
 	// Use this for initialization
 	void Start() {
+		Debug.Log("スライム生成数：" + BigSlimeMakeNum);
 		m_OrderNumber = 0;
 		ObjectManager.Instance.RegistrationList(this, m_OrderNumber);
 		m_Moving = false;
@@ -37,6 +42,7 @@ public class CSlimeMove : CSSandwichObject {
 			myType = SLIME_TYPE.Enemy;
 			SlimeMesh.GetComponent<Renderer>().material = EnemyMat;
 		}
+		NothingLifeTimer = NothingLifeTime;
 	}
 
 	public override void Execute(float deltaTime) {
@@ -46,6 +52,15 @@ public class CSlimeMove : CSSandwichObject {
 		if(!this)
 			return; // バグ回避用。要修正
 		//=============
+
+		if(myType == SLIME_TYPE.Nothing) {
+			NothingLifeTimer -= deltaTime;
+			if(NothingLifeTimer < 0) {
+				CSSandwichObjManager.DeleteSandwichObjToList(m_ObjectID);
+				Destroy(gameObject);
+			}
+			return;
+		}
 
 		// ジャンプ中処理
 		if(m_Moving) {
@@ -82,6 +97,7 @@ public class CSlimeMove : CSSandwichObject {
 	/// </summary>
 	public override void SandwichedAction() {
 		if(myType == SLIME_TYPE.Enemy) {
+			SameTimeSandObjNum();
 			transform.tag = "Ally";			// タグを味方に
 			m_Invincible = true;			// 無敵オン
 			m_InvincibleTimer = 1.0f;		// 無敵時間
@@ -90,10 +106,16 @@ public class CSlimeMove : CSSandwichObject {
 			m_PressObjList.Clear();
 			EnemyNum--;
 		} else if(myType == SLIME_TYPE.Ally) {
-			// パーティクルを出して削除
+			SameTimeSandObjNum();
+			myType = SLIME_TYPE.Nothing;   // 属性を味方に
+			m_Invincible = true;            // 無敵オン
+			m_InvincibleTimer = 1.0f;       // 無敵時間
+			SlimeMesh.SetActive(false);
+
+			// パーティクルを出す
 			CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.AllySlimeDeath, transform.position);
-			CSSandwichObjManager.DeleteSandwichObj(m_ObjectID);
-			Destroy(gameObject);
+		}else {
+			SameTimeSandObjNum();
 		}
 
 	}

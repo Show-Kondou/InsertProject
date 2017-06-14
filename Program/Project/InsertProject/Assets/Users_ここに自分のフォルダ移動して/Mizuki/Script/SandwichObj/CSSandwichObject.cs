@@ -37,6 +37,8 @@ public class CSSandwichObject : ObjectBase {
 
 	private CSSandwichObject m_Type;
 
+	protected static int BigSlimeMakeNum = 2;	// ビッグスライムを生成する同時巻き込み数(初期は5)
+
 	// 当たったプレス機のステータス格納用
 	public struct PressObject { 
         public bool bHitFlagA;		// 一個目に当たったかのチェック
@@ -55,7 +57,6 @@ public class CSSandwichObject : ObjectBase {
     void Start() {
         m_OrderNumber = 0;
         ObjectManager.Instance.RegistrationList(this, m_OrderNumber);
-
     }
 
     public override void Execute(float deltaTime) {
@@ -156,8 +157,10 @@ public class CSSandwichObject : ObjectBase {
 	/// </summary>
 	/// <returns></returns>
 	public int SameTimeSandObjNum() {
-		int sandNum = 0;
-
+		int sandNum = 1;	// 同時はさみ数
+							// 自身がいるので1からスタート
+		List<int> sameObjList = new List<int>();
+		sameObjList.Clear();
 		foreach(CSSandwichObject obj in CSSandwichObjManager.m_SandwichObjList) {
 			// 自分自身とは判定を取らない
 			if(m_ObjectID == obj.m_ObjectID) {
@@ -168,10 +171,41 @@ public class CSSandwichObject : ObjectBase {
 			if((m_HitIDA == obj.m_HitIDA || m_HitIDA == obj.m_HitIDB) && 
 			   (m_HitIDB == obj.m_HitIDA || m_HitIDB == obj.m_HitIDB )) {
 				sandNum++;
+				sameObjList.Add(obj.m_ObjectID);
+			}
+		}
+
+		sameObjList.Add(m_ObjectID);	// これが途中で削除されるとまずいので最後に挿入
+
+		// 同時巻き込み数が指定数以上でビッグスライムを生成
+		if(sandNum >= BigSlimeMakeNum) {
+			var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+			cube.transform.position = transform.position;
+			cube.transform.SetZ(cube.transform.position.z + 3);
+			//foreach(int ID in sameObjList) {
+			for(int i = 0; i < sameObjList.Count; i++) { 
+				//foreach(CSSandwichObject obj in CSSandwichObjManager.m_SandwichObjList) {
+				for(int j = 0; j < CSSandwichObjManager.m_SandwichObjList.Count; j++) { 
+					if(CSSandwichObjManager.m_SandwichObjList[j].m_ObjectID == sameObjList[i]) {
+						Debug.Log("ふつうの死");
+						CSSandwichObjManager.m_SandwichObjList[j].DestroySandObject();	// オブジェクト削除
+						CSSandwichObjManager.DeleteSandwichObjToList(CSSandwichObjManager.m_SandwichObjList[j].m_ObjectID);
+					}
+				}
 			}
 		}
 
 		return sandNum;
+	}
+
+	/// <summary>
+	/// オブジェクトの削除
+	/// </summary>
+	public void DestroySandObject() {
+		if(!this)
+			return;
+		Debug.Log("DestroySandObjectの死");
+		Destroy(gameObject);
 	}
 }
 
