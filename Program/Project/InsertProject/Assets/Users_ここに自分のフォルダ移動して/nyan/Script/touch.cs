@@ -13,7 +13,7 @@ public class touch : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        nLineNum = 0;
+        nLineNum = 9;
 
     }
 	
