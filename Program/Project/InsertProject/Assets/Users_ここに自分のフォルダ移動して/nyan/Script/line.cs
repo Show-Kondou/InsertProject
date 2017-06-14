@@ -47,6 +47,7 @@ public class line : MonoBehaviour {
     //タッチオブジェクト呼び出し
     GameObject TouchObj;
     touch _touch;
+    private int nPressNum;
 
     //距離計算
     public float fDistanceTotal;
@@ -288,10 +289,14 @@ public class line : MonoBehaviour {
                 lRendere.SetPosition(nPointCnt - 1, vEndPos);
                 lvPointStorage.Add(vEndPos);
 
+                //ラインIDをプレスIDに代入
+                nPressNum = _touch.nLineNum;
+
                 //最初の壁を召喚
                 vStartPress = lvPointStorage[0];
                 GameObject gStartPress = Instantiate(PressPrefab, vStartPress, transform.rotation) as GameObject;
-                gStartPress.name = "startPress" + _touch.nLineNum + 1;
+                nPressNum++;
+                gStartPress.name = "startPress" + nPressNum;
                 gStartPress.tag = "StartPress";
                 gStartPress.transform.parent = transform;
                 gStartPress.GetComponent<Press>().bWallStart = true;
@@ -300,7 +305,8 @@ public class line : MonoBehaviour {
                 //終わりの壁を召喚
                 vEndPress = lvPointStorage[nPointCnt - 1];
                 GameObject gEndPress = Instantiate(PressPrefab, vEndPress, transform.rotation) as GameObject;
-                gEndPress.name = "endPress" + _touch.nLineNum + 2;
+                nPressNum++;
+                gEndPress.name = "endPress" + nPressNum;
                 gEndPress.tag = "EndPress";
                 gEndPress.transform.parent = transform;
                 gEndPress.GetComponent<Press>().bWallStart = false;
