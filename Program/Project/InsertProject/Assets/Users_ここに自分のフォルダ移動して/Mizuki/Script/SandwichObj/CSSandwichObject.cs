@@ -29,17 +29,19 @@ public class CSSandwichObject : ObjectBase {
 	protected float m_JumpPower;    // ジャンプ力
 	protected float m_JumpTimer;    // 投げ上げ計算用タイマー
 	protected float m_Rotation;     // 移動方向
-	public bool m_Invincible;		// 無敵判定
-	public float m_InvincibleTimer; // 無敵タイマー
+	public bool		m_Invincible;		// 無敵判定
+	public float	m_InvincibleTimer; // 無敵タイマー
+	public int		m_HitIDA;        // プレス機1個目のID
+	public int		m_HitIDB;        // プレス機2個目のID
+	public int      m_ObjectID;		// オブジェクトの番号(ユニーク)
 
 	private CSSandwichObject m_Type;
 
-	// プレス機のステータス格納用
+	// 当たったプレス機のステータス格納用
 	public struct PressObject { 
         public bool bHitFlagA;		// 一個目に当たったかのチェック
         public bool bHitFlagB;      // 二個目に当たったかのチェック
-		public int  HitIDA;          // 当たったオブジェクトの番号
-		public int  HitID;          // 当たったオブジェクトの番号
+		public int  HitID;			// 当たったプレス機のID
 		public Vector3 DirectionVec;// 進行方向ベクトル
         public string HitObjName;	// 名前(前後確認)
     };
@@ -95,6 +97,8 @@ public class CSSandwichObject : ObjectBase {
 				}
 				// 違うプレス機と触るかつ角度が一定値で挟まれ判定
 				if(Mathematics.VectorRange(m_PressObjList[i].DirectionVec, m_PressObjList[j].DirectionVec) > m_PressRangeLow) {
+					m_HitIDA = m_PressObjList[i].HitID;
+					m_HitIDB = m_PressObjList[j].HitID;
 					SandwichedAction();	// 挟まれ処理
 					break;
 				}
@@ -145,4 +149,43 @@ public class CSSandwichObject : ObjectBase {
 		CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.AllySlimeDeath, transform.position);
 		Destroy(gameObject);
 	}
+
+	/// <summary>
+	/// 同じプレス機に挟まれたオブジェクトの個数を数える
+	/// 関数名は「同時に挟まれた」にしちゃった。
+	/// </summary>
+	/// <returns></returns>
+	public int SameTimeSandObjNum() {
+		int sandNum = 0;
+
+		foreach(CSSandwichObject obj in CSSandwichObjManager.m_SandwichObjList) {
+			// 自分自身とは判定を取らない
+			if(m_ObjectID == obj.m_ObjectID) {
+				continue;
+			}
+
+			// 同じプレス機に挟まれたオブジェクトを見つけた時、加算
+			if((m_HitIDA == obj.m_HitIDA || m_HitIDA == obj.m_HitIDB) && 
+			   (m_HitIDB == obj.m_HitIDA || m_HitIDB == obj.m_HitIDB )) {
+				sandNum++;
+			}
+		}
+
+		return sandNum;
+	}
 }
+
+/*明日の自分へ
+ * ここからやること
+ * プレス機のIDが同じSandWichObjを探す、その時自分自身を見ないようにする(IDではじく)
+ * 同じだったら加算、チェック
+ * 一定数(５)以上だったらビッグを出す
+ * にゃんにゃんにお願いすること→プレス機のIDの1桁目を上と下とで分けてもらう。
+ * ビッグスライムを作ったら材料となったスライムを削除すること
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */

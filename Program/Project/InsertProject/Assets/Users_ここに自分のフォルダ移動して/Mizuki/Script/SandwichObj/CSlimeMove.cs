@@ -92,6 +92,7 @@ public class CSlimeMove : CSSandwichObject {
 		} else if(myType == SLIME_TYPE.Ally) {
 			// パーティクルを出して削除
 			CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.AllySlimeDeath, transform.position);
+			CSSandwichObjManager.DeleteSandwichObj(m_ObjectID);
 			Destroy(gameObject);
 		}
 
