@@ -13,7 +13,7 @@ public class touch : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        nLineNum = 9;
+        nLineNum = 100;
 
     }
 	
@@ -24,7 +24,7 @@ public class touch : MonoBehaviour {
         //トリガー時処理
         if (Input.GetMouseButtonDown(0))
         {
-            nLineNum++;
+            nLineNum = nLineNum + 10; ;
 
             //ラインプレファブ生成
             GameObject Line =  Instantiate(LinePrefab) as GameObject;
