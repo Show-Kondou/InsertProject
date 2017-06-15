@@ -25,7 +25,6 @@ public class CSlimeMove : CSSandwichObject {
 
 	// Use this for initialization
 	void Start() {
-		Debug.Log("スライム生成数：" + BigSlimeMakeNum);
 		m_OrderNumber = 0;
 		ObjectManager.Instance.RegistrationList(this, m_OrderNumber);
 		m_Moving = false;
