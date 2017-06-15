@@ -43,7 +43,12 @@ public class Press : MonoBehaviour {
 
     //初回生成時移動許可判定
     public bool bMoveFirst = false;
-    private bool bCreateCall = false;
+    private bool bSummon = false;
+    public int nSummonTime;
+    private int nSummonCnt = 0;
+
+    //プレス機非表示用フラグ
+    public bool bVisible = false;
 
 
 
@@ -79,49 +84,53 @@ public class Press : MonoBehaviour {
 
     }
 
-    void Create()
-    {
-        //gParentObj = gameObject.transform.parent.gameObject;
+    //void Create()
+    //{
+    //    //gParentObj = gameObject.transform.parent.gameObject;
 
-        //ラインの座標リストを取得
-        lvStorage = gParentObj.GetComponent<line>().lvPointStorage;
+    //    //ラインの座標リストを取得
+    //    lvStorage = gParentObj.GetComponent<line>().lvPointStorage;
 
-        nListCnt = lvStorage.Count;
-        nListCntDiv = nListCnt / 2;
+    //    nListCnt = lvStorage.Count;
+    //    nListCntDiv = nListCnt / 2;
 
-        vNewPos = transform.position;
+    //    vNewPos = transform.position;
 
-        //どちらのプレス機か
-        if (bWallStart == true)
-        {
-            vLookPos = lvStorage[2];
-            transform.LookAt(vLookPos);
-            transform.Rotate(new Vector3(transform.rotation.x, -90.0f, transform.rotation.z));
-            nNextList = 1;
-        }
+    //    //どちらのプレス機か
+    //    if (bWallStart == true)
+    //    {
+    //        vLookPos = lvStorage[2];
+    //        transform.LookAt(vLookPos);
+    //        transform.Rotate(new Vector3(transform.rotation.x, -90.0f, transform.rotation.z));
+    //        nNextList = 1;
+    //    }
 
-        if (bWallStart == false)
-        {
-            vLookPos = lvStorage[nListCnt - 2];
-            transform.LookAt(vLookPos);
-            transform.Rotate(new Vector3(transform.rotation.x, -90.0f, transform.rotation.z));
-            nNextList = nListCnt - 2;
-        }
-    }
+    //    if (bWallStart == false)
+    //    {
+    //        vLookPos = lvStorage[nListCnt - 2];
+    //        transform.LookAt(vLookPos);
+    //        transform.Rotate(new Vector3(transform.rotation.x, -90.0f, transform.rotation.z));
+    //        nNextList = nListCnt - 2;
+    //    }
+    //}
 
     // Update is called once per frame
     void Update () {
 
         if (bMoveFirst == false)
         {
-            bMoveFirst = gParentObj.GetComponent<line>().bPressMove;
-            bCreateCall = true;
+            bSummon = gParentObj.GetComponent<line>().bFirstMove;
         }
 
-        if (bCreateCall == true)
+        if (bSummon == true)
         {
-            Create();
-            bCreateCall = false;
+            nSummonCnt++;
+
+            if (nSummonTime < nSummonCnt)
+            {
+                bSummon = false;
+                bMoveFirst = true;
+            }
         }
 
         if (bMoveFirst == true)
@@ -203,11 +212,17 @@ public class Press : MonoBehaviour {
             fContainer = (vNewPos - vOldPos).magnitude;
             fDistance += fContainer;
 
-            ////半分のところでマテリアル非表示
-            //if (gParentObj.GetComponent<line>().fDistanceTotal * 0.5f < fDistance)
-            //{
-            //    GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-            //}
+            //半分のところでマテリアル非表示
+            if (gParentObj.GetComponent<line>().fDistanceTotal * 0.5f < fDistance)
+            {
+                //GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                bVisible = true;
+                if (bWallStart == true)
+                {
+                    line lLine = gParentObj.GetComponent<line>();
+                    lLine.Visible();
+                }
+            }
 
             //半分とちょっとのところでデストロイ
             if (gParentObj.GetComponent<line>().fDistanceTotal *0.55f < fDistance)
