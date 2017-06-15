@@ -329,6 +329,8 @@ MonoBehaviour:
   fContainer: 0
   fDistance: 0
   bMoveFirst: 0
+  nSummonTime: 0
+  bVisible: 0
 --- !u!137 &137309941072119578
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

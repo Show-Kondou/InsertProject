@@ -176,3 +176,5 @@ MonoBehaviour:
   fContainer: 0
   fDistance: 0
   bMoveFirst: 0
+  nSummonTime: 0
+  bVisible: 0

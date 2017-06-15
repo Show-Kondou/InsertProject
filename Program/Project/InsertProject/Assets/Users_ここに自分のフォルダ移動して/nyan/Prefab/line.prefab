@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nLineID: 0
-  PressPrefab: {fileID: 1579113814915524, guid: 9bd1a99365e57c44cbdd27276d581ff3,
+  PressPrefab: {fileID: 1428423386965692, guid: b74f3203ebd64484fae6b39542a7f5f1,
     type: 2}
   PointPrefab: {fileID: 1402570948096110, guid: b7bef8fb46ca60c4faeade52edd32501,
     type: 2}
@@ -61,7 +61,7 @@ MonoBehaviour:
   fDistanceTotal: 0
   c1: {r: 0, g: 1, b: 1, a: 0.78431374}
   c2: {r: 0, g: 1, b: 1, a: 0.78431374}
-  bPressMove: 0
+  bFirstMove: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 1024

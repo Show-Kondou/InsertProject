@@ -57,7 +57,7 @@ public class line : MonoBehaviour {
     public Color c2 = new Color(0, 0, 0, 1);
 
     //初回生成時移動許可判定
-    public bool bPressMove = false;
+    public bool bFirstMove = false;
 
     //レイ
     public LayerMask layerMask;
@@ -274,7 +274,7 @@ public class line : MonoBehaviour {
             if (Input.GetMouseButtonUp(0))
             {
                 //線の長さが基準値に達していなかったら線を引かずオブジェクトも消す。
-                if (lvPointStorage.Count < 2)
+                if (lvPointStorage.Count < 5)
                 {
                     this.gameObject.SetActive(false);
                     Destroy(this.gameObject);
@@ -313,13 +313,20 @@ public class line : MonoBehaviour {
                 gEndPress.GetComponent<Press>().nPressID = nLineID;
 
                 //プレス機の移動を許可
-                bPressMove = true;
+                bFirstMove = true;
 
                 //リリースチェックをtrueにして線を引けないようにする
                 bReleaseCheck = true;
             }
 
         }
+
+    }
+
+    public void Visible()
+    {
+        //lvPointStorage.Clear();
+        lRendere.material.SetColor("_Color", new Color(0.0f, 0.0f, 0.0f, 0.0f));
     }
 
 }

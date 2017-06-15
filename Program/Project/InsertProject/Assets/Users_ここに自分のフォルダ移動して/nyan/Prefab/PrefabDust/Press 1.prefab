@@ -138,10 +138,12 @@ MonoBehaviour:
   bWallStart: 0
   lvStorage: []
   vLookPos: {x: 0, y: 0, z: 0}
-  bStop: 0
   vStartVec: {x: 0, y: 0, z: 0}
   vEndVec: {x: 0, y: 0, z: 0}
   fCollisionVec: 0
   fVecRange: 150
   fContainer: 0
   fDistance: 0
+  bMoveFirst: 0
+  nSummonTime: 0
+  bVisible: 0
