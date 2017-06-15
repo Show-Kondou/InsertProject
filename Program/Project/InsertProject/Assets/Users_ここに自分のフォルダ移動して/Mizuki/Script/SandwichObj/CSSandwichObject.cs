@@ -187,7 +187,6 @@ public class CSSandwichObject : ObjectBase {
 				//foreach(CSSandwichObject obj in CSSandwichObjManager.m_SandwichObjList) {
 				for(int j = 0; j < CSSandwichObjManager.m_SandwichObjList.Count; j++) { 
 					if(CSSandwichObjManager.m_SandwichObjList[j].m_ObjectID == sameObjList[i]) {
-						Debug.Log("ふつうの死");
 						CSSandwichObjManager.m_SandwichObjList[j].DestroySandObject();	// オブジェクト削除
 						CSSandwichObjManager.DeleteSandwichObjToList(CSSandwichObjManager.m_SandwichObjList[j].m_ObjectID);
 					}
@@ -204,7 +203,7 @@ public class CSSandwichObject : ObjectBase {
 	public void DestroySandObject() {
 		if(!this)
 			return;
-		Debug.Log("DestroySandObjectの死");
+		CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.AllySlimeDeath, transform.position);
 		Destroy(gameObject);
 	}
 }
