@@ -17,19 +17,19 @@ using UnityEngine;
 public class CSParticleManager : SingletonMonoBehaviour<CSParticleManager> {
 	// パーティクルリスト
 	public enum PARTICLE_TYPE {
-		AllySlimeEmarg = 0,		// 味方スライム出現
-		BigAllySlimeEmarg,		// でかスライム出現
-		EnemySlimeEmarg,		// 敵スライム出現
-		MagicWallEmarg,			// マジックウォール出現
-		MagicWallLine,			// マジックウォールのライン用
-		MagicWallUnion,			// マジックウォールがぶつかった時
-		FeverSlimeEmarg,		// フィーバースライム出現
-		FeverSlimeMove,			// フィーバースライムの移動
-		AllySlimeDeath,			// 味方スライム死亡
-		BossEmarg,				// ボス出現
-		SlimeAttack,			// スライム攻撃
-		BrainWashAttack,		// 洗脳攻撃
-		BossDefeat,				// ボス撃破時
+		AllySlimeEmarg = 0,		//  0:味方スライム出現
+		BigAllySlimeEmarg,		//  1:でかスライム出現
+		EnemySlimeEmarg,		//  2:敵スライム出現
+		MagicWallEmarg,			//  3:マジックウォール出現
+		MagicWallLine,			//  4:マジックウォールのライン用
+		MagicWallUnion,			//  5:マジックウォールがぶつかった時
+		FeverSlimeEmarg,		//  6:フィーバースライム出現
+		FeverSlimeMove,			//  7:フィーバースライムの移動
+		AllySlimeDeath,			//  8:味方スライム死亡
+		BossEmarg,				//  9:ボス出現
+		SlimeAttack,			// 10:スライム攻撃
+		BrainWashAttack,		// 11:洗脳攻撃
+		BossDefeat,				// 12:ボス撃破時
 
 		MAX_PARTICLE_TYPE,		// 総パーティクル数
 	};
@@ -38,13 +38,12 @@ public class CSParticleManager : SingletonMonoBehaviour<CSParticleManager> {
     [SerializeField]
 	private List<CSParticleObject> m_ParticleTypeList;  // パーティクルの種類を格納。ここから生成。
 	[SerializeField]
-	//private List<int> m_ParticleNumberByType;　         // 同じ種類ごとの数。Number0がn個、Number1がm個といった感じ。
+	// 同じ種類ごとの数。Number0がn個、Number1がm個といった感じ。
 	private int[] m_ParticleNumberByType;
 
 	// Use this for initialization
 	void Start() {
 		m_ParticleList = new List<CSParticleObject>();
-		//m_ParticleNumberByType = new List<int>();
 		m_ParticleNumberByType = new int[(int)PARTICLE_TYPE.MAX_PARTICLE_TYPE];
 		for(int i = 0; i < (int)PARTICLE_TYPE.MAX_PARTICLE_TYPE; ++i) {
 			CSParticleObject obj = Instantiate(m_ParticleTypeList[i]);
@@ -72,7 +71,7 @@ public class CSParticleManager : SingletonMonoBehaviour<CSParticleManager> {
     public CSParticleObject Play(PARTICLE_TYPE type, Vector3 position) {
 		int nSameType = 0;
 		for(int i = 0; i < m_ParticleList.Count; i++) {
-			if(m_ParticleList[i].m_ParticleType == type && i == nSameType) {
+			if(m_ParticleList[i].m_ParticleType == type/* && i == nSameType*/) {
 				// 使用中でなければそのまま再生
 				if(!m_ParticleList[i].m_Particle.isPlaying) {
 					m_ParticleList[i].m_Particle.transform.position = position;

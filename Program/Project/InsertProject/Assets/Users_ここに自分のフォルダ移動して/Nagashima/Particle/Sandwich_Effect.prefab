@@ -36,6 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4576398949945548}
+  - component: {fileID: 114980953386403350}
   m_Layer: 0
   m_Name: Sandwich_Effect
   m_TagString: Untagged
@@ -132,6 +133,22 @@ Transform:
   m_Father: {fileID: 4656837623337728}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114980953386403350
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1166096479113856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5b9088602288f94a91f5fb917dd50ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Particle: {fileID: 0}
+  m_ParticlePrefab: {fileID: 198415669475483462}
+  m_ListToNumber: 0
+  m_ParticleType: 0
+  m_nNumberOfSameType: 0
 --- !u!198 &198415669475483462
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -143,7 +160,7 @@ ParticleSystem:
   simulationSpeed: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   autoRandomSeed: 1
   startDelay:
     minMaxState: 0
@@ -3044,7 +3061,7 @@ ParticleSystem:
   simulationSpeed: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   autoRandomSeed: 1
   startDelay:
     minMaxState: 0
@@ -5993,7 +6010,7 @@ ParticleSystem:
   simulationSpeed: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   autoRandomSeed: 1
   startDelay:
     minMaxState: 0
