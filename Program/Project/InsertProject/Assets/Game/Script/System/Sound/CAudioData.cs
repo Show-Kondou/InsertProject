@@ -19,30 +19,35 @@ using System.Collections.Generic;
 // ===== 定数 =====
 public enum AUDIO_LIST {
 	/* BGM */
+	BGM_BOSS,			// ボスBGM
+	BGM_GAME_OVER,		// ゲームオーバー
+	BGM_MAIN,			// メインのBGM
 	BGM_TITLE_0,		// タイトルBGM０
 	BGM_TITLE_1,		// タイトルBGM１
 	BGM_TITLE_2,		// タイトルBGM２
 	BGM_TITLE_3,		// タイトルBGM３
 	BGM_TITLE_4,		// タイトルBGM４
-	BGM_MAIN,			// メインのBGM
-	BGM_BOSS,			// ボスBGM
-	BGM_PINCH_0,		// ピンチ１
-	BGM_PINCH_1,		// ピンチ２
-	BGM_GAME_OVER,		// ゲームオーバー
+	BGM_PINCH,			// ピンチ
 	
 	/* SE */
-	SE_MAGIC,			// 魔法壁生成SE
-	SE_FEVER_UP,		// フィーバーゲージ回復
-	SE_FEVER_FURU,		// フィーバーゲージ満タン
-	SE_ENTER_0,			// 決定音
-	SE_ENTER_1,         // 決定音
-	SE_SLIME_OVER,		// スライムの数が多い警告音
-	SE_BOSS_ATTACK,		// ボス攻撃音
-	SE_BOSS_ATTACK_SP,	// ボスの特殊攻撃
-	SE_BOSS_ATTACK_CANCEL,	// ボスの攻撃キャンセル
-	SE_BOSS_HIT_0,		// ボスヒット音
-	SE_BOSS_HIT_1,      // ボスヒット音
-	SE_BOSS_KILL,       // ボス死亡
+	SE_BOSS_ATTACK,					// ボス攻撃音
+	SE_BOSS_ATTACK_BRAINWASHING,	// ボス攻洗脳
+	SE_BOSS_ATTACK_CANCEL,			// ボスの攻撃キャンセル
+	SE_BOSS_ATTACK_SLIME,			// ボスの特殊攻撃
+	SE_BOSS_HIT_0,					// ボスヒット音０
+	SE_BOSS_HIT_1,					// ボスヒット音１
+	SE_BOSS_KILL,					// ボス死亡
+	SE_BOSS_SYUTUGEN,				// ボス生成
+	SE_ENTER_0,						// 決定音
+	SE_ENTER_1,						// 決定音
+	SE_FEVER_FURU,					// フィーバーゲージ満タン
+	SE_FEVER_UP,					// フィーバーゲージ回復
+	SE_LINEDRAW,
+	SE_LINEDRAW_WAIT,
+	SE_MAGICWALL,					// 魔法壁生成SE
+	SE_MAGICWALL_OVER,				// 魔法壁生成SE
+	SE_SLIME_CONVERT,
+	SE_SLIME_OVER,					// スライムの数が多い警告音
 
 	/* 最大数 */
 	MAX
@@ -61,30 +66,35 @@ public class CAudioData {
 	// オーディオファイル名
 	static List<string> m_FileName =  new List<string>{
 		/* BGM */
+		"BGM_BOSS",			// ボスBGM
+		"BGM_GAME_OVER",		// ゲームオーバー
+		"BGM_MAIN",			// メインのBGM
 		"BGM_TITLE_0",		// タイトルBGM０
 		"BGM_TITLE_1",		// タイトルBGM１
 		"BGM_TITLE_2",		// タイトルBGM２
 		"BGM_TITLE_3",		// タイトルBGM３
 		"BGM_TITLE_4",		// タイトルBGM４
-		"BGM_MAIN",			// メインのBGM
-		"BGM_BOSS",			// ボスBGM
-		"BGM_PINCH_0",		// ピンチ１
-		"BGM_PINCH_1",		// ピンチ２
-		"BGM_GAMEOVER",	// ゲームオーバー
+		"BGM_PINCH",			// ピンチ
 	
 		/* SE */
-		"SE_MAGIC",			// 魔法壁生成SE
-		"SE_FEVER_UP",		// フィーバーゲージ回復
-		"SE_FEVER_FURU",		// フィーバーゲージ満タン
-		"SE_ENTER_0",			// 決定音
-		"SE_ENTER_1",         // 決定音
-		"SE_SLIME_OVER",		// スライムの数が多い警告音
-		"SE_BOSS_ATTACK",		// ボス攻撃音
-		"SE_BOSS_ATTACK_SP",	// ボスの特殊攻撃
-		"SE_BOSS_ATTACK_CANCEL",	// ボスの攻撃キャンセル
-		"SE_BOSS_HIT_0",		// ボスヒット音
-		"SE_BOSS_HIT_1",      // ボスヒット音
-		"SE_BOSS_KILL",       // ボス死亡
+		"SE_BOSS_ATTACK",					// ボス攻撃音
+		"SE_BOSS_ATTACK_BRAINWASHING",	// ボス攻洗脳
+		"SE_BOSS_ATTACK_CANCEL",			// ボスの攻撃キャンセル
+		"SE_BOSS_ATTACK_SLIME",			// ボスの特殊攻撃
+		"SE_BOSS_HIT_0",					// ボスヒット音０
+		"SE_BOSS_HIT_1",					// ボスヒット音１
+		"SE_BOSS_KILL",					// ボス死亡
+		"SE_BOSS_SYUTUGEN",				// ボス生成
+		"SE_ENTER_0",						// 決定音
+		"SE_ENTER_1",						// 決定音
+		"SE_FEVER_FURU",					// フィーバーゲージ満タン
+		"SE_FEVER_UP",					// フィーバーゲージ回復
+		"SE_LINEDRAW",
+		"SE_LINEDRAW_WAIT",
+		"SE_MAGICWALL",					// 魔法壁生成SE
+		"SE_MAGICWALL_OVER",				// 魔法壁生成SE
+		"SE_SLIME_CONVERT",
+		"SE_SLIME_OVER",					// スライムの数が多い警告音
 		null,
 	};
 
