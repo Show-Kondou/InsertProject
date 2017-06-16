@@ -38,9 +38,6 @@ public class CSParticleObject : ObjectBase {
     void Start() {
         m_OrderNumber = 0;
         ObjectManager.Instance.RegistrationList(this, m_OrderNumber);
-		m_Particle = Instantiate(m_ParticlePrefab);
-		m_Particle.Stop();
-        m_ListToNumber = CSParticleManager.Instance.AddListParticle(this);
     }
 
 	/// <summary>
@@ -49,7 +46,10 @@ public class CSParticleObject : ObjectBase {
 	/// <param name="type">パーティクルタイプ</param>
 	/// <param name="nNumber">同名パーティクルの何番目か</param>
 	public void Create(CSParticleManager.PARTICLE_TYPE type, int nNumber) {
+		m_Particle = Instantiate(m_ParticlePrefab);
+        m_ListToNumber = CSParticleManager.Instance.AddListParticle(this);
 		m_ParticleType = type;
 		m_nNumberOfSameType = nNumber;
+		m_Particle.Stop();
 	}
 }
