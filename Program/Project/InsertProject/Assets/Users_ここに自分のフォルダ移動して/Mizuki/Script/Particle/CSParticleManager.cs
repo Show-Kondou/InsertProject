@@ -88,6 +88,7 @@ public class CSParticleManager : SingletonMonoBehaviour<CSParticleManager> {
 					CSParticleObject obj = Instantiate(m_ParticleTypeList[(int)type],position,Quaternion.identity);
 					m_ParticleNumberByType[(int)type]++;
 					obj.Create(type, nSameType);
+					obj.m_Particle.transform.position = position;
 					obj.m_Particle.Play();
 					return obj;
 				}
