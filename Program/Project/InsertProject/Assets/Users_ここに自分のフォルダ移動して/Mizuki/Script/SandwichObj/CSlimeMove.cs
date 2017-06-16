@@ -110,7 +110,6 @@ public class CSlimeMove : CSSandwichObject {
 			m_Invincible = true;            // 無敵オン
 			m_InvincibleTimer = 1.0f;       // 無敵時間
 			SlimeMesh.SetActive(false);
-
 			// パーティクルを出す
 			CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.AllySlimeDeath, transform.position);
 		}else {
