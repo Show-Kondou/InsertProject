@@ -28,6 +28,7 @@ public class CSSandwichObject : ObjectBase {
 	[SerializeField]
 	protected float m_JumpPower;    // ジャンプ力
 	protected float m_JumpTimer;    // 投げ上げ計算用タイマー
+	[SerializeField]
 	protected float m_Rotation;     // 移動方向
 	public bool		m_Invincible;		// 無敵判定
 	public float	m_InvincibleTimer; // 無敵タイマー

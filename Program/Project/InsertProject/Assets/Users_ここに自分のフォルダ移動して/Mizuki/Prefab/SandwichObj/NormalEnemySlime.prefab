@@ -67,7 +67,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1460230662348110}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -80,28 +80,28 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1573189128624110}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.5, y: -0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4998487026982772}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 90}
 --- !u!4 &4998487026982772
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1318649644985820}
-  m_LocalRotation: {x: -0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 0.592, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 4254059577503400}
   - {fileID: 4039430978828470}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &50811578754871922
 Rigidbody2D:
   serializedVersion: 4
@@ -134,7 +134,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.95}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
 --- !u!95 &95925712518113612
@@ -166,18 +166,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PressRangeLow: 0
-  m_WaitTime: 60
+  m_WaitTime: 2
   m_MoveSpped: 2
   m_JumpPower: 3
+  m_Rotation: 0
   m_Invincible: 0
   m_InvincibleTimer: 0
   m_HitIDA: 0
   m_HitIDB: 0
   m_ObjectID: 0
   m_bInsert: 0
+  myType: 0
   SlimeMesh: {fileID: 1460230662348110}
   EnemyMat: {fileID: 2100000, guid: f753ba88ba1c824468f263c58307e4d8, type: 2}
   AllyMat: {fileID: 2100000, guid: 265f78840d6eb2c4c854f76fcbeec72b, type: 2}
+  FeverMat: {fileID: 0}
+  FlagObj: {fileID: 0}
+  NothingLifeTime: 1
 --- !u!137 &137185797727682444
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
