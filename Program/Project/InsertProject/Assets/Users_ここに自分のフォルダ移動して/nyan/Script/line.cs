@@ -148,10 +148,10 @@ public class line : MonoBehaviour {
             bDiffCheck = true;
 
             //ホールド時処理
-            if (Input.GetMouseButton(0))
-            {
-                //初回クリック時処理
-                if (bFirstClick == false)
+            if (Input.GetMouseButton(0)) {
+				CSoundManager.Instance.PlaySE( AUDIO_LIST.SE_LINEDRAW );
+				//初回クリック時処理
+				if (bFirstClick == false)
                 {
 
                     //ダウン時格納場所を作り直す
@@ -169,12 +169,9 @@ public class line : MonoBehaviour {
                     bFirstClick = true;
 
                 }
-                else if (bFirstClick == true)
-                {
-                    
-                    if (bDiffCheck == true)
+                else if (bFirstClick == true) {
+					if (bDiffCheck == true)
                     {
-
                         //差分計算(値を正の数にする)
                         if (0 < vOldPos.x)
                         {
@@ -227,8 +224,9 @@ public class line : MonoBehaviour {
                         float fDiffAbout = 0.0625f;
                         if (fDiffAbout < fDiffX || fDiffAbout < fDiffY)//仮
                         {
-                            //一定量移動時格納場所を増やす
-                            nPointCnt += 1;
+							
+							//一定量移動時格納場所を増やす
+							nPointCnt += 1;
                             lRendere.SetVertexCount(nPointCnt);
 
                             //移動時の座標を格納
@@ -256,19 +254,19 @@ public class line : MonoBehaviour {
                     }
                 }
 
-                //if (nPointCnt == 3)
-                //{
-                //    //最初の壁を召喚
-                //    vStartPress = lvPointStorage[0];
-                //    GameObject gStartPress = Instantiate(PressPrefab, vStartPress, transform.rotation) as GameObject;
-                //    gStartPress.name = "startPress" + _touch.nLineNum;
-                //    gStartPress.tag = "StartPress";
-                //    gStartPress.transform.parent = transform;
-                //    gStartPress.GetComponent<Press>().bWallStart = true;
-                //    gStartPress.GetComponent<Press>().nPressID = nLineID;
-                //}
-
-            }
+				//if (nPointCnt == 3)
+				//{
+				//    //最初の壁を召喚
+				//    vStartPress = lvPointStorage[0];
+				//    GameObject gStartPress = Instantiate(PressPrefab, vStartPress, transform.rotation) as GameObject;
+				//    gStartPress.name = "startPress" + _touch.nLineNum;
+				//    gStartPress.tag = "StartPress";
+				//    gStartPress.transform.parent = transform;
+				//    gStartPress.GetComponent<Press>().bWallStart = true;
+				//    gStartPress.GetComponent<Press>().nPressID = nLineID;
+				//}
+				
+			}
 
             //リリース時処理
             if (Input.GetMouseButtonUp(0))
@@ -279,7 +277,6 @@ public class line : MonoBehaviour {
                     this.gameObject.SetActive(false);
                     Destroy(this.gameObject);
                 }
-
                 //アップ時格納場所を増やす
                 nPointCnt += 1;
                 lRendere.SetVertexCount(nPointCnt);

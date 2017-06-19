@@ -54,7 +54,7 @@ public class Press : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
+		CSoundManager.Instance.PlaySE(AUDIO_LIST.SE_MAGICWALL, false);
         gParentObj = gameObject.transform.parent.gameObject;
 
         //ラインの座標リストを取得

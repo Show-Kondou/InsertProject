@@ -131,7 +131,14 @@ public class CSoundManager : MonoBehaviour {
 	public void PlaySE( AUDIO_LIST value, bool isOneShot = true ) {
 		foreach( var i in m_SEChannel ) {
 			if( !i.isPlaying ) {
-				i.PlayOneShot( m_AudioList[(int)value] );
+				if( isOneShot ) {
+					i.PlayOneShot( m_AudioList[(int)value] );
+				}else {
+					i.clip = m_AudioList[(int)value];
+					i.loop = false;
+					i.Play();
+				}
+
 				return;
 			}
 		}
