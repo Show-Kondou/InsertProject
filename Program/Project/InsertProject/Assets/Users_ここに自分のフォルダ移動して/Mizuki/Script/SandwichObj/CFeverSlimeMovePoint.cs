@@ -2,20 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CFeverSlimeMovePoint : ObjectBase {
-	List<GameObject> FeverSlimeMovePoint = new List<GameObject>();
+public class CFeverSlimeMovePoint : MonoBehaviour {
+	[SerializeField]
+	CFeverSlimeMovePointManager mngObject;	// マネージャオブジェクト
+	[SerializeField]
+	CFeverSlimeMovePointManager.FEVER_SLIME_MOVE myPosition;	// 自身の位置
 
-	// Use this for initialization
-	void Start() {
-		m_OrderNumber = 0;
-		ObjectManager.Instance.RegistrationList(this, m_OrderNumber);
-	}
-
-	public override void Execute(float deltaTime) {
-
-	}
-
-	public override void LateExecute(float deltaTime) {
-
+	public void OnTriggerEnter2D(Collider2D collision) {
+		if(collision.tag != "Fever")
+			return;
+		// 移動位置変更
+		mngObject.ChangeNextPosition((int)myPosition);
 	}
 }

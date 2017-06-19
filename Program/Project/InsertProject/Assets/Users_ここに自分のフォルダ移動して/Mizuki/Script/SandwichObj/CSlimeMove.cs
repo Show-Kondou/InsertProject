@@ -25,7 +25,9 @@ public class CSlimeMove : CSSandwichObject {
 	private GameObject FlagObj;		// 旗モデル
 	static public int EnemyNum = 0; // 敵の総数
 	[SerializeField]
-	private float NothingLifeTime = 1.0f;	// 設定時間
+	private float NothingLifeTime = 1.0f;   // 設定時間
+	[SerializeField]
+	private CFeverSlimeMovePointManager pointMng;	// フィーバースライム目的地
 	private float NothingLifeTimer;	// 3段階目になった時に時間で死亡させる。
 
 	// Use this for initialization
@@ -36,10 +38,10 @@ public class CSlimeMove : CSSandwichObject {
 		m_Moving = false;
 		m_Position = transform.position;							// 初期位置に移動
 		m_MoveTimer = m_WaitTime;									// 移動待ち時間
-		m_Rotation = Random.Range(0, 360 * Mathf.PI / 180);                          // 初期向きをランダムで決定
-		transform.rotation = Quaternion.Euler(0, 0, m_Rotation); // 向きを設定
+		m_Rotation = Random.Range(0, 360 * Mathf.PI / 180);         // 初期向きをランダムで決定
+		transform.rotation = Quaternion.Euler(0, 0, m_Rotation);	// 向きを設定
 		FlagObj.SetActive(false);
-		// 生成されたスライムごとにマテリアルと自身のタイプを設定
+		// 生成されたスライムごとにマテリアルと自身のタイプを設定、初期化
 		if(transform.tag == "Enemy") {
 			EnemyNum++;
 			myType = SLIME_TYPE.Enemy;
@@ -51,6 +53,8 @@ public class CSlimeMove : CSSandwichObject {
 			myType = SLIME_TYPE.Fever;
 			SlimeMesh.GetComponent<Renderer>().material = FeverMat;
 			FlagObj.SetActive(true);
+			pointMng.ChangeNextPosition(0);	// 初期目的地設定
+			transform.position = pointMng.FeverSlimeDestination;    // 初期目的地設定
 		}
 		NothingLifeTimer = NothingLifeTime;
 	}
@@ -108,6 +112,9 @@ public class CSlimeMove : CSSandwichObject {
 					break;
 				case SLIME_TYPE.Fever:
 					// 外周移動
+					var containerFever = pointMng.FeverSlimeDestination;
+					m_Rotation = Mathf.Atan2(containerFever.y - transform.position.y,
+							containerFever.x - transform.position.x);
 					break;
 				default:
 					break;
@@ -118,7 +125,6 @@ public class CSlimeMove : CSSandwichObject {
 
 	public override void LateExecute(float deltaTime) {
 		base.LateExecute(deltaTime);
-
 	}
 
 	/// <summary>
