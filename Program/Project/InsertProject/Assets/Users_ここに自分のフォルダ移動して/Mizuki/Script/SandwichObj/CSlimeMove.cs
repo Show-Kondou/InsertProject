@@ -100,7 +100,6 @@ public class CSlimeMove : CSSandwichObject {
 				case SLIME_TYPE.Enemy:
 					var container = CSSandwichObjManager.GetFeverSilmeData();
 					if(container) {
-						Debug.Log("ミツケタ");
 						m_Rotation = Mathf.Atan2(container.transform.position.y - transform.position.y,
 							container.transform.position.x - transform.position.x); // フィーバースライムに向かう
 					} else {
@@ -128,13 +127,6 @@ public class CSlimeMove : CSSandwichObject {
 	public override void SandwichedAction() {
 		if(myType == SLIME_TYPE.Enemy) {
 			SameTimeSandObjNum();
-			transform.tag = "Ally";			// タグを味方に
-			m_Invincible = true;			// 無敵オン
-			m_InvincibleTimer = 1.0f;		// 無敵時間
-			SlimeMesh.GetComponent<Renderer>().material = AllyMat;	// マテリアル変更
-			myType = SLIME_TYPE.Ally;   // 属性を味方に
-			m_PressObjList.Clear();
-			EnemyNum--;
 		} else if(myType == SLIME_TYPE.Ally) {
 			SameTimeSandObjNum();
 			myType = SLIME_TYPE.Nothing;   // 属性を味方に
@@ -147,5 +139,30 @@ public class CSlimeMove : CSSandwichObject {
 			SameTimeSandObjNum();
 		}
 
+	}
+
+	public void ChangeSlimeState(SLIME_TYPE newType) {
+		switch(newType) {
+			case SLIME_TYPE.Enemy:
+				transform.tag = "Enemy";        // タグを敵に
+				m_Invincible = true;            // 無敵オン
+				m_InvincibleTimer = 1.0f;       // 無敵時間
+				SlimeMesh.GetComponent<Renderer>().material = EnemyMat;  // マテリアル変更
+				myType = SLIME_TYPE.Enemy;		// 属性を敵に
+				m_PressObjList.Clear();
+				EnemyNum++;
+				break;
+			case SLIME_TYPE.Ally:
+				transform.tag = "Ally";         // タグを味方に
+				m_Invincible = true;            // 無敵オン
+				m_InvincibleTimer = 1.0f;       // 無敵時間
+				SlimeMesh.GetComponent<Renderer>().material = AllyMat;  // マテリアル変更
+				myType = SLIME_TYPE.Ally;   // 属性を味方に
+				m_PressObjList.Clear();
+				EnemyNum--;
+				break;
+			default:
+				break;
+		}
 	}
 }
