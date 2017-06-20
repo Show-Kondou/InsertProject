@@ -72,7 +72,7 @@ public class line : MonoBehaviour {
         //LineRenderer生成
         lRendere = gameObject.GetComponent<LineRenderer>();
         // 線の幅
-        lRendere.SetWidth(0.05f, 0.05f);
+        lRendere.SetWidth(0.25f, 0.25f);
         //線の色
         lRendere.SetColors(c1, c2);
 

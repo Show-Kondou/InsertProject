@@ -8,9 +8,9 @@ public class rotate : MonoBehaviour {
     public bool bXPlus;
     public bool bYPlus;
     public bool bZPlus;
-    public bool bXMinu;
-    public bool bYMinu;
-    public bool bZMinu;
+    public bool bXMinus;
+    public bool bYMinus;
+    public bool bZMinus;
     public bool bDist;
 
     //回転スピード
@@ -61,17 +61,17 @@ public class rotate : MonoBehaviour {
                 transform.Rotate(new Vector3(0.0f, 0.0f, fRotateSpeed));
             }
 
-            if (bXMinu == true)
+            if (bXMinus == true)
             {
                 transform.Rotate(new Vector3(-fRotateSpeed, 0.0f, 0.0f));
             }
 
-            if (bYMinu == true)
+            if (bYMinus == true)
             {
                 transform.Rotate(new Vector3(0.0f, -fRotateSpeed, 0.0f));
             }
 
-            if (bZMinu == true)
+            if (bZMinus == true)
             {
                 transform.Rotate(new Vector3(0.0f, 0.0f, -fRotateSpeed));
             }

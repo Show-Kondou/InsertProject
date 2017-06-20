@@ -6,18 +6,23 @@ public class CSlimeMove : CSSandwichObject {
 	public enum SLIME_TYPE {
 		Ally,
 		Enemy,
+		Fever,
 		Nothing,
 
 		MAX_SLIME_TYPE,
 	};
 
-	SLIME_TYPE myType;
+	public SLIME_TYPE myType;
 	[SerializeField]
-	private GameObject SlimeMesh;
+	private GameObject SlimeMesh;	// スライムのモデル
 	[SerializeField]
-	private Material EnemyMat;
+	private Material EnemyMat;		// 敵マテリアル
 	[SerializeField]
-	private Material AllyMat;
+	private Material AllyMat;		// 味方マテリアル
+	[SerializeField]
+	private Material FeverMat;		// フィーバーマテリアル
+	[SerializeField]
+	private GameObject FlagObj;		// 旗モデル
 	static public int EnemyNum = 0; // 敵の総数
 	[SerializeField]
 	private float NothingLifeTime = 1.0f;	// 設定時間
@@ -25,21 +30,27 @@ public class CSlimeMove : CSSandwichObject {
 
 	// Use this for initialization
 	void Start() {
+		FlagObj = new GameObject();
 		m_OrderNumber = 0;
 		ObjectManager.Instance.RegistrationList(this, m_OrderNumber);
 		m_Moving = false;
 		m_Position = transform.position;							// 初期位置に移動
 		m_MoveTimer = m_WaitTime;									// 移動待ち時間
-		m_Rotation = Random.Range(0, 360);                          // 初期向きをランダムで決定
-		transform.rotation = Quaternion.Euler(m_Rotation, -90, 90);	// 向きを設定
-		// マテリアルとタイプを設定
-		if(transform.tag == "Ally") {
-			myType = SLIME_TYPE.Ally;
-			SlimeMesh.GetComponent<Renderer>().material = AllyMat;
-		} else {
+		m_Rotation = Random.Range(0, 360 * Mathf.PI / 180);                          // 初期向きをランダムで決定
+		transform.rotation = Quaternion.Euler(0, 0, m_Rotation); // 向きを設定
+		FlagObj.SetActive(false);
+		// 生成されたスライムごとにマテリアルと自身のタイプを設定
+		if(transform.tag == "Enemy") {
 			EnemyNum++;
 			myType = SLIME_TYPE.Enemy;
 			SlimeMesh.GetComponent<Renderer>().material = EnemyMat;
+		} else if(transform.tag == "Ally") {
+			myType = SLIME_TYPE.Ally;
+			SlimeMesh.GetComponent<Renderer>().material = AllyMat;
+		} else {
+			myType = SLIME_TYPE.Fever;
+			SlimeMesh.GetComponent<Renderer>().material = FeverMat;
+			FlagObj.SetActive(true);
 		}
 		NothingLifeTimer = NothingLifeTime;
 	}
@@ -63,14 +74,12 @@ public class CSlimeMove : CSSandwichObject {
 
 		// ジャンプ中処理
 		if(m_Moving) {
-			m_Position.x += Mathf.Cos(m_Rotation - 180) * m_MoveSpped * deltaTime;
-			m_Position.y += Mathf.Sin(m_Rotation - 180) * m_MoveSpped * deltaTime;
+			m_Position.x += Mathf.Cos(m_Rotation) * m_MoveSpped * deltaTime;
+			m_Position.y += Mathf.Sin(m_Rotation) * m_MoveSpped * deltaTime;
 			m_Position.z = -VerticalThrowingUp(m_JumpTimer, m_JumpPower);   // 上移動
 			if(VerticalThrowingUp(m_JumpTimer, m_JumpPower) < 0) {          // 地面にめり込んだら終わり
 				m_Moving = false;
 				m_Position.z = 0;
-				m_Rotation = Random.Range(0, 360);  // 向きをランダムで決める
-				transform.rotation = Quaternion.Euler(m_Rotation, -90, 90);
 			}
 			transform.position = m_Position;    // 変更したポジションで更新
 			m_JumpTimer += deltaTime;
@@ -84,6 +93,28 @@ public class CSlimeMove : CSSandwichObject {
 			m_MoveTimer = m_WaitTime;           // 待ち時間再入
 			m_Position = transform.position;    // 位置更新
 			m_JumpTimer = 0;                    // ジャンプ経過時間タイマーをリセット
+			// 自身のタイプごとに動作を変更
+			switch(myType) {
+				case SLIME_TYPE.Ally:
+					m_Rotation = Random.Range(0, 360 * Mathf.PI / 180);  // 向きをランダムで決める
+					break;
+				case SLIME_TYPE.Enemy:
+					var container = CSSandwichObjManager.GetFeverSilmeData();
+					if(container) {
+						Debug.Log("ミツケタ");
+						m_Rotation = Mathf.Atan2(container.transform.position.y - transform.position.y,
+							container.transform.position.x - transform.position.x); // フィーバースライムに向かう
+					} else {
+						m_Rotation = Random.Range(0, 360 * Mathf.PI / 180);  // 向きをランダムで決める
+					}
+					break;
+				case SLIME_TYPE.Fever:
+					// 外周移動
+					break;
+				default:
+					break;
+			}
+			transform.rotation = Quaternion.Euler(0, 0, m_Rotation);	// 向きを変える
 		}
 	}
 
@@ -113,7 +144,7 @@ public class CSlimeMove : CSSandwichObject {
 			SlimeMesh.SetActive(false);
 			// パーティクルを出す
 			CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.AllySlimeDeath, transform.position);
-		}else {
+		} else if(myType == SLIME_TYPE.Nothing) {
 			SameTimeSandObjNum();
 		}
 

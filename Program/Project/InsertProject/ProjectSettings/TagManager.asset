@@ -9,6 +9,7 @@ TagManager:
   - Friends
   - Enemy
   - Ally
+  - Fever
   layers:
   - Default
   - TransparentFX

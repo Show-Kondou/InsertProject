@@ -20,17 +20,16 @@ using System.Collections.Generic;
 public enum AUDIO_LIST {
 	/* BGM */
 	BGM_BOSS,			// ボスBGM
-	BGM_GAME_OVER,		// ゲームオーバー
+	BGM_GAMEOVER,		// ゲームオーバー
 	BGM_MAIN,			// メインのBGM
+	BGM_PINCH,			// ピンチ
 	BGM_TITLE_0,		// タイトルBGM０
 	BGM_TITLE_1,		// タイトルBGM１
 	BGM_TITLE_2,		// タイトルBGM２
 	BGM_TITLE_3,		// タイトルBGM３
 	BGM_TITLE_4,		// タイトルBGM４
-	BGM_PINCH,			// ピンチ
 	
 	/* SE */
-	SE_BOSS_ATTACK,					// ボス攻撃音
 	SE_BOSS_ATTACK_BRAINWASHING,	// ボス攻洗脳
 	SE_BOSS_ATTACK_CANCEL,			// ボスの攻撃キャンセル
 	SE_BOSS_ATTACK_SLIME,			// ボスの特殊攻撃
@@ -40,7 +39,7 @@ public enum AUDIO_LIST {
 	SE_BOSS_SYUTUGEN,				// ボス生成
 	SE_ENTER_0,						// 決定音
 	SE_ENTER_1,						// 決定音
-	SE_FEVER_FURU,					// フィーバーゲージ満タン
+	SE_FEVER_FULL,					// フィーバーゲージ満タン
 	SE_FEVER_UP,					// フィーバーゲージ回復
 	SE_LINEDRAW,
 	SE_LINEDRAW_WAIT,
@@ -67,17 +66,16 @@ public class CAudioData {
 	static List<string> m_FileName =  new List<string>{
 		/* BGM */
 		"BGM_BOSS",			// ボスBGM
-		"BGM_GAME_OVER",		// ゲームオーバー
+		"BGM_GAMEOVER",		// ゲームオーバー
 		"BGM_MAIN",			// メインのBGM
+		"BGM_PINCH",			// ピンチ
 		"BGM_TITLE_0",		// タイトルBGM０
 		"BGM_TITLE_1",		// タイトルBGM１
 		"BGM_TITLE_2",		// タイトルBGM２
 		"BGM_TITLE_3",		// タイトルBGM３
 		"BGM_TITLE_4",		// タイトルBGM４
-		"BGM_PINCH",			// ピンチ
 	
 		/* SE */
-		"SE_BOSS_ATTACK",					// ボス攻撃音
 		"SE_BOSS_ATTACK_BRAINWASHING",	// ボス攻洗脳
 		"SE_BOSS_ATTACK_CANCEL",			// ボスの攻撃キャンセル
 		"SE_BOSS_ATTACK_SLIME",			// ボスの特殊攻撃
@@ -87,7 +85,7 @@ public class CAudioData {
 		"SE_BOSS_SYUTUGEN",				// ボス生成
 		"SE_ENTER_0",						// 決定音
 		"SE_ENTER_1",						// 決定音
-		"SE_FEVER_FURU",					// フィーバーゲージ満タン
+		"SE_FEVER_FULL",					// フィーバーゲージ満タン
 		"SE_FEVER_UP",					// フィーバーゲージ回復
 		"SE_LINEDRAW",
 		"SE_LINEDRAW_WAIT",

@@ -149,9 +149,18 @@ public class CSoundManager : MonoBehaviour {
 	public void StopBGM( AUDIO_LIST value ) {
 		foreach( var i in m_BGMChannel ) {
 			if( !i.isPlaying ) continue;
+			if( i.clip.name != m_AudioList[(int)value].name )
+				continue;
 			i.clip = m_AudioList[(int)value];
 			i.Stop();
 			break;
+		}
+	}
+
+	public void StopBGM() {
+		foreach( var i in m_BGMChannel) {
+			Debug.Log( i.name );
+			i.Stop();
 		}
 	}
 

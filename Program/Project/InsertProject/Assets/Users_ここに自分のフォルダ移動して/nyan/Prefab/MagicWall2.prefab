@@ -622,9 +622,9 @@ MonoBehaviour:
   bXPlus: 0
   bYPlus: 0
   bZPlus: 0
-  bXMinu: 0
-  bYMinu: 1
-  bZMinu: 0
+  bXMinus: 0
+  bYMinus: 1
+  bZMinus: 0
   bDist: 1
   fRotateSpeed: 0
 --- !u!114 &114280756527686654
@@ -641,9 +641,9 @@ MonoBehaviour:
   bXPlus: 1
   bYPlus: 0
   bZPlus: 0
-  bXMinu: 0
-  bYMinu: 0
-  bZMinu: 0
+  bXMinus: 0
+  bYMinus: 0
+  bZMinus: 0
   bDist: 1
   fRotateSpeed: 0
 --- !u!114 &114306623140675574
@@ -660,9 +660,9 @@ MonoBehaviour:
   bXPlus: 0
   bYPlus: 0
   bZPlus: 1
-  bXMinu: 0
-  bYMinu: 0
-  bZMinu: 0
+  bXMinus: 0
+  bYMinus: 0
+  bZMinus: 0
   bDist: 0
   fRotateSpeed: 0
 --- !u!114 &114454519790147850
@@ -703,9 +703,9 @@ MonoBehaviour:
   bXPlus: 0
   bYPlus: 1
   bZPlus: 0
-  bXMinu: 0
-  bYMinu: 0
-  bZMinu: 0
+  bXMinus: 0
+  bYMinus: 0
+  bZMinus: 0
   bDist: 1
   fRotateSpeed: 0
 --- !u!114 &114949208817466896
@@ -722,8 +722,8 @@ MonoBehaviour:
   bXPlus: 0
   bYPlus: 0
   bZPlus: 0
-  bXMinu: 1
-  bYMinu: 0
-  bZMinu: 0
+  bXMinus: 1
+  bYMinus: 0
+  bZMinus: 0
   bDist: 0
   fRotateSpeed: 0

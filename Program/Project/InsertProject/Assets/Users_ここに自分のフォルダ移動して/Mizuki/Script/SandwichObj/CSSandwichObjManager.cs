@@ -44,6 +44,12 @@ public class CSSandwichObjManager : ObjectBase{
 			float height = Random.Range(-4.0f,6.0f);
 			CreateSandwichObj(0, new Vector2(width, height));
 		}
+
+		if(Input.GetKeyDown(KeyCode.Space)) {
+			float width = Random.Range(-2.0f,2.0f);
+			float height = Random.Range(-4.0f,6.0f);
+			CreateSandwichObj(2, new Vector2(width, height));
+		}
     }
 
     public override void LateExecute(float deltaTime) {
@@ -76,4 +82,18 @@ public class CSSandwichObjManager : ObjectBase{
 			}
 		}
     }
+
+	/// <summary>
+	/// フィーバースライムの情報を返す。
+	/// 敵スライムはフィーバースライムに吸い寄せられる。
+	/// </summary>
+	/// <returns></returns>
+	static public CSlimeMove GetFeverSilmeData() {
+		foreach(CSlimeMove objData in m_SandwichObjList) {
+			if(objData.myType == CSlimeMove.SLIME_TYPE.Fever) {
+				return objData;
+			}
+		}
+		return null;
+	}
 }
