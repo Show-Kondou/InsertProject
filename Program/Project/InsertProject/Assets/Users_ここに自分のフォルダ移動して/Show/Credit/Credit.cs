@@ -54,6 +54,7 @@ public class Credit : MonoBehaviour {
 		var c = m_CredirImage.color;
 		c.a = 0.0F;
 		m_CredirImage.color = c;
+		m_CredirImage.enabled = false;
 		m_ButtonImage.sprite = m_OpenSprite;
 	}
 
@@ -68,15 +69,18 @@ public class Credit : MonoBehaviour {
 */
 	public void TapButton() {
 		m_isOpen = !m_isOpen;
+		CSoundManager.Instance.PlaySE( AUDIO_LIST.SE_ENTER_1 );
 		if( m_isOpen ) {
 			m_ButtonImage.sprite = m_CloseSprite;
 			var c = m_CredirImage.color;
 			c.a = 1.0F;
+			m_CredirImage.enabled = true;
 			m_CredirImage.color = c;
 		} else {
 			m_ButtonImage.sprite = m_OpenSprite;
 			var c = m_CredirImage.color;
 			c.a = 0.0F;
+			m_CredirImage.enabled = false;
 			m_CredirImage.color = c;
 		}
 	}

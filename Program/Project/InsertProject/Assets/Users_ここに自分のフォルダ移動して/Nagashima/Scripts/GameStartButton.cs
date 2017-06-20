@@ -30,6 +30,7 @@ public class GameStartButton : MonoBehaviour
         // ボタンを無効化する
         if (this.GetComponent<Button>() != null)
             this.GetComponent<Button>().interactable = false;
+		CSoundManager.Instance.PlaySE( AUDIO_LIST.SE_ENTER_1 );
 
         bGameStart = true;
     }
