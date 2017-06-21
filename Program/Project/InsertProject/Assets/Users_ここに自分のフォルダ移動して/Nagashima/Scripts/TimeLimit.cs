@@ -9,8 +9,14 @@ public class TimeLimit : MonoBehaviour
     [SerializeField]
     private float fOneRoundTime = 60.0f; // 一周するのにかかる時間
 
-    // どこを軸に回るかのフラグ
-    [SerializeField]
+	[Header("ボスの生成される時間"), SerializeField]
+	private float fCreateBossTime = 10.0F;
+	[Header("ボス"), SerializeField]
+	private GameObject Boss;
+	private bool isCreateBoss = false;
+
+	// どこを軸に回るかのフラグ
+	[SerializeField]
     private bool bRotateX = false;
     [SerializeField]
     private bool bRotateY = false;
@@ -44,6 +50,7 @@ public class TimeLimit : MonoBehaviour
     {
         // 一周の秒数を格納
         fLimitTime = fOneRoundTime;
+		fCreateBossTime = fLimitTime - fCreateBossTime;
 
         // 一秒で動く角度を計算
         fOneSecondRotate = 360.0f / fOneRoundTime;
@@ -100,5 +107,12 @@ public class TimeLimit : MonoBehaviour
             Debug.Log("ゲームオーバー");
 			CSceneManager.Instance.LoadScene( SCENE.RESULT, FADE.BLACK );
         }
+
+		if( fLimitTime <= fCreateBossTime && !isCreateBoss ) {
+			Instantiate( Boss );
+			Debug.Log("Boss生成");
+			isCreateBoss = true;
+		}
+
     }
 }

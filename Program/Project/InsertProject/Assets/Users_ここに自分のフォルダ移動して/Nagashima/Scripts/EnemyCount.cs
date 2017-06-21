@@ -55,20 +55,21 @@ public class EnemyCount : MonoBehaviour
 	// ===== 更新関数 =====
 	void Update () 
     {
-        //if (nMaxEnemy > nEnemyCnt)
-        //{
-        //    nEnemyCnt = nTestEnemy;
+		EnemyCnt( CSlimeMove.EnemyNum );
+		//if (nMaxEnemy > nEnemyCnt)
+		//{
+		//    nEnemyCnt = nTestEnemy;
 
-        //    this.transform.localScale = new Vector3((float)nEnemyCnt / (float)nMaxEnemy, (float)nEnemyCnt / (float)nMaxEnemy, (float)nEnemyCnt / (float)nMaxEnemy);
-            
-        //    if(nEnemyCnt > 0)
-        //        this.transform.localPosition = new Vector3(0.0f, -fEnemyPosY + (((float)nEnemyCnt / (float)nMaxEnemy) * fEnemyPosY), 0.0f);
+		//    this.transform.localScale = new Vector3((float)nEnemyCnt / (float)nMaxEnemy, (float)nEnemyCnt / (float)nMaxEnemy, (float)nEnemyCnt / (float)nMaxEnemy);
 
-        //    EnemyCntObj.GetComponent<Text>().text = nEnemyCnt.ToString();
-        //}
-        //else
-        //{
-        //    Debug.Log("ゲームオーバー");
-        //}
+		//    if(nEnemyCnt > 0)
+		//        this.transform.localPosition = new Vector3(0.0f, -fEnemyPosY + (((float)nEnemyCnt / (float)nMaxEnemy) * fEnemyPosY), 0.0f);
+
+		//    EnemyCntObj.GetComponent<Text>().text = nEnemyCnt.ToString();
+		//}
+		//else
+		//{
+		//    Debug.Log("ゲームオーバー");
+		//}
 	}
 }

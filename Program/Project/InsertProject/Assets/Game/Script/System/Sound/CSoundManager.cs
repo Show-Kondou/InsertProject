@@ -159,7 +159,7 @@ public class CSoundManager : MonoBehaviour {
 
 	public void StopBGM() {
 		foreach( var i in m_BGMChannel) {
-			Debug.Log( i.name );
+			// Debug.Log( i.name );
 			i.Stop();
 		}
 	}

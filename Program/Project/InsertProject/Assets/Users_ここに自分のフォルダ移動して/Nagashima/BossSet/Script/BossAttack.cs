@@ -75,7 +75,7 @@ public class BossAttack : MonoBehaviour
         switch (AttackNum)
         {
             case 1: // 召喚
-                
+			CSoundManager.Instance.PlaySE( AUDIO_LIST.SE_BOSS_ATTACK_SLIME );
                 WaitTime += Time.deltaTime; // ボスが停止している時間
 
                 if (!bWormhole)
@@ -115,8 +115,9 @@ public class BossAttack : MonoBehaviour
 
                 break;
             case 2: // 洗脳
+			CSoundManager.Instance.PlaySE( AUDIO_LIST.SE_BOSS_ATTACK_BRAINWASHING );
 
-                WaitTime += Time.deltaTime; // ボスが停止している時間
+			WaitTime += Time.deltaTime; // ボスが停止している時間
 
                 if (!bOneControl)
                 {
