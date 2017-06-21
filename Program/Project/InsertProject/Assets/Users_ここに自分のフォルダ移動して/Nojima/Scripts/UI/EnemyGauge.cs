@@ -7,7 +7,7 @@ public class EnemyGauge : MonoBehaviour
 {
     //定数
     const float ADD_DAMAGE = 2f;//ダメージ量
-    protected const float MAX_HP = 100f;
+    protected const float MAX_HP = 4f;
     const float LimitHP = 100f;
 
     //変数
@@ -16,7 +16,7 @@ public class EnemyGauge : MonoBehaviour
     RectTransform GaugeTransform;
     Image GaugeImage;
     
-    float EnemyHP;
+    float EnemyHP = 0f;
 
     public bool bDamage = false;
 
@@ -29,9 +29,9 @@ public class EnemyGauge : MonoBehaviour
     {
         GaugeImage = EnemyGaugeImg.GetComponent<Image>();
         GaugeTransform = EnemyGaugeImg.GetComponent<RectTransform>();
-        GaugeTransform.sizeDelta = new Vector2(MAX_HP, GaugeTransform.sizeDelta.y);
+        EnemyHP = EnemyHP / MAX_HP;
 
-        EnemyHP = GaugeTransform.sizeDelta.x;
+        GaugeTransform.sizeDelta = new Vector2(EnemyHP, GaugeTransform.sizeDelta.y);
     }
 
     // Update is called once per frame
@@ -39,7 +39,6 @@ public class EnemyGauge : MonoBehaviour
     {
         AddDamage();                //ダメージ
         GaugeColor(MAX_HP * 0.8f, MAX_HP * 0.5f, MAX_HP * 0.2f); //ゲージの色
-        DrawHP();                   //HPの数値表示
 
         //倒したとき
         if (EnemyHP <= 0f)
@@ -82,14 +81,5 @@ public class EnemyGauge : MonoBehaviour
         //ゲージ少なめ
         if (EnemyHP <= low_hp)
             GaugeImage.color = new Color(1f, 0f, 0f);
-    }
-
-    /// <summary>
-    /// テキストにHP表示
-    /// </summary>
-    void DrawHP()
-    {
-        float DrawingHP = EnemyHP;// * 100f;
-        HPText.text = DrawingHP.ToString("000");    //3桁表示
     }
 }
