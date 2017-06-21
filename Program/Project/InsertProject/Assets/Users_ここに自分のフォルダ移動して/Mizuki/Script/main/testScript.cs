@@ -20,10 +20,17 @@ public class testScript : ObjectBase {
 	}
 
 	public override void Execute(float deltaTime) {
-        if(Input.anyKeyDown) {
-			CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.AllySlimeDeath, new Vector3(0,0,0));
-			//var obj = Instantiate(testpart);
-			//obj.Play();
+		if(SpecialInput.m_bDoubleTap) {
+			float width = Random.Range(-2.0f,2.0f);
+			float height = Random.Range(-4.0f,6.0f);
+			CSSandwichObjManager.Instance.CreateSandwichObj(0, new Vector2(width, height));
+		}
+
+		if(Input.GetKeyDown(KeyCode.Space)) {
+			float width = Random.Range(-2.0f,2.0f);
+			float height = Random.Range(-4.0f,6.0f);
+			Debug.Log("uxissu");
+			CSSandwichObjManager.Instance.CreateSandwichObj(CSSandwichObjManager.SandwichObjType.FeverSlime, new Vector2(width, height));
 		}
 	}
 
