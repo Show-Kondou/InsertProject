@@ -49,6 +49,7 @@ public class CSParticleManager : SingletonMonoBehaviour<CSParticleManager> {
 			CSParticleObject obj = Instantiate(m_ParticleTypeList[i]);
             m_ParticleNumberByType[i] = 0;
 			obj.Create((PARTICLE_TYPE)i, 0);
+			obj.transform.parent = gameObject.transform;
 		}
 
 	}

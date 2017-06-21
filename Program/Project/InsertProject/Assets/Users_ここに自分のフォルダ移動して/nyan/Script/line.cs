@@ -133,12 +133,12 @@ public class line : MonoBehaviour {
             rPointToRay = Camera.main.ScreenPointToRay(vSMousePos);
 
             rHitInfo = new RaycastHit();
-            if (Physics.Raycast(rPointToRay, out rHitInfo, 20.0f, layerMask.value))
+            if (Physics.Raycast(rPointToRay, out rHitInfo, 30.0f, layerMask.value))
             {
                 vRayPos = rHitInfo.point;
             }
             
-            Debug.DrawRay(rPointToRay.origin, rPointToRay.direction * 20.0f);
+            Debug.DrawRay(rPointToRay.origin, rPointToRay.direction * 30.0f);
 
 
 

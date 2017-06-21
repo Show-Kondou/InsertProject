@@ -51,5 +51,6 @@ public class CSParticleObject : ObjectBase {
 		m_ParticleType = type;
 		m_nNumberOfSameType = nNumber;
 		m_Particle.Stop();
+		m_Particle.transform.parent = gameObject.transform;
 	}
 }
