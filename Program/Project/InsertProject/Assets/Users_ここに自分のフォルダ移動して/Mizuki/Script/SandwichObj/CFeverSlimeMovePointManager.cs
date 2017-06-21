@@ -19,7 +19,6 @@ public class CFeverSlimeMovePointManager : ObjectBase {
 	public Vector3 FeverSlimeDestination {
 		get
 		{
-			Debug.Log(FeverSlimeMovePoint[targetNum].transform.position);
 			return FeverSlimeMovePoint[targetNum].transform.position;
 		}
 	}

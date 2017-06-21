@@ -16,7 +16,7 @@ public class ButtonScroll : MonoBehaviour {
 	void Start () {
         //初期位置
         StopPosY = transform.localPosition.y;
-        PosY = -((CCanvas.GetComponent<CanvasScaler>().referenceResolution.y / 2f) + (GetComponent<RectTransform>().sizeDelta.y));
+        PosY = -((CCanvas.GetComponent<RectTransform>().sizeDelta.y / 2f) + (GetComponent<RectTransform>().sizeDelta.y));
         transform.localPosition = new Vector2(transform.localPosition.x, PosY);
     }
 	

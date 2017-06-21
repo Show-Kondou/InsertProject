@@ -6,12 +6,12 @@ public class CFeverSlimeMovePoint : MonoBehaviour {
 	[SerializeField]
 	CFeverSlimeMovePointManager mngObject;	// マネージャオブジェクト
 	[SerializeField]
-	CFeverSlimeMovePointManager.FEVER_SLIME_MOVE myPosition;	// 自身の位置
+	CFeverSlimeMovePointManager.FEVER_SLIME_MOVE TargetID;  // 現在の目的地ID
 
 	public void OnTriggerEnter2D(Collider2D collision) {
 		if(collision.tag != "Fever")
 			return;
-		// 移動位置変更
-		mngObject.ChangeNextPosition((int)myPosition);
+		// 移動目的地変更
+		mngObject.ChangeNextPosition((int)TargetID);
 	}
 }

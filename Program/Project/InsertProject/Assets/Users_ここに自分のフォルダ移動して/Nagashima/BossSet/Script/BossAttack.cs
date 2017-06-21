@@ -95,7 +95,7 @@ public class BossAttack : MonoBehaviour
                     SummonNum--;
                     SummonIntervalTime = 0.0f;
                 
-                    _CSSandwichObjManager.CreateSandwichObj(0, new Vector2(WormholePos.x, WormholePos.y));  // ワームホールの上にスライム生成
+                    CSSandwichObjManager.Instance.CreateSandwichObj(0, new Vector2(WormholePos.x, WormholePos.y));  // ワームホールの上にスライム生成
                     
                     // 全ての召喚が終わったら
                     if (SummonNum == 0)

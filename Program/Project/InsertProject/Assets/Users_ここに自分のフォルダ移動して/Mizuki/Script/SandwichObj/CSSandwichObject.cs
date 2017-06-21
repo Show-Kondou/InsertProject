@@ -156,7 +156,7 @@ public class CSSandwichObject : ObjectBase {
 	/// 同じプレス機に挟まれたオブジェクトの個数を数える
 	/// 関数名は「同時に挟まれた」にしちゃった。
 	/// </summary>
-	/// <returns></returns>
+	/// <returns>挟まれた数</returns>
 	public int SameTimeSandObjNum() {
 		int sandNum = 1;	// 同時はさみ数
 							// 自身がいるので1からスタート
@@ -171,8 +171,8 @@ public class CSSandwichObject : ObjectBase {
 			// 同じプレス機に挟まれたオブジェクトを見つけた時、加算
 			if((m_HitIDA == obj.m_HitIDA || m_HitIDA == obj.m_HitIDB) && 
 			   (m_HitIDB == obj.m_HitIDA || m_HitIDB == obj.m_HitIDB )) {
-				sandNum++;
-				sameObjList.Add(obj.m_ObjectID);
+				sandNum++;	// カウントアップ
+				sameObjList.Add(obj.m_ObjectID);	// リストに追加
 			}
 		}
 
@@ -180,16 +180,13 @@ public class CSSandwichObject : ObjectBase {
 
 		// 同時巻き込み数が指定数以上でビッグスライムを生成
 		if(sandNum >= BigSlimeMakeNum) {
-			var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-			cube.transform.position = transform.position;
-			cube.transform.SetZ(cube.transform.position.z + 3);
-			//foreach(int ID in sameObjList) {
+			// 生成
+			CSSandwichObjManager.Instance.CreateSandwichObj(CSSandwichObjManager.SandwichObjType.BigSlime, transform.position);
 			for(int i = 0; i < sameObjList.Count; i++) { 
-				//foreach(CSSandwichObject obj in CSSandwichObjManager.m_SandwichObjList) {
 				for(int j = 0; j < CSSandwichObjManager.m_SandwichObjList.Count; j++) { 
 					if(CSSandwichObjManager.m_SandwichObjList[j].m_ObjectID == sameObjList[i]) {
 						CSSandwichObjManager.m_SandwichObjList[j].DestroySandObject();	// オブジェクト削除
-						CSSandwichObjManager.DeleteSandwichObjToList(CSSandwichObjManager.m_SandwichObjList[j].m_ObjectID);
+						CSSandwichObjManager.Instance.DeleteSandwichObjToList(CSSandwichObjManager.m_SandwichObjList[j].m_ObjectID);
 					}
 				}
 			}
