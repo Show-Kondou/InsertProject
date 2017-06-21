@@ -63,16 +63,15 @@ public class BGScroll : MonoBehaviour
         //ステージ切り替え
         if (bSwichingStage)
         {
+            SwitchingCanvas.SetScrollSpeed();
             bStrage = true;
             for (int j = 0; j < MAX_PANEL; j++)
                 bTerms[j] = true;
-
             bSwichingStage = false;
         }
 
-        if((SwitchCnt % 2) != 0)
-            SwitchingCanvas.Scroll(SCROLL_SPEED);
-
+        if ((SwitchCnt % 2) != 0)
+            SwitchingCanvas.Scroll();
     }
 
     /// <summary>

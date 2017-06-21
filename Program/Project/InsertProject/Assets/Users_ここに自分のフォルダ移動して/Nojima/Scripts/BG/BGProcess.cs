@@ -9,6 +9,7 @@ public class BGProcess : MonoBehaviour
     const int MAX_PANEL = 2;                        //ヒエラルキーのPanelの数
 
     //変数
+    [SerializeField]
     float SCROLL_SPEED = -0.4f;                     //スクロールスピード
 
     [SerializeField]
@@ -63,7 +64,7 @@ public class BGProcess : MonoBehaviour
         }
 
         if ((SwitchCnt % 2) != 0)
-            SwitchingCanvas.Scroll(SCROLL_SPEED - 0.8f);
+            SwitchingCanvas.Scroll();
     }
 
     /// <summary>
