@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossDamage : MonoBehaviour 
+public class BossDamage : CSSandwichObject 
 {
     Animator animator;  // アニメーター
 
@@ -32,5 +32,10 @@ public class BossDamage : MonoBehaviour
 	// ===== 更新関数 =====
 	void Update () 
     {
+	}
+
+	public override void SandwichedAction() {
+		base.SandwichedAction();
+		BossHitDamage();
 	}
 }
