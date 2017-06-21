@@ -17,7 +17,7 @@ public class TimeScroll : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //初期位置
-        PosX = (CCanvas.GetComponent<CanvasScaler>().referenceResolution.x / 2) + (GetComponent<RectTransform>().sizeDelta.x / 2);
+        PosX = (CCanvas.GetComponent<RectTransform>().sizeDelta.x / 2f) + (GetComponent<RectTransform>().sizeDelta.x / 2f);
         transform.localPosition = new Vector2(PosX, transform.localPosition.y);
 	}
 
