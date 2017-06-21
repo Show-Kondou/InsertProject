@@ -53,6 +53,7 @@ public class CSlimeMove : CSSandwichObject {
 			myType = SLIME_TYPE.Fever;
 			SlimeMesh.GetComponent<Renderer>().material = FeverMat;
 			FlagObj.SetActive(true);
+			pointMng = GameObject.Find("FeverSlimeMovePoints").GetComponent<CFeverSlimeMovePointManager>();
 			pointMng.ChangeNextPosition(0);	// 初期目的地設定
 			transform.position = pointMng.FeverSlimeDestination;    // 初期目的地設定
 		}
@@ -70,7 +71,7 @@ public class CSlimeMove : CSSandwichObject {
 		if(myType == SLIME_TYPE.Nothing) {
 			NothingLifeTimer -= deltaTime;
 			if(NothingLifeTimer < 0) {
-				CSSandwichObjManager.DeleteSandwichObjToList(m_ObjectID);
+				CSSandwichObjManager.Instance.DeleteSandwichObjToList(m_ObjectID);
 				Destroy(gameObject);
 			}
 			return;
@@ -102,7 +103,7 @@ public class CSlimeMove : CSSandwichObject {
 					m_Rotation = Random.Range(0, 360 * Mathf.PI / 180);  // 向きをランダムで決める
 					break;
 				case SLIME_TYPE.Enemy:
-					var container = CSSandwichObjManager.GetFeverSilmeData();
+					var container = CSSandwichObjManager.Instance.GetFeverSilmeData();
 					if(container) {
 						m_Rotation = Mathf.Atan2(container.transform.position.y - transform.position.y,
 							container.transform.position.x - transform.position.x); // フィーバースライムに向かう
@@ -112,6 +113,7 @@ public class CSlimeMove : CSSandwichObject {
 					break;
 				case SLIME_TYPE.Fever:
 					// 外周移動
+					Debug.Log(pointMng.FeverSlimeDestination);
 					var containerFever = pointMng.FeverSlimeDestination;
 					m_Rotation = Mathf.Atan2(containerFever.y - transform.position.y,
 							containerFever.x - transform.position.x);
@@ -133,6 +135,7 @@ public class CSlimeMove : CSSandwichObject {
 	public override void SandwichedAction() {
 		if(myType == SLIME_TYPE.Enemy) {
 			SameTimeSandObjNum();
+			ChangeSlimeState(SLIME_TYPE.Ally);
 		} else if(myType == SLIME_TYPE.Ally) {
 			SameTimeSandObjNum();
 			myType = SLIME_TYPE.Nothing;   // 属性を味方に
