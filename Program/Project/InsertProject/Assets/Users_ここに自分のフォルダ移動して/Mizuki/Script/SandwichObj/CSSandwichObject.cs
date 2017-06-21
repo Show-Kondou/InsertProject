@@ -163,8 +163,8 @@ public class CSSandwichObject : ObjectBase {
 		List<int> sameObjList = new List<int>();
 		sameObjList.Clear();
 		foreach(CSSandwichObject obj in CSSandwichObjManager.m_SandwichObjList) {
-			// 自分自身とは判定を取らない
-			if(m_ObjectID == obj.m_ObjectID) {
+			// 自分自身とボスとは判定を取らない
+			if(m_ObjectID == obj.m_ObjectID || obj.tag == "Boss") {
 				continue;
 			}
 
@@ -205,18 +205,3 @@ public class CSSandwichObject : ObjectBase {
 		Destroy(gameObject);
 	}
 }
-
-/*明日の自分へ
- * ここからやること
- * プレス機のIDが同じSandWichObjを探す、その時自分自身を見ないようにする(IDではじく)
- * 同じだったら加算、チェック
- * 一定数(５)以上だったらビッグを出す
- * にゃんにゃんにお願いすること→プレス機のIDの1桁目を上と下とで分けてもらう。
- * ビッグスライムを作ったら材料となったスライムを削除すること
- * 
- * 
- * 
- * 
- * 
- * 
- */
