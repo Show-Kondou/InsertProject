@@ -14,7 +14,7 @@ public class rotate : MonoBehaviour {
     public bool bDist;
 
     //回転スピード
-    public float fRotateSpeed;
+    private float fRotateSpeed;
 
     //プレス機フラグ
     private bool bMoveFirst;
@@ -26,9 +26,14 @@ public class rotate : MonoBehaviour {
     //色変更
     private Renderer render;
 
+    //回転制御用関連
+    private bool bRotateReturn = false;
+    public Vector3 vRotate = new Vector3(0.0f, 0.0f, 0.0f);
+
     // Use this for initialization
     void Start () {
-        fRotateSpeed = 5.0f;
+
+        fRotateSpeed = 400.0f;
 
         //親オブジェ取得
         gParentObj = gameObject.transform.parent.gameObject;
@@ -48,43 +53,58 @@ public class rotate : MonoBehaviour {
 
             if (bXPlus == true)
             {
-                transform.Rotate(new Vector3(fRotateSpeed, 0.0f, 0.0f));
+                transform.Rotate(new Vector3(fRotateSpeed * Time.deltaTime, 0.0f, 0.0f));
+                vRotate -= new Vector3(fRotateSpeed * Time.deltaTime, 0.0f, 0.0f);
             }
 
             if (bYPlus == true)
             {
-                transform.Rotate(new Vector3(0.0f, fRotateSpeed, 0.0f));
+                transform.Rotate(new Vector3(0.0f, fRotateSpeed * Time.deltaTime, 0.0f));
+                vRotate -= new Vector3(0.0f, fRotateSpeed * Time.deltaTime, 0.0f);
             }
 
             if (bZPlus == true)
             {
-                transform.Rotate(new Vector3(0.0f, 0.0f, fRotateSpeed));
+                transform.Rotate(new Vector3(0.0f, 0.0f, fRotateSpeed * Time.deltaTime));
+                vRotate -= new Vector3(0.0f, 0.0f, fRotateSpeed * Time.deltaTime);
             }
 
             if (bXMinus == true)
             {
-                transform.Rotate(new Vector3(-fRotateSpeed, 0.0f, 0.0f));
+                transform.Rotate(new Vector3(-fRotateSpeed * Time.deltaTime, 0.0f, 0.0f));
+                vRotate += new Vector3(-fRotateSpeed * Time.deltaTime, 0.0f, 0.0f);
             }
 
             if (bYMinus == true)
             {
-                transform.Rotate(new Vector3(0.0f, -fRotateSpeed, 0.0f));
+                transform.Rotate(new Vector3(0.0f, -fRotateSpeed * Time.deltaTime, 0.0f));
+                vRotate += new Vector3(0.0f, -fRotateSpeed * Time.deltaTime, 0.0f);
             }
 
             if (bZMinus == true)
             {
-                transform.Rotate(new Vector3(0.0f, 0.0f, -fRotateSpeed));
+                transform.Rotate(new Vector3(0.0f, 0.0f, -fRotateSpeed * Time.deltaTime));
+                vRotate += new Vector3(0.0f, 0.0f, -fRotateSpeed * Time.deltaTime);
             }
         }
         else if (bMoveFirst == true)
         {
-            if (bDist == true)
+            if (bRotateReturn == false)
             {
-                transform.Rotate(new Vector3(fRotateSpeed, 0.0f, 0.0f));
+                //回転軸を元に戻す
+                transform.Rotate(vRotate);
+                bRotateReturn = true;
             }
-            else if (bDist == false)
+            else if (bRotateReturn == true)
             {
-                transform.Rotate(new Vector3(-fRotateSpeed, 0.0f, 0.0f));
+                if (bDist == true)
+                {
+                    transform.Rotate(new Vector3(fRotateSpeed * Time.deltaTime, 0.0f, 0.0f));
+                }
+                else if (bDist == false)
+                {
+                    transform.Rotate(new Vector3(-fRotateSpeed * Time.deltaTime, 0.0f, 0.0f));
+                }
             }
         }
 

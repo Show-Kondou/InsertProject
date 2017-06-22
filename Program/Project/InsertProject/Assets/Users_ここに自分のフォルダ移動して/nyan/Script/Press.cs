@@ -23,7 +23,7 @@ public class Press : MonoBehaviour {
     private Vector3 vOldPos;
 
     //移動関連
-    private Vector3 vSpeed = new Vector3(0.05f, 0.05f, 0.05f);
+    private Vector3 vSpeed = new Vector3(3.0f, 3.0f, 3.0f);
     private float fRad;                 //進行方向計算用
     private Vector3 vMovePos;           //移動用
     private float fGrace = 0.025f;      //差
@@ -158,8 +158,8 @@ public class Press : MonoBehaviour {
 
                     vMovePos = transform.position;
 
-                    vMovePos.x += vSpeed.x * Mathf.Cos(fRad);
-                    vMovePos.y += vSpeed.y * Mathf.Sin(fRad);
+                    vMovePos.x += vSpeed.x * Mathf.Cos(fRad) * Time.deltaTime;
+                    vMovePos.y += vSpeed.y * Mathf.Sin(fRad) * Time.deltaTime;
 
                     transform.position = vMovePos;
 
@@ -193,8 +193,8 @@ public class Press : MonoBehaviour {
 
                     vMovePos = transform.position;
 
-                    vMovePos.x += vSpeed.x * Mathf.Cos(fRad);
-                    vMovePos.y += vSpeed.y * Mathf.Sin(fRad);
+                    vMovePos.x += vSpeed.x * Mathf.Cos(fRad) * Time.deltaTime;
+                    vMovePos.y += vSpeed.y * Mathf.Sin(fRad) * Time.deltaTime;
 
                     transform.position = vMovePos;
 
