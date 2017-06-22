@@ -11,6 +11,6 @@ public class GameMain : MonoBehaviour {
 	
 	// Update is called once per frame
 	void OnDestroy() {
-		CSoundManager.Instance.StopBGM( AUDIO_LIST.BGM_MAIN );
+		CSoundManager.Instance.StopBGM();
 	}
 }

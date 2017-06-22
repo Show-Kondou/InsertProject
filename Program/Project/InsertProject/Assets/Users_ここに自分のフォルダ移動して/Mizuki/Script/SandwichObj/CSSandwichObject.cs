@@ -156,23 +156,23 @@ public class CSSandwichObject : ObjectBase {
 	/// 同じプレス機に挟まれたオブジェクトの個数を数える
 	/// 関数名は「同時に挟まれた」にしちゃった。
 	/// </summary>
-	/// <returns></returns>
+	/// <returns>挟まれた数</returns>
 	public int SameTimeSandObjNum() {
 		int sandNum = 1;	// 同時はさみ数
 							// 自身がいるので1からスタート
 		List<int> sameObjList = new List<int>();
 		sameObjList.Clear();
 		foreach(CSSandwichObject obj in CSSandwichObjManager.m_SandwichObjList) {
-			// 自分自身とは判定を取らない
-			if(m_ObjectID == obj.m_ObjectID) {
+			// 自分自身とボスとは判定を取らない
+			if(m_ObjectID == obj.m_ObjectID || obj.tag == "Boss") {
 				continue;
 			}
 
 			// 同じプレス機に挟まれたオブジェクトを見つけた時、加算
 			if((m_HitIDA == obj.m_HitIDA || m_HitIDA == obj.m_HitIDB) && 
 			   (m_HitIDB == obj.m_HitIDA || m_HitIDB == obj.m_HitIDB )) {
-				sandNum++;
-				sameObjList.Add(obj.m_ObjectID);
+				sandNum++;	// カウントアップ
+				sameObjList.Add(obj.m_ObjectID);	// リストに追加
 			}
 		}
 
@@ -180,16 +180,13 @@ public class CSSandwichObject : ObjectBase {
 
 		// 同時巻き込み数が指定数以上でビッグスライムを生成
 		if(sandNum >= BigSlimeMakeNum) {
-			var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-			cube.transform.position = transform.position;
-			cube.transform.SetZ(cube.transform.position.z + 3);
-			//foreach(int ID in sameObjList) {
+			// 生成
+			CSSandwichObjManager.Instance.CreateSandwichObj(CSSandwichObjManager.SandwichObjType.BigSlime, transform.position);
 			for(int i = 0; i < sameObjList.Count; i++) { 
-				//foreach(CSSandwichObject obj in CSSandwichObjManager.m_SandwichObjList) {
 				for(int j = 0; j < CSSandwichObjManager.m_SandwichObjList.Count; j++) { 
 					if(CSSandwichObjManager.m_SandwichObjList[j].m_ObjectID == sameObjList[i]) {
 						CSSandwichObjManager.m_SandwichObjList[j].DestroySandObject();	// オブジェクト削除
-						CSSandwichObjManager.DeleteSandwichObjToList(CSSandwichObjManager.m_SandwichObjList[j].m_ObjectID);
+						CSSandwichObjManager.Instance.DeleteSandwichObjToList(CSSandwichObjManager.m_SandwichObjList[j].m_ObjectID);
 					}
 				}
 			}
@@ -208,18 +205,3 @@ public class CSSandwichObject : ObjectBase {
 		Destroy(gameObject);
 	}
 }
-
-/*明日の自分へ
- * ここからやること
- * プレス機のIDが同じSandWichObjを探す、その時自分自身を見ないようにする(IDではじく)
- * 同じだったら加算、チェック
- * 一定数(５)以上だったらビッグを出す
- * にゃんにゃんにお願いすること→プレス機のIDの1桁目を上と下とで分けてもらう。
- * ビッグスライムを作ったら材料となったスライムを削除すること
- * 
- * 
- * 
- * 
- * 
- * 
- */

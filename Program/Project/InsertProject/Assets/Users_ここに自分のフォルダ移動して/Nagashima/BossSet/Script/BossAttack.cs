@@ -75,7 +75,7 @@ public class BossAttack : MonoBehaviour
         switch (AttackNum)
         {
             case 1: // 召喚
-                
+			CSoundManager.Instance.PlaySE( AUDIO_LIST.SE_BOSS_ATTACK_SLIME );
                 WaitTime += Time.deltaTime; // ボスが停止している時間
 
                 if (!bWormhole)
@@ -95,7 +95,7 @@ public class BossAttack : MonoBehaviour
                     SummonNum--;
                     SummonIntervalTime = 0.0f;
                 
-                    _CSSandwichObjManager.CreateSandwichObj(0, new Vector2(WormholePos.x, WormholePos.y));  // ワームホールの上にスライム生成
+                    CSSandwichObjManager.Instance.CreateSandwichObj(0, new Vector2(WormholePos.x, WormholePos.y));  // ワームホールの上にスライム生成
                     
                     // 全ての召喚が終わったら
                     if (SummonNum == 0)
@@ -115,8 +115,9 @@ public class BossAttack : MonoBehaviour
 
                 break;
             case 2: // 洗脳
+			CSoundManager.Instance.PlaySE( AUDIO_LIST.SE_BOSS_ATTACK_BRAINWASHING );
 
-                WaitTime += Time.deltaTime; // ボスが停止している時間
+			WaitTime += Time.deltaTime; // ボスが停止している時間
 
                 if (!bOneControl)
                 {

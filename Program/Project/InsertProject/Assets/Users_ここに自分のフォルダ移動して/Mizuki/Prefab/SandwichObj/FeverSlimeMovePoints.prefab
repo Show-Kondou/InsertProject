@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mngObject: {fileID: 114119434923675638}
-  myPosition: 1
+  TargetID: 1
 --- !u!114 &114119434923675638
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mngObject: {fileID: 114119434923675638}
-  myPosition: 2
+  TargetID: 2
 --- !u!114 &114785414924092680
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -278,7 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mngObject: {fileID: 114119434923675638}
-  myPosition: 0
+  TargetID: 0
 --- !u!114 &114828355595384474
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -291,4 +291,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mngObject: {fileID: 114119434923675638}
-  myPosition: 3
+  TargetID: 3

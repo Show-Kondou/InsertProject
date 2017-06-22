@@ -59,7 +59,8 @@ public class FiverGauge : MonoBehaviour {
         {
             bFullTank = true;
             FiverImg.material.color = new Color(0f, 1f, 0f);    //緑
-        }
+			CSSandwichObjManager.Instance.CreateSandwichObj( CSSandwichObjManager.SandwichObjType.FeverSlime, transform.position );
+		}
         //フィーバー中
         if (bFiver)
         {

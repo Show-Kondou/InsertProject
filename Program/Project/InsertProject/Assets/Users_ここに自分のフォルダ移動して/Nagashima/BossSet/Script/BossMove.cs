@@ -37,6 +37,8 @@ public class BossMove : MonoBehaviour
 	void Start () 
     {
         BossStartPos = this.transform.localPosition;
+		CSoundManager.Instance.StopBGM();
+		CSoundManager.Instance.PlayBGM(AUDIO_LIST.BGM_BOSS);
 	}
 	
 	// ===== 更新関数 =====

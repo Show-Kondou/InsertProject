@@ -8,6 +8,7 @@ public class CSlimeMove : CSSandwichObject {
 		Enemy,
 		Fever,
 		Nothing,
+		Big,
 
 		MAX_SLIME_TYPE,
 	};
@@ -49,12 +50,16 @@ public class CSlimeMove : CSSandwichObject {
 		} else if(transform.tag == "Ally") {
 			myType = SLIME_TYPE.Ally;
 			SlimeMesh.GetComponent<Renderer>().material = AllyMat;
-		} else {
+		} else if(transform.tag == "Fever"){
 			myType = SLIME_TYPE.Fever;
 			SlimeMesh.GetComponent<Renderer>().material = FeverMat;
 			FlagObj.SetActive(true);
+			pointMng = GameObject.Find("FeverSlimeMovePoints").GetComponent<CFeverSlimeMovePointManager>();
 			pointMng.ChangeNextPosition(0);	// 初期目的地設定
 			transform.position = pointMng.FeverSlimeDestination;    // 初期目的地設定
+		}else {
+			myType = SLIME_TYPE.Big;
+			SlimeMesh.GetComponent<Renderer>().material = AllyMat;
 		}
 		NothingLifeTimer = NothingLifeTime;
 	}
@@ -70,7 +75,7 @@ public class CSlimeMove : CSSandwichObject {
 		if(myType == SLIME_TYPE.Nothing) {
 			NothingLifeTimer -= deltaTime;
 			if(NothingLifeTimer < 0) {
-				CSSandwichObjManager.DeleteSandwichObjToList(m_ObjectID);
+				CSSandwichObjManager.Instance.DeleteSandwichObjToList(m_ObjectID);
 				Destroy(gameObject);
 			}
 			return;
@@ -92,17 +97,19 @@ public class CSlimeMove : CSSandwichObject {
 		m_MoveTimer -= deltaTime;
 		// 待ち時間が0になったらジャンプ
 		if(m_MoveTimer < 0) {
+			CSoundManager.Instance.PlaySE( AUDIO_LIST.SE_SLIME_CONVERT );
 			m_Moving = true;                    // 移動中フラグオン
 			m_MoveTimer = m_WaitTime;           // 待ち時間再入
 			m_Position = transform.position;    // 位置更新
 			m_JumpTimer = 0;                    // ジャンプ経過時間タイマーをリセット
 			// 自身のタイプごとに動作を変更
 			switch(myType) {
+				case SLIME_TYPE.Big:
 				case SLIME_TYPE.Ally:
 					m_Rotation = Random.Range(0, 360 * Mathf.PI / 180);  // 向きをランダムで決める
 					break;
 				case SLIME_TYPE.Enemy:
-					var container = CSSandwichObjManager.GetFeverSilmeData();
+					var container = CSSandwichObjManager.Instance.GetFeverSilmeData();
 					if(container) {
 						m_Rotation = Mathf.Atan2(container.transform.position.y - transform.position.y,
 							container.transform.position.x - transform.position.x); // フィーバースライムに向かう
@@ -112,6 +119,7 @@ public class CSlimeMove : CSSandwichObject {
 					break;
 				case SLIME_TYPE.Fever:
 					// 外周移動
+					Debug.Log(pointMng.FeverSlimeDestination);
 					var containerFever = pointMng.FeverSlimeDestination;
 					m_Rotation = Mathf.Atan2(containerFever.y - transform.position.y,
 							containerFever.x - transform.position.x);
@@ -119,7 +127,7 @@ public class CSlimeMove : CSSandwichObject {
 				default:
 					break;
 			}
-			transform.rotation = Quaternion.Euler(0, 0, m_Rotation);	// 向きを変える
+			transform.rotation = Quaternion.Euler(0, 0, m_Rotation * Mathf.Rad2Deg - 180);	// 向きを変える
 		}
 	}
 
@@ -133,6 +141,7 @@ public class CSlimeMove : CSSandwichObject {
 	public override void SandwichedAction() {
 		if(myType == SLIME_TYPE.Enemy) {
 			SameTimeSandObjNum();
+			ChangeSlimeState(SLIME_TYPE.Ally);
 		} else if(myType == SLIME_TYPE.Ally) {
 			SameTimeSandObjNum();
 			myType = SLIME_TYPE.Nothing;   // 属性を味方に
@@ -143,6 +152,8 @@ public class CSlimeMove : CSSandwichObject {
 			CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.AllySlimeDeath, transform.position);
 		} else if(myType == SLIME_TYPE.Nothing) {
 			SameTimeSandObjNum();
+		} else if(myType == SLIME_TYPE.Big) {
+
 		}
 
 	}

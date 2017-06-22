@@ -366,6 +366,11 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 2016434839}
+    - target: {fileID: 114311629360142004, guid: 3dbfccbc0cdb12e4ba4c1be4836cb1e0,
+        type: 2}
+      propertyPath: SCROLL_SPEED
+      value: -0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3dbfccbc0cdb12e4ba4c1be4836cb1e0, type: 2}
   m_IsPrefabParent: 0

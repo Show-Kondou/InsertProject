@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossDamage : MonoBehaviour 
+public class BossDamage : CSSandwichObject 
 {
     Animator animator;  // アニメーター
 
@@ -13,6 +13,7 @@ public class BossDamage : MonoBehaviour
     // ===== ダメージを受けた（挟まれた）時の関数 =====
     public void BossHitDamage()
     {
+		CSoundManager.Instance.PlaySE(AUDIO_LIST.SE_BOSS_HIT_0);
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") == true)
             animator.SetTrigger("Damage");
 
@@ -25,10 +26,16 @@ public class BossDamage : MonoBehaviour
     {
         // アニメーターを格納
         animator = GetComponent<Animator>();		
+
 	}
 	
 	// ===== 更新関数 =====
 	void Update () 
     {
+	}
+
+	public override void SandwichedAction() {
+		base.SandwichedAction();
+		BossHitDamage();
 	}
 }
