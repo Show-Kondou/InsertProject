@@ -9,7 +9,7 @@ public class QuickStarter{
         }else {
             EditorApplication.isPlaying = true;
         }
-    }
+	}
 
 	// 一時停止
 	[MenuItem("AdditionalItems/QuickStarter &a")]
