@@ -166,10 +166,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PressRangeLow: 0
-  m_WaitTime: 2
+  m_WaitTime: 180
   m_MoveSpped: 2
   m_JumpPower: 3
-  m_Rotation: 0
+  m_Rotation: 90
   m_Invincible: 0
   m_InvincibleTimer: 0
   m_HitIDA: 0
@@ -183,6 +183,7 @@ MonoBehaviour:
   FeverMat: {fileID: 0}
   FlagObj: {fileID: 0}
   NothingLifeTime: 1
+  pointMng: {fileID: 0}
 --- !u!137 &137185797727682444
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
