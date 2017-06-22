@@ -42,10 +42,11 @@ public class BossMove : MonoBehaviour
 	}
 	
 	// ===== 更新関数 =====
-	void Update ()
-    {
-        // 上下に移動
-        this.transform.localPosition += new Vector3(0.0f, 0.0f, fFloatSpeed) * Time.deltaTime;
+	void Update () {
+		Debug.Log( "ムービー用の動き発動中" );
+		return;
+		// 上下に移動
+		this.transform.localPosition += new Vector3(0.0f, 0.0f, fFloatSpeed) * Time.deltaTime;
 
         // 指定地点に到達したら反転させる
         if (transform.localPosition.z >= BossStartPos.z +0.2f && bFloat == false)
@@ -58,6 +59,7 @@ public class BossMove : MonoBehaviour
             bFloat = false;
             fFloatSpeed *= -1;
         }
+
 
 		// 左右に移動
         switch(nMoveNum)
