@@ -687,9 +687,9 @@ MonoBehaviour:
   fContainer: 0
   fDistance: 0
   bMoveFirst: 0
-  nSummonTime: 36
+  nSummonTime: 72
   bVisible: 0
-  gSummonPrefab: {fileID: 1905049715429500, guid: 77dc0ba90f1ad1d4a987af1436327d8a,
+  gSummonPrefab: {fileID: 1818054605450882, guid: 5581eeb73f894394bab09662071351ff,
     type: 2}
 --- !u!114 &114837614537386572
 MonoBehaviour:

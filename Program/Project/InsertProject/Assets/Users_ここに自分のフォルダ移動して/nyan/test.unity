@@ -410,7 +410,7 @@ MonoBehaviour:
   - {fileID: 114561708094382498, guid: ad4b6cf99fb661049bc85a346c4fa848, type: 2}
   - {fileID: 114561708094382498, guid: ad4b6cf99fb661049bc85a346c4fa848, type: 2}
   - {fileID: 114561708094382498, guid: ad4b6cf99fb661049bc85a346c4fa848, type: 2}
-  - {fileID: 114613380390557132, guid: 5581eeb73f894394bab09662071351ff, type: 2}
+  - {fileID: 114561708094382498, guid: ad4b6cf99fb661049bc85a346c4fa848, type: 2}
   - {fileID: 114561708094382498, guid: ad4b6cf99fb661049bc85a346c4fa848, type: 2}
   - {fileID: 114561708094382498, guid: ad4b6cf99fb661049bc85a346c4fa848, type: 2}
   - {fileID: 114561708094382498, guid: ad4b6cf99fb661049bc85a346c4fa848, type: 2}
@@ -1339,7 +1339,7 @@ Prefab:
         type: 2}
       propertyPath: m_ParticleTypeList.Array.data[3]
       value: 
-      objectReference: {fileID: 114613380390557132, guid: 5581eeb73f894394bab09662071351ff,
+      objectReference: {fileID: 114561708094382498, guid: ad4b6cf99fb661049bc85a346c4fa848,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cf35950f68a01ea438bf65e7b566eab4, type: 2}
