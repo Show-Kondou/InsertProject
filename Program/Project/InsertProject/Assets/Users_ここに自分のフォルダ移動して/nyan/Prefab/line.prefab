@@ -53,10 +53,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nLineID: 0
-  PressPrefab: {fileID: 1428423386965692, guid: b74f3203ebd64484fae6b39542a7f5f1,
+  gPressPrefab: {fileID: 1428423386965692, guid: b74f3203ebd64484fae6b39542a7f5f1,
     type: 2}
-  PointPrefab: {fileID: 1402570948096110, guid: b7bef8fb46ca60c4faeade52edd32501,
-    type: 2}
+  gPointPrefab: {fileID: 0}
   lvPointStorage: []
   fDistanceTotal: 0
   c1: {r: 0, g: 1, b: 1, a: 0.78431374}

@@ -4,27 +4,60 @@ using UnityEngine;
 
 public class Summon : MonoBehaviour {
 
+    //trueなら親falseなら子
+    public bool bParent;
+
     //親オブジェクト
     GameObject gParentObj;
 
     //プレス機フラグ
     private bool bMoveFirst;
 
+    //パーティクルシステム
+    ParticleSystem pSummon;
+
     // Use this for initialization
     void Start () {
-        //親オブジェ取得
-        gParentObj = gameObject.transform.parent.gameObject;
+
+        if (bParent == true)
+        {
+            //親オブジェ取得
+            gParentObj = gameObject.transform.parent.gameObject;
+        }
+        else if (bParent == false)
+        {
+            //親オブジェ取得
+            gParentObj = gameObject.transform.parent.gameObject;
+        }
     }
 
     // Update is called once per frame
     void Update () {
 
-        //プレス機移動フラグ取得
-        bMoveFirst = gParentObj.GetComponent<Press>().bMoveFirst;
 
-        if (bMoveFirst == true)
+        if (bParent == true)
         {
-            Destroy(this.gameObject);
+            //プレス機移動フラグ取得
+            bMoveFirst = gParentObj.GetComponent<Press>().bMoveFirst;
+
+            if (bMoveFirst == true)
+            {
+                pSummon = this.gameObject.GetComponent<ParticleSystem>();
+                pSummon.Stop();
+                Destroy(this.gameObject);
+            }
+        }
+        else if (bParent == false)
+        {
+            //プレス機移動フラグ取得
+            bMoveFirst = gParentObj.GetComponent<Summon>().bMoveFirst;
+
+            if (bMoveFirst == true)
+            {
+                pSummon = this.gameObject.GetComponent<ParticleSystem>();
+                pSummon.Stop();
+                Destroy(this.gameObject);
+            }
         }
 
     }

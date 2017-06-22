@@ -10,8 +10,8 @@ public class line : MonoBehaviour {
 
     //ゲームオブジェクト
     private LineRenderer lRendere;
-    public GameObject PressPrefab;
-    public GameObject PointPrefab;
+    public GameObject gPressPrefab;
+    public GameObject gPointPrefab;
 
     //カメラ座標
     private Vector3 vCameraPos = new Vector3(0, 0, 0);
@@ -291,7 +291,7 @@ public class line : MonoBehaviour {
 
                 //最初の壁を召喚
                 vStartPress = lvPointStorage[0];
-                GameObject gStartPress = Instantiate(PressPrefab, vStartPress, transform.rotation) as GameObject;
+                GameObject gStartPress = Instantiate(gPressPrefab, vStartPress, transform.rotation) as GameObject;
                 nPressNum++;
                 gStartPress.name = "startPress" + nPressNum;
                 gStartPress.tag = "StartPress";
@@ -301,7 +301,7 @@ public class line : MonoBehaviour {
 
                 //終わりの壁を召喚
                 vEndPress = lvPointStorage[nPointCnt - 1];
-                GameObject gEndPress = Instantiate(PressPrefab, vEndPress, transform.rotation) as GameObject;
+                GameObject gEndPress = Instantiate(gPressPrefab, vEndPress, transform.rotation) as GameObject;
                 nPressNum++;
                 gEndPress.name = "endPress" + nPressNum;
                 gEndPress.tag = "EndPress";

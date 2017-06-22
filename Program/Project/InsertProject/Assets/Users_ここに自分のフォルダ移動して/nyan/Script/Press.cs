@@ -50,6 +50,8 @@ public class Press : MonoBehaviour {
     //プレス機非表示用フラグ
     public bool bVisible = false;
 
+    //召喚演出プレファブ
+    public GameObject gSummonPrefab;
 
 
     // Use this for initialization
@@ -81,6 +83,12 @@ public class Press : MonoBehaviour {
             transform.Rotate(new Vector3(transform.rotation.x, -90.0f, transform.rotation.z));
             nNextList = nListCnt - 2;
         }
+
+        //召喚演出生成
+        GameObject gSummon = Instantiate(gSummonPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z +0.5f), Quaternion.Euler(180, 0, 0)) as GameObject;
+        gSummon.transform.parent = transform;
+
+        //CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.MagicWallEmarg, transform.position);
 
     }
 
@@ -130,6 +138,7 @@ public class Press : MonoBehaviour {
             {
                 bSummon = false;
                 bMoveFirst = true;
+                
             }
         }
 
