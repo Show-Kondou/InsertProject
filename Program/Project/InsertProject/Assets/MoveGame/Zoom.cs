@@ -25,6 +25,8 @@ public class Zoom : MonoBehaviour {
 		var pos = transform.position;
 		var sub = (m_Target.position - pos) / 8.0F * Time.deltaTime * speed;
 		pos += sub;
+		if(pos.z > -2.0f)
+			pos.z = -2.0f;
 		transform.position = pos;
 	}
 }

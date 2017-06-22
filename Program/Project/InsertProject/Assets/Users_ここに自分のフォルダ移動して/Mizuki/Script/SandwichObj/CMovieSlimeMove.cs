@@ -30,7 +30,8 @@ public class CMovieSlimeMove : CSSandwichObject {
 	[SerializeField]
 	private CFeverSlimeMovePointManager pointMng;   // フィーバースライム目的地
 	private float NothingLifeTimer; // 3段階目になった時に時間で死亡させる。
-
+	[SerializeField]
+	private ParticleSystem m_part;
 	// Use this for initialization
 	void Start() {
 		FlagObj = new GameObject();
@@ -40,8 +41,8 @@ public class CMovieSlimeMove : CSSandwichObject {
 		m_Position = transform.position;                            // 初期位置に移動
 		m_MoveTimer = m_WaitTime;                                   // 移動待ち時間
 																	//m_Rotation = Random.Range(0, 360 * Mathf.PI / 180);         // 初期向きをランダムで決定
-		m_Rotation = 90.0f;         // 初期向きをランダムで決定
-		Debug.Log(m_Rotation);
+		m_Rotation = Random.Range(0, 360);  // 向きをランダムで決める
+
 		transform.rotation = Quaternion.Euler(0, 0, m_Rotation);    // 向きを設定
 		FlagObj.SetActive(false);
 		// 生成されたスライムごとにマテリアルと自身のタイプを設定、初期化
@@ -69,6 +70,7 @@ public class CMovieSlimeMove : CSSandwichObject {
 	public override void Execute(float deltaTime) {
 		base.Execute(deltaTime);
 
+		Cursor.visible = false;
 		//=============
 		if(!this)
 			return; // バグ回避用。要修正
@@ -142,13 +144,9 @@ public class CMovieSlimeMove : CSSandwichObject {
 	/// </summary>
 	public override void SandwichedAction() {
 		if(myType == SLIME_TYPE.Enemy) {
-			myType = SLIME_TYPE.Nothing;   // 属性を味方に
-			m_Invincible = true;            // 無敵オン
-			m_InvincibleTimer = 1.0f;       // 無敵時間
-			SlimeMesh.SetActive(false);
-			// パーティクルを出す
-			CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.AllySlimeDeath,
-				transform.position);
+			SameTimeSandObjNum();
+			CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.AllySlimeDeath, transform.position);
+			ChangeSlimeState(SLIME_TYPE.Ally);
 		} else if(myType == SLIME_TYPE.Ally) {
 			SameTimeSandObjNum();
 			myType = SLIME_TYPE.Nothing;   // 属性を味方に
@@ -156,8 +154,7 @@ public class CMovieSlimeMove : CSSandwichObject {
 			m_InvincibleTimer = 1.0f;       // 無敵時間
 			SlimeMesh.SetActive(false);
 			// パーティクルを出す
-			CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.AllySlimeDeath, 
-				transform.position);
+			CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.AllySlimeDeath, transform.position);
 		} else if(myType == SLIME_TYPE.Nothing) {
 			SameTimeSandObjNum();
 		} else if(myType == SLIME_TYPE.Big) {
@@ -178,6 +175,7 @@ public class CMovieSlimeMove : CSSandwichObject {
 				EnemyNum++;
 				break;
 			case SLIME_TYPE.Ally:
+				Debug.Log("おｋ");
 				transform.tag = "Ally";         // タグを味方に
 				m_Invincible = true;            // 無敵オン
 				m_InvincibleTimer = 1.0f;       // 無敵時間

@@ -3,17 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CSlimeMove : CSSandwichObject {
-	public enum SLIME_TYPE {
-		Ally,
-		Enemy,
-		Fever,
-		Nothing,
-		Big,
-
-		MAX_SLIME_TYPE,
-	};
-
-	public SLIME_TYPE myType;
 	[SerializeField]
 	private GameObject SlimeMesh;	// スライムのモデル
 	[SerializeField]
@@ -41,7 +30,6 @@ public class CSlimeMove : CSSandwichObject {
 		m_MoveTimer = m_WaitTime;                                   // 移動待ち時間
 		//m_Rotation = Random.Range(0, 360 * Mathf.PI / 180);         // 初期向きをランダムで決定
 		m_Rotation = 90.0f;         // 初期向きをランダムで決定
-		Debug.Log(m_Rotation);
 		transform.rotation = Quaternion.Euler(0, 0, m_Rotation);	// 向きを設定
 		FlagObj.SetActive(false);
 		// 生成されたスライムごとにマテリアルと自身のタイプを設定、初期化
