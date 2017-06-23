@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CMovieSlimeMove : CSSandwichObject {
-	public enum SLIME_TYPE {
-		Ally,
-		Enemy,
-		Fever,
-		Nothing,
-		Big,
+	//public enum SLIME_TYPE {
+	//	Ally,
+	//	Enemy,
+	//	Fever,
+	//	Nothing,
+	//	Big,
 
-		MAX_SLIME_TYPE,
-	};
+	//	MAX_SLIME_TYPE,
+	//};
 
-	public SLIME_TYPE myType;
+	//public SLIME_TYPE myType;
 	[SerializeField]
 	private GameObject SlimeMesh;   // スライムのモデル
 	[SerializeField]
