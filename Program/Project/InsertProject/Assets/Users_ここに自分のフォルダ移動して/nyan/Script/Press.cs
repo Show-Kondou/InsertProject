@@ -255,13 +255,14 @@ public class Press : MonoBehaviour {
         if (gameObject.tag == "StartPress")
         {
             //当たった相手が強スライムなら
-            if (collider.gameObject.tag == "Ally")
+            if (collider.gameObject.tag == "Big")
             {
                 //ぬるぬる属性をtrue
                 gParentObj.GetComponent<line>().bSLineS = true;
                 //touchのぬるぬるカウントを最大数に
                 gTouchObj = GameObject.Find("Touch");
                 gTouchObj.GetComponent<touch>().nSTouchCntS = 2;
+                Destroy(collider.gameObject);
 
             }
 
@@ -275,13 +276,14 @@ public class Press : MonoBehaviour {
         if (gameObject.tag == "EndPress")
         {
             //当たった相手が強スライムなら
-            if (collider.gameObject.tag == "Ally")
+            if (collider.gameObject.tag == "Big")
             {
                 //ぬるぬる属性をtrue
                 gParentObj.GetComponent<line>().bSLineS = true;
                 //touchのぬるぬるカウントを最大数に
                 gTouchObj = GameObject.Find("Touch");
                 gTouchObj.GetComponent<touch>().nSTouchCntE = 2;
+                Destroy(collider.gameObject);
 
             }
 
