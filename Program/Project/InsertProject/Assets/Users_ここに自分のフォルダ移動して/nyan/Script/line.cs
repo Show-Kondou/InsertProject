@@ -65,6 +65,11 @@ public class line : MonoBehaviour {
     private RaycastHit rHitInfo;
     private Vector3 vRayPos;
 
+
+    //ぬるぬるカウンター nSlimyCnt line.cs用
+    public bool bSLineS;
+    public bool bSLineE;
+
     //------
 
     void Start()

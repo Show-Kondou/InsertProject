@@ -53,6 +53,9 @@ public class Press : MonoBehaviour {
     //召喚演出プレファブ
     public GameObject gSummonPrefab;
 
+    //ぬるぬる状態判定用
+    private GameObject gTouchObj;
+
 
     // Use this for initialization
     void Start () {
@@ -244,7 +247,52 @@ public class Press : MonoBehaviour {
                 //bWayPoint = true;
             }
         }
+
     }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (gameObject.tag == "StartPress")
+        {
+            //当たった相手が強スライムなら
+            if (collider.gameObject.tag == "Ally")
+            {
+                //ぬるぬる属性をtrue
+                gParentObj.GetComponent<line>().bSLineS = true;
+                //touchのぬるぬるカウントを最大数に
+                gTouchObj = GameObject.Find("Touch");
+                gTouchObj.GetComponent<touch>().nSTouchCntS = 2;
+
+            }
+
+            //当たった相手がスライムだったら
+            if (collider.gameObject.tag == "Enemy")
+            {
+                collider.transform.parent = transform;
+            }
+        }
+
+        if (gameObject.tag == "EndPress")
+        {
+            //当たった相手が強スライムなら
+            if (collider.gameObject.tag == "Ally")
+            {
+                //ぬるぬる属性をtrue
+                gParentObj.GetComponent<line>().bSLineS = true;
+                //touchのぬるぬるカウントを最大数に
+                gTouchObj = GameObject.Find("Touch");
+                gTouchObj.GetComponent<touch>().nSTouchCntE = 2;
+
+            }
+
+            //当たった相手がスライムだったら
+            if (collider.gameObject.tag == "Enemy")
+            {
+                collider.transform.parent = transform;
+            }
+        }
+    }
+
 
     //private void OnTriggerEnter2D(Collider2D collider)
     //{
