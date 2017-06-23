@@ -15,6 +15,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CSSandwichObject : ObjectBase {
+	public enum SLIME_TYPE {
+		Ally,
+		Enemy,
+		Fever,
+		Nothing,
+		Big,
+
+		MAX_SLIME_TYPE,
+	};
+
+	public SLIME_TYPE myType;
 	private float GravityValue = 9.8f;  // 重力加速度
 
 	[SerializeField]

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Zoom : MonoBehaviour {
 
 	public Transform m_Target;
+	public float speed;
 
 	// Use this for initialization
 	void Start () {
@@ -22,8 +23,10 @@ public class Zoom : MonoBehaviour {
 
 	private void ZoomMove() {
 		var pos = transform.position;
-		var sub = (m_Target.position - pos) / 8.0F * Time.deltaTime * 10.0F;
+		var sub = (m_Target.position - pos) / 8.0F * Time.deltaTime * speed;
 		pos += sub;
+		if(pos.z > -2.0f)
+			pos.z = -2.0f;
 		transform.position = pos;
 	}
 }

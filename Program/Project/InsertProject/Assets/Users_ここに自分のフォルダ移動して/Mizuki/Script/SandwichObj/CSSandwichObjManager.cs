@@ -39,7 +39,7 @@ public class CSSandwichObjManager : SingletonMonoBehaviour<CSSandwichObjManager>
     void Start() {
         //m_OrderNumber = 1;
         //ObjectManager.Instance.RegistrationList(this, m_OrderNumber);
-        CreateSandwichObj(0, new Vector2(0, 0));    // テスト生成
+        //CreateSandwichObj(0, new Vector2(0, 0));    // テスト生成
 		TotalMakeObj = 0;
 		ManagerTransform = transform;
 	}
@@ -90,9 +90,9 @@ public class CSSandwichObjManager : SingletonMonoBehaviour<CSSandwichObjManager>
 	/// 敵スライムはフィーバースライムに吸い寄せられる。
 	/// </summary>
 	/// <returns></returns>
-	public CSlimeMove GetFeverSilmeData() {
-		foreach(CSlimeMove objData in m_SandwichObjList) {
-			if(objData.myType == CSlimeMove.SLIME_TYPE.Fever) {
+	public CSSandwichObject GetFeverSilmeData() {
+		foreach(CSSandwichObject objData in m_SandwichObjList) {
+			if(objData.myType == CSSandwichObject.SLIME_TYPE.Fever) {
 				return objData;
 			}
 		}
