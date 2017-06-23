@@ -10,8 +10,13 @@ public class touch : MonoBehaviour {
     //ライン連番
     public int nLineNum;
 
-	// Use this for initialization
-	void Start () {
+    //ぬるぬるカウンター nSlimyCnt touch.cs用
+    public int nSTouchCntS = 0;
+    public int nSTouchCntE = 0;
+
+
+    // Use this for initialization
+    void Start () {
 
         nLineNum = 100;
 
@@ -29,6 +34,29 @@ public class touch : MonoBehaviour {
             //ラインプレファブ生成
             GameObject Line =  Instantiate(LinePrefab) as GameObject;
             Line.name = "Line" + nLineNum;
+
+            //ぬるぬる判定
+            if (0 < nSTouchCntS)
+            {
+                Line.GetComponent<line>().bSLineS = true;
+                nSTouchCntS -= 1;
+            }
+            else
+            {
+                Line.GetComponent<line>().bSLineS = false;
+            }
+
+            if (0 < nSTouchCntE)
+            {
+                Line.GetComponent<line>().bSLineE = true;
+                nSTouchCntE -= 1;
+            }
+            else
+            {
+                Line.GetComponent<line>().bSLineE = false;
+            }
+
+
 
             //ラインにID付与
             Line.GetComponent<line>().nLineID = nLineNum;
