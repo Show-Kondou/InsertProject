@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 114695681023223256}
   - component: {fileID: 114147392118244808}
   - component: {fileID: 114931998612220094}
+  - component: {fileID: 58914147808214956}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -2553,6 +2554,21 @@ Transform:
   m_Father: {fileID: 4159394010550834}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &58914147808214956
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1081761816136228}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.5
 --- !u!95 &95904460252727930
 Animator:
   serializedVersion: 3
@@ -2586,7 +2602,7 @@ MonoBehaviour:
   WormholeObj: {fileID: 1411341803011954, guid: 22e1137e11072af4e8fff7812e2e5227,
     type: 2}
   SummonOneTime: 0.2
-  SummonNum: 25
+  SummonNum: 10
   m_AllySlimeObj: []
   AttackNum: 0
   AttackInterval: 0
@@ -2604,6 +2620,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe5bb370e55c833499b99a9fefb27f39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myType: 0
+  m_PressRangeLow: 0
+  m_WaitTime: 0
+  m_MoveSpped: 0
+  m_JumpPower: 0
+  m_Rotation: 0
+  m_Invincible: 0
+  m_InvincibleTimer: 0
+  m_HitIDA: 0
+  m_HitIDB: 0
+  m_ObjectID: 0
+  m_bInsert: 0
   nHitPoint: 100
 --- !u!114 &114931998612220094
 MonoBehaviour:

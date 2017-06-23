@@ -12,12 +12,8 @@ public class EnemyCount : MonoBehaviour
     private int nEnemyCnt = 0;      // とりあえず現在のエネミーの数
     [SerializeField]
     private float fEnemyPosY;       // Y座標格納用
-    [SerializeField]
-    private bool bGameOver = false; // ゲームオーバーのフラグ
 
     private GameObject EnemyCntObj; // 敵のカウント数字オブジェクト
-
-    public int nTestEnemy = 0;  // テスト用
 
     // ===== 敵の数をカウントする関数 =====
     public void EnemyCnt(int enemycnt)
@@ -39,7 +35,6 @@ public class EnemyCount : MonoBehaviour
         }
         else
         {
-            Debug.Log("ゲームオーバー");
 			CSceneManager.Instance.LoadScene( SCENE.RESULT, FADE.BLACK );
 		}
     }
@@ -56,20 +51,5 @@ public class EnemyCount : MonoBehaviour
 	void Update () 
     {
 		EnemyCnt( CSlimeMove.EnemyNum );
-		//if (nMaxEnemy > nEnemyCnt)
-		//{
-		//    nEnemyCnt = nTestEnemy;
-
-		//    this.transform.localScale = new Vector3((float)nEnemyCnt / (float)nMaxEnemy, (float)nEnemyCnt / (float)nMaxEnemy, (float)nEnemyCnt / (float)nMaxEnemy);
-
-		//    if(nEnemyCnt > 0)
-		//        this.transform.localPosition = new Vector3(0.0f, -fEnemyPosY + (((float)nEnemyCnt / (float)nMaxEnemy) * fEnemyPosY), 0.0f);
-
-		//    EnemyCntObj.GetComponent<Text>().text = nEnemyCnt.ToString();
-		//}
-		//else
-		//{
-		//    Debug.Log("ゲームオーバー");
-		//}
 	}
 }

@@ -8,17 +8,33 @@ public class BossDamage : CSSandwichObject
 
     // ----- プライベート変数 -----
     [SerializeField]
-    private int nHitPoint;
+    private int nHitPoint;      // ボスのヒットポイント
+
+    private int nDamageUP = 0;  // ダメージアップ
 
     // ===== ダメージを受けた（挟まれた）時の関数 =====
     public void BossHitDamage()
     {
+        Debug.Log("ボス挟まってる？");
+
 		CSoundManager.Instance.PlaySE(AUDIO_LIST.SE_BOSS_HIT_0);
+
+        // 待機状態だった場合は通常のダメージモーション
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") == true)
             animator.SetTrigger("Damage");
-
+        // 攻撃状態だった場合はキャンセルモーション
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("BrainControl") == true || animator.GetCurrentAnimatorStateInfo(0).IsName("Summon") == true)
             animator.SetTrigger("Cancel");
+
+        // ダメージ計算
+        //if(味方スライムの数 >= 3 && 味方スライムの数 < 5)
+        //  nDamegeUP = 1;
+        //if(味方スライムの数 >= 5 && 味方スライムの数 < 10)
+        //  nDamageUP = 3;
+        //if(味方スライムの数 >= 10)
+        //  nDamageUP = 5;
+
+        //nHitPoint -= (1 * 小スライムが挟まれた数) + (3 * 大スライムが挟まれた数) + nDamageUP;
     }
 
 	// ===== スタート関数 =====
