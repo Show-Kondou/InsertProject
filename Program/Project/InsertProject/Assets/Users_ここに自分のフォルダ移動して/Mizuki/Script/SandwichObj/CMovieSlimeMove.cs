@@ -32,6 +32,10 @@ public class CMovieSlimeMove : CSSandwichObject {
 	private float NothingLifeTimer; // 3段階目になった時に時間で死亡させる。
 	[SerializeField]
 	private ParticleSystem m_part;
+	[SerializeField]
+	private FeverGageEffect m_FeverGageEffect;
+	[SerializeField]
+	private GameObject m_EffectCanvas;
 	// Use this for initialization
 	void Start() {
 		FlagObj = new GameObject();
@@ -65,6 +69,7 @@ public class CMovieSlimeMove : CSSandwichObject {
 			SlimeMesh.GetComponent<Renderer>().material = AllyMat;
 		}
 		NothingLifeTimer = NothingLifeTime;
+		m_EffectCanvas = GameObject.Find("UI");
 	}
 
 	public override void Execute(float deltaTime) {
@@ -143,13 +148,19 @@ public class CMovieSlimeMove : CSSandwichObject {
 	/// 挟まれた時の処理
 	/// </summary>
 	public override void SandwichedAction() {
+		gameObject.transform.parent = null;
 		if(myType == SLIME_TYPE.Enemy) {
 			SameTimeSandObjNum();
+			m_Invincible = true;            // 無敵オン
+			m_InvincibleTimer = 1.0f;       // 無敵時間
 			CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.AllySlimeDeath, transform.position);
 			ChangeSlimeState(SLIME_TYPE.Ally);
 		} else if(myType == SLIME_TYPE.Ally) {
 			SameTimeSandObjNum();
 			myType = SLIME_TYPE.Nothing;   // 属性を味方に
+			var obj = Instantiate(m_FeverGageEffect);
+			obj.transform.parent = m_EffectCanvas.transform;
+			obj.SetFirstPosition(transform.position);
 			m_Invincible = true;            // 無敵オン
 			m_InvincibleTimer = 1.0f;       // 無敵時間
 			SlimeMesh.SetActive(false);
@@ -175,7 +186,6 @@ public class CMovieSlimeMove : CSSandwichObject {
 				EnemyNum++;
 				break;
 			case SLIME_TYPE.Ally:
-				Debug.Log("おｋ");
 				transform.tag = "Ally";         // タグを味方に
 				m_Invincible = true;            // 無敵オン
 				m_InvincibleTimer = 1.0f;       // 無敵時間
