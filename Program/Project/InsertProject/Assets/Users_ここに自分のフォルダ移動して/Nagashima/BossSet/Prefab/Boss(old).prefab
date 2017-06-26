@@ -101,8 +101,9 @@ GameObject:
   - component: {fileID: 114147392118244808}
   - component: {fileID: 114931998612220094}
   - component: {fileID: 58914147808214956}
+  - component: {fileID: 114996921601718492}
   m_Layer: 0
-  m_Name: Boss
+  m_Name: Boss(old)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1437,9 +1438,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1081761816136228}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0.7071068, w: 0}
+  m_LocalPosition: {x: 0, y: -0, z: 4}
+  m_LocalScale: {x: 0.20000018, y: 0.20000012, z: 0.20000012}
   m_Children:
   - {fileID: 4221719980414128}
   - {fileID: 4621514388580380}
@@ -2649,6 +2650,17 @@ MonoBehaviour:
   fPosX: 2
   RotateSpeed: 0
   nMoveNum: 1
+--- !u!114 &114996921601718492
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1081761816136228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d78d58a3f42ef6540810dbefa1441417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &137002736682720746
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
