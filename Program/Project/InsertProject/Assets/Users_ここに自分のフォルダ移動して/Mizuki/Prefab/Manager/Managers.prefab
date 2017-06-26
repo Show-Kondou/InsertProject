@@ -142,6 +142,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ObjTypeList:
   - {fileID: 114240778963885186, guid: 88a5b40d42e9e25488e1f3041887254e, type: 2}
+  - {fileID: 114532383221439162, guid: a15698f30271bf944a9543ed989a7fbe, type: 2}
+  - {fileID: 114639520104467396, guid: 17c4f1a6ed24add4eb6c32e33420df70, type: 2}
+  - {fileID: 114255275286246692, guid: 7fc609f5002703a4184c62e6216893e6, type: 2}
+  - {fileID: 114695681023223256, guid: ea8898469dcc1744d875066ad64f7ca8, type: 2}
 --- !u!114 &114426117427548448
 MonoBehaviour:
   m_ObjectHideFlags: 1

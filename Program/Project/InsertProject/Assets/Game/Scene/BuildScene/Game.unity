@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fOneRoundTime: 60
-  fCreateBossTime: 10
+  fCreateBossTime: 40
   BossUI: {fileID: 1130332429}
   bRotateX: 0
   bRotateY: 0
@@ -451,11 +451,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114374880855749974, guid: 551a08ce38b6f234ba6c7cb6d4496f81,
-        type: 2}
-      propertyPath: m_ObjTypeList.Array.size
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4961331200773862, guid: 551a08ce38b6f234ba6c7cb6d4496f81, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -488,30 +483,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114374880855749974, guid: 551a08ce38b6f234ba6c7cb6d4496f81,
-        type: 2}
-      propertyPath: m_ObjTypeList.Array.data[1]
-      value: 
-      objectReference: {fileID: 114240778963885186, guid: 88a5b40d42e9e25488e1f3041887254e,
-        type: 2}
-    - target: {fileID: 114374880855749974, guid: 551a08ce38b6f234ba6c7cb6d4496f81,
-        type: 2}
-      propertyPath: m_ObjTypeList.Array.data[2]
-      value: 
-      objectReference: {fileID: 114240778963885186, guid: 88a5b40d42e9e25488e1f3041887254e,
-        type: 2}
-    - target: {fileID: 114374880855749974, guid: 551a08ce38b6f234ba6c7cb6d4496f81,
-        type: 2}
-      propertyPath: m_ObjTypeList.Array.data[3]
-      value: 
-      objectReference: {fileID: 114240778963885186, guid: 88a5b40d42e9e25488e1f3041887254e,
-        type: 2}
-    - target: {fileID: 114374880855749974, guid: 551a08ce38b6f234ba6c7cb6d4496f81,
-        type: 2}
-      propertyPath: m_ObjTypeList.Array.data[4]
-      value: 
-      objectReference: {fileID: 114240778963885186, guid: 88a5b40d42e9e25488e1f3041887254e,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 551a08ce38b6f234ba6c7cb6d4496f81, type: 2}
   m_IsPrefabParent: 0

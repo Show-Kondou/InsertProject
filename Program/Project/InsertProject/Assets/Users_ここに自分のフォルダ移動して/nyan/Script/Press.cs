@@ -151,7 +151,7 @@ public class Press : MonoBehaviour {
             //どちらのプレス機か
             if (bWallStart == true)
             {
-				CSoundManager.Instance.PlaySE(AUDIO_LIST.SE_MAGICWALL_MOVE);
+				CSoundManager.Instance.PlaySE(AUDIO_LIST.SE_MAGICWALL_MOVE, false);
 
                 if (/*nNextList <= nListCntDiv &&*/ bStop == false)
                 {
@@ -226,19 +226,20 @@ public class Press : MonoBehaviour {
             fContainer = (vNewPos - vOldPos).magnitude;
             fDistance += fContainer;
 
-            //半分のところでマテリアル非表示
-            if (gParentObj.GetComponent<line>().fDistanceTotal * 0.5f < fDistance)
-            {
+			//半分のところでマテリアル非表示
+			if( gParentObj.GetComponent<line>().fDistanceTotal * 0.5f < fDistance ) {
 				//GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-                bVisible = true;
-                if (bWallStart == true)
-                {
-                    line lLine = gParentObj.GetComponent<line>();
-                    lLine.Visible();
+				if( bWallStart == true && bVisible == false ) {
+					bVisible = true;
+					line lLine = gParentObj.GetComponent<line>();
+					lLine.Visible();
 					CSoundManager.Instance.PlaySE( AUDIO_LIST.SE_MAGICWALL_GATTAI );
 					Debug.Log( "gattai" );
 				}
-            }
+				if( bWallStart == false ) {
+					bVisible = true;
+				}
+			}
 
             //半分とちょっとのところでデストロイ
             if (gParentObj.GetComponent<line>().fDistanceTotal *0.55f < fDistance)
@@ -253,7 +254,10 @@ public class Press : MonoBehaviour {
         }
 
     }
-
+	/// <summary>
+	/// トリガーの２D当たり判定
+	/// </summary>
+	/// <param name="collider">ヒットしたコライダー</param>
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (gameObject.tag == "StartPress")

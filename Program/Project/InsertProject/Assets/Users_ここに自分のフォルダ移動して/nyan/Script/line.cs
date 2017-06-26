@@ -154,7 +154,6 @@ public class line : MonoBehaviour {
 
             //ホールド時処理
             if (Input.GetMouseButton(0)) {
-				CSoundManager.Instance.PlaySE( AUDIO_LIST.SE_MAGICWALL_POP, false );
 				//初回クリック時処理
 				if (bFirstClick == false)
                 {
@@ -233,9 +232,11 @@ public class line : MonoBehaviour {
 							//一定量移動時格納場所を増やす
 							nPointCnt += 1;
                             lRendere.SetVertexCount(nPointCnt);
+							CSoundManager.Instance.PlaySE( AUDIO_LIST.SE_MAGICWALL_POP);
 
-                            //移動時の座標を格納
-                            lRendere.SetPosition(nPointCnt - 1, vRayPos);
+
+							//移動時の座標を格納
+							lRendere.SetPosition(nPointCnt - 1, vRayPos);
                             lvPointStorage.Add(vRayPos);
 
                             ////ポイントごとにPointObjを表示(デバッグ用)
