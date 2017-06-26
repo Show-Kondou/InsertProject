@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// 曲線管理クラス
 public class CSpecialCalculation : MonoBehaviour {
 
 	/// <summary>

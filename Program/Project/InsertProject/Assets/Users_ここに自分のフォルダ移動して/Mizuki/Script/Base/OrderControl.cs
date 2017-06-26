@@ -51,6 +51,34 @@ public class OrderControl : MonoBehaviour {
 	/// </summary>
 	/// <param name="newObj">追加オブジェクト</param>
 	public void AddList(ObjectBase newObj) {
+		int i;				// ループ用
+		bool match = false;	// マッチフラグ
+		// 使っていないIDの検索
+		for(i = 0; i < m_ObjList.Count; i++, match = false) {
+			foreach(ObjectBase Obj in m_ObjList) {
+				if(Obj.ID == i) {
+					match = true;
+					break;
+				}
+			}
+			if(!match) {
+				newObj.ID = i;
+				m_ObjList.Add(newObj);
+				return;
+			}
+		}
+		newObj.ID = i;
 		m_ObjList.Add(newObj);
+	}
+
+	public bool DeleteObjectInOrderList(int deleteID) {
+		foreach(ObjectBase obj in m_ObjList) {
+			if(obj.ID == deleteID) {
+				m_ObjList.Remove(obj);
+				Destroy(obj.gameObject);
+				return true;
+			}
+		}
+		return false;
 	}
 }
