@@ -79,21 +79,22 @@ public class CMovieSlimeMove : CSSandwichObject {
 		//=============
 		if(!this)
 			return; // バグ回避用。要修正
-					//=============
+		//=============
 
+		// 一定時間残留後、消去
 		if(myType == SLIME_TYPE.Nothing) {
 			NothingLifeTimer -= deltaTime;
 			if(NothingLifeTimer < 0) {
-				CSSandwichObjManager.Instance.DeleteSandwichObjToList(m_ObjectID);
-				Destroy(gameObject);
+				CSSandwichObjManager.Instance.DeleteSandwichObjToList(m_SandwichObjectID);	// サンドイッチリストから削除
+				ObjectManager.Instance.DeleteObject(m_OrderNumber, m_ObjectID);             // オブジェクトリストから削除
 			}
 			return;
 		}
 
 		// ジャンプ中処理
 		if(m_Moving) {
-			m_Position.x += Mathf.Cos(m_Rotation) * m_MoveSpped * deltaTime;
-			m_Position.y += Mathf.Sin(m_Rotation) * m_MoveSpped * deltaTime;
+			m_Position.x += Mathf.Cos(m_Rotation) * m_MoveSpped * deltaTime;// 横移動
+			m_Position.y += Mathf.Sin(m_Rotation) * m_MoveSpped * deltaTime;// 縦移動
 			m_Position.z = -VerticalThrowingUp(m_JumpTimer, m_JumpPower);   // 上移動
 			if(VerticalThrowingUp(m_JumpTimer, m_JumpPower) < 0) {          // 地面にめり込んだら終わり
 				m_Moving = false;

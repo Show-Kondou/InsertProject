@@ -53,7 +53,7 @@ public class CSSandwichObjManager : SingletonMonoBehaviour<CSSandwichObjManager>
 		CSSandwichObject obj = Instantiate(m_ObjTypeList[objType], Position, Quaternion.identity);
 		m_SandwichObjList.Add(obj);
 		obj.transform.parent = transform;   // 親子設定
-		obj.m_ObjectID = TotalMakeObj;
+		obj.m_SandwichObjectID = TotalMakeObj;
 		TotalMakeObj++;     // 次のオブジェクト用に数値をプラス
 		return obj;
 	}
@@ -67,7 +67,7 @@ public class CSSandwichObjManager : SingletonMonoBehaviour<CSSandwichObjManager>
 		CSSandwichObject obj = Instantiate(m_ObjTypeList[(int)objType], Position, Quaternion.identity);
 		m_SandwichObjList.Add(obj);
 		obj.transform.parent = transform;   // 親子設定
-		obj.m_ObjectID = TotalMakeObj;
+		obj.m_SandwichObjectID = TotalMakeObj;
 		TotalMakeObj++;     // 次のオブジェクト用に数値をプラス
 		return obj;
 	}
@@ -78,7 +78,7 @@ public class CSSandwichObjManager : SingletonMonoBehaviour<CSSandwichObjManager>
 	/// <param name="ID">削除するオブジェクトのID</param>
 	public void DeleteSandwichObjToList(int ID) {
 		for(int i = 0; i < m_SandwichObjList.Count; i++) {
-			if(m_SandwichObjList[i].m_ObjectID == ID) {
+			if(m_SandwichObjList[i].m_SandwichObjectID == ID) {
 				m_SandwichObjList.RemoveAt(i);
 				break;
 			}

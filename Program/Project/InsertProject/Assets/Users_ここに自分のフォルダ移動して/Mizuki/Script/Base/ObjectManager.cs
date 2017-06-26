@@ -52,4 +52,14 @@ public class ObjectManager : SingletonMonoBehaviour<ObjectManager> {
 		}
 		m_OrderList[OrderNumber].AddList(newObj);
     }
+
+	/// <summary>
+	/// オブジェクトの削除
+	/// </summary>
+	/// <param name="OrderNum">自身のオーダー番号</param>
+	/// <param name="ID">自身のID</param>
+	/// <returns></returns>
+	public bool DeleteObject(int OrderNum, int ID) {
+		return m_OrderList[OrderNum].DeleteObjectInOrderList(ID);
+	}
 }
