@@ -47,7 +47,7 @@ public class CSoundManager : MonoBehaviour {
 
 	// ===== 定数 ====
 	private const int BGM_CHANNEL = 2;
-	private const int SE_CHANNEL  = 5;
+	private const int SE_CHANNEL  = 20;
 
 	// ===== メンバ =====
 	// オーディオクリップデータ
@@ -138,7 +138,6 @@ public class CSoundManager : MonoBehaviour {
 					i.loop = false;
 					i.Play();
 				}
-
 				return;
 			}
 		}
