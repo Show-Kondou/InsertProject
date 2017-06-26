@@ -12,7 +12,7 @@ public class TimeScroll : MonoBehaviour {
     ButtonScroll CButtonScroll;
 
     [SerializeField]
-    Canvas CCanvas;
+    Canvas CCanvas;                     //初期値取得用
 
 	// Use this for initialization
 	void Start () {

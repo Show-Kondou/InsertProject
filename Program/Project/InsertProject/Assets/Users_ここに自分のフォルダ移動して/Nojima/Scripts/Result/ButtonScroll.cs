@@ -10,7 +10,7 @@ public class ButtonScroll : MonoBehaviour {
     [SerializeField]
     TimeScroll CTimeScroll;     //スクロールスピード取得用
     [SerializeField]
-    Canvas CCanvas;
+    Canvas CCanvas;             //初期値取得用
 
 	// Use this for initialization
 	void Start () {

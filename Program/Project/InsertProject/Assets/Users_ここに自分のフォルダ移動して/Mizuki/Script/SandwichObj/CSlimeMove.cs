@@ -18,8 +18,13 @@ public class CSlimeMove : CSSandwichObject {
 	private float NothingLifeTime = 1.0f;   // 設定時間
 	[SerializeField]
 	private CFeverSlimeMovePointManager pointMng;	// フィーバースライム目的地
-	private float NothingLifeTimer;	// 3段階目になった時に時間で死亡させる。
-
+	private float NothingLifeTimer; // 3段階目になった時に時間で死亡させる。
+	[SerializeField]
+	private ParticleSystem m_part;
+	[SerializeField]
+	private FeverGageEffect m_FeverGageEffect;
+	[SerializeField]
+	private GameObject m_EffectCanvas;
 	// Use this for initialization
 	void Start() {
 		FlagObj = new GameObject();
@@ -52,6 +57,7 @@ public class CSlimeMove : CSSandwichObject {
 			SlimeMesh.GetComponent<Renderer>().material = AllyMat;
 		}
 		NothingLifeTimer = NothingLifeTime;
+		m_EffectCanvas = GameObject.Find("UI");
 	}
 
 	public override void Execute(float deltaTime) {
@@ -65,8 +71,8 @@ public class CSlimeMove : CSSandwichObject {
 		if(myType == SLIME_TYPE.Nothing) {
 			NothingLifeTimer -= deltaTime;
 			if(NothingLifeTimer < 0) {
-				CSSandwichObjManager.Instance.DeleteSandwichObjToList(m_ObjectID);
-				Destroy(gameObject);
+				CSSandwichObjManager.Instance.DeleteSandwichObjToList(m_SandwichObjectID);
+				ObjectManager.Instance.DeleteObject(m_OrderNumber, m_ObjectID);             // オブジェクトリストから削除
 			}
 			return;
 		}
@@ -129,12 +135,17 @@ public class CSlimeMove : CSSandwichObject {
 	/// 挟まれた時の処理
 	/// </summary>
 	public override void SandwichedAction() {
+		gameObject.transform.parent = null;
 		if(myType == SLIME_TYPE.Enemy) {
 			SameTimeSandObjNum();
+			CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.AllySlimeDeath, transform.position);
 			ChangeSlimeState(SLIME_TYPE.Ally);
 		} else if(myType == SLIME_TYPE.Ally) {
 			SameTimeSandObjNum();
 			myType = SLIME_TYPE.Nothing;   // 属性を味方に
+			var obj = Instantiate(m_FeverGageEffect);
+			obj.transform.parent = m_EffectCanvas.transform;
+			obj.SetFirstPosition(transform.position);
 			m_Invincible = true;            // 無敵オン
 			m_InvincibleTimer = 1.0f;       // 無敵時間
 			SlimeMesh.SetActive(false);

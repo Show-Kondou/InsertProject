@@ -1,7 +1,7 @@
  : ObjectBase {
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		m_OrderNumber = 0;
 		ObjectManager.Instance.RegistrationList(this, m_OrderNumber);
 

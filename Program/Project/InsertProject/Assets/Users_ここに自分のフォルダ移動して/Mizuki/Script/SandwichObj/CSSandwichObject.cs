@@ -45,7 +45,7 @@ public class CSSandwichObject : ObjectBase {
 	public float	m_InvincibleTimer; // 無敵タイマー
 	public int		m_HitIDA;        // プレス機1個目のID
 	public int		m_HitIDB;        // プレス機2個目のID
-	public int      m_ObjectID;		// オブジェクトの番号(ユニーク)
+	public int      m_SandwichObjectID;		// オブジェクトの番号(ユニーク)
 
 	private CSSandwichObject m_Type;
 
@@ -175,7 +175,8 @@ public class CSSandwichObject : ObjectBase {
 		sameObjList.Clear();
 		foreach(CSSandwichObject obj in CSSandwichObjManager.m_SandwichObjList) {
 			// 自分自身とボスとは判定を取らない
-			if(m_ObjectID == obj.m_ObjectID || obj.tag == "Boss") {
+			if(m_SandwichObjectID == 
+				obj.m_SandwichObjectID) {
 				continue;
 			}
 
@@ -183,21 +184,23 @@ public class CSSandwichObject : ObjectBase {
 			if((m_HitIDA == obj.m_HitIDA || m_HitIDA == obj.m_HitIDB) && 
 			   (m_HitIDB == obj.m_HitIDA || m_HitIDB == obj.m_HitIDB )) {
 				sandNum++;	// カウントアップ
-				sameObjList.Add(obj.m_ObjectID);	// リストに追加
+				sameObjList.Add(obj.m_SandwichObjectID);	// リストに追加
 			}
 		}
 
-		sameObjList.Add(m_ObjectID);	// これが途中で削除されるとまずいので最後に挿入
+		sameObjList.Add(m_SandwichObjectID);	// これが途中で削除されるとまずいので最後に挿入
 
 		// 同時巻き込み数が指定数以上でビッグスライムを生成
 		if(sandNum >= BigSlimeMakeNum) {
 			// 生成
 			CSSandwichObjManager.Instance.CreateSandwichObj(CSSandwichObjManager.SandwichObjType.BigSlime, transform.position);
+			// 
 			for(int i = 0; i < sameObjList.Count; i++) { 
 				for(int j = 0; j < CSSandwichObjManager.m_SandwichObjList.Count; j++) { 
-					if(CSSandwichObjManager.m_SandwichObjList[j].m_ObjectID == sameObjList[i]) {
+					if(CSSandwichObjManager.m_SandwichObjList[j].m_SandwichObjectID == sameObjList[i]) {
 						CSSandwichObjManager.m_SandwichObjList[j].DestroySandObject();	// オブジェクト削除
-						CSSandwichObjManager.Instance.DeleteSandwichObjToList(CSSandwichObjManager.m_SandwichObjList[j].m_ObjectID);
+						CSSandwichObjManager.Instance.DeleteSandwichObjToList(CSSandwichObjManager.m_SandwichObjList[j].m_SandwichObjectID);
+						ObjectManager.Instance.DeleteObject(m_OrderNumber, m_ObjectID);
 					}
 				}
 			}
@@ -212,7 +215,9 @@ public class CSSandwichObject : ObjectBase {
 	public void DestroySandObject() {
 		if(!this)
 			return;
+		CSSandwichObjManager.Instance.DeleteSandwichObjToList(m_SandwichObjectID);
 		CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.AllySlimeDeath, transform.position);
-		Destroy(gameObject);
+		ObjectManager.Instance.DeleteObject(m_OrderNumber, m_ObjectID);
+		//Destroy(gameObject);
 	}
 }
