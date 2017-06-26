@@ -151,6 +151,8 @@ public class Press : MonoBehaviour {
             //どちらのプレス機か
             if (bWallStart == true)
             {
+				CSoundManager.Instance.PlaySE(AUDIO_LIST.SE_MAGICWALL_MOVE);
+
                 if (/*nNextList <= nListCntDiv &&*/ bStop == false)
                 {
                     //移動目標
@@ -227,13 +229,15 @@ public class Press : MonoBehaviour {
             //半分のところでマテリアル非表示
             if (gParentObj.GetComponent<line>().fDistanceTotal * 0.5f < fDistance)
             {
-                //GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+				//GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
                 bVisible = true;
                 if (bWallStart == true)
                 {
                     line lLine = gParentObj.GetComponent<line>();
                     lLine.Visible();
-                }
+					CSoundManager.Instance.PlaySE( AUDIO_LIST.SE_MAGICWALL_GATTAI );
+					Debug.Log( "gattai" );
+				}
             }
 
             //半分とちょっとのところでデストロイ

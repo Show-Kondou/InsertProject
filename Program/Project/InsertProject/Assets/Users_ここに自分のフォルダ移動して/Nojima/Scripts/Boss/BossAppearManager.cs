@@ -55,27 +55,29 @@ public class BossAppearManager : MonoBehaviour {
     /// </summary>
     void ProductionProcessing()
     {
-        //FadeTime秒間演出
-        if (FadeTimeCnt <= FadeTime)
-        {
-            //ボスバトルの演出スタート
-            if (bStart)
-                FadeTimeCnt += Time.deltaTime;
+		//FadeTime秒間演出
+		if( FadeTimeCnt <= FadeTime ) {
+			//ボスバトルの演出スタート
+			if( bStart )
+				FadeTimeCnt += Time.deltaTime;
 
-            if (Alpha <= 0f && bStart)
-                bFade = true;
+			if( Alpha <= 0f && bStart ) {
+				bFade = true;
+				CSoundManager.Instance.PlaySE( AUDIO_LIST.SE_BOSS_SYUTUGEN );
+			}
 
             if (Alpha >= 1f)
             {
                 bFade = false;
                 bLoopingStop = true;
             }
-            //フェードイン
-            if (bFade)
-                Alpha += FadeSpeed * Time.deltaTime;
-            //フェードアウト
-            else if (Alpha >= 0f)
-                Alpha -= FadeSpeed * Time.deltaTime;
+			//フェードイン
+			if( bFade ) {
+				Alpha += FadeSpeed * Time.deltaTime;
+			}
+			//フェードアウト
+			else if( Alpha >= 0f )
+				Alpha -= FadeSpeed * Time.deltaTime;
         }
     }
 
@@ -99,6 +101,9 @@ public class BossAppearManager : MonoBehaviour {
             {
                 bStart = false;     //演出開始フラグOFF
                 FadeTimeCnt = 0f;   //フェード時間初期化
+									//終
+				Debug.Log("ボス生成");
+				CSSandwichObjManager.Instance.CreateSandwichObj( CSSandwichObjManager.SandwichObjType.BOSS, Vector2.zero );
             }
         }
     }
