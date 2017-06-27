@@ -175,7 +175,7 @@ MonoBehaviour:
   m_InvincibleTimer: 0
   m_HitIDA: 0
   m_HitIDB: 0
-  m_ObjectID: 0
+  m_SandwichObjectID: 0
   m_bInsert: 0
   SlimeMesh: {fileID: 1900352466139832}
   EnemyMat: {fileID: 2100000, guid: f753ba88ba1c824468f263c58307e4d8, type: 2}
@@ -185,7 +185,7 @@ MonoBehaviour:
   NothingLifeTime: 1
   pointMng: {fileID: 0}
   m_part: {fileID: 0}
-  m_FeverGageEffect: {fileID: 114402049527198866, guid: 7ecb745f475d28541a30ad00884547cb,
+  m_FeverGageEffect: {fileID: 114096681874937334, guid: ddf4c49284e18e0409aee5364f2dfad5,
     type: 2}
   m_EffectCanvas: {fileID: 0}
 --- !u!137 &137754614084493856
