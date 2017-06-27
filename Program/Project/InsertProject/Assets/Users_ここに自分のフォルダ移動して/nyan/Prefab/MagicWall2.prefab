@@ -200,7 +200,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1428423386965692}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 4179813911431114}
@@ -570,7 +570,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.5, y: 0}
+  m_Offset: {x: -1, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -581,7 +581,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 5}
+  m_Size: {x: 2, y: 5}
   m_EdgeRadius: 0
 --- !u!61 &61335031484342444
 BoxCollider2D:
@@ -626,7 +626,7 @@ MonoBehaviour:
   bYMinus: 1
   bZMinus: 0
   bDist: 1
-  fRotateSpeed: 0
+  vRotate: {x: 0, y: 0, z: 0}
 --- !u!114 &114280756527686654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -645,7 +645,7 @@ MonoBehaviour:
   bYMinus: 0
   bZMinus: 0
   bDist: 1
-  fRotateSpeed: 0
+  vRotate: {x: 0, y: 0, z: 0}
 --- !u!114 &114306623140675574
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -664,7 +664,7 @@ MonoBehaviour:
   bYMinus: 0
   bZMinus: 0
   bDist: 0
-  fRotateSpeed: 0
+  vRotate: {x: 0, y: 0, z: 0}
 --- !u!114 &114454519790147850
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -709,7 +709,7 @@ MonoBehaviour:
   bYMinus: 0
   bZMinus: 0
   bDist: 1
-  fRotateSpeed: 0
+  vRotate: {x: 0, y: 0, z: 0}
 --- !u!114 &114949208817466896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -728,4 +728,4 @@ MonoBehaviour:
   bYMinus: 0
   bZMinus: 0
   bDist: 0
-  fRotateSpeed: 0
+  vRotate: {x: 0, y: 0, z: 0}
