@@ -39,7 +39,7 @@ public class rotate : MonoBehaviour {
         gParentObj = gameObject.transform.parent.gameObject;
 
         render = GetComponent<MeshRenderer>();
-
+        
     }
 
     // Update is called once per frame
@@ -114,7 +114,7 @@ public class rotate : MonoBehaviour {
 
         if (bVisible == true)
         {
-
+            render.material.shader = Shader.Find("Standard");
             render.material.SetColor("_Color", new Color(0.0f, 0.0f, 0.0f, 0.0f));
         }
 
