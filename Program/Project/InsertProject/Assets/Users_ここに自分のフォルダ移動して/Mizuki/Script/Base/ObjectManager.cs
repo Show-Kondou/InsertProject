@@ -48,6 +48,7 @@ public class ObjectManager : SingletonMonoBehaviour<ObjectManager> {
 				OrderControl tmp = Instantiate(m_OrderControlPrefab);
 				m_OrderList.Add(tmp);
 				tmp.transform.parent = transform;
+				tmp.m_OrderNumber = i;
 			}
 		}
 		m_OrderList[OrderNumber].AddList(newObj);

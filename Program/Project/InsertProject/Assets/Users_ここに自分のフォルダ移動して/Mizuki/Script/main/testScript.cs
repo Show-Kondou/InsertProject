@@ -33,7 +33,6 @@ public class testScript : ObjectBase {
 		if(Input.GetKeyDown(KeyCode.Space)) {
 			float width = Random.Range(-2.0f,2.0f);
 			float height = Random.Range(-4.0f,6.0f);
-			Debug.Log("uxissu");
 			CSSandwichObjManager.Instance.CreateSandwichObj(CSSandwichObjManager.SandwichObjType.FeverSlime, new Vector2(width, height));
 		}
 	}

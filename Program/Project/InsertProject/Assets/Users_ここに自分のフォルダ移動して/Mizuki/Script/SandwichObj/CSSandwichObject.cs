@@ -45,11 +45,11 @@ public class CSSandwichObject : ObjectBase {
 	public float	m_InvincibleTimer; // 無敵タイマー
 	public int		m_HitIDA;        // プレス機1個目のID
 	public int		m_HitIDB;        // プレス機2個目のID
-	public int      m_SandwichObjectID;		// オブジェクトの番号(ユニーク)
+	public int      m_SandwichObjectID;     // オブジェクトの番号(ユニーク)
 
 	private CSSandwichObject m_Type;
 
-	protected static int BigSlimeMakeNum = 2;	// ビッグスライムを生成する同時巻き込み数(初期は5)
+	protected static int BigSlimeMakeNum = 5;	// ビッグスライムを生成する同時巻き込み数(初期は5)
 
 	// 当たったプレス機のステータス格納用
 	public struct PressObject { 
