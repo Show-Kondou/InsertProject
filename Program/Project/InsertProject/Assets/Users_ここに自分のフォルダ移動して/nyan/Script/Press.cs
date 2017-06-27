@@ -93,6 +93,9 @@ public class Press : MonoBehaviour {
 
         //CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.MagicWallEmarg, transform.position);
 
+        //生成時にシェーダーを変更
+        
+
     }
 
     //void Create()
