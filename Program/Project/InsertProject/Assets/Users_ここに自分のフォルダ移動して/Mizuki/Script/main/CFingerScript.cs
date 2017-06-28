@@ -19,6 +19,7 @@ public class CFingerScript : ObjectBase {
 	public override void Execute(float deltaTime) {
 		MousePos = Input.mousePosition;
 
+		Cursor.visible = false;
 		// 左クリックで指画像を傾ける
 		if(!PressButton && Input.GetMouseButtonDown(0)) {
 			PressButton = true;
