@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CMovieSlimeMove : CSSandwichObject {
-	public enum SLIME_TYPE {
-		Ally,
-		Enemy,
-		Fever,
-		Nothing,
-		Big,
+	//public enum SLIME_TYPE {
+	//	Ally,
+	//	Enemy,
+	//	Fever,
+	//	Nothing,
+	//	Big,
 
-		MAX_SLIME_TYPE,
-	};
+	//	MAX_SLIME_TYPE,
+	//};
 
-	public SLIME_TYPE myType;
+	//public SLIME_TYPE myType;
 	[SerializeField]
 	private GameObject SlimeMesh;   // スライムのモデル
 	[SerializeField]
@@ -32,6 +32,10 @@ public class CMovieSlimeMove : CSSandwichObject {
 	private float NothingLifeTimer; // 3段階目になった時に時間で死亡させる。
 	[SerializeField]
 	private ParticleSystem m_part;
+	[SerializeField]
+	private FeverGageEffect m_FeverGageEffect;
+	[SerializeField]
+	private GameObject m_EffectCanvas;
 	// Use this for initialization
 	void Start() {
 		FlagObj = new GameObject();
@@ -65,6 +69,7 @@ public class CMovieSlimeMove : CSSandwichObject {
 			SlimeMesh.GetComponent<Renderer>().material = AllyMat;
 		}
 		NothingLifeTimer = NothingLifeTime;
+		m_EffectCanvas = GameObject.Find("UI");
 	}
 
 	public override void Execute(float deltaTime) {
@@ -74,21 +79,22 @@ public class CMovieSlimeMove : CSSandwichObject {
 		//=============
 		if(!this)
 			return; // バグ回避用。要修正
-					//=============
+		//=============
 
+		// 一定時間残留後、消去
 		if(myType == SLIME_TYPE.Nothing) {
 			NothingLifeTimer -= deltaTime;
 			if(NothingLifeTimer < 0) {
-				CSSandwichObjManager.Instance.DeleteSandwichObjToList(m_ObjectID);
-				Destroy(gameObject);
+				CSSandwichObjManager.Instance.DeleteSandwichObjToList(m_SandwichObjectID);	// サンドイッチリストから削除
+				ObjectManager.Instance.DeleteObject(m_OrderNumber, m_ObjectID);             // オブジェクトリストから削除
 			}
 			return;
 		}
 
 		// ジャンプ中処理
 		if(m_Moving) {
-			m_Position.x += Mathf.Cos(m_Rotation) * m_MoveSpped * deltaTime;
-			m_Position.y += Mathf.Sin(m_Rotation) * m_MoveSpped * deltaTime;
+			m_Position.x += Mathf.Cos(m_Rotation) * m_MoveSpped * deltaTime;// 横移動
+			m_Position.y += Mathf.Sin(m_Rotation) * m_MoveSpped * deltaTime;// 縦移動
 			m_Position.z = -VerticalThrowingUp(m_JumpTimer, m_JumpPower);   // 上移動
 			if(VerticalThrowingUp(m_JumpTimer, m_JumpPower) < 0) {          // 地面にめり込んだら終わり
 				m_Moving = false;
@@ -143,13 +149,19 @@ public class CMovieSlimeMove : CSSandwichObject {
 	/// 挟まれた時の処理
 	/// </summary>
 	public override void SandwichedAction() {
+		gameObject.transform.parent = null;
 		if(myType == SLIME_TYPE.Enemy) {
 			SameTimeSandObjNum();
+			m_Invincible = true;            // 無敵オン
+			m_InvincibleTimer = 1.0f;       // 無敵時間
 			CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.AllySlimeDeath, transform.position);
 			ChangeSlimeState(SLIME_TYPE.Ally);
 		} else if(myType == SLIME_TYPE.Ally) {
 			SameTimeSandObjNum();
 			myType = SLIME_TYPE.Nothing;   // 属性を味方に
+			var obj = Instantiate(m_FeverGageEffect);
+			obj.transform.parent = m_EffectCanvas.transform;
+			obj.SetFirstPosition(transform.position);
 			m_Invincible = true;            // 無敵オン
 			m_InvincibleTimer = 1.0f;       // 無敵時間
 			SlimeMesh.SetActive(false);
@@ -175,7 +187,6 @@ public class CMovieSlimeMove : CSSandwichObject {
 				EnemyNum++;
 				break;
 			case SLIME_TYPE.Ally:
-				Debug.Log("おｋ");
 				transform.tag = "Ally";         // タグを味方に
 				m_Invincible = true;            // 無敵オン
 				m_InvincibleTimer = 1.0f;       // 無敵時間

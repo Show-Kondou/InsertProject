@@ -65,6 +65,11 @@ public class line : MonoBehaviour {
     private RaycastHit rHitInfo;
     private Vector3 vRayPos;
 
+
+    //ぬるぬるカウンター nSlimyCnt line.cs用
+    public bool bSLineS;
+    public bool bSLineE;
+
     //------
 
     void Start()
@@ -149,7 +154,7 @@ public class line : MonoBehaviour {
 
             //ホールド時処理
             if (Input.GetMouseButton(0)) {
-				CSoundManager.Instance.PlaySE( AUDIO_LIST.SE_LINEDRAW );
+				CSoundManager.Instance.PlaySE( AUDIO_LIST.SE_MAGICWALL_POP, false );
 				//初回クリック時処理
 				if (bFirstClick == false)
                 {

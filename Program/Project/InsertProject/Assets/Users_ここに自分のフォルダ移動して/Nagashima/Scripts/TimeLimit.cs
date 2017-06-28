@@ -11,8 +11,8 @@ public class TimeLimit : MonoBehaviour
 
 	[Header("ボスの生成される時間"), SerializeField]
 	private float fCreateBossTime = 10.0F;
-	[Header("ボス"), SerializeField]
-	private GameObject Boss;
+	[Header("ボス出現UI"), SerializeField]
+	private BossAppearManager BossUI;
 	private bool isCreateBoss = false;
 
 	// どこを軸に回るかのフラグ
@@ -108,8 +108,8 @@ public class TimeLimit : MonoBehaviour
         }
 
 		if( fLimitTime <= fCreateBossTime && !isCreateBoss ) {
-			Instantiate( Boss );
-			Debug.Log("Boss生成");
+			BossUI.bStart = true;
+			CSoundManager.Instance.StopBGM();
 			isCreateBoss = true;
 		}
 

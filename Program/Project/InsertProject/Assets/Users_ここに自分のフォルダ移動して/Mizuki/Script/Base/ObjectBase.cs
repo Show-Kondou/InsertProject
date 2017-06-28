@@ -19,6 +19,18 @@ using UnityEngine;
 public class ObjectBase : MonoBehaviour {
 	protected int m_OrderNumber = 0;
 	protected bool m_Using = true;
+	protected int m_ObjectID;
+
+	public int ID {
+		get
+		{
+			return m_ObjectID;
+		}
+		set
+		{
+			m_ObjectID = value;
+		}
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -42,10 +54,13 @@ public class ObjectBase : MonoBehaviour {
 
     }
 
-	
-	public void ChangeOrderNumber(int OrderNumber) {
-        m_OrderNumber = OrderNumber;
+	/// <summary>
+	/// オブジェクトの削除
+	/// </summary>
+	/// <param name="OrderNumber"></param>
+	public bool DeleteObject() {
 
-    }
+		return false;
+	}
 	
 }

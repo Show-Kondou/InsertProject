@@ -44,7 +44,10 @@ public enum AUDIO_LIST {
 	SE_LINEDRAW,
 	SE_LINEDRAW_WAIT,
 	SE_MAGICWALL,					// 魔法壁生成SE
-	SE_MAGICWALL_OVER,				// 魔法壁生成SE
+	SE_MAGICWALL_MOVE,				// 魔法壁生成SE
+	SE_MAGICWALL_OVER,              // 魔法壁生成SE
+	SE_MAGICWALL_POP,               // 魔法壁生成SE
+	SE_MAGICWALL_GATTAI,				// 魔法壁生成SE
 	SE_SLIME_CONVERT,
 	SE_SLIME_OVER,					// スライムの数が多い警告音
 
@@ -90,7 +93,10 @@ public class CAudioData {
 		"SE_LINEDRAW",
 		"SE_LINEDRAW_WAIT",
 		"SE_MAGICWALL",					// 魔法壁生成SE
+		"SE_MAGICWALL_MOVE",				// 魔法壁生成SE
 		"SE_MAGICWALL_OVER",				// 魔法壁生成SE
+		"SE_MAGICWALL_POP",				// 魔法壁生成SE
+		"SE_MAGICWALL_GATTAI",				// 魔法壁生成SE
 		"SE_SLIME_CONVERT",
 		"SE_SLIME_OVER",					// スライムの数が多い警告音
 		null,

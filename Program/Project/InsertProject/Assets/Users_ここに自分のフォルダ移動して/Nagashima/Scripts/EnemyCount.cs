@@ -7,7 +7,7 @@ public class EnemyCount : MonoBehaviour
 {
     // ----- プライベート変数 -----
     [SerializeField]
-    private int nMaxEnemy = 30;     // ゲームオーバー時の敵の最大数
+    private int nMaxEnemy = 50;     // ゲームオーバー時の敵の最大数
     [SerializeField]
     private int nEnemyCnt = 0;      // とりあえず現在のエネミーの数
     [SerializeField]

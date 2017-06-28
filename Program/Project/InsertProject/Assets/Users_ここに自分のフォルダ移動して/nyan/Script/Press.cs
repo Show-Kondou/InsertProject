@@ -23,7 +23,7 @@ public class Press : MonoBehaviour {
     private Vector3 vOldPos;
 
     //移動関連
-    private Vector3 vSpeed = new Vector3(0.05f, 0.05f, 0.05f);
+    private Vector3 vSpeed = new Vector3(3.0f, 3.0f, 3.0f);
     private float fRad;                 //進行方向計算用
     private Vector3 vMovePos;           //移動用
     private float fGrace = 0.025f;      //差
@@ -52,6 +52,9 @@ public class Press : MonoBehaviour {
 
     //召喚演出プレファブ
     public GameObject gSummonPrefab;
+
+    //ぬるぬる状態判定用
+    private GameObject gTouchObj;
 
 
     // Use this for initialization
@@ -89,6 +92,9 @@ public class Press : MonoBehaviour {
         gSummon.transform.parent = transform;
 
         //CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.MagicWallEmarg, transform.position);
+
+        //生成時にシェーダーを変更
+        
 
     }
 
@@ -148,6 +154,8 @@ public class Press : MonoBehaviour {
             //どちらのプレス機か
             if (bWallStart == true)
             {
+				CSoundManager.Instance.PlaySE(AUDIO_LIST.SE_MAGICWALL_MOVE);
+
                 if (/*nNextList <= nListCntDiv &&*/ bStop == false)
                 {
                     //移動目標
@@ -158,8 +166,8 @@ public class Press : MonoBehaviour {
 
                     vMovePos = transform.position;
 
-                    vMovePos.x += vSpeed.x * Mathf.Cos(fRad);
-                    vMovePos.y += vSpeed.y * Mathf.Sin(fRad);
+                    vMovePos.x += vSpeed.x * Mathf.Cos(fRad) * Time.deltaTime;
+                    vMovePos.y += vSpeed.y * Mathf.Sin(fRad) * Time.deltaTime;
 
                     transform.position = vMovePos;
 
@@ -193,8 +201,8 @@ public class Press : MonoBehaviour {
 
                     vMovePos = transform.position;
 
-                    vMovePos.x += vSpeed.x * Mathf.Cos(fRad);
-                    vMovePos.y += vSpeed.y * Mathf.Sin(fRad);
+                    vMovePos.x += vSpeed.x * Mathf.Cos(fRad) * Time.deltaTime;
+                    vMovePos.y += vSpeed.y * Mathf.Sin(fRad) * Time.deltaTime;
 
                     transform.position = vMovePos;
 
@@ -224,13 +232,15 @@ public class Press : MonoBehaviour {
             //半分のところでマテリアル非表示
             if (gParentObj.GetComponent<line>().fDistanceTotal * 0.5f < fDistance)
             {
-                //GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+				//GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
                 bVisible = true;
                 if (bWallStart == true)
                 {
                     line lLine = gParentObj.GetComponent<line>();
                     lLine.Visible();
-                }
+					CSoundManager.Instance.PlaySE( AUDIO_LIST.SE_MAGICWALL_GATTAI );
+					Debug.Log( "gattai" );
+				}
             }
 
             //半分とちょっとのところでデストロイ
@@ -244,7 +254,60 @@ public class Press : MonoBehaviour {
                 //bWayPoint = true;
             }
         }
+
     }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (gameObject.tag == "StartPress")
+        {
+            //当たった相手が強スライムなら
+            if (collider.gameObject.tag == "Big")
+            {
+                //ぬるぬる属性をtrue
+                gParentObj.GetComponent<line>().bSLineS = true;
+                //touchのぬるぬるカウントを最大数に
+                gTouchObj = GameObject.Find("Touch");
+                gTouchObj.GetComponent<touch>().nSTouchCntS = 2;
+                Destroy(collider.gameObject);
+
+            }
+
+            //当たった相手がスライムだったら
+            if (collider.gameObject.tag == "Enemy" && gParentObj.GetComponent<line>().bSLineS == true ||
+                collider.gameObject.tag == "Ally"  && gParentObj.GetComponent<line>().bSLineS == true)
+            {
+                //当たった相手を子オブジェクトにして座標も弄る
+                collider.transform.parent = transform;
+                collider.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+            }
+        }
+
+        if (gameObject.tag == "EndPress")
+        {
+            //当たった相手が強スライムなら
+            if (collider.gameObject.tag == "Big")
+            {
+                //ぬるぬる属性をtrue
+                gParentObj.GetComponent<line>().bSLineE = true;
+                //touchのぬるぬるカウントを最大数に
+                gTouchObj = GameObject.Find("Touch");
+                gTouchObj.GetComponent<touch>().nSTouchCntE = 2;
+                Destroy(collider.gameObject);
+
+            }
+
+            //当たった相手がスライムだったら
+            if (collider.gameObject.tag == "Enemy" && gParentObj.GetComponent<line>().bSLineE == true ||
+                collider.gameObject.tag == "Ally"  && gParentObj.GetComponent<line>().bSLineE == true)
+            {
+                //当たった相手を子オブジェクトにして座標も弄る
+                collider.transform.parent = transform;
+                collider.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+            }
+        }
+    }
+
 
     //private void OnTriggerEnter2D(Collider2D collider)
     //{

@@ -5,19 +5,22 @@ using UnityEngine.UI;
 
 public class ResultFade : MonoBehaviour {
 
-    public bool bResult = false;    //リザルト開始フラグ
-
-    float Alpha = 0f;               //アルファ値
+    public bool bResultStart = false;   //リザルト開始フラグ
+    public bool bGameOver = false;      //ゲームオーバーフラグ（仮）
+    float Alpha = 0f;                   //アルファ値
     [SerializeField]
-    float FadeSpeed = 0.1f;         //フェードスピード
-    Image MyImage;
+    float FadeSpeed = 0.1f;             //フェードスピード
+    Image MyImage;                      //アルファ値変更用
 
     [SerializeField]
-    Clear CClear;
+    ClearImg CClear;
+
+    [SerializeField]
+    Canvas CCanvas;
 
 	// Use this for initialization
 	void Start () {
-        transform.localScale = new Vector2(Screen.width, Screen.height);
+        GetComponent<RectTransform>().sizeDelta = CCanvas.GetComponent<RectTransform>().sizeDelta;
         MyImage = GetComponent<Image>();
         MyImage.color = new Color(MyImage.color.r, MyImage.color.g, MyImage.color.b, Alpha);
 	}
@@ -25,7 +28,7 @@ public class ResultFade : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //リザルト開始
-        if(bResult)
+        if(bResultStart)
             FadeIn();
     }
 
