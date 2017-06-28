@@ -11,13 +11,13 @@ public class FeverGageEffect : ObjectBase {
 	[SerializeField]
 	private float m_TargetTime;
 	private Vector3 FirstPos;
+	[SerializeField]
+	private GameObject m_FeverGage;
 	// Use this for initialization
 	void Start () {
-	}
-
-	void Awake() {
 		m_OrderNumber = 0;
 		ObjectManager.Instance.RegistrationList(this, m_OrderNumber);
+		m_FeverGage = GameObject.Find("Fiver");
 	}
 
 	public void SetFirstPosition(Vector3 Position) {
@@ -40,6 +40,7 @@ public class FeverGageEffect : ObjectBase {
 			new Vector3(866.0f * -m_Direction, 500.0f, 0),
 			m_ElapsedTime / m_TargetTime);
 		if(m_ElapsedTime / m_TargetTime > 1.0f) {
+			m_FeverGage.GetComponent<FiverGauge>().AddFiver(2.0f);
 			ObjectManager.Instance.DeleteObject(m_OrderNumber, m_ObjectID);
 		}
 	}
