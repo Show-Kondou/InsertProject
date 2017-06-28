@@ -162,8 +162,6 @@ MonoBehaviour:
   nMaxEnemy: 30
   nEnemyCnt: 0
   fEnemyPosY: 0
-  bGameOver: 0
-  nTestEnemy: 0
 --- !u!114 &551216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,6 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Target: {fileID: 0}
+  speed: 0
 --- !u!1001 &275861231
 Prefab:
   m_ObjectHideFlags: 0
@@ -406,7 +405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fOneRoundTime: 60
   fCreateBossTime: 10
-  Boss: {fileID: 1081761816136228, guid: ea8898469dcc1744d875066ad64f7ca8, type: 2}
+  BossUI: {fileID: 0}
   bRotateX: 0
   bRotateY: 0
   bRotateZ: 1
@@ -1451,6 +1450,26 @@ Prefab:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114931998612220094, guid: ea8898469dcc1744d875066ad64f7ca8,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114147392118244808, guid: ea8898469dcc1744d875066ad64f7ca8,
+        type: 2}
+      propertyPath: MainCamera
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114147392118244808, guid: ea8898469dcc1744d875066ad64f7ca8,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114996921601718492, guid: ea8898469dcc1744d875066ad64f7ca8,
+        type: 2}
+      propertyPath: MainCamera
+      value: 
+      objectReference: {fileID: 189193769}
+    - target: {fileID: 114996921601718492, guid: ea8898469dcc1744d875066ad64f7ca8,
         type: 2}
       propertyPath: m_Enabled
       value: 0

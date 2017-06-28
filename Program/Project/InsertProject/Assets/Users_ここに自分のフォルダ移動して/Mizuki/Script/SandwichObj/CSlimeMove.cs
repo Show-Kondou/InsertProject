@@ -54,10 +54,9 @@ public class CSlimeMove : CSSandwichObject {
 			transform.position = pointMng.FeverSlimeDestination;    // 初期目的地移動
 		}else {
 			myType = SLIME_TYPE.Big;
-			SlimeMesh.GetComponent<Renderer>().material = AllyMat;
 		}
 		NothingLifeTimer = NothingLifeTime;
-		m_EffectCanvas = GameObject.Find("UI");
+		m_EffectCanvas = GameObject.Find("UI");	// エフェクト用カンバスを取得
 	}
 
 	public override void Execute(float deltaTime) {
