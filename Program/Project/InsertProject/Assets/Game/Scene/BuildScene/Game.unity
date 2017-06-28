@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00406631, g: 0.00022231956, b: 0.000000056080918,
+  m_IndirectSpecularColor: {r: 0.004066306, g: 0.00022231914, b: 0.000000056080918,
     a: 1}
 --- !u!157 &3
 LightmapSettings:
@@ -162,7 +162,7 @@ MonoBehaviour:
   nMaxEnemy: 100
   nEnemyCnt: 0
   fEnemyPosY: 0
-  resultMgr: {fileID: 0}
+  resultMgr: {fileID: 1983337268}
 --- !u!114 &551216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,9 +390,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e05d1587552ca548b2c037fd081f6be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fOneRoundTime: 180
+  fOneRoundTime: 15
   fCreateBossTime: 120
   BossUI: {fileID: 1130332429}
+  resultMgr: {fileID: 1983337268}
   bRotateX: 0
   bRotateY: 0
   bRotateZ: 1
@@ -2654,3 +2655,9 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1983337268 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114161575307226442, guid: 8f9679c7b6bcc264cb7e5065ad5b44b2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1186430895}
+  m_Script: {fileID: 11500000, guid: d64fb48e70825e0459e4ca54eb88b794, type: 3}

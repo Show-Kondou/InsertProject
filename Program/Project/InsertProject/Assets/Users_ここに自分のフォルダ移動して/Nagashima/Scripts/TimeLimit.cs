@@ -13,6 +13,10 @@ public class TimeLimit : MonoBehaviour
 	private float fCreateBossTime = 10.0F;
 	[Header("ボス出現UI"), SerializeField]
 	private BossAppearManager BossUI;
+
+    [Header("ゲームオーバー演出"), SerializeField]
+    private ResultManager resultMgr;
+
 	private bool isCreateBoss = false;
 
 	// どこを軸に回るかのフラグ
@@ -59,6 +63,7 @@ public class TimeLimit : MonoBehaviour
         TimerObj = ClockObj.transform.FindChild("Timer").gameObject;
 
         ClockObj.GetComponent<Image>().material.color = Color.white;
+        if ( !resultMgr ) { Debug.LogError("リザルトマネージャーがないよ"); }
     }
 
     // ===== 更新関数 =====
@@ -104,7 +109,8 @@ public class TimeLimit : MonoBehaviour
             bGameOver = true;
 
             TimerObj.SetActive(false);  // 時間非表示
-			CSceneManager.Instance.LoadScene( SCENE.RESULT, FADE.BLACK );
+            resultMgr.bTimeOver = true;
+			// CSceneManager.Instance.LoadScene( SCENE.RESULT, FADE.BLACK );
         }
 
 		if( fLimitTime <= fCreateBossTime && !isCreateBoss ) {

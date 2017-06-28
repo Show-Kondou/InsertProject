@@ -19,7 +19,9 @@ public class ResultManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         CanvasSize = CCanvas.GetComponent<RectTransform>().sizeDelta;
-	}
+        CSoundManager.Instance.StopBGM();
+        CSoundManager.Instance.PlayBGM( AUDIO_LIST.BGM_GAMEOVER );
+    }
 
     public Vector2 GetCanvasSize()
     {
