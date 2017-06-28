@@ -283,8 +283,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb0e13af4479f9f43a03333d4342ddf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myType: 2
   m_PressRangeLow: 0
-  m_WaitTime: 2
+  m_WaitTime: 1.5
   m_MoveSpped: 2
   m_JumpPower: 3
   m_Rotation: 0
@@ -292,9 +293,8 @@ MonoBehaviour:
   m_InvincibleTimer: 0
   m_HitIDA: 0
   m_HitIDB: 0
-  m_ObjectID: 0
+  m_SandwichObjectID: 0
   m_bInsert: 0
-  myType: 2
   SlimeMesh: {fileID: 1344947001370774}
   EnemyMat: {fileID: 2100000, guid: f753ba88ba1c824468f263c58307e4d8, type: 2}
   AllyMat: {fileID: 2100000, guid: 265f78840d6eb2c4c854f76fcbeec72b, type: 2}
@@ -302,6 +302,9 @@ MonoBehaviour:
   FlagObj: {fileID: 1602830723562060}
   NothingLifeTime: 1
   pointMng: {fileID: 0}
+  m_part: {fileID: 0}
+  m_FeverGageEffect: {fileID: 0}
+  m_EffectCanvas: {fileID: 0}
 --- !u!137 &137250814965201994
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
