@@ -13,6 +13,9 @@ public class EnemyCount : MonoBehaviour
     [SerializeField]
     private float fEnemyPosY;       // Y座標格納用
 
+    [Header("スライム多すぎゲームオーバー"), SerializeField]
+    private ResultManager resultMgr;
+
     private GameObject EnemyCntObj; // 敵のカウント数字オブジェクト
 
     // ===== 敵の数をカウントする関数 =====
@@ -45,6 +48,9 @@ public class EnemyCount : MonoBehaviour
         fEnemyPosY = Mathf.Abs(transform.localPosition.y);
 
         EnemyCntObj = GameObject.Find("EnemyCnt");
+        if ( !resultMgr ) {
+            Debug.LogError("リザルトマネージャーが設定されてない");
+        }
 	}
 	
 	// ===== 更新関数 =====
