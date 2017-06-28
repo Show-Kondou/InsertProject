@@ -54,6 +54,10 @@ public class CSlimeMove : CSSandwichObject {
 			transform.position = pointMng.FeverSlimeDestination;    // 初期目的地移動
 		}else {
 			myType = SLIME_TYPE.Big;
+			m_Invincible = true;		// 生成時に無敵を付与
+			m_InvincibleTimer = 2.0f;   // 同上
+			GetComponent<CircleCollider2D>().enabled = false;
+			Debug.Log("bigmake");
 		}
 		NothingLifeTimer = NothingLifeTime;
 		m_EffectCanvas = GameObject.Find("UI");	// エフェクト用カンバスを取得
