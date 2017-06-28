@@ -237,7 +237,7 @@ public class Press : MonoBehaviour {
 					line lLine = gParentObj.GetComponent<line>();
 					lLine.Visible();
 					CSoundManager.Instance.PlaySE( AUDIO_LIST.SE_MAGICWALL_GATTAI );
-					Debug.Log( "gattai" );
+					// Debug.Log( "gattai" );
 				}
 				if( bWallStart == false ) {
 					bVisible = true;

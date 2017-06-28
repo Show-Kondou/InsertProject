@@ -274,7 +274,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: c553be09ee2f43b419c7000f072a9c51, type: 2}
+  - {fileID: 2100000, guid: 883687066c130894d9afca59a51beb0e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -599,7 +599,7 @@ MonoBehaviour:
   LoadSceneName: 1
   TitleBG: {fileID: 793245022}
   fFrameNum: 30
-  fMovePosY: 1.27
+  fMovePosY: 2
 --- !u!1 &387951621
 GameObject:
   m_ObjectHideFlags: 0
@@ -1456,7 +1456,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: c553be09ee2f43b419c7000f072a9c51, type: 2}
+  - {fileID: 2100000, guid: 883687066c130894d9afca59a51beb0e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1548,7 +1548,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: c553be09ee2f43b419c7000f072a9c51, type: 2}
+  - {fileID: 2100000, guid: 883687066c130894d9afca59a51beb0e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1640,7 +1640,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: c553be09ee2f43b419c7000f072a9c51, type: 2}
+  - {fileID: 2100000, guid: 883687066c130894d9afca59a51beb0e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1874,6 +1874,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 198739535825454058, guid: b0613176e7f6bcb4dbf1295fa8bdd678,
+        type: 2}
+      propertyPath: EmissionModule.m_Bursts.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4860367946583046, guid: b0613176e7f6bcb4dbf1295fa8bdd678, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1933,7 +1938,7 @@ Prefab:
     - target: {fileID: 198739535825454058, guid: b0613176e7f6bcb4dbf1295fa8bdd678,
         type: 2}
       propertyPath: randomSeed
-      value: -500995754
+      value: 1883455786
       objectReference: {fileID: 0}
     - target: {fileID: 198739535825454058, guid: b0613176e7f6bcb4dbf1295fa8bdd678,
         type: 2}
@@ -1953,6 +1958,45 @@ Prefab:
     - target: {fileID: 198739535825454058, guid: b0613176e7f6bcb4dbf1295fa8bdd678,
         type: 2}
       propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198739535825454058, guid: b0613176e7f6bcb4dbf1295fa8bdd678,
+        type: 2}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1549181058711206, guid: b0613176e7f6bcb4dbf1295fa8bdd678, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198739535825454058, guid: b0613176e7f6bcb4dbf1295fa8bdd678,
+        type: 2}
+      propertyPath: EmissionModule.m_BurstCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198739535825454058, guid: b0613176e7f6bcb4dbf1295fa8bdd678,
+        type: 2}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].minCount
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 198739535825454058, guid: b0613176e7f6bcb4dbf1295fa8bdd678,
+        type: 2}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].maxCount
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 198739535825454058, guid: b0613176e7f6bcb4dbf1295fa8bdd678,
+        type: 2}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].cycleCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198739535825454058, guid: b0613176e7f6bcb4dbf1295fa8bdd678,
+        type: 2}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].repeatInterval
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 198739535825454058, guid: b0613176e7f6bcb4dbf1295fa8bdd678,
+        type: 2}
+      propertyPath: EmissionModule.rateOverDistance.scalar
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

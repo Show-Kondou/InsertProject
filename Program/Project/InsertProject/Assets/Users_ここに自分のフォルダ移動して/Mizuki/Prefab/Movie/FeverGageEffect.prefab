@@ -40,7 +40,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f944874692c85048aff521645969629, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MoveTarget: {x: 230, y: 1200, z: 0}
+  m_MoveTarget: {x: 210, y: 1200, z: 0}
   m_TargetTime: 2
   m_FeverGage: {fileID: 0}
 --- !u!114 &114944010613682444

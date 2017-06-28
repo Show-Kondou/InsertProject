@@ -52,10 +52,13 @@ public class GameStartButton : MonoBehaviour
             // 経過時間が移動時間より小さい間
             if (fElapsedTime <= fMoveTime)
             {
-                // 背景を移動
-                TitleBG.transform.localPosition = Vector3.MoveTowards(TitleBG.transform.localPosition, 
-                                                                      TitleBG.transform.localPosition - new Vector3(0, fMovePosY, 0), 
-                                                                      fMoveSpeed * Time.deltaTime);
+                //// 背景を移動
+                //TitleBG.transform.localPosition = Vector3.MoveTowards(TitleBG.transform.localPosition, 
+                //                                                      TitleBG.transform.localPosition - new Vector3(0, fMovePosY, 0), 
+                //                                                      fMoveSpeed * Time.deltaTime);
+                float z = TitleBG.transform.position.z - fMovePosY;
+                TitleBG.transform.SetZ( z );
+
             }
             else
             {
