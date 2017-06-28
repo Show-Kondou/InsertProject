@@ -9,6 +9,8 @@ public class FadeResult : MonoBehaviour
     [SerializeField]
     ResultManager CResultManager;
     [SerializeField]
+    ClearProduction CClearProduction;
+    [SerializeField]
     float FadeValue = 0.7f;
 
     float Alpha = 0f;                   //アルファ値
@@ -27,7 +29,7 @@ public class FadeResult : MonoBehaviour
     void Update()
     {
         //リザルト開始
-        if (CResultManager.bResultStart)
+        if (CResultManager.bResultStart || CResultManager.bGameOver)
             FadeIn();
     }
 

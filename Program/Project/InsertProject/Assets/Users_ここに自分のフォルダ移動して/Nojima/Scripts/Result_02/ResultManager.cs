@@ -5,7 +5,9 @@ using UnityEngine;
 public class ResultManager : MonoBehaviour {
 
     public bool bResultStart = false;   //リザルトスタート
-    public bool bGameOver = false; 
+    public bool bGameOver = false;
+    [System.NonSerialized]
+    public bool bResultMenu = false;
 
     [SerializeField]
     Canvas CCanvas;                     //キャンバスのサイズ取得用
