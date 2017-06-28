@@ -11,6 +11,7 @@ TagManager:
   - Ally
   - Fever
   - Big
+  - Boss
   layers:
   - Default
   - TransparentFX

@@ -2,15 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossDamage : CSSandwichObject 
+public class BossDamage : MonoBehaviour 
 {
     Animator animator;  // アニメーター
 
     // ----- プライベート変数 -----
     [SerializeField]
-    private int nHitPoint;      // ボスのヒットポイント
+    private float fHitPoint;      // ボスのヒットポイント
 
     private int nDamageUP = 0;  // ダメージアップ
+
+    // ===== ボスのHPをゲットする関数 =====
+    public float GetBossHitPoint()
+    {
+        return fHitPoint;
+    }
+
+    // ===== ボスのHPをセットする関数 =====
+    public void SetBossHitPoint(float hp)
+    {
+        fHitPoint = hp;
+    }
 
     // ===== ダメージを受けた（挟まれた）時の関数 =====
     public void BossHitDamage()
@@ -26,25 +38,19 @@ public class BossDamage : CSSandwichObject
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("BrainControl") == true || animator.GetCurrentAnimatorStateInfo(0).IsName("Summon") == true)
             animator.SetTrigger("Cancel");
 
-        //nHitPoint -= (1 * 小スライムが挟まれた数) + (3 * 大スライムが挟まれた数) + nDamageUP（味方スライムの総数）;
+        
+        //nHitPoint -= (1 * 小スライムが挟まれた数) + (3 * 大スライムが挟まれた数) + nDamageUP（味方スライムの挟まれた総数）;
     }
 
 	// ===== スタート関数 =====
 	void Start () 
     {
         // アニメーターを格納
-        animator = GetComponent<Animator>();		
-
+        animator = GetComponent<Animator>();
 	}
 	
 	// ===== 更新関数 =====
 	void Update () 
     {
-
-	}
-
-	public override void SandwichedAction() {
-		base.SandwichedAction();
-		BossHitDamage();
 	}
 }
