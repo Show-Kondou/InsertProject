@@ -7,7 +7,8 @@ public class EnemyGauge : MonoBehaviour
 {
     //定数
     const float ADD_DAMAGE = 2f;//ダメージ量
-    protected const float MAX_HP = 4f;
+    [SerializeField]
+    protected float MAX_HP = 0f;
     const float LimitHP = 100f;
 
     //変数
@@ -27,6 +28,7 @@ public class EnemyGauge : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        SetHP(100f);
         GaugeImage = EnemyGaugeImg.GetComponent<Image>();
         GaugeTransform = EnemyGaugeImg.GetComponent<RectTransform>();
         EnemyHP = EnemyHP / MAX_HP;
@@ -81,5 +83,10 @@ public class EnemyGauge : MonoBehaviour
         //ゲージ少なめ
         if (EnemyHP <= low_hp)
             GaugeImage.color = new Color(1f, 0f, 0f);
+    }
+
+    public void SetHP(float HP)
+    {
+        MAX_HP = HP;
     }
 }
