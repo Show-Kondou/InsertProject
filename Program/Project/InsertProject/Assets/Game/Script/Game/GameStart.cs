@@ -20,6 +20,10 @@ public class GameStart : MonoBehaviour {
 
     private int drawCnt = 0;
 
+    private float posz;
+    [SerializeField]
+    private float zrange = 0.0F;
+
     // Use this for initialization
     void Start () {
         var image = GetComponent<Image>();
@@ -29,21 +33,33 @@ public class GameStart : MonoBehaviour {
         myImage = image;
         myImage.sprite = Ready;
         Time.timeScale = 0.0F;
+        posz = myImage.rectTransform.localPosition.z;
 	}
 	
 	// Update is called once per frame
 	void Update () {
         float p = nowTime / time;
-        Debug.Log(p);
+
+
         var col = myImage.color;
         col.a = p;
         myImage.color = col;
+
+        var pos = myImage.rectTransform.localPosition;
+        pos.z = posz + zrange * p;
+        myImage.rectTransform.localPosition = pos;
 
         nowTime += Time.unscaledDeltaTime;
 
         if ( 1.0F <= p ) {
             nowTime = 0.0F;
             drawCnt++;
+            pos = myImage.rectTransform.localPosition;
+            pos.z = posz;
+            myImage.rectTransform.localPosition = pos;
+            col = myImage.color;
+            col.a = 0.0F;
+            myImage.color = col;
             myImage.sprite = Go;
         }
         if ( drawCnt >= 2 ) {
