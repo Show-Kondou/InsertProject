@@ -38,6 +38,7 @@ public class FiverGauge : MonoBehaviour {
 	{
 		PlayerGauge += add_fiver;
 		FiverImg.fillAmount = PlayerGauge / MAX_GAUGE;
+		CSoundManager.Instance.PlaySE( AUDIO_LIST.SE_FEVER_UP );
 		if(bFullTank)  //ゲージが満タンになった後に挟まれた時
 			bFiver = true;
 	}
@@ -51,6 +52,7 @@ public class FiverGauge : MonoBehaviour {
         if (PlayerGauge >= MAX_GAUGE)
         {
             bFullTank = true;
+			CSoundManager.Instance.PlaySE( AUDIO_LIST.SE_FEVER_FULL );
             FiverImg.material.color = new Color(0f, 1f, 0f);    //緑
 			CSSandwichObjManager.Instance.CreateSandwichObj( CSSandwichObjManager.SandwichObjType.FeverSlime, transform.position );
 		}
