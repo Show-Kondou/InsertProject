@@ -47,7 +47,7 @@ public class CSoundManager : MonoBehaviour {
 
 	// ===== 定数 ====
 	private const int BGM_CHANNEL = 2;
-	private const int SE_CHANNEL  = 20;
+	private const int SE_CHANNEL  = 10;
 
 	// ===== メンバ =====
 	// オーディオクリップデータ
@@ -130,16 +130,51 @@ public class CSoundManager : MonoBehaviour {
 	//
 	public void PlaySE( AUDIO_LIST value, bool isOneShot = true ) {
 		foreach( var i in m_SEChannel ) {
-			if( !i.isPlaying ) {
+			//if( value == AUDIO_LIST.SE_MAGICWALL_GATTAI ) {
+			//	Debug.Log( "合体" );
+			//}
+
+
+			if( i.isPlaying ) {
+				Debug.Log( "だぶり？" );
+				if( i.clip == null )　continue;
+				if( i.clip.name == m_AudioList[(int)value].name ) {
+					i.Stop();
+					i.Play();
+					Debug.Log("だぶり");
+					return;
+				}
+				continue;
+			} else {
 				if( isOneShot ) {
 					i.PlayOneShot( m_AudioList[(int)value] );
-				}else {
+				} else {
 					i.clip = m_AudioList[(int)value];
 					i.loop = false;
 					i.Play();
 				}
 				return;
 			}
+		}
+	}
+
+	/// <summary>
+	/// 同じ音が流れないようにし、同じ音なら
+	/// </summary>
+	/// <param name="value"></param>
+	/// <returns></returns>
+	private bool CheckAudio( AudioSource check, AUDIO_LIST value ) {
+		if( !check.isPlaying ) return false;
+		Debug.Log( check.clip.name + m_AudioList[(int)value].name );
+
+		if( check.name == m_AudioList[(int)value].name ) {
+			Debug.Log( check.name + m_AudioList[(int)value].name );
+			check.Stop();
+			check.Play();
+			Debug.Log("だぶり");
+			return false;
+		}else {
+			return true;
 		}
 	}
 

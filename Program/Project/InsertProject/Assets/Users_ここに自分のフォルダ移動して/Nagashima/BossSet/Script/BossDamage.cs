@@ -26,15 +26,7 @@ public class BossDamage : CSSandwichObject
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("BrainControl") == true || animator.GetCurrentAnimatorStateInfo(0).IsName("Summon") == true)
             animator.SetTrigger("Cancel");
 
-        // ダメージ計算
-        //if(味方スライムの数 >= 3 && 味方スライムの数 < 5)
-        //  nDamegeUP = 1;
-        //if(味方スライムの数 >= 5 && 味方スライムの数 < 10)
-        //  nDamageUP = 3;
-        //if(味方スライムの数 >= 10)
-        //  nDamageUP = 5;
-
-        //nHitPoint -= (1 * 小スライムが挟まれた数) + (3 * 大スライムが挟まれた数) + nDamageUP;
+        //nHitPoint -= (1 * 小スライムが挟まれた数) + (3 * 大スライムが挟まれた数) + nDamageUP（味方スライムの総数）;
     }
 
 	// ===== スタート関数 =====
@@ -48,6 +40,7 @@ public class BossDamage : CSSandwichObject
 	// ===== 更新関数 =====
 	void Update () 
     {
+
 	}
 
 	public override void SandwichedAction() {

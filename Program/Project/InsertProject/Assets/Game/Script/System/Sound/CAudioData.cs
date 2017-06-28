@@ -1,5 +1,4 @@
-﻿
-//_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+﻿//_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 //
 //  [CAudioData]
 //
@@ -49,6 +48,7 @@ public enum AUDIO_LIST {
 	SE_MAGICWALL_POP,               // 魔法壁生成SE
 	SE_MAGICWALL_GATTAI,				// 魔法壁生成SE
 	SE_SLIME_CONVERT,
+	SE_SLIME_JUMP,
 	SE_SLIME_OVER,					// スライムの数が多い警告音
 
 	/* 最大数 */
@@ -98,6 +98,7 @@ public class CAudioData {
 		"SE_MAGICWALL_POP",				// 魔法壁生成SE
 		"SE_MAGICWALL_GATTAI",				// 魔法壁生成SE
 		"SE_SLIME_CONVERT",
+		"SE_SLIME_JUMP",
 		"SE_SLIME_OVER",					// スライムの数が多い警告音
 		null,
 	};
@@ -136,4 +137,21 @@ public class CAudioData {
 		return FILE_PATH + m_FileName[value];
 	}
 
+
+
+	/// <summary>
+	/// おっぱい
+	/// </summary>
+	/// <param name="a"></param>
+	/// <param name="b"></param>
+	/// <returns></returns>
+	int hogo( int a, float b ) {
+		return (int)(a / b);
+	}
+
 }
+
+
+
+
+

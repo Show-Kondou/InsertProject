@@ -185,7 +185,11 @@ MonoBehaviour:
   NothingLifeTime: 1
   pointMng: {fileID: 0}
   m_part: {fileID: 0}
+<<<<<<< HEAD
   m_FeverGageEffect: {fileID: 114096681874937334, guid: ddf4c49284e18e0409aee5364f2dfad5,
+=======
+  m_FeverGageEffect: {fileID: 114402049527198866, guid: 7ecb745f475d28541a30ad00884547cb,
+>>>>>>> origin/develop
     type: 2}
   m_EffectCanvas: {fileID: 0}
 --- !u!137 &137185797727682444

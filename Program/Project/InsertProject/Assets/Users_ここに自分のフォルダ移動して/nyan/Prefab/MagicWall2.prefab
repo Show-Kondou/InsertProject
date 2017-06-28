@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33155984815667354}
   - component: {fileID: 23396810287521976}
   - component: {fileID: 114139947158505638}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pSolid1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 33383912760747566}
   - component: {fileID: 23934809452769206}
   - component: {fileID: 114837614537386572}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pSolid3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 50005210213550786}
   - component: {fileID: 61128398335488708}
   - component: {fileID: 61335031484342444}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MagicWall2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 33965158830491690}
   - component: {fileID: 23001188724840836}
   - component: {fileID: 114306623140675574}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pSolid2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 33202919814974592}
   - component: {fileID: 23733307746973532}
   - component: {fileID: 114280756527686654}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Big
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 4044671895329516}
   - component: {fileID: 33333316352619738}
   - component: {fileID: 23135443268189952}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 4049346131234838}
   - component: {fileID: 33256813384709456}
   - component: {fileID: 23386259546139962}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RingS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 33883866904733282}
   - component: {fileID: 23680597143440564}
   - component: {fileID: 114949208817466896}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -687,7 +687,7 @@ MonoBehaviour:
   fContainer: 0
   fDistance: 0
   bMoveFirst: 0
-  nSummonTime: 72
+  nSummonTime: 36
   bVisible: 0
   gSummonPrefab: {fileID: 1818054605450882, guid: 5581eeb73f894394bab09662071351ff,
     type: 2}
