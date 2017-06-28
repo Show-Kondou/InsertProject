@@ -6,8 +6,6 @@ public class BossMove : MonoBehaviour
 {
     // ----- プライベート変数 -----
     [SerializeField]
-    private Camera MainCamera;              // メインカメラ
-    [SerializeField]
     private float fMoveSpeed = 0;
     [SerializeField]
     private float fFloatSpeed = 0;
@@ -17,6 +15,8 @@ public class BossMove : MonoBehaviour
     private float RotateSpeed = 0;
     [SerializeField]
     private int nMoveNum = 0;
+
+    private GameObject MainCamera;          // メインカメラ
 
     private Vector3 BossStartPos;
 
@@ -40,6 +40,8 @@ public class BossMove : MonoBehaviour
 	// ===== スタート関数 =====
 	void Start () 
     {
+        MainCamera = GameObject.Find("Main Camera");
+
         _BossEmergency = this.GetComponent<BossEmergency>();
         BossStartPos = Vector3.zero;
 

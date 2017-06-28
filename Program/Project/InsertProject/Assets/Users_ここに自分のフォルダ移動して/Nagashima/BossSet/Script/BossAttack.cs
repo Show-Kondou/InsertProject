@@ -7,8 +7,8 @@ public class BossAttack : MonoBehaviour
     Animator animator;  // アニメーター
 
     // ----- プライベート変数 -----
-    [SerializeField]
-    private Camera MainCamera;              // メインカメラ
+    private GameObject MainCamera;                          // メインカメラ
+
     [SerializeField]
     private int nScreenWidth;
     [SerializeField]
@@ -33,12 +33,12 @@ public class BossAttack : MonoBehaviour
     [SerializeField]
     private List<GameObject> m_AllySlimeObj = new List<GameObject>(); // 洗脳する味方スライムを格納するリスト
 
-    private bool bOneControl = false;                               // 洗脳攻撃のフラグ
+    private bool bOneControl = false;                                 // 洗脳攻撃のフラグ
 
     [SerializeField]
-    private int AttackNum = 0;                              // 攻撃パターンの番号
+    private int AttackNum = 0;                                        // 攻撃パターンの番号
     [SerializeField]
-    private float AttackInterval = 0;                       // 一回の攻撃間隔
+    private float AttackInterval = 0;                                 // 一回の攻撃間隔
 
     [SerializeField]
     private float WaitTime = 0;
@@ -50,6 +50,8 @@ public class BossAttack : MonoBehaviour
 	// ===== スタート関数 =====
 	void Start () 
     {
+        MainCamera = GameObject.Find("Main Camera");
+
         // アニメーターを格納
         animator = GetComponent<Animator>();
 

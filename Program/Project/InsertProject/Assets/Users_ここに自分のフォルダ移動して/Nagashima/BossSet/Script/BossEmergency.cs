@@ -7,8 +7,7 @@ public class BossEmergency : MonoBehaviour
     Animator animator;  // アニメーター
 
     // ----- プライベート変数 -----
-    [SerializeField]
-    private Camera MainCamera;              // メインカメラ
+    private GameObject MainCamera;          // メインカメラ
 
     private GameObject DevilEffectObj;      // 魔法陣オブジェクト
 
@@ -42,14 +41,16 @@ public class BossEmergency : MonoBehaviour
 	// ===== スタート関数 =====
 	void Start () 
     {
+        MainCamera = GameObject.Find("Main Camera");
+
         // アニメーターを格納
         animator = GetComponent<Animator>();
 
-        DevilEffectObj = GameObject.Find("BossSet").transform.FindChild("DevilEffect").gameObject;
+        DevilEffectObj = GameObject.Find("BossSet(Clone)").transform.FindChild("DevilEffect").gameObject;
 
         CameraStartPos = MainCamera.transform.localPosition;
 
-        BossStartPos = GameObject.Find("BossSet").transform.localPosition;
+        BossStartPos = GameObject.Find("BossSet(Clone)").transform.localPosition;
 	}
 	
 	// ===== 更新関数 =====
