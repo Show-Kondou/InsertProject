@@ -167,7 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 0
   m_PressRangeLow: 0
-  m_WaitTime: 180
+  m_WaitTime: 3
   m_MoveSpped: 2
   m_JumpPower: 3
   m_Rotation: 90

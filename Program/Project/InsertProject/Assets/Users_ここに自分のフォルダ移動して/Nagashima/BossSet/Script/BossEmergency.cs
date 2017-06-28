@@ -74,7 +74,7 @@ public class BossEmergency : MonoBehaviour
         // カメラが移動し終わったら
         if (MainCamera.transform.localPosition.y >= BossStartPos.y - 2.5f)
         {
-            if (bDevilEffect)
+            if (bDevilEffect && DevilEffectObj)
             {
                 DevilEffectObj.SetActive(true); // 魔法陣の出現
 
