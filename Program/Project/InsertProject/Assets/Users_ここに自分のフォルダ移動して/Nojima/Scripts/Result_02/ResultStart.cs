@@ -41,7 +41,7 @@ public class ResultStart : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (CResultManager.bResultMenu || CResultManager.bGameOver)
+        if (CResultManager.bResultMenu || CResultManager.bGameOver || CResultManager.bTimeOverEnd)
         {
             TextureExpansion(); //テクスチャ拡大処理
             WallMove();         //マジックウォールの移動処理

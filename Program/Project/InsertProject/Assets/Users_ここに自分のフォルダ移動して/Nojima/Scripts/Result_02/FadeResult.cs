@@ -29,7 +29,7 @@ public class FadeResult : MonoBehaviour
     void Update()
     {
         //リザルト開始
-        if (CResultManager.bResultStart || CResultManager.bGameOver)
+        if (CResultManager.bResultStart || CResultManager.bGameOver || CResultManager.bTimeOver)
             FadeIn();
     }
 
