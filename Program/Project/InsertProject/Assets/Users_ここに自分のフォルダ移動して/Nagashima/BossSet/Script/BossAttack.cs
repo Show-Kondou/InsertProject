@@ -45,8 +45,7 @@ public class BossAttack : MonoBehaviour
 
     private BossEmergency _BossEmergency;   // ボス出現スクリプト
 
-    [SerializeField]
-    private GameObject Particletest;    // Particleテスト用
+    private GameObject ParticleManagerObj;  // パーティクルマネージャー
 
 	// ===== スタート関数 =====
 	void Start () 
@@ -62,6 +61,8 @@ public class BossAttack : MonoBehaviour
         StartSummonNum = SummonNum;
 
         _BossEmergency = this.GetComponent<BossEmergency>();
+
+        ParticleManagerObj = GameObject.Find("Managers").transform.FindChild("ParticleManager").gameObject;
     }
 	
 	// ===== 更新関数 =====
@@ -136,18 +137,20 @@ public class BossAttack : MonoBehaviour
                         if (m_AllySlimeObj.Count == 1)
                         {
                             // 洗脳処理
+                            m_AllySlimeObj[0].GetComponent<CSlimeMove>().ChangeSlimeState(CSlimeMove.SLIME_TYPE.Enemy);
 
-                            // 洗脳対象位置にパーティクルを出現させる（テスト）
-                            Instantiate(Particletest, new Vector3(m_AllySlimeObj[0].transform.localPosition.x, m_AllySlimeObj[0].transform.localPosition.y, m_AllySlimeObj[0].transform.localPosition.z - 0.3f), Quaternion.identity);
+                            // 洗脳対象位置にパーティクルを出現させる
+                            ParticleManagerObj.GetComponent<CSParticleManager>().Play(CSParticleManager.PARTICLE_TYPE.BrainWashAttack, new Vector3(m_AllySlimeObj[0].transform.localPosition.x, m_AllySlimeObj[0].transform.localPosition.y, m_AllySlimeObj[0].transform.localPosition.z - 0.3f));
                         }
                         if (m_AllySlimeObj.Count >= 2)
                         {
-                            // 洗脳処理
-
-                            // 洗脳対象位置にパーティクルを出現させる（テスト）
-                            Instantiate(Particletest, new Vector3(m_AllySlimeObj[0].transform.localPosition.x, m_AllySlimeObj[0].transform.localPosition.y, m_AllySlimeObj[0].transform.localPosition.z - 0.3f), Quaternion.identity);
-                            Instantiate(Particletest, new Vector3(m_AllySlimeObj[1].transform.localPosition.x, m_AllySlimeObj[1].transform.localPosition.y, m_AllySlimeObj[1].transform.localPosition.z - 0.3f), Quaternion.identity);
-
+                            for (int i = 0; i < 2; i++)
+                            {
+                                // 洗脳処理
+                                m_AllySlimeObj[i].GetComponent<CSlimeMove>().ChangeSlimeState(CSlimeMove.SLIME_TYPE.Enemy);
+                                // 洗脳対象位置にパーティクルを出現させる（テスト）
+                                ParticleManagerObj.GetComponent<CSParticleManager>().Play(CSParticleManager.PARTICLE_TYPE.BrainWashAttack, new Vector3(m_AllySlimeObj[i].transform.localPosition.x, m_AllySlimeObj[i].transform.localPosition.y, m_AllySlimeObj[i].transform.localPosition.z - 0.3f));
+                            }
                         }
 
                         m_AllySlimeObj.Clear(); // リスト内を削除
