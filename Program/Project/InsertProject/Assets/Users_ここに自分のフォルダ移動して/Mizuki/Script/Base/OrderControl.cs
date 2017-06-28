@@ -53,7 +53,7 @@ public class OrderControl : MonoBehaviour {
 	public void AddList(ObjectBase newObj) {
 		int i;				// ループ用
 		bool match = false;	// マッチフラグ
-		// 使っていないIDの検索
+		// 使っていないIDの検索、リストへの追加
 		for(i = 0; i < m_ObjList.Count; i++, match = false) {
 			foreach(ObjectBase Obj in m_ObjList) {
 				if(Obj.ID == i) {

@@ -93,6 +93,9 @@ public class Press : MonoBehaviour {
 
         //CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.MagicWallEmarg, transform.position);
 
+        //生成時にシェーダーを変更
+        
+
     }
 
     //void Create()
@@ -275,9 +278,12 @@ public class Press : MonoBehaviour {
             }
 
             //当たった相手がスライムだったら
-            if (collider.gameObject.tag == "Enemy")
+            if (collider.gameObject.tag == "Enemy" && gParentObj.GetComponent<line>().bSLineS == true ||
+                collider.gameObject.tag == "Ally"  && gParentObj.GetComponent<line>().bSLineS == true)
             {
+                //当たった相手を子オブジェクトにして座標も弄る
                 collider.transform.parent = transform;
+                collider.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
             }
         }
 
@@ -287,7 +293,7 @@ public class Press : MonoBehaviour {
             if (collider.gameObject.tag == "Big")
             {
                 //ぬるぬる属性をtrue
-                gParentObj.GetComponent<line>().bSLineS = true;
+                gParentObj.GetComponent<line>().bSLineE = true;
                 //touchのぬるぬるカウントを最大数に
                 gTouchObj = GameObject.Find("Touch");
                 gTouchObj.GetComponent<touch>().nSTouchCntE = 2;
@@ -296,9 +302,12 @@ public class Press : MonoBehaviour {
             }
 
             //当たった相手がスライムだったら
-            if (collider.gameObject.tag == "Enemy")
+            if (collider.gameObject.tag == "Enemy" && gParentObj.GetComponent<line>().bSLineE == true ||
+                collider.gameObject.tag == "Ally"  && gParentObj.GetComponent<line>().bSLineE == true)
             {
+                //当たった相手を子オブジェクトにして座標も弄る
                 collider.transform.parent = transform;
+                collider.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
             }
         }
     }

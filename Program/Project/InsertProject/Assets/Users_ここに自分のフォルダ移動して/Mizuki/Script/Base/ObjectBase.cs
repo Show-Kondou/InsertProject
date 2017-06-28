@@ -33,7 +33,7 @@ public class ObjectBase : MonoBehaviour {
 	}
 
 	// Use this for initialization
-	void Awake () {
+	void Start () {
         ObjectManager.Instance.RegistrationList(this,m_OrderNumber);
 	}
 	

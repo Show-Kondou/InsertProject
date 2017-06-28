@@ -29,7 +29,6 @@ public class FeverGageEffect : ObjectBase {
 			m_Direction = -1.0f;
 		else
 			m_Direction = 1.0f;
-		Debug.Log(rectTransform.position);
 	}
 
 	public override void Execute(float deltaTime) {

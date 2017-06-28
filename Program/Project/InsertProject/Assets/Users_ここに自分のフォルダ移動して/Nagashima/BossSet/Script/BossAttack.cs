@@ -8,6 +8,8 @@ public class BossAttack : MonoBehaviour
 
     // ----- プライベート変数 -----
     [SerializeField]
+    private Camera MainCamera;              // メインカメラ
+    [SerializeField]
     private int nScreenWidth;
     [SerializeField]
     private int nScreenHeight;
@@ -41,6 +43,8 @@ public class BossAttack : MonoBehaviour
     [SerializeField]
     private float WaitTime = 0;
 
+    private BossEmergency _BossEmergency;   // ボス出現スクリプト
+
     [SerializeField]
     private GameObject Particletest;    // Particleテスト用
 
@@ -56,105 +60,110 @@ public class BossAttack : MonoBehaviour
 
         // 初めの召喚回数
         StartSummonNum = SummonNum;
+
+        _BossEmergency = this.GetComponent<BossEmergency>();
     }
 	
 	// ===== 更新関数 =====
     void Update()
     {
-        AttackInterval += Time.deltaTime;
-
-        // 10秒毎にどちらかの攻撃を実行
-        if (AttackInterval >= 10.0f)
+        if (_BossEmergency.GetBossAttack() == true && MainCamera.transform.localPosition.y <= _BossEmergency.GetCameraStartPos().y)
         {
-            this.GetComponent<BossMove>().SetMoveNum(0);    // ボスを停止させる
+            AttackInterval += Time.deltaTime;
 
-            AttackNum = Random.Range(1, 3);                 // 召喚か洗脳を行う
-            AttackInterval = 0.0f;
-        }
+            // 10秒毎にどちらかの攻撃を実行
+            if (AttackInterval >= 10.0f)
+            {
+                this.GetComponent<BossMove>().SetMoveNum(0);    // ボスを停止させる
 
-        switch (AttackNum)
-        {
-            case 1: // 召喚
-			CSoundManager.Instance.PlaySE( AUDIO_LIST.SE_BOSS_ATTACK_SLIME,false );
-                WaitTime += Time.deltaTime; // ボスが停止している時間
+                AttackNum = Random.Range(1, 3);                 // 召喚か洗脳を行う
+                AttackInterval = 0.0f;
+            }
 
-                if (!bWormhole)
-                {
-                    animator.SetTrigger("Summon");
+            switch (AttackNum)
+            {
+                case 1: // 召喚
+                    CSoundManager.Instance.PlaySE(AUDIO_LIST.SE_BOSS_ATTACK_SLIME);
+                    WaitTime += Time.deltaTime; // ボスが停止している時間
 
-                    Instantiate(WormholeObj, new Vector2(Random.Range(-2, 3), Random.Range(-4, 5)), Quaternion.identity); // ワームホール生成
-                    WormholePos = GameObject.Find("Wormhole(Clone)").transform.localPosition;                             // ワームホールの座標を格納
-                    bWormhole = true;
-                }
-
-                SummonIntervalTime += Time.deltaTime;
-                
-                // 召喚間隔毎に召喚
-                if (SummonIntervalTime >= SummonOneTime && SummonNum > 0)
-                {
-                    SummonNum--;
-                    SummonIntervalTime = 0.0f;
-                
-                    CSSandwichObjManager.Instance.CreateSandwichObj(0, new Vector2(WormholePos.x, WormholePos.y));  // ワームホールの上にスライム生成
-                    
-                    // 全ての召喚が終わったら
-                    if (SummonNum == 0)
+                    if (!bWormhole)
                     {
-                        SummonNum = StartSummonNum;
-                        bWormhole = false;               
-                        Destroy(GameObject.Find("Wormhole(Clone)"));
+                        animator.SetTrigger("Summon");
+
+                        Instantiate(WormholeObj, new Vector2(Random.Range(-2, 3), Random.Range(-4, 5)), Quaternion.identity); // ワームホール生成
+                        WormholePos = GameObject.Find("Wormhole(Clone)").transform.localPosition;                             // ワームホールの座標を格納
+                        bWormhole = true;
+                    }
+
+                    SummonIntervalTime += Time.deltaTime;
+
+                    // 召喚間隔毎に召喚
+                    if (SummonIntervalTime >= SummonOneTime && SummonNum > 0)
+                    {
+                        SummonNum--;
+                        SummonIntervalTime = 0.0f;
+
+                        CSSandwichObjManager.Instance.CreateSandwichObj(0, new Vector2(WormholePos.x, WormholePos.y));  // ワームホールの上にスライム生成
+
+                        // 全ての召喚が終わったら
+                        if (SummonNum == 0)
+                        {
+                            SummonNum = StartSummonNum;
+                            bWormhole = false;
+                            Destroy(GameObject.Find("Wormhole(Clone)"));
+                            AttackNum = 0;
+                        }
+                    }
+
+                    if (WaitTime >= animator.GetCurrentAnimatorStateInfo(0).length)
+                    {
+                        this.GetComponent<BossMove>().SetMoveNum(Random.Range(1, 3));    // ボスを動かす
+                        WaitTime = 0.0f;
+                    }
+
+                    break;
+                case 2: // 洗脳
+                    CSoundManager.Instance.PlaySE(AUDIO_LIST.SE_BOSS_ATTACK_BRAINWASHING);
+
+                    WaitTime += Time.deltaTime; // ボスが停止している時間
+
+                    if (!bOneControl)
+                    {
+                        animator.SetTrigger("BrainControl");
+
+                        m_AllySlimeObj.AddRange(GameObject.FindGameObjectsWithTag("Ally"));    // 洗脳対象の味方スライムをリストに格納
+
+                        if (m_AllySlimeObj.Count == 1)
+                        {
+                            // 洗脳処理
+
+                            // 洗脳対象位置にパーティクルを出現させる（テスト）
+                            Instantiate(Particletest, new Vector3(m_AllySlimeObj[0].transform.localPosition.x, m_AllySlimeObj[0].transform.localPosition.y, m_AllySlimeObj[0].transform.localPosition.z - 0.3f), Quaternion.identity);
+                        }
+                        if (m_AllySlimeObj.Count >= 2)
+                        {
+                            // 洗脳処理
+
+                            // 洗脳対象位置にパーティクルを出現させる（テスト）
+                            Instantiate(Particletest, new Vector3(m_AllySlimeObj[0].transform.localPosition.x, m_AllySlimeObj[0].transform.localPosition.y, m_AllySlimeObj[0].transform.localPosition.z - 0.3f), Quaternion.identity);
+                            Instantiate(Particletest, new Vector3(m_AllySlimeObj[1].transform.localPosition.x, m_AllySlimeObj[1].transform.localPosition.y, m_AllySlimeObj[1].transform.localPosition.z - 0.3f), Quaternion.identity);
+
+                        }
+
+                        m_AllySlimeObj.Clear(); // リスト内を削除
+                        bOneControl = true;
+                    }
+
+                    if (WaitTime >= animator.GetCurrentAnimatorStateInfo(0).length)
+                    {
+                        this.GetComponent<BossMove>().SetMoveNum(Random.Range(1, 3));    // ボスを動かす
                         AttackNum = 0;
-                    }
-                }
-
-                if (WaitTime >= animator.GetCurrentAnimatorStateInfo(0).length)
-                {
-                    this.GetComponent<BossMove>().SetMoveNum(Random.Range(1, 3));    // ボスを動かす
-                    WaitTime = 0.0f;
-                }
-
-                break;
-            case 2: // 洗脳
-			CSoundManager.Instance.PlaySE( AUDIO_LIST.SE_BOSS_ATTACK_BRAINWASHING );
-
-			WaitTime += Time.deltaTime; // ボスが停止している時間
-
-                if (!bOneControl)
-                {
-                    animator.SetTrigger("BrainControl");
-
-                    m_AllySlimeObj.AddRange(GameObject.FindGameObjectsWithTag("Ally"));    // 洗脳対象の味方スライムをリストに格納
-
-                    if (m_AllySlimeObj.Count == 1)
-                    {
-                        // 洗脳処理
-
-                        // 洗脳対象位置にパーティクルを出現させる（テスト）
-                        Instantiate(Particletest, new Vector3(m_AllySlimeObj[0].transform.localPosition.x, m_AllySlimeObj[0].transform.localPosition.y, m_AllySlimeObj[0].transform.localPosition.z - 0.3f), Quaternion.identity);
-                    }
-                    if (m_AllySlimeObj.Count >= 2)
-                    {
-                        // 洗脳処理
-
-                        // 洗脳対象位置にパーティクルを出現させる（テスト）
-                        Instantiate(Particletest, new Vector3(m_AllySlimeObj[0].transform.localPosition.x, m_AllySlimeObj[0].transform.localPosition.y, m_AllySlimeObj[0].transform.localPosition.z - 0.3f), Quaternion.identity);
-                        Instantiate(Particletest, new Vector3(m_AllySlimeObj[1].transform.localPosition.x, m_AllySlimeObj[1].transform.localPosition.y, m_AllySlimeObj[1].transform.localPosition.z - 0.3f), Quaternion.identity);
-
+                        WaitTime = 0.0f;
+                        bOneControl = false;
                     }
 
-                    m_AllySlimeObj.Clear(); // リスト内を削除
-                    bOneControl = true;
-                }
-
-                if (WaitTime >= animator.GetCurrentAnimatorStateInfo(0).length)
-                {
-                    this.GetComponent<BossMove>().SetMoveNum(Random.Range(1, 3));    // ボスを動かす
-                    AttackNum = 0;
-                    WaitTime = 0.0f;
-                    bOneControl = false;
-                }
-
-                break;
+                    break;
+            }
         }
     }
 }
