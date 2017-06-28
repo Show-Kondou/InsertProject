@@ -136,12 +136,12 @@ public class CSoundManager : MonoBehaviour {
 
 
 			if( i.isPlaying ) {
-				Debug.Log( "だぶり？" );
+				// Debug.Log( "だぶり？" );
 				if( i.clip == null )　continue;
 				if( i.clip.name == m_AudioList[(int)value].name ) {
 					i.Stop();
 					i.Play();
-					Debug.Log("だぶり");
+					 // Debug.Log("だぶり");
 					return;
 				}
 				continue;
@@ -171,7 +171,7 @@ public class CSoundManager : MonoBehaviour {
 			Debug.Log( check.name + m_AudioList[(int)value].name );
 			check.Stop();
 			check.Play();
-			Debug.Log("だぶり");
+			// Debug.Log("だぶり");
 			return false;
 		}else {
 			return true;
