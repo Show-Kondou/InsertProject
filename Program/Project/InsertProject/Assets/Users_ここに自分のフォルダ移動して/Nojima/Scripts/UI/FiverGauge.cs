@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class FiverGauge : MonoBehaviour {
 
     //定数
-    const float ADD_FIVER = 2f;     //フィーバー回復量
     const float MAX_GAUGE = 42f;    //フィーバー最大値
     [SerializeField]
     float FALL_SPEED = 2f;          //ゲージが減るスピード
@@ -15,8 +14,7 @@ public class FiverGauge : MonoBehaviour {
     //変数
     [SerializeField]
     Image FiverImg;
-
-    public bool bAddFiver = false;  //フィーバーフラグ
+	
     bool bFullTank = false;         //ゲージ満タンフラグ
     bool bFiver = false;            //フィーバー中フラグ
     float PlayerGauge = 0f;         //プレイヤーのフィーバー値
@@ -29,25 +27,20 @@ public class FiverGauge : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
-        AddFiver(ADD_FIVER);    //フィーバーゲージ回復    
+    void Update() {  
         Fiver();                //フィーバー中の処理
     }
 
-    /// <summary>
-    /// フィーバーゲージ回復
-    /// </summary>
-    void AddFiver(float add_fiver)
-    {
-        if (bAddFiver)
-        {
-            PlayerGauge += add_fiver;
-            FiverImg.fillAmount = PlayerGauge / MAX_GAUGE;
-            if (bFullTank)  //ゲージが満タンになった後に挟まれた時
-                bFiver = true;
-            bAddFiver = false;
-        }
-    }
+	/// <summary>
+	/// フィーバーゲージ回復
+	/// </summary>
+	public void AddFiver(float add_fiver) 
+	{
+		PlayerGauge += add_fiver;
+		FiverImg.fillAmount = PlayerGauge / MAX_GAUGE;
+		if(bFullTank)  //ゲージが満タンになった後に挟まれた時
+			bFiver = true;
+	}
 
     /// <summary>
     /// フィーバー
