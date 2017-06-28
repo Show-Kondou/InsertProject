@@ -2871,8 +2871,6 @@ MonoBehaviour:
   AttackNum: 0
   AttackInterval: 0
   WaitTime: 0
-  Particletest: {fileID: 1256604827742442, guid: 4077e2e4895544244b7142659bcab481,
-    type: 2}
 --- !u!114 &114364616541330136
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2917,7 +2915,7 @@ MonoBehaviour:
   m_InvincibleTimer: 0
   m_HitIDA: 0
   m_HitIDB: 0
-  m_ObjectID: 0
+  m_SandwichObjectID: 0
   m_bInsert: 0
   nHitPoint: 100
 --- !u!114 &114918158149040900

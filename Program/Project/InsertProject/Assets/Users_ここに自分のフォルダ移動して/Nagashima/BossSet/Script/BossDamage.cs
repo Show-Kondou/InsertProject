@@ -26,7 +26,8 @@ public class BossDamage : CSSandwichObject
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("BrainControl") == true || animator.GetCurrentAnimatorStateInfo(0).IsName("Summon") == true)
             animator.SetTrigger("Cancel");
 
-        //nHitPoint -= (1 * 小スライムが挟まれた数) + (3 * 大スライムが挟まれた数) + nDamageUP（味方スライムの総数）;
+        
+        //nHitPoint -= (1 * 小スライムが挟まれた数) + (3 * 大スライムが挟まれた数) + nDamageUP（味方スライムの挟まれた総数）;
     }
 
 	// ===== スタート関数 =====
