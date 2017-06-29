@@ -62,7 +62,7 @@ public class CSlimeMove : CSSandwichObject {
 			Debug.Log("bigmake");
 		}
 		NothingLifeTimer = NothingLifeTime;
-		m_EffectCanvas = GameObject.Find("UI");	// エフェクト用カンバスを取得
+		m_EffectCanvas = GameObject.Find("EffectCanvas");	// エフェクト用カンバスを取得
 	}
 
 	public override void Execute(float deltaTime) {

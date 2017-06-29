@@ -175,8 +175,11 @@ public class CSSandwichObject : ObjectBase {
 		sameObjList.Clear();
 		foreach(CSSandwichObject obj in CSSandwichObjManager.m_SandwichObjList) {
 			// 自分自身とボスとは判定を取らない
-			if(m_SandwichObjectID == 
+			if(m_SandwichObjectID ==
 				obj.m_SandwichObjectID) {
+				continue;
+			}
+			if(obj.tag == "BOSS") {
 				continue;
 			}
 
