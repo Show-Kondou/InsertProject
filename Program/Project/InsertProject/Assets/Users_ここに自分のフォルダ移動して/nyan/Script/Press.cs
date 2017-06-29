@@ -60,6 +60,9 @@ public class Press : MonoBehaviour {
     public bool bNulnulE;
 
 
+    public GameObject DeathParticle;
+
+
     // Use this for initialization
     void Start () {
 		CSoundManager.Instance.PlaySE(AUDIO_LIST.SE_MAGICWALL, false);
@@ -294,6 +297,11 @@ public class Press : MonoBehaviour {
                 gTouchObj.GetComponent<touch>().nSTouchCntS = 2;
                 Destroy(collider.gameObject);
 
+                //パーティクル生成
+                GameObject par = Instantiate(DeathParticle) as GameObject;
+                par.transform.position = gameObject.transform.position;
+
+
             }
 
             //当たった相手がスライムだったら
@@ -319,6 +327,10 @@ public class Press : MonoBehaviour {
                 gTouchObj = GameObject.Find("Touch");
                 gTouchObj.GetComponent<touch>().nSTouchCntE = 2;
                 Destroy(collider.gameObject);
+
+                //パーティクル生成
+                GameObject par = Instantiate(DeathParticle) as GameObject;
+                par.transform.position = gameObject.transform.position;
 
             }
 
