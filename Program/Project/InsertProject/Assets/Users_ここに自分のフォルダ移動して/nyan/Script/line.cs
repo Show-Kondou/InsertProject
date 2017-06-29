@@ -324,6 +324,17 @@ public class line : MonoBehaviour {
 
         }
 
+        if (bSLineS == true)
+        {
+            _touch.bStickyS = true;
+        }
+        if (bSLineE == true)
+        {
+            _touch.bStickyE = true;
+        }
+
+
+
     }
 
     public void Visible()

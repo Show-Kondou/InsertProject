@@ -303,6 +303,7 @@ public class Press : MonoBehaviour {
                 //当たった相手を子オブジェクトにして座標も弄る
                 collider.transform.parent = transform;
                 collider.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+                collider.GetComponent<CSlimeMove>().m_Sticky = true;
             }
         }
 
@@ -328,6 +329,7 @@ public class Press : MonoBehaviour {
                 //当たった相手を子オブジェクトにして座標も弄る
                 collider.transform.parent = transform;
                 collider.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+                collider.GetComponent<CSlimeMove>().m_Sticky = true;
             }
         }
     }
