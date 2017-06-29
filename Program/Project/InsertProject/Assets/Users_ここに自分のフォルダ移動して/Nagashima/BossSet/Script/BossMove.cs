@@ -54,8 +54,6 @@ public class BossMove : MonoBehaviour
     {
         if (_BossEmergency.GetBossAttack() == true && MainCamera.transform.localPosition.y <= _BossEmergency.GetCameraStartPos().y)
         {
-            //Debug.Log("ムービー用の動き発動中");
-            //return;
             // 上下に移動
             this.transform.localPosition += new Vector3(0.0f, 0.0f, fFloatSpeed) * Time.deltaTime;
 
