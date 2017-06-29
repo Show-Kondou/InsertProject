@@ -179,7 +179,10 @@ public class CSSandwichObject : ObjectBase {
 				obj.m_SandwichObjectID) {
 				continue;
 			}
-			if(obj.tag == "BOSS") {
+			if(obj == null) {
+				continue;
+			}
+			if(obj.tag == "Boss") {
 				continue;
 			}
 

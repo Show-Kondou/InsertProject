@@ -791,7 +791,7 @@ GameObject:
   - component: {fileID: 114572974119798452}
   m_Layer: 9
   m_Name: BossSet
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
