@@ -69,10 +69,10 @@ public class ClearProduction : MonoBehaviour
         if (SlimeCnt >= MAX_SLIME)
         {
             //bStart = false;
-            CResultManager.bResultStart = false;
+            CResultManager.bGameOver = false;
             bUntilMoveTime = true;
         }
-        if (CResultManager.bResultStart)
+        if (CResultManager.bGameOver)
         {
             SlimeIntervalTimeCnt += Time.deltaTime;
 
