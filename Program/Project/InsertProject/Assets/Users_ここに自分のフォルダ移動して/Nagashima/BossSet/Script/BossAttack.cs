@@ -72,7 +72,8 @@ public class BossAttack : MonoBehaviour
     {
         if (_BossEmergency.GetBossAttack() == true && MainCamera.transform.localPosition.y <= _BossEmergency.GetCameraStartPos().y)
         {
-            AttackInterval += Time.deltaTime;
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Damage") == false)  // ダメージモーション中はカウントしない
+                AttackInterval += Time.deltaTime;
 
             // 10秒毎にどちらかの攻撃を実行
             if (AttackInterval >= 10.0f)
