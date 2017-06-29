@@ -2905,7 +2905,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe5bb370e55c833499b99a9fefb27f39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fHitPoint: 5
+  fHitPoint: 15
 --- !u!114 &114572974119798452
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2928,6 +2928,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e57aed1089abaf44aeba6fd28d20fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_OrderNumber: 0
+  m_Using: 1
+  m_ObjectID: 0
   myType: 0
   m_PressRangeLow: 0
   m_WaitTime: 0
