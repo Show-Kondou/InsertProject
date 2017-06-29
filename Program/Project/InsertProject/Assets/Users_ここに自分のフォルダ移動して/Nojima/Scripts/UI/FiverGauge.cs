@@ -18,12 +18,13 @@ public class FiverGauge : MonoBehaviour {
     bool bFullTank = false;         //ゲージ満タンフラグ
     bool bFiver = false;            //フィーバー中フラグ
     float PlayerGauge = 0f;         //プレイヤーのフィーバー値
-
+	private CSSandwichObject obj;
     // Use this for initialization
     void Start() {
         FiverImg.fillAmount = 0f;
         FiverImg.fillAmount = PlayerGauge / MAX_GAUGE;
         FiverImg.material.color = new Color(1f, 1f, 1f);
+		obj = null;
     }
 
     // Update is called once per frame
@@ -53,7 +54,7 @@ public class FiverGauge : MonoBehaviour {
 				bFullTank = true;
 				CSoundManager.Instance.PlaySE(AUDIO_LIST.SE_FEVER_FULL);
 				FiverImg.material.color = new Color(0f, 1f, 0f);    //緑
-				CSSandwichObjManager.Instance.CreateSandwichObj(CSSandwichObjManager.SandwichObjType.FeverSlime, transform.position);
+				obj = CSSandwichObjManager.Instance.CreateSandwichObj(CSSandwichObjManager.SandwichObjType.FeverSlime, transform.position);
 			}
 		}
         //フィーバー中
@@ -63,12 +64,15 @@ public class FiverGauge : MonoBehaviour {
             bFullTank = false;
         }
         //フィーバーゲージゼロ
-        if (PlayerGauge <= 0f)
+        if (bFiver && PlayerGauge < 0f)
         {
             FiverImg.material.color = new Color(1f, 1f, 1f);
             bFiver = false;
-        }
-    }
+			CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.AllySlimeDeath,obj.transform.position);
+			CSSandwichObjManager.Instance.DeleteSandwichObjToList(obj.m_SandwichObjectID);
+			ObjectManager.Instance.DeleteObject(obj.m_OrderNumber, obj.m_ObjectID);             // オブジェクトリストから削除
+		}
+	}
 
     /// <summary>
     /// フィーバーゲージ減少
