@@ -45,8 +45,9 @@ public class EnemyCount : MonoBehaviour
     }
 
 	// ===== スタート関数 =====
-	void Start () 
+	void Start ()
     {
+        CSlimeMove.EnemyNum = 0;
         fEnemyPosY = Mathf.Abs(transform.localPosition.y);
 
         EnemyCntObj = GameObject.Find("EnemyCnt");
