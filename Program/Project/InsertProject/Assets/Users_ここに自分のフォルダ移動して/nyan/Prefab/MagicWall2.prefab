@@ -310,7 +310,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 420c5ef118a70ec45aa26e8f68863970, type: 2}
+  - {fileID: 2100000, guid: 883687066c130894d9afca59a51beb0e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -342,7 +342,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 420c5ef118a70ec45aa26e8f68863970, type: 2}
+  - {fileID: 2100000, guid: 883687066c130894d9afca59a51beb0e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -627,6 +627,9 @@ MonoBehaviour:
   bZMinus: 0
   bDist: 1
   vRotate: {x: 0, y: 0, z: 0}
+  materials:
+  - {fileID: 2100000, guid: 883687066c130894d9afca59a51beb0e, type: 2}
+  - {fileID: 2100000, guid: 9cbb60e9c820cb64a9043b51fcd0a2eb, type: 2}
 --- !u!114 &114280756527686654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -646,6 +649,9 @@ MonoBehaviour:
   bZMinus: 0
   bDist: 1
   vRotate: {x: 0, y: 0, z: 0}
+  materials:
+  - {fileID: 2100000, guid: 883687066c130894d9afca59a51beb0e, type: 2}
+  - {fileID: 2100000, guid: 9cbb60e9c820cb64a9043b51fcd0a2eb, type: 2}
 --- !u!114 &114306623140675574
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -665,6 +671,9 @@ MonoBehaviour:
   bZMinus: 0
   bDist: 0
   vRotate: {x: 0, y: 0, z: 0}
+  materials:
+  - {fileID: 2100000, guid: 883687066c130894d9afca59a51beb0e, type: 2}
+  - {fileID: 2100000, guid: 9cbb60e9c820cb64a9043b51fcd0a2eb, type: 2}
 --- !u!114 &114454519790147850
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -691,6 +700,8 @@ MonoBehaviour:
   bVisible: 0
   gSummonPrefab: {fileID: 1818054605450882, guid: 5581eeb73f894394bab09662071351ff,
     type: 2}
+  bNulnulS: 0
+  bNulnulE: 0
 --- !u!114 &114837614537386572
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -710,6 +721,9 @@ MonoBehaviour:
   bZMinus: 0
   bDist: 1
   vRotate: {x: 0, y: 0, z: 0}
+  materials:
+  - {fileID: 2100000, guid: 883687066c130894d9afca59a51beb0e, type: 2}
+  - {fileID: 2100000, guid: 9cbb60e9c820cb64a9043b51fcd0a2eb, type: 2}
 --- !u!114 &114949208817466896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -729,3 +743,6 @@ MonoBehaviour:
   bZMinus: 0
   bDist: 0
   vRotate: {x: 0, y: 0, z: 0}
+  materials:
+  - {fileID: 2100000, guid: 883687066c130894d9afca59a51beb0e, type: 2}
+  - {fileID: 2100000, guid: 9cbb60e9c820cb64a9043b51fcd0a2eb, type: 2}
