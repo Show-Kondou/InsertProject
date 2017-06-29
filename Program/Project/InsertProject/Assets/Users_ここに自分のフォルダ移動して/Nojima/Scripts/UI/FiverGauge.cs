@@ -37,6 +37,9 @@ public class FiverGauge : MonoBehaviour {
 	/// </summary>
 	public void AddFiver(float add_fiver) 
 	{
+		if(bFiver) {
+			add_fiver = add_fiver * 0.5f;
+		}
 		PlayerGauge += add_fiver;
 		FiverImg.fillAmount = PlayerGauge / MAX_GAUGE;
 		CSoundManager.Instance.PlaySE( AUDIO_LIST.SE_FEVER_UP );
