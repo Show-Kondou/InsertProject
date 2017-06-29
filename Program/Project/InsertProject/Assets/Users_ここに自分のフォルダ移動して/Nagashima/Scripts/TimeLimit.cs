@@ -38,6 +38,9 @@ public class TimeLimit : MonoBehaviour
     // 制限時間測定
     private float fLimitTime = 0.0f;
 
+	// 時間停止
+	public bool bTimeStop = false;
+
     // 時計オブジェクト格納用
     private GameObject ClockObj;
     // タイマーオブジェクト格納用
@@ -69,8 +72,9 @@ public class TimeLimit : MonoBehaviour
     // ===== 更新関数 =====
     void Update()
     {
-        fLimitTime -= Time.deltaTime;
+		if( bTimeStop ) return;
 
+		fLimitTime -= Time.deltaTime;
         if (!bGameOver)
         {
             // 回転
@@ -114,9 +118,15 @@ public class TimeLimit : MonoBehaviour
         }
 
 		if( fLimitTime <= fCreateBossTime && !isCreateBoss ) {
-			BossUI.bStart = true;
+			var bossEvent = GameObject.Find( "BossProduction" );
+			if( !bossEvent ) {
+				Debug.LogError( "ボスイベント取得失敗" );
+			}
+			bossEvent.GetComponent<BossAppearManager>().enabled = true;
+			bossEvent.GetComponent<BossAppearManager>().bStart = true;
 			CSoundManager.Instance.StopBGM();
 			isCreateBoss = true;
+			Debug.Log("ボスUI生成");
 		}
 
     }

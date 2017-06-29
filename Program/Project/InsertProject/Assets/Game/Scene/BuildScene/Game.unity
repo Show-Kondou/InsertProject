@@ -250,6 +250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Ready: {fileID: 21300000, guid: accc07f7bca91ab44880fbb1a64f65d3, type: 3}
   Go: {fileID: 21300000, guid: 728a8c02d5f2fe84a801ff151209c809, type: 3}
+  stopGame: {fileID: 992881027}
   time: 3
   zrange: 100
 --- !u!114 &103962167
@@ -390,13 +391,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e05d1587552ca548b2c037fd081f6be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fOneRoundTime: 15
-  fCreateBossTime: 120
+  fOneRoundTime: 60
+  fCreateBossTime: 10
   BossUI: {fileID: 1130332429}
   resultMgr: {fileID: 1983337268}
   bRotateX: 0
   bRotateY: 0
   bRotateZ: 1
+  bTimeStop: 0
 --- !u!1 &424144798
 GameObject:
   m_ObjectHideFlags: 0
@@ -987,6 +989,7 @@ GameObject:
   m_Component:
   - component: {fileID: 992881025}
   - component: {fileID: 992881026}
+  - component: {fileID: 992881027}
   m_Layer: 0
   m_Name: GameMain
   m_TagString: Untagged
@@ -1018,6 +1021,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8580f59cbbb0f75439d2493607fef065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &992881027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 992881024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01bf00de62344644ca8daf02c57c5d97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLimit: {fileID: 283106713}
+  coll: {fileID: 1836217813}
 --- !u!1001 &1050390694
 Prefab:
   m_ObjectHideFlags: 0
@@ -1744,6 +1760,15 @@ Prefab:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114161575307226442, guid: 8f9679c7b6bcc264cb7e5065ad5b44b2,
+        type: 2}
+      propertyPath: stopGame
+      value: 
+      objectReference: {fileID: 992881027}
+    - target: {fileID: 1585529295760928, guid: 8f9679c7b6bcc264cb7e5065ad5b44b2, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8f9679c7b6bcc264cb7e5065ad5b44b2, type: 2}
   m_IsPrefabParent: 0
@@ -2092,7 +2117,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &1491920051
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2407,9 +2432,19 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114177047255763862, guid: 1a8ada72350adb04ea88eb6ad300bf1d,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1a8ada72350adb04ea88eb6ad300bf1d, type: 2}
   m_IsPrefabParent: 0
+--- !u!65 &1836217813 stripped
+BoxCollider:
+  m_PrefabParentObject: {fileID: 65041747420994628, guid: 8a2c18bf97f7484498f53bca97e93575,
+    type: 2}
+  m_PrefabInternal: {fileID: 275861231}
 --- !u!1001 &1841806971
 Prefab:
   m_ObjectHideFlags: 0

@@ -12,6 +12,10 @@ public class ResultManager : MonoBehaviour {
     [System.NonSerialized]
     public bool bTimeOverEnd = false;
 
+	[Header("ストップイベント"), SerializeField]
+	private StopGame stopGame;
+
+
     [SerializeField]
     Canvas CCanvas;                     //キャンバスのサイズ取得用
     Vector2 CanvasSize;                 //キャンバスのサイズ取得用
@@ -21,11 +25,23 @@ public class ResultManager : MonoBehaviour {
         CanvasSize = CCanvas.GetComponent<RectTransform>().sizeDelta;
         CSoundManager.Instance.StopBGM();
         CSoundManager.Instance.PlayBGM( AUDIO_LIST.BGM_GAMEOVER );
+		if( !stopGame ) {
+			Debug.LogError( "ストップゲームが取得できていない" );
+		}
     }
 
     public Vector2 GetCanvasSize()
     {
         return CanvasSize;
     }
+
+	void Update() {
+		bool isEvent = bResultStart || bTimeOver || bGameOver;
+		if( isEvent ) {
+			stopGame.StopGameEvent();
+		} else {
+			stopGame.StartGameEvent();
+		}
+	}
 
 }

@@ -36,19 +36,18 @@ public class BossAppearManager : MonoBehaviour {
         ProductionProcessing(); // 演出処理
         ProductionEnd();        // 演出終了
 
-        //フェードループなし用
-        if (!bLoopingStop)
-        {
-            for (int i = 0; i < FadeImg.Length; i++)
-                FadeImg[i].material.color =
-                    new Color(FadeImg[i].material.color.r, FadeImg[i].material.color.g, FadeImg[i].material.color.b, Alpha);
-        }
+		//フェードループなし用
+		if( !bLoopingStop ) {
+			for( int i = 0; i < FadeImg.Length; i++ )
+				FadeImg[i].material.color =
+					new Color( FadeImg[i].material.color.r, FadeImg[i].material.color.g, FadeImg[i].material.color.b, Alpha );
+		}
 
-        //フェードループ用
-        for (int i = 0; i < LoopFadeImg.Length; i++)
-            LoopFadeImg[i].material.color =
-                new Color(LoopFadeImg[i].material.color.r, LoopFadeImg[i].material.color.g, LoopFadeImg[i].material.color.b, Alpha);
-    }
+		//フェードループ用
+		for( int i = 0; i < LoopFadeImg.Length; i++ )
+			LoopFadeImg[i].material.color =
+				new Color( LoopFadeImg[i].material.color.r, LoopFadeImg[i].material.color.g, LoopFadeImg[i].material.color.b, Alpha );
+	}
 
     /// <summary>
     /// 演出処理
@@ -102,6 +101,7 @@ public class BossAppearManager : MonoBehaviour {
                 bStart = false;     //演出開始フラグOFF
                 FadeTimeCnt = 0f;   //フェード時間初期化
 									//終
+				Destroy(gameObject);
 				Debug.Log("ボス生成");
 				CSSandwichObjManager.Instance.CreateSandwichObj( CSSandwichObjManager.SandwichObjType.BOSS, Vector2.zero );
             }

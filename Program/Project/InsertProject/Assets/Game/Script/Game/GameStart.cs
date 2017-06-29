@@ -12,6 +12,9 @@ public class GameStart : MonoBehaviour {
     // イメージ取得
     private Image myImage;
 
+	[Header("ストップゲーム"),SerializeField]
+	private StopGame stopGame;
+
     /* 数値 */
     [Header("演出時間"), SerializeField]
     private float time;
@@ -30,6 +33,9 @@ public class GameStart : MonoBehaviour {
         if ( !image ) {
             Debug.LogError("イメージの取得に失敗");
         }
+		if( !stopGame ) {
+			Debug.LogError("ストップゲームの取得に失敗");
+		}
         myImage = image;
         myImage.sprite = Ready;
         Time.timeScale = 0.0F;
@@ -38,6 +44,7 @@ public class GameStart : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		stopGame.StopGameEvent();
         float p = nowTime / time;
 
 
@@ -65,9 +72,7 @@ public class GameStart : MonoBehaviour {
         if ( drawCnt >= 2 ) {
             Time.timeScale = 1.0F;
             Destroy( gameObject );
+			stopGame.StartGameEvent();
         }
-
-
-		
 	}
 }
