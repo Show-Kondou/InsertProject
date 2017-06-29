@@ -220,7 +220,7 @@ PlayerSettings:
   AndroidKeyaliasName: 
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
-  androidEnableBanner: 1
+  androidEnableBanner: 0
   m_AndroidBanners:
   - width: 320
     height: 180
@@ -231,7 +231,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 35bdb1e3284cb1643aa59408a2a6d14b, type: 3}
+      m_Icon: {fileID: 2800000, guid: 28ffb09ccef7edf4ba475068ac03c9f8, type: 3}
       m_Width: 128
       m_Height: 128
   m_BuildTargetBatching: []
