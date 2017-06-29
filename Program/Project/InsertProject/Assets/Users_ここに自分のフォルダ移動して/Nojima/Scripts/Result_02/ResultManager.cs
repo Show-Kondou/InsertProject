@@ -11,6 +11,8 @@ public class ResultManager : MonoBehaviour {
     public bool bResultMenu = false;
     [System.NonSerialized]
     public bool bTimeOverEnd = false;
+    BossCameraMove CBossCameraMove;
+    bool bBoss = true;
 
 	[Header("ストップイベント"), SerializeField]
 	private StopGame stopGame;
@@ -36,6 +38,17 @@ public class ResultManager : MonoBehaviour {
     }
 
 	void Update() {
+        if (GameObject.FindWithTag("Boss") != null && bBoss)
+        {
+            CBossCameraMove = GameObject.FindWithTag("Boss").GetComponent<BossCameraMove>();
+            bBoss = false;
+        }
+        if (CBossCameraMove != null)
+        {
+            if (CBossCameraMove.GetFinishFlg())
+                bResultStart = true;
+        }
+
 		bool isEvent = bResultStart || bTimeOver || bGameOver;
 		if( isEvent ) {
 			stopGame.StopGameEvent();
