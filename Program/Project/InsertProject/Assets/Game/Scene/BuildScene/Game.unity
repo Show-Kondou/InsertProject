@@ -992,6 +992,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1210fb6375ebcdc4d9059117af6d8a46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_OrderNumber: 0
+  m_Using: 1
+  m_ObjectID: 0
   m_DoubleTapCheckTime: 0.5
 --- !u!4 &628804618
 Transform:
@@ -1492,6 +1495,12 @@ Prefab:
       propertyPath: CBossAppearManager
       value: 
       objectReference: {fileID: 1130332429}
+    - target: {fileID: 114328841316909298, guid: 8f9679c7b6bcc264cb7e5065ad5b44b2,
+        type: 2}
+      propertyPath: ResultTextures.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 9f83a9b43a9cc57418dfc15d1e7cc3af,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8f9679c7b6bcc264cb7e5065ad5b44b2, type: 2}
   m_IsPrefabParent: 0
@@ -2803,6 +2812,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a3f2b4b2d131194ab48ca4406d7c06e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_OrderNumber: 0
+  m_Using: 1
+  m_ObjectID: 0
   testpart: {fileID: 0}
 --- !u!4 &1964102698
 Transform:
