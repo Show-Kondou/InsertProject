@@ -17,9 +17,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectBase : MonoBehaviour {
-	protected int m_OrderNumber = 0;
-	protected bool m_Using = true;
-	protected int m_ObjectID;
+	public int m_OrderNumber = 0;
+	public bool m_Using = true;
+	public int m_ObjectID;
 
 	public int ID {
 		get
