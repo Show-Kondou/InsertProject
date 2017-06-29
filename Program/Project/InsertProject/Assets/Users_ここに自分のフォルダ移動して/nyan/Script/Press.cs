@@ -29,7 +29,7 @@ public class Press : MonoBehaviour {
     private Vector3 vMovePos;           //移動用
     private float fGrace = 0.025f;      //差
     private bool bStop = false;         //停止フラグ
-    //private bool bWayPoint = false;     //中間地点フラグ
+    //private bool bWayPoint = false;   //中間地点フラグ
 
     //ベクトル計算用
     public Vector3 vStartVec;
