@@ -25,6 +25,8 @@ public class CSlimeMove : CSSandwichObject {
 	private FeverGageEffect m_FeverGageEffect;
 	[SerializeField]
 	private GameObject m_EffectCanvas;
+	private bool m_OutZone;     // 画面外か否か
+	public bool m_Sticky;		// ねばねばフラグ
 	// Use this for initialization
 	void Start() {
 		FlagObj = new GameObject();
@@ -79,6 +81,10 @@ public class CSlimeMove : CSSandwichObject {
 			return;
 		}
 
+		if(m_Sticky) {
+			return;
+		}
+
 		// ジャンプ中処理
 		if(m_Moving) {
 			m_Position.x += Mathf.Cos(m_Rotation) * m_MoveSpped * deltaTime;
@@ -104,9 +110,17 @@ public class CSlimeMove : CSSandwichObject {
 			switch(myType) {
 				case SLIME_TYPE.Big:
 				case SLIME_TYPE.Ally:
+					if(m_OutZone) {
+						m_Rotation = Mathf.Atan2(-transform.position.y, -transform.position.x);
+						break;
+					}
 					m_Rotation = Random.Range(0, 360 * Mathf.PI / 180);  // 向きをランダムで決める
 					break;
 				case SLIME_TYPE.Enemy:
+					if(m_OutZone) {
+						m_Rotation = Mathf.Atan2(-transform.position.y, -transform.position.x);
+						break;
+					}
 					var container = CSSandwichObjManager.Instance.GetFeverSilmeData();
 					if(container) {
 						m_Rotation = Mathf.Atan2(container.transform.position.y - transform.position.y,
@@ -180,9 +194,28 @@ public class CSlimeMove : CSSandwichObject {
 				myType = SLIME_TYPE.Ally;   // 属性を味方に
 				m_PressObjList.Clear();
 				EnemyNum--;
+				m_Sticky = false;
 				break;
 			default:
 				break;
 		}
+	}
+
+	/// <summary>
+	/// 画面外処理
+	/// </summary>
+	/// <param name="col"></param>
+	void OnTriggerEnter2D(Collider2D col) {
+		if(col.tag != "OutZone") {
+			return;
+		}
+		m_OutZone = true;
+	}
+
+	void OnTriggerExit2D(Collider2D col) {
+		if(col.tag != "OutZone") {
+			return;
+		}
+		m_OutZone = false;
 	}
 }
