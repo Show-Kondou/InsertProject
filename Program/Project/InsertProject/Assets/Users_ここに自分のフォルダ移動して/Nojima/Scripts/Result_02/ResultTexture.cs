@@ -8,13 +8,14 @@ public class ResultTexture : MonoBehaviour {
     [SerializeField]
     ResultManager CResultManager;
     [SerializeField]
-    Texture[] ResultTextures;
-	
+    Sprite[] ResultTextures;
+
 	// Update is called once per frame
-	void Update () {
-		if(!CResultManager.bGameOver)
-            GetComponent<Image>().material.mainTexture = ResultTextures[0];
-        else
-            GetComponent<Image>().material.mainTexture = ResultTextures[1];
+    void Update()
+    {
+        if (!CResultManager.bResultMenu)
+            GetComponent<Image>().sprite = ResultTextures[0];
+        if (CResultManager.bResultMenu || CResultManager.bTimeOverEnd)
+            GetComponent<Image>().sprite = ResultTextures[1];
 	}
 }

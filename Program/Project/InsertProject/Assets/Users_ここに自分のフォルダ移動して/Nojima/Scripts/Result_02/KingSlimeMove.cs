@@ -35,8 +35,8 @@ public class KingSlimeMove : MonoBehaviour
 
         if (ScaleSize <= 0f)
         {
-            gameObject.SetActive(false);
             CResultManager.bResultMenu = true;
+            gameObject.SetActive(false);
         }
     }
 }

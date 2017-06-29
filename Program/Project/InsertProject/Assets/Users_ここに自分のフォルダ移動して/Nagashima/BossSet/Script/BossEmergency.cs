@@ -60,15 +60,19 @@ public class BossEmergency : MonoBehaviour
         {
             // カメラをボスに向けてアップ
             MainCamera.transform.localPosition = Vector3.MoveTowards(MainCamera.transform.localPosition,
-                                                                      new Vector3(BossStartPos.x + 0.0f, BossStartPos.y - 2.5f, BossStartPos.z - 4.5f),
+                                                                      new Vector3(BossStartPos.x + 0.0f, BossStartPos.y - 2.5f, BossStartPos.z - 4.0f),
                                                                       6.0f * Time.deltaTime);
         }
         if (!bDevilEffect && bAttack)
         {
             // カメラを元に戻す
-            MainCamera.transform.localPosition = Vector3.MoveTowards(MainCamera.transform.localPosition,
-                                                                      CameraStartPos,
-                                                                      12.0f * Time.deltaTime);
+            if (MainCamera.transform.localPosition.y > CameraStartPos.y)
+            {
+                MainCamera.transform.localPosition = Vector3.MoveTowards(MainCamera.transform.localPosition,
+                                                                          CameraStartPos,
+                                                                          12.0f * Time.deltaTime);
+                Debug.Log("カメラ元に戻ってます");
+            }
         }
 
         // カメラが移動し終わったら
