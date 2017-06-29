@@ -84,7 +84,7 @@ public class TimeLimit : MonoBehaviour
         }
 
         // 30秒以下になったら残り時間を表示
-        if (fLimitTime <= fOneRoundTime - 30.0f && !bTimeDisplay)
+        if (fLimitTime <= fOneRoundTime - 120.0f && !bTimeDisplay)
         {
             bTimeDisplay = true;
 

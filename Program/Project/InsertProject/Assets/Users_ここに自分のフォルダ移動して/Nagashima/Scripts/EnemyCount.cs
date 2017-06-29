@@ -38,7 +38,7 @@ public class EnemyCount : MonoBehaviour
         }
         else
         {
-            resultMgr.bResultStart = true;
+            resultMgr.bGameOver = true;
 
             //CSceneManager.Instance.LoadScene( SCENE.RESULT, FADE.BLACK );
 		}
