@@ -24,6 +24,7 @@ public class Press : MonoBehaviour {
 
     //移動関連
     private Vector3 vSpeed = new Vector3(3.0f, 3.0f, 3.0f);
+    //private Vector3 vSpeed = new Vector3(0.1f, 0.1f, 0.1f);
     private float fRad;                 //進行方向計算用
     private Vector3 vMovePos;           //移動用
     private float fGrace = 0.025f;      //差
