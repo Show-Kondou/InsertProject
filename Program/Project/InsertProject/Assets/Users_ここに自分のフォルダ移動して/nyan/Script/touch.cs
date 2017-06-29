@@ -14,6 +14,9 @@ public class touch : MonoBehaviour {
     public int nSTouchCntS = 0;
     public int nSTouchCntE = 0;
 
+    public bool bStickyS;
+    public bool bStickyE;
+
 
     // Use this for initialization
     void Start () {
@@ -56,13 +59,13 @@ public class touch : MonoBehaviour {
                 Line.GetComponent<line>().bSLineE = false;
             }
 
-
-
             //ラインにID付与
             Line.GetComponent<line>().nLineID = nLineNum;
 
         }
 
+        bStickyS = false;
+        bStickyE = false;
 
     }
 }
