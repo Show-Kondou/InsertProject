@@ -60,6 +60,7 @@ public class BossDefeat : MonoBehaviour
 
                 if (fDefeatTime >= 1.5f && bExplosion)
                 {
+                    CSoundManager.Instance.PlaySE(AUDIO_LIST.SE_BOSS_KILL);
                     Instantiate(TestExplosion, new Vector3(this.transform.localPosition.x, this.transform.localPosition.y - 1.5f, this.transform.localPosition.z - 2.0f), Quaternion.identity);
                     bExplosion = false;
                     bCollapse = true;
