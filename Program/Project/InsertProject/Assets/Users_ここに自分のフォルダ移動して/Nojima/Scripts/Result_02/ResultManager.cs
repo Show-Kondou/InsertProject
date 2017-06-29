@@ -14,6 +14,9 @@ public class ResultManager : MonoBehaviour {
     BossCameraMove CBossCameraMove;
     bool bBoss = true;
 
+    [SerializeField]
+    BossAppearManager CBossAppearManager;
+
 	[Header("ストップイベント"), SerializeField]
 	private StopGame stopGame;
 
@@ -38,9 +41,9 @@ public class ResultManager : MonoBehaviour {
     }
 
 	void Update() {
-        if (GameObject.FindWithTag("Boss") != null && bBoss)
+        if (CBossAppearManager.BossObj != null && bBoss)
         {
-            CBossCameraMove = GameObject.FindWithTag("Boss").GetComponent<BossCameraMove>();
+            CBossCameraMove = CBossAppearManager.BossObj.GetComponent<BossCameraMove>();
             bBoss = false;
         }
         if (CBossCameraMove != null)

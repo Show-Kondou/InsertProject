@@ -22,6 +22,8 @@ public class BossAppearManager : MonoBehaviour {
     [SerializeField]
     float FadeSpeed = 0.2f;     //演出の速度
 
+    public GameObject BossObj = null;
+
     // Update is called once per frame
     void Update()
     {
@@ -104,6 +106,7 @@ public class BossAppearManager : MonoBehaviour {
 				Destroy(gameObject);
 				Debug.Log("ボス生成");
 				CSSandwichObjManager.Instance.CreateSandwichObj( CSSandwichObjManager.SandwichObjType.BOSS, Vector2.zero );
+                BossObj = GameObject.FindWithTag("Boss");
             }
         }
     }
