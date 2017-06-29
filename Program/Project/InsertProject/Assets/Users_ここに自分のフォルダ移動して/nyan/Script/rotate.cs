@@ -33,6 +33,10 @@ public class rotate : MonoBehaviour {
     //マテリアル変更用
     public Material[] materials;
 
+    //変更制御用
+    private bool bChangeMatCheck = false;
+    private bool bChangeShaCheck = false;
+
     // Use this for initialization
     void Start () {
 
@@ -115,22 +119,27 @@ public class rotate : MonoBehaviour {
         //プレス機非表示フラグ取得
         bVisible = gParentObj.GetComponent<Press>().bVisible;
 
-        if (bVisible == true)
+        if (bVisible == true && bChangeShaCheck == false)
         {
             render.material.shader = Shader.Find("Standard");
             render.material.SetColor("_Color", new Color(0.0f, 0.0f, 0.0f, 0.0f));
+            bChangeShaCheck = true;
         }
 
 
         //ぬるぬる判定マテリアル変更
         if (gParentObj.GetComponent<Press>().bNulnulS == true || gParentObj.GetComponent<Press>().bNulnulE == true)
         {
-            render.material = materials[1];
+            if (bChangeMatCheck == false)
+            {
+                render.material = materials[1];
+                bChangeMatCheck = true;
+            }
         }
-        else
-        {
-            render.material = materials[0];
-        }
+        //else
+        //{
+        //    render.material = materials[0];
+        //}
 
 
     }
