@@ -8,16 +8,18 @@ public class BossDamage : MonoBehaviour
 
     // ----- プライベート変数 -----
     [SerializeField]
-    private float fHitPoint;                // ボスのヒットポイント
+    private float fHitPoint = 5;            // ボスのヒットポイント
     private int nDamageUP = 0;              // ダメージアップ
 
     private bool bSandwich = true;          // 挟むフラグ
-    private float fInvincibleTime = 0.0f;    // 無敵時間
+    private float fInvincibleTime = 0.0f;   // 無敵時間
 
     private bool bSmallDamage = false;      // 小ダメージアニメーションのフラグ
     private bool bBigDamega = false;        // 大ダメージアニメーションのフラグ
 
     private float fDamageTime = 0.0f;       // ダメージアニメーションカウント
+
+    private GameObject TouchObj;            // タッチオブジェクト
 
     // ===== ボスのHPをゲットする関数 =====
     public float GetBossHitPoint()
@@ -42,16 +44,22 @@ public class BossDamage : MonoBehaviour
 
             // 待機状態だった場合は通常のダメージモーション
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") == true)
-                bSmallDamage = true;
+                animator.SetTrigger("Damage");
             // 攻撃状態だった場合はキャンセルモーション
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("BrainControl") == true || animator.GetCurrentAnimatorStateInfo(0).IsName("Summon") == true)
-                bBigDamega = true;
+                animator.SetTrigger("Cancel");
 
             // 動きを止める
             this.GetComponent<BossMove>().SetMoveNum(0);
 
-            fHitPoint -= 1;
-            //nHitPoint -= (1 * 小スライムが挟まれた数) + (3 * 大スライムが挟まれた数) + nDamageUP（味方スライムの挟まれた総数）;
+            // ダメージ計算
+            nDamageUP = 1;
+            if (TouchObj.GetComponent<touch>().bStickyE || TouchObj.GetComponent<touch>().bStickyS)
+                nDamageUP = 2;
+            if (TouchObj.GetComponent<touch>().bStickyE && TouchObj.GetComponent<touch>().bStickyS)
+                nDamageUP = 3;
+
+            fHitPoint -= nDamageUP;
 
             bSandwich = false;
         }
@@ -62,41 +70,47 @@ public class BossDamage : MonoBehaviour
     {
         // アニメーターを格納
         animator = GetComponent<Animator>();
+
+        TouchObj = GameObject.Find("Touch");
 	}
 	
 	// ===== 更新関数 =====
 	void Update () 
     {
-        // ダメージモーション
-        if(bSmallDamage)
-            animator.SetTrigger("Damage");
-
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Damage") == true)
         {
             fDamageTime += Time.deltaTime;
 
-            if (fDamageTime >= 2.0f)
+            if (fDamageTime >= animator.GetCurrentAnimatorStateInfo(0).normalizedTime)
             {
                 fDamageTime = 0.0f;
                 animator.SetTrigger("Damage");
             }
         }
-        // キャンセルモーション
-        if(bBigDamega)
-            animator.SetTrigger("Cancel");
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Cancel") == true)
+        {
+            fDamageTime += Time.deltaTime;
+
+            if (fDamageTime >= animator.GetCurrentAnimatorStateInfo(0).normalizedTime)
+            {
+                fDamageTime = 0.0f;
+                animator.SetTrigger("Cancel");
+            }
+        }
+            
 
         if (!bSandwich)
         {
             fInvincibleTime += Time.deltaTime;
 
-            if (fInvincibleTime >= 1.0f)
+            if (fInvincibleTime >= 2.0f)
             {
                 // ボスを動かす
                 this.GetComponent<BossMove>().SetMoveNum(Random.Range(1, 3));
 
-                bSandwich = true;
                 bSmallDamage = false;
                 bBigDamega = false;
+                bSandwich = true;
                 fDamageTime = 0.0f;
                 fInvincibleTime = 0.0f;
             }

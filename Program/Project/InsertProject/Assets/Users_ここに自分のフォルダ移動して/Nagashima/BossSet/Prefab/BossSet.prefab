@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4975436936597190}
   - component: {fileID: 137854505026373126}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,7 +35,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4613342349512756}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Joint:Character1_LeftLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4784495393533614}
   - component: {fileID: 137272564365225408}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface31
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,7 +66,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4306830887478382}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: transform1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +81,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4450229449356820}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Joint:Character1_RightUpLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4201843586605086}
   - component: {fileID: 137001744313578904}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface43
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4742798331281784}
   - component: {fileID: 137433668532963858}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4879580689410848}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: joint8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4519790732715566}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Joint:Character1_LeftShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4509828021124814}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Joint:Character1_RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4469462221683988}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Joint:Character1_Hips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4297482405604440}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Joint:Character1_LeftToeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4504905929130990}
   - component: {fileID: 137484376502709672}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface39
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,7 +219,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4819299096941018}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Joint:Character1_LeftHandMiddle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4679334096448334}
   - component: {fileID: 137216234259171226}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4534766686152582}
   - component: {fileID: 137358951124141480}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,7 +267,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4234731934200638}
   - component: {fileID: 137891780418815138}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface33
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -282,7 +282,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4001583557598852}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Joint:Character1_RightForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,7 +298,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4425085099629104}
   - component: {fileID: 137877745670317014}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,7 +314,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4566919159896616}
   - component: {fileID: 137033427712660948}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface30
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -330,7 +330,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4408842781819608}
   - component: {fileID: 137259351078802734}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface42
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +345,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4000910756052524}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: joint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -360,7 +360,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4723487939703816}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Joint:Character1_LeftForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -376,7 +376,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4359952188743028}
   - component: {fileID: 137580712629940906}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -392,7 +392,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4327639303187132}
   - component: {fileID: 137144046491381608}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -407,7 +407,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4513415202684816}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Joint:Character1_Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -422,7 +422,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4987486796346586}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: transform2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -437,7 +437,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4309739666336076}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: joint10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -453,7 +453,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4091884029432546}
   - component: {fileID: 137564768086337850}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -469,7 +469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4509925801808928}
   - component: {fileID: 137554356905336206}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface37
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -484,7 +484,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4977377326954502}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: joint9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -500,7 +500,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4022730594647982}
   - component: {fileID: 137299598967717186}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface25
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -516,7 +516,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4569628982150366}
   - component: {fileID: 137833125992621094}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface36
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -532,7 +532,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4903094081589970}
   - component: {fileID: 137032847661486456}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface26
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -548,7 +548,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4333140218303754}
   - component: {fileID: 137588319050291004}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -564,7 +564,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4900718782887730}
   - component: {fileID: 212583098079932374}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MagicCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -581,7 +581,7 @@ GameObject:
   - component: {fileID: 4793002365571848}
   - component: {fileID: 198125209049862854}
   - component: {fileID: 199128276999590584}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -597,7 +597,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4085413837268726}
   - component: {fileID: 137956395646513252}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:Shild
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -613,7 +613,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4369738487169788}
   - component: {fileID: 137576353316626278}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface38
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -629,7 +629,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4401017497118334}
   - component: {fileID: 137721866824914404}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface27
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -645,7 +645,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4876925935138048}
   - component: {fileID: 137561688930048936}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -661,7 +661,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4051097512250020}
   - component: {fileID: 137883109039267172}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -677,7 +677,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4710424006614276}
   - component: {fileID: 137816569112865050}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -692,7 +692,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4937731546191122}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Joint:Character1_Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -708,7 +708,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4404919404395076}
   - component: {fileID: 137067917284130390}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -725,7 +725,7 @@ GameObject:
   - component: {fileID: 4672516457758446}
   - component: {fileID: 198480380092452938}
   - component: {fileID: 199049049536213280}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Pillar2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -741,7 +741,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4705537454486766}
   - component: {fileID: 137098084311157718}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface23
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -756,7 +756,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4317625136203118}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Joint:Character1_LeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -771,7 +771,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4715178314517836}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Joint:Character1_LeftUpLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -788,7 +788,8 @@ GameObject:
   - component: {fileID: 4013725441021060}
   - component: {fileID: 58239856094467232}
   - component: {fileID: 114693952220729418}
-  m_Layer: 0
+  - component: {fileID: 114572974119798452}
+  m_Layer: 9
   m_Name: BossSet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -804,7 +805,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4643762950803708}
   - component: {fileID: 137819574890285376}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface34
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -824,7 +825,8 @@ GameObject:
   - component: {fileID: 114293331955098526}
   - component: {fileID: 114256811317078506}
   - component: {fileID: 114422302994252056}
-  m_Layer: 0
+  - component: {fileID: 114891672826010218}
+  m_Layer: 9
   m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -840,7 +842,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4469424221455900}
   - component: {fileID: 137611320429001006}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface29
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -855,7 +857,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4199159462679662}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: transform3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -871,7 +873,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4458452336024214}
   - component: {fileID: 137166378106183920}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -888,7 +890,7 @@ GameObject:
   - component: {fileID: 4785047463938336}
   - component: {fileID: 198049223223906636}
   - component: {fileID: 199233908932165150}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Pillar3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -904,7 +906,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4680613186308944}
   - component: {fileID: 137417799443635060}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface28
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -919,7 +921,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4652747523943390}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: joint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -934,7 +936,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4354914907170312}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Joint:Character1_RightFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -949,7 +951,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4802580793592974}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: joint6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -964,7 +966,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4591268146631788}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Joint:Character1_RightToeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -980,7 +982,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4462741366012206}
   - component: {fileID: 114918158149040900}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DevilEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -995,7 +997,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4420007576831196}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: joint7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1010,7 +1012,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4377077319459556}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1025,7 +1027,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4250203829529530}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Joint:Character1_RightHandMiddle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1041,7 +1043,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4129489691622414}
   - component: {fileID: 137783002364737566}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1057,7 +1059,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4444024075716230}
   - component: {fileID: 137337596485213102}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1072,7 +1074,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4240515747633896}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Joint:Character1_RightHandMiddle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1088,7 +1090,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4887961856534136}
   - component: {fileID: 137602403445969628}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface32
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1103,7 +1105,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4602904484483656}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Joint:Character1_RightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1118,7 +1120,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4311923118372446}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: joint3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1133,7 +1135,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4630610498621874}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Joint:Character1_LeftFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1148,7 +1150,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4254817482535256}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Joint:Character1_RightShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1164,7 +1166,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4667922967265310}
   - component: {fileID: 137349016852164710}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface41
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1179,7 +1181,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4241436066670324}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Joint:Character1_LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1195,7 +1197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4401775087425392}
   - component: {fileID: 137203897259091758}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface40
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1210,7 +1212,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4816363510812454}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Joint:Character1_LeftHandMiddle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1225,7 +1227,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4715160609742390}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Joint:Character1_Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1240,7 +1242,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4609120704603462}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Joint:Character1_RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1257,7 +1259,7 @@ GameObject:
   - component: {fileID: 4437201558964414}
   - component: {fileID: 198326937640767804}
   - component: {fileID: 199559597494552610}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Pillar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1272,7 +1274,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4260991356309218}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: joint4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1288,7 +1290,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4478654612118662}
   - component: {fileID: 137387606156277620}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface24
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1304,7 +1306,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4133964349774176}
   - component: {fileID: 137591464692305188}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1320,7 +1322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4344775375359654}
   - component: {fileID: 137666348978295890}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1335,7 +1337,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4743315872649520}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Joint:Character1_Reference
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1351,7 +1353,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4399927259939766}
   - component: {fileID: 137153029281258950}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1367,7 +1369,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4225372450531220}
   - component: {fileID: 137501833044112208}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1382,7 +1384,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4927105306142798}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: joint5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1397,7 +1399,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4928802573221654}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: transform4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1413,7 +1415,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4989507689014166}
   - component: {fileID: 137402232475338728}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface35
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1429,7 +1431,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4059300489080456}
   - component: {fileID: 137100919838520438}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1445,7 +1447,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4853655101719288}
   - component: {fileID: 137305050840657862}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1461,7 +1463,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4367234928143642}
   - component: {fileID: 137847807337046214}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boss_Model:polySurface20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1479,7 +1481,7 @@ GameObject:
   - component: {fileID: 198921089615681418}
   - component: {fileID: 199729155014421494}
   - component: {fileID: 114364616541330136}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AuraEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2904,6 +2906,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fHitPoint: 5
+--- !u!114 &114572974119798452
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1493375979592414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcb3f3a210709f04595f917bcfefcc1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114693952220729418
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2927,6 +2940,19 @@ MonoBehaviour:
   m_HitIDB: 0
   m_SandwichObjectID: 0
   m_bInsert: 0
+--- !u!114 &114891672826010218
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1522803115423508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54890fb8ca50a314eb6c64b374ec86f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TestExplosion: {fileID: 1095953163819570, guid: 9dece6c1d801f284ba7c688d93068f5b,
+    type: 2}
 --- !u!114 &114918158149040900
 MonoBehaviour:
   m_ObjectHideFlags: 1
