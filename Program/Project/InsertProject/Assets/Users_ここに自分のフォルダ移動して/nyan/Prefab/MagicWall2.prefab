@@ -702,6 +702,8 @@ MonoBehaviour:
     type: 2}
   bNulnulS: 0
   bNulnulE: 0
+  DeathParticle: {fileID: 1833811398723860, guid: a6a4282fae2aee44093ea4ccaed1ea3b,
+    type: 2}
 --- !u!114 &114837614537386572
 MonoBehaviour:
   m_ObjectHideFlags: 1

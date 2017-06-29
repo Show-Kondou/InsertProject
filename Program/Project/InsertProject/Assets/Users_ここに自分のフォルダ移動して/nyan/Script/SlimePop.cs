@@ -25,12 +25,12 @@ public class SlimePop : ObjectBase
         //    Destroy(gameObject);    // 本番環境なら削除
         m_OrderNumber = 3;
         ObjectManager.Instance.RegistrationList(this, m_OrderNumber);
-        //for (int i = 0; i < 5; i++)
-        //{
-        //    float width = Random.Range(-2.0f, 2.0f);
-        //    float height = Random.Range(-4.0f, 6.0f);
-        //    CSSandwichObjManager.Instance.CreateSandwichObj(0, new Vector2(width, height));
-        //}
+        for (int i = 0; i < 10; i++)
+        {
+            float width = Random.Range(-2.8f, 2.8f);
+            float height = Random.Range(-5.0f, 7.0f);
+            CSSandwichObjManager.Instance.CreateSandwichObj(0, new Vector2(width, height));
+        }
 
         fPopRangeContainer = fPopRange;
     }
@@ -49,8 +49,8 @@ public class SlimePop : ObjectBase
             //抽選成功
             if (Random.Range(0.0f, fPopRange) <= 1.0f)
             {
-                float width = Random.Range(-2.0f, 2.0f);
-                float height = Random.Range(-4.0f, 6.0f);
+                float width = Random.Range(-2.8f, 2.8f);
+                float height = Random.Range(-5.0f, 7.0f);
                 CSSandwichObjManager.Instance.CreateSandwichObj(CSSandwichObjManager.SandwichObjType.EnemySlime, new Vector2(width, height));
 
                 //パーティクル生成
