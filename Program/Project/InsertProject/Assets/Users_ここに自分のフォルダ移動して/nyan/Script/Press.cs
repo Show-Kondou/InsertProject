@@ -288,6 +288,7 @@ public class Press : MonoBehaviour {
             {
                 //ぬるぬる属性をtrue
                 gParentObj.GetComponent<line>().bSLineS = true;
+                bNulnulS = gParentObj.GetComponent<line>().bSLineS;
                 //touchのぬるぬるカウントを最大数に
                 gTouchObj = GameObject.Find("Touch");
                 gTouchObj.GetComponent<touch>().nSTouchCntS = 2;
@@ -312,6 +313,7 @@ public class Press : MonoBehaviour {
             {
                 //ぬるぬる属性をtrue
                 gParentObj.GetComponent<line>().bSLineE = true;
+                bNulnulE = gParentObj.GetComponent<line>().bSLineE;
                 //touchのぬるぬるカウントを最大数に
                 gTouchObj = GameObject.Find("Touch");
                 gTouchObj.GetComponent<touch>().nSTouchCntE = 2;
