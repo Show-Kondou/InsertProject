@@ -24,6 +24,7 @@ public class Press : MonoBehaviour {
 
     //移動関連
     private Vector3 vSpeed = new Vector3(3.0f, 3.0f, 3.0f);
+    //private Vector3 vSpeed = new Vector3(0.1f, 0.1f, 0.1f);
     private float fRad;                 //進行方向計算用
     private Vector3 vMovePos;           //移動用
     private float fGrace = 0.025f;      //差
@@ -55,6 +56,8 @@ public class Press : MonoBehaviour {
 
     //ぬるぬる状態判定用
     private GameObject gTouchObj;
+    public bool bNulnulS;
+    public bool bNulnulE;
 
 
     // Use this for initialization
@@ -77,6 +80,10 @@ public class Press : MonoBehaviour {
             transform.LookAt(vLookPos);
             transform.Rotate(new Vector3(transform.rotation.x, -90.0f, transform.rotation.z));
             nNextList = 1;
+
+            //ぬるぬるを取得
+            bNulnulS = gParentObj.GetComponent<line>().bSLineS;
+
         }
 
         if (bWallStart == false)
@@ -85,6 +92,10 @@ public class Press : MonoBehaviour {
             transform.LookAt(vLookPos);
             transform.Rotate(new Vector3(transform.rotation.x, -90.0f, transform.rotation.z));
             nNextList = nListCnt - 2;
+
+            //ぬるぬるを取得
+            bNulnulE = gParentObj.GetComponent<line>().bSLineE;
+
         }
 
         //召喚演出生成
@@ -156,6 +167,9 @@ public class Press : MonoBehaviour {
             {
 				CSoundManager.Instance.PlaySE(AUDIO_LIST.SE_MAGICWALL_MOVE, false);
 
+                //ぬるぬるを取得
+                bNulnulS = gParentObj.GetComponent<line>().bSLineS;
+
                 if (/*nNextList <= nListCntDiv &&*/ bStop == false)
                 {
                     //移動目標
@@ -191,6 +205,11 @@ public class Press : MonoBehaviour {
             }
             if (bWallStart == false)
             {
+
+                //ぬるぬるを取得
+                bNulnulE = gParentObj.GetComponent<line>().bSLineE;
+
+
                 if (/*nListCntDiv <= nNextList &&*/ bStop == false)
                 {
                     //移動目標
@@ -255,7 +274,6 @@ public class Press : MonoBehaviour {
                 //bWayPoint = true;
             }
         }
-
     }
 	/// <summary>
 	/// トリガーの２D当たり判定
@@ -270,6 +288,7 @@ public class Press : MonoBehaviour {
             {
                 //ぬるぬる属性をtrue
                 gParentObj.GetComponent<line>().bSLineS = true;
+                bNulnulS = gParentObj.GetComponent<line>().bSLineS;
                 //touchのぬるぬるカウントを最大数に
                 gTouchObj = GameObject.Find("Touch");
                 gTouchObj.GetComponent<touch>().nSTouchCntS = 2;
@@ -294,6 +313,7 @@ public class Press : MonoBehaviour {
             {
                 //ぬるぬる属性をtrue
                 gParentObj.GetComponent<line>().bSLineE = true;
+                bNulnulE = gParentObj.GetComponent<line>().bSLineE;
                 //touchのぬるぬるカウントを最大数に
                 gTouchObj = GameObject.Find("Touch");
                 gTouchObj.GetComponent<touch>().nSTouchCntE = 2;

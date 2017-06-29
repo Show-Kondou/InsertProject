@@ -30,6 +30,9 @@ public class rotate : MonoBehaviour {
     private bool bRotateReturn = false;
     public Vector3 vRotate = new Vector3(0.0f, 0.0f, 0.0f);
 
+    //マテリアル変更用
+    public Material[] materials;
+
     // Use this for initialization
     void Start () {
 
@@ -117,6 +120,18 @@ public class rotate : MonoBehaviour {
             render.material.shader = Shader.Find("Standard");
             render.material.SetColor("_Color", new Color(0.0f, 0.0f, 0.0f, 0.0f));
         }
+
+
+        //ぬるぬる判定マテリアル変更
+        if (gParentObj.GetComponent<Press>().bNulnulS == true || gParentObj.GetComponent<Press>().bNulnulE == true)
+        {
+            render.material = materials[1];
+        }
+        else
+        {
+            render.material = materials[0];
+        }
+
 
     }
 }
