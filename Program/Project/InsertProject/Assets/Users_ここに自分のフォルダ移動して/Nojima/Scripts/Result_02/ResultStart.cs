@@ -12,6 +12,8 @@ public class ResultStart : MonoBehaviour
     //変数
     [SerializeField]
     GameObject[] MagicWall;                 //マジックウォールオブジェクト
+    [SerializeField]
+    GameObject CCanvasObj;
 
     [SerializeField]
     RectTransform DrawTexture;              //マジックウォールの間から表示される画像
@@ -29,6 +31,8 @@ public class ResultStart : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        if (CCanvasObj != null)
+        CCanvasObj.SetActive(false);
         WallSize_X = GetComponent<RectTransform>().sizeDelta.x; //マジックウォールの横幅取得
         DefaultDrawTextureSize_X = DrawTexture.sizeDelta.x;     //マジックウォールの間から表示される画像の横幅取得
         DrawTexture.sizeDelta =                                 //マジックウォールの間から表示される画像の大きさセット
@@ -41,7 +45,7 @@ public class ResultStart : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (CResultManager.bResultMenu || CResultManager.bGameOver || CResultManager.bTimeOverEnd)
+        if (CResultManager.bResultStart || CResultManager.bResultMenu || CResultManager.bTimeOverEnd)
         {
             TextureExpansion(); //テクスチャ拡大処理
             WallMove();         //マジックウォールの移動処理
@@ -84,5 +88,8 @@ public class ResultStart : MonoBehaviour
             WallPos_X[1] -= M_WALL_SPEED * Time.deltaTime;
             MagicWall[1].transform.localPosition = new Vector2(WallPos_X[1], MagicWall[1].transform.localPosition.y);
         }
+
+        if (MagicWall[0].transform.localPosition.x >= CResultManager.GetCanvasSize().x / 2f && CCanvasObj != null)
+            CCanvasObj.SetActive(true);
     }
 }
