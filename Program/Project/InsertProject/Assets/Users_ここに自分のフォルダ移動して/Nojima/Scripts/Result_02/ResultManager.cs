@@ -58,6 +58,24 @@ public class ResultManager : MonoBehaviour {
 		} else {
 			stopGame.StartGameEvent();
 		}
+
+        if (bResultMenu)
+        {
+            bTimeOverEnd = false;
+            bResultStart = false;
+        }
+
+        if (bTimeOverEnd)
+        {
+            bResultStart = false;
+            bResultMenu = false;
+        }
+        if (bResultStart)
+        {
+            bResultMenu = false;
+            bTimeOverEnd = false;
+        }
+
 	}
 
 }
