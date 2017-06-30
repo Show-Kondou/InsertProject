@@ -101,7 +101,7 @@ public class CSlimeMove : CSSandwichObject {
 		m_MoveTimer -= deltaTime;
 		// 待ち時間が0になったらジャンプ
 		if(m_MoveTimer < 0) {
-			CSoundManager.Instance.PlaySE( AUDIO_LIST.SE_SLIME_CONVERT );
+			CSoundManager.Instance.PlaySE( AUDIO_LIST.SE_SLIME_JUMP);
 			m_Moving = true;                    // 移動中フラグオン
 			m_MoveTimer = m_WaitTime;           // 待ち時間再入
 			m_Position = transform.position;    // 位置更新
