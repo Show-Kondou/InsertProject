@@ -58,9 +58,11 @@ public class BossEmergency : MonoBehaviour
     {
         if (bDevilEffect)
         {
+            Camera.main.cullingMask &= ~(1 << LayerMask.NameToLayer("UI"));    // UIレイヤーを非表示にする
+
             // カメラをボスに向けてアップ
             MainCamera.transform.localPosition = Vector3.MoveTowards(MainCamera.transform.localPosition,
-                                                                      new Vector3(BossStartPos.x + 0.0f, BossStartPos.y - 2.5f, BossStartPos.z - 4.0f),
+                                                                      new Vector3(BossStartPos.x + 0.0f, BossStartPos.y - 4.0f, BossStartPos.z - 5.9f),
                                                                       6.0f * Time.deltaTime);
         }
         if (!bDevilEffect && bAttack)
@@ -71,12 +73,13 @@ public class BossEmergency : MonoBehaviour
                 MainCamera.transform.localPosition = Vector3.MoveTowards(MainCamera.transform.localPosition,
                                                                           CameraStartPos,
                                                                           12.0f * Time.deltaTime);
-                Debug.Log("カメラ元に戻ってます");
+
+                Camera.main.cullingMask |= (1 << LayerMask.NameToLayer("UI"));    // UIレイヤー表示
             }
         }
 
         // カメラが移動し終わったら
-        if (MainCamera.transform.localPosition.y >= BossStartPos.y - 2.5f)
+        if (MainCamera.transform.localPosition.y >= BossStartPos.y - 4.0f)
         {
             if (bDevilEffect && DevilEffectObj)
             {
@@ -93,7 +96,7 @@ public class BossEmergency : MonoBehaviour
 
                     // 地面から出現
                     this.transform.localPosition = Vector3.MoveTowards(this.transform.localPosition,
-                                                                      new Vector3(0.0f, 0.0f, 0.0f),
+                                                                      new Vector3(0.0f, 0.0f, -0.1f),
                                                                       1.0f * Time.deltaTime);
 
                     // ボスが地上に出現したら

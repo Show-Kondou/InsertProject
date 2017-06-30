@@ -162,6 +162,7 @@ MonoBehaviour:
   nMaxEnemy: 30
   nEnemyCnt: 0
   fEnemyPosY: 0
+  resultMgr: {fileID: 0}
 --- !u!114 &551216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,9 +393,11 @@ MonoBehaviour:
   fOneRoundTime: 60
   fCreateBossTime: 10
   BossUI: {fileID: 0}
+  resultMgr: {fileID: 0}
   bRotateX: 0
   bRotateY: 0
   bRotateZ: 1
+  bTimeStop: 0
 --- !u!1 &424144798
 GameObject:
   m_ObjectHideFlags: 0
@@ -836,6 +839,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1210fb6375ebcdc4d9059117af6d8a46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_OrderNumber: 0
+  m_Using: 1
+  m_ObjectID: 0
   m_DoubleTapCheckTime: 0.5
 --- !u!4 &628804618
 Transform:

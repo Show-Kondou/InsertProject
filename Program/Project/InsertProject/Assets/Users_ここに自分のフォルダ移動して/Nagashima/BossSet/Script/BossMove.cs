@@ -43,7 +43,7 @@ public class BossMove : MonoBehaviour
         MainCamera = GameObject.Find("Main Camera");
 
         _BossEmergency = this.GetComponent<BossEmergency>();
-        BossStartPos = Vector3.zero;
+        BossStartPos = new Vector3(0.0f, 0.0f, -0.1f);
 
 		CSoundManager.Instance.StopBGM();
 		CSoundManager.Instance.PlayBGM(AUDIO_LIST.BGM_BOSS);

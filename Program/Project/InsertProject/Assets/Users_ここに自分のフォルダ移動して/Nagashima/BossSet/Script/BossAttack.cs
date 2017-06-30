@@ -47,6 +47,9 @@ public class BossAttack : MonoBehaviour
 
     private GameObject ParticleManagerObj;  // パーティクルマネージャー
 
+    [SerializeField]
+    private GameObject BrainControlEffect;
+
 	// ===== スタート関数 =====
 	void Start () 
     {
@@ -141,9 +144,8 @@ public class BossAttack : MonoBehaviour
                         {
                             // 洗脳処理
                             m_AllySlimeObj[0].GetComponent<CSlimeMove>().ChangeSlimeState(CSlimeMove.SLIME_TYPE.Enemy);
-
                             // 洗脳対象位置にパーティクルを出現させる
-                            ParticleManagerObj.GetComponent<CSParticleManager>().Play(CSParticleManager.PARTICLE_TYPE.BrainWashAttack, new Vector3(m_AllySlimeObj[0].transform.localPosition.x, m_AllySlimeObj[0].transform.localPosition.y, m_AllySlimeObj[0].transform.localPosition.z - 0.3f));
+                            Instantiate(BrainControlEffect, new Vector3(m_AllySlimeObj[0].transform.localPosition.x, m_AllySlimeObj[0].transform.localPosition.y, m_AllySlimeObj[0].transform.localPosition.z - 0.3f), Quaternion.identity);
                         }
                         if (m_AllySlimeObj.Count >= 2)
                         {
@@ -152,7 +154,7 @@ public class BossAttack : MonoBehaviour
                                 // 洗脳処理
                                 m_AllySlimeObj[i].GetComponent<CSlimeMove>().ChangeSlimeState(CSlimeMove.SLIME_TYPE.Enemy);
                                 // 洗脳対象位置にパーティクルを出現させる（テスト）
-                                ParticleManagerObj.GetComponent<CSParticleManager>().Play(CSParticleManager.PARTICLE_TYPE.BrainWashAttack, new Vector3(m_AllySlimeObj[i].transform.localPosition.x, m_AllySlimeObj[i].transform.localPosition.y, m_AllySlimeObj[i].transform.localPosition.z - 0.3f));
+                                Instantiate(BrainControlEffect, new Vector3(m_AllySlimeObj[i].transform.localPosition.x, m_AllySlimeObj[i].transform.localPosition.y, m_AllySlimeObj[i].transform.localPosition.z - 0.3f), Quaternion.identity);
                             }
                         }
 
