@@ -165,9 +165,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb0e13af4479f9f43a03333d4342ddf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_OrderNumber: 0
+  m_Using: 1
+  m_ObjectID: 0
   myType: 0
   m_PressRangeLow: 0
-  m_WaitTime: 3
+  m_WaitTime: 5
   m_MoveSpped: 2
   m_JumpPower: 3
   m_Rotation: 90
@@ -188,6 +191,7 @@ MonoBehaviour:
   m_FeverGageEffect: {fileID: 114096681874937334, guid: ddf4c49284e18e0409aee5364f2dfad5,
     type: 2}
   m_EffectCanvas: {fileID: 0}
+  m_Sticky: 0
 --- !u!137 &137185797727682444
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
