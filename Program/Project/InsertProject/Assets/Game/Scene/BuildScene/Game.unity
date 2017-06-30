@@ -1199,6 +1199,11 @@ Prefab:
       propertyPath: tutorial
       value: 
       objectReference: {fileID: 1620649990}
+    - target: {fileID: 114941040731745400, guid: d5555448a86f0bc459ae47afc87411d9,
+        type: 2}
+      propertyPath: tutorial
+      value: 
+      objectReference: {fileID: 1620649990}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5555448a86f0bc459ae47afc87411d9, type: 2}
   m_IsPrefabParent: 0
