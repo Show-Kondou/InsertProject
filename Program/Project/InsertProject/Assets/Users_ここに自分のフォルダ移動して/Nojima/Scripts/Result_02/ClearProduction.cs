@@ -24,7 +24,6 @@ public class ClearProduction : MonoBehaviour
     Canvas CCanvas;                     //キャンバスのサイズ取得用
     Vector2 CanvasSize;                 //キャンバスのサイズ
 
-
     Vector3[] TargetVec =               //集合位置への角度
         new Vector3[MAX_SLIME];
     float[] TargetDistance =            //集合位置からスライムまでの距離
@@ -102,26 +101,27 @@ public class ClearProduction : MonoBehaviour
     {
         if (UntilMoveTimeCnt >= UntilMoveTime)
         {
-            for (int i = 0; i < MAX_SLIME; i++)
-            {
-                if (SlimeClone[i] != null)
-                    MoveDistance[i] = Vector2.Distance(Vector3.zero, SlimeClone[i].transform.localPosition);
+            CResultManager.bResultMenu = true;
 
-                if (MoveDistance[i] >= STOP_POS)
-                    SlimeClone[i].transform.localPosition += TargetVec[i] * 200f * Time.deltaTime;
+            //for (int i = 0; i < MAX_SLIME; i++)
+            //{
+            //    if (SlimeClone[i] != null)
+            //        MoveDistance[i] = Vector2.Distance(Vector3.zero, SlimeClone[i].transform.localPosition);
 
-                if (SlimeClone[i] != null && TargetDistance.Max() <= TargetDistance[i])
-                {
-                    if (MoveDistance[i] <= STOP_POS)
-                    {
-                        KingSlime.SetActive(true);
-                        for (int j = 0; j < MAX_SLIME; j++)
-                            SlimeClone[j].SetActive(false);
+            //    if (MoveDistance[i] >= STOP_POS)
+            //        SlimeClone[i].transform.localPosition += TargetVec[i] * 200f * Time.deltaTime;
 
-                        CKingSlimeMove.Expansion();
-                    }
-                }
-            }
+            //    if (SlimeClone[i] != null && TargetDistance.Max() <= TargetDistance[i])
+            //    {
+            //        if (MoveDistance[i] <= STOP_POS)
+            //        {
+            //            KingSlime.SetActive(true);
+            //            for (int j = 0; j < MAX_SLIME; j++)
+            //                SlimeClone[j].SetActive(false);
+            //            //CKingSlimeMove.Expansion();
+            //        }
+            //    }
+            //}
         }
     }
 }

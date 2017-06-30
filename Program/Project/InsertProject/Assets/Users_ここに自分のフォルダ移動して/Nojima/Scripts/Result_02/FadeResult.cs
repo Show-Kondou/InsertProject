@@ -43,7 +43,14 @@ public class FadeResult : MonoBehaviour
             GetComponent<RectTransform>().sizeDelta = CResultManager.GetCanvasSize();
 
             Alpha += FadeSpeed * Time.deltaTime;
-            MyImage.color = new Color(MyImage.color.r, MyImage.color.g, MyImage.color.b, Alpha);
+            if (CResultManager.bResultStart)
+            {
+                MyImage.color = new Color(0, 0, 0, Alpha);
+            }
+                if (CResultManager.bGameOver || CResultManager.bTimeOver)
+            {
+                MyImage.color = new Color(1f, 0f, 0f, Alpha);
+            }
         }
     }
 }

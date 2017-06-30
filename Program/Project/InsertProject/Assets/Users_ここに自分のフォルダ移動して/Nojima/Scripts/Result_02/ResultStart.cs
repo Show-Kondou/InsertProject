@@ -17,6 +17,8 @@ public class ResultStart : MonoBehaviour
 
     [SerializeField]
     RectTransform DrawTexture;              //マジックウォールの間から表示される画像
+    [SerializeField]
+    RectTransform TopDrawTexture;
 
     float WallSize_X = 0f;                  //マジックウォール横幅
     float DrawTextureSize_X = 0f;           //マジックウォールの間から表示される画像の横幅
@@ -32,12 +34,13 @@ public class ResultStart : MonoBehaviour
     void Start()
     {
         if (CCanvasObj != null)
-        CCanvasObj.SetActive(false);
+        CCanvasObj.SetActive(true);
         WallSize_X = GetComponent<RectTransform>().sizeDelta.x; //マジックウォールの横幅取得
         DefaultDrawTextureSize_X = DrawTexture.sizeDelta.x;     //マジックウォールの間から表示される画像の横幅取得
         DrawTexture.sizeDelta =                                 //マジックウォールの間から表示される画像の大きさセット
             new Vector2(DrawTextureSize_X, DrawTexture.sizeDelta.y);
-
+        TopDrawTexture.sizeDelta =
+            new Vector2(DrawTextureSize_X, TopDrawTexture.sizeDelta.y);
         for (int i = 0; i < MagicWall.Length; i++)
             MagicWall[i].SetActive(false);                      //マジックウォールオブジェクトを非アクティブに
     }
@@ -65,6 +68,7 @@ public class ResultStart : MonoBehaviour
         {
             DrawTextureSize_X += (M_WALL_SPEED * 2f) * Time.deltaTime;
             DrawTexture.sizeDelta = new Vector2(DrawTextureSize_X, DrawTexture.sizeDelta.y);
+            TopDrawTexture.sizeDelta = new Vector2(DrawTextureSize_X, DrawTexture.sizeDelta.y);
         }
     }
 
@@ -89,7 +93,7 @@ public class ResultStart : MonoBehaviour
             MagicWall[1].transform.localPosition = new Vector2(WallPos_X[1], MagicWall[1].transform.localPosition.y);
         }
 
-        if (MagicWall[0].transform.localPosition.x >= CResultManager.GetCanvasSize().x / 2f && CCanvasObj != null)
-            CCanvasObj.SetActive(true);
+        //if (MagicWall[0].transform.localPosition.x >= CResultManager.GetCanvasSize().x / 2f && CCanvasObj != null)
+        //    CCanvasObj.SetActive(true);
     }
 }
