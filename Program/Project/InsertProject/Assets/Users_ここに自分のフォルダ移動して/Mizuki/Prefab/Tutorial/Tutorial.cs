@@ -16,6 +16,8 @@ public class Tutorial : ObjectBase {
 	[SerializeField]
 	private float ReVisibleTime;
 	private float ReVisibleTimer;
+	[SerializeField]
+	ResultManager resultManager;
 	// Use this for initialization
 	void Start() {
 		m_OrderNumber = 0;
@@ -48,10 +50,12 @@ public class Tutorial : ObjectBase {
 				ReVisibleTimer = ReVisibleTime;
 			}
 		}else {
-			if(Input.GetMouseButtonDown(0)) {
+			if(Input.GetMouseButton(0)) {
 				ReVisibleTimer = ReVisibleTime;
 			}
-			ReVisibleTimer -= deltaTime;
+			if(!resultManager.IsEvent) {
+				ReVisibleTimer -= deltaTime;
+			}
 			if(ReVisibleTimer < 0) {
 				Create();
 			}

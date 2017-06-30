@@ -843,7 +843,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &574884149
 RectTransform:
@@ -1309,6 +1309,16 @@ Prefab:
       propertyPath: ReVisibleTime
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 114304394234344918, guid: 9b367d5329d494644b94c5034fecb0d8,
+        type: 2}
+      propertyPath: resultManager
+      value: 
+      objectReference: {fileID: 559336940}
+    - target: {fileID: 223895259494479814, guid: 9b367d5329d494644b94c5034fecb0d8,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9b367d5329d494644b94c5034fecb0d8, type: 2}
   m_IsPrefabParent: 0
@@ -1730,6 +1740,11 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 9f83a9b43a9cc57418dfc15d1e7cc3af,
         type: 3}
+    - target: {fileID: 223572338514619226, guid: 8f9679c7b6bcc264cb7e5065ad5b44b2,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8f9679c7b6bcc264cb7e5065ad5b44b2, type: 2}
   m_IsPrefabParent: 0

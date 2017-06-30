@@ -25,6 +25,11 @@ public class ResultManager : MonoBehaviour {
     Canvas CCanvas;                     //キャンバスのサイズ取得用
     Vector2 CanvasSize;                 //キャンバスのサイズ取得用
 
+
+	public bool IsEvent {
+		get{ return bResultStart || bTimeOver || bGameOver; }
+	}
+
 	// Use this for initialization
 	void Start () {
         CanvasSize = CCanvas.GetComponent<RectTransform>().sizeDelta;
