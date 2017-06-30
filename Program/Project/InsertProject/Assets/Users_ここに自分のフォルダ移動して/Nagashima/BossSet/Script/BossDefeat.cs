@@ -43,16 +43,18 @@ public class BossDefeat : MonoBehaviour
         {
             Destroy(this.GetComponent<BossEmergency>());
 
+            Camera.main.cullingMask &= ~(1 << LayerMask.NameToLayer("UI"));    // UIレイヤーを非表示にする
+
             if (bExplosion)
             {
                 // カメラをボスに向けてアップ
                 MainCamera.transform.localPosition = Vector3.MoveTowards(MainCamera.transform.localPosition,
-                                                                         new Vector3(this.transform.localPosition.x + 0.0f, this.transform.localPosition.y - 2.5f, this.transform.localPosition.z - 4.0f),
+                                                                         new Vector3(this.transform.localPosition.x + 0.0f, this.transform.localPosition.y - 4.0f, this.transform.localPosition.z - 5.9f),
                                                                          6.0f * Time.deltaTime);
             }
 
             // カメラが移動し終わったら
-            if (MainCamera.transform.localPosition.y >= this.transform.localPosition.y - 2.5f)
+            if (MainCamera.transform.localPosition.y >= this.transform.localPosition.y - 4.0f)
             {
                 fDefeatTime += Time.deltaTime;
 

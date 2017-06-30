@@ -41,11 +41,12 @@ public class BossCameraMove : MonoBehaviour
                 // カメラを元に戻す
                 if (MainCamera.transform.localPosition.y > CameraStartPos.y)
                 {
-                    Debug.Log("カメラ戻したいんですが？");
                     // カメラを元に戻す
                     MainCamera.transform.localPosition = Vector3.MoveTowards(MainCamera.transform.localPosition,
                                                                              CameraStartPos,
                                                                              6.0f * Time.deltaTime);
+
+                    Camera.main.cullingMask |= (1 << LayerMask.NameToLayer("UI"));    // UIレイヤー表示
                 }
                 else
                 {
