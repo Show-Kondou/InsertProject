@@ -10,6 +10,9 @@ public class GoTextFade : MonoBehaviour {
 
     bool OneProcessing = true;
 
+	[SerializeField]
+	Tutorial tutorial;
+
 	// Use this for initialization
 	void Start () {
 		MyImage = GetComponent<Image>();
@@ -28,7 +31,8 @@ public class GoTextFade : MonoBehaviour {
         //フェード終了
         if (Alpha <= 0f && OneProcessing)
         {
-            OneProcessing = false;
+			tutorial.Create();
+			OneProcessing = false;
         }
     }
 

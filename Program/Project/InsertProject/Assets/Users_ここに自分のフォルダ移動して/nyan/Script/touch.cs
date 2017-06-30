@@ -32,40 +32,37 @@ public class touch : MonoBehaviour {
         //トリガー時処理
         if (Input.GetMouseButtonDown(0))
         {
-            nLineNum = nLineNum + 10; ;
-
-            //ラインプレファブ生成
-            GameObject Line =  Instantiate(LinePrefab) as GameObject;
-            Line.name = "Line" + nLineNum;
-
-            //ぬるぬる判定
-            if (0 < nSTouchCntS)
-            {
-                Line.GetComponent<line>().bSLineS = true;
-                nSTouchCntS -= 1;
-            }
-            else
-            {
-                Line.GetComponent<line>().bSLineS = false;
-            }
-
-            if (0 < nSTouchCntE)
-            {
-                Line.GetComponent<line>().bSLineE = true;
-                nSTouchCntE -= 1;
-            }
-            else
-            {
-                Line.GetComponent<line>().bSLineE = false;
-            }
-
-            //ラインにID付与
-            Line.GetComponent<line>().nLineID = nLineNum;
-
-        }
+			MakeLine();
+		}
 
         bStickyS = false;
         bStickyE = false;
 
     }
+
+	public void MakeLine() {
+		nLineNum = nLineNum + 10; ;
+
+		//ラインプレファブ生成
+		GameObject Line =  Instantiate(LinePrefab) as GameObject;
+		Line.name = "Line" + nLineNum;
+
+		//ぬるぬる判定
+		if(0 < nSTouchCntS) {
+			Line.GetComponent<line>().bSLineS = true;
+			nSTouchCntS -= 1;
+		} else {
+			Line.GetComponent<line>().bSLineS = false;
+		}
+
+		if(0 < nSTouchCntE) {
+			Line.GetComponent<line>().bSLineE = true;
+			nSTouchCntE -= 1;
+		} else {
+			Line.GetComponent<line>().bSLineE = false;
+		}
+
+		//ラインにID付与
+		Line.GetComponent<line>().nLineID = nLineNum;
+	}
 }
