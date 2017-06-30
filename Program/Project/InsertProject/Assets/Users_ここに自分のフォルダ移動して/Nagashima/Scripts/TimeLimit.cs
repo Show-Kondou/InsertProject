@@ -125,6 +125,7 @@ public class TimeLimit : MonoBehaviour
 			bossEvent.GetComponent<BossAppearManager>().enabled = true;
 			bossEvent.GetComponent<BossAppearManager>().bStart = true;
 			CSoundManager.Instance.StopBGM();
+            CSoundManager.Instance.PlayBGM(AUDIO_LIST.BGM_GAMEOVER,true);
 			isCreateBoss = true;
 			Debug.Log("ボスUI生成");
 		}
