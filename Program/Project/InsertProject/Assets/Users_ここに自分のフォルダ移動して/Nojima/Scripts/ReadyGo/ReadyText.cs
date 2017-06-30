@@ -28,10 +28,7 @@ public class ReadyText : MonoBehaviour
     private StopGame stopGame;
     Image MyImage;
 
-    // 現在時間
-    private float nowTime = 0.0F;
 
-    private int drawCnt = 0;
 
 
 
@@ -43,7 +40,7 @@ public class ReadyText : MonoBehaviour
         MyImage = GetComponent<Image>();
         MyImage.color = new Color(MyImage.color.r, MyImage.color.g, MyImage.color.b, Alpha);
         transform.localPosition = new Vector3(transform.localPosition.x, Pos_Y);
-
+        stopGame.StopGameEvent();
         Time.timeScale = 0.0F;
 
     }
@@ -51,47 +48,37 @@ public class ReadyText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        stopGame.StopGameEvent();
+        //stopGame.StopGameEvent();
 
-        if (bReadyGo)
+        //if (bReadyGo)
             ReadyGoStart(); //ReadyGo演出スタート
     }
 
     /// <summary>
     /// ReadyGo演出スタート
     /// </summary>
-    public void ReadyGoStart()
-    {
-        float p = nowTime / GoStartCnt;
+    public void ReadyGoStart(){
 
-        nowTime += Time.unscaledDeltaTime;
-        if (1.0F <= p)
-        {
-            nowTime = 0.0F;
-            drawCnt++;
-        }
-        if (drawCnt >= 2)
-        {
-            Time.timeScale = 1.0F;
-            stopGame.StartGameEvent();
-
-        }
 
         if (Pos_Y >= InitPos_Y)
-        {
-            Alpha += 1f * Time.deltaTime;
-            Pos_Y -= 200f * Time.deltaTime;
+        {       
+            Alpha += 1f * Time.unscaledDeltaTime;
+            Pos_Y -= 80f * Time.unscaledDeltaTime;
             MyImage.color = new Color(MyImage.color.r, MyImage.color.g, MyImage.color.b, Alpha);
             transform.localPosition = new Vector3(transform.localPosition.x, Pos_Y);
         }
 
-        if (Pos_Y <= InitPos_Y)
+        if (Pos_Y <= InitPos_Y )
         {
-            GoTextTime += Time.deltaTime;
+            GoTextTime += Time.unscaledDeltaTime;
 
+            Time.timeScale = 1.0F;
             //Goテキスト演出開始
             if (GoTextTime >= GoStartCnt)
             {
+                Time.timeScale = 1.0f;
+                stopGame.StartGameEvent();
+
                 Alpha = 0f;
                 MyImage.color = new Color(MyImage.color.r, MyImage.color.g, MyImage.color.b, Alpha);
 
