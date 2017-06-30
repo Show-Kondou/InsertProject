@@ -16,7 +16,7 @@ public class GoTextFade : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		MyImage = GetComponent<Image>();
-        MyImage.color = new Color(MyImage.color.r, MyImage.color.g, MyImage.color.b, Alpha);
+        //MyImage.color = new Color(MyImage.color.r, MyImage.color.g, MyImage.color.b, Alpha);
 	}
 
     public void GoTextFadeOut()
