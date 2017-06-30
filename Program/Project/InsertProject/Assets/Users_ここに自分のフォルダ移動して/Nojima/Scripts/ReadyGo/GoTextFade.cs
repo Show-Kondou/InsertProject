@@ -8,6 +8,8 @@ public class GoTextFade : MonoBehaviour {
     float Alpha = 1f;
     Image MyImage;
 
+    bool OneProcessing = true;
+
 	// Use this for initialization
 	void Start () {
 		MyImage = GetComponent<Image>();
@@ -20,6 +22,15 @@ public class GoTextFade : MonoBehaviour {
         {
             Alpha -= 1f * Time.deltaTime;
             MyImage.color = new Color(MyImage.color.r, MyImage.color.g, MyImage.color.b, Alpha);
+            
+        }
+
+        //フェード終了
+        if (Alpha <= 0f && OneProcessing)
+        {
+            OneProcessing = false;
         }
     }
+
+
 }
