@@ -39,9 +39,11 @@ public class EnemyCount : MonoBehaviour
         else
         {
             resultMgr.bGameOver = true;
+            CSoundManager.Instance.StopBGM();
+            CSoundManager.Instance.PlayBGM(AUDIO_LIST.BGM_GAMEOVER, true);
 
             //CSceneManager.Instance.LoadScene( SCENE.RESULT, FADE.BLACK );
-		}
+        }
     }
 
 	// ===== スタート関数 =====
