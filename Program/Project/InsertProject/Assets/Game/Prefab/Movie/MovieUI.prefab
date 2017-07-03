@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 222876239929299278}
   - component: {fileID: 114018352167490698}
   m_Layer: 5
-  m_Name: FingerImage
+  m_Name: TutorialFingerImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

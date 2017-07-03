@@ -1,4 +1,19 @@
-﻿using System.Collections;
+﻿
+//_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+/*	CSlimeMove.cs
+//	
+//	作成者:佐々木瑞生
+//==================================================
+//	概要
+//	スライムの移動制御
+//  本当はコイツを継承させたかったけどうまくいかなかったのでswitchに変更。
+//	
+//==================================================
+//	作成日：2017/06/12
+*/
+//_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/ 
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -59,7 +74,6 @@ public class CSlimeMove : CSSandwichObject {
 			m_Invincible = true;		// 生成時に無敵を付与
 			m_InvincibleTimer = 2.0f;   // 同上
 			GetComponent<CircleCollider2D>().enabled = false;
-			Debug.Log("bigmake");
 		}
 		NothingLifeTimer = NothingLifeTime;
 		m_EffectCanvas = GameObject.Find("EffectCanvas");	// エフェクト用カンバスを取得
