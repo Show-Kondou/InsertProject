@@ -7,7 +7,7 @@ public class ResultStart : MonoBehaviour
 {
 
     [SerializeField]
-    float M_WALL_SPEED = 1000f;             //マジックウォールの移動速度
+    float StartSpeed = 1000f;             //マジックウォールの移動速度
 
     //変数
     [SerializeField]
@@ -18,7 +18,7 @@ public class ResultStart : MonoBehaviour
     [SerializeField]
     RectTransform DrawTexture;              //マジックウォールの間から表示される画像
     [SerializeField]
-    RectTransform TopDrawTexture;
+    RectTransform TopDrawTexture;           //ゲームシーンではボタンがなぜか押せなくなるのでScreen-camereaの上にScreen-ovelayキャンバスをのせる
 
     float WallSize_X = 0f;                  //マジックウォール横幅
     float DrawTextureSize_X = 0f;           //マジックウォールの間から表示される画像の横幅
@@ -66,7 +66,7 @@ public class ResultStart : MonoBehaviour
 
         if (DrawTexture.sizeDelta.x < DefaultDrawTextureSize_X)
         {
-            DrawTextureSize_X += (M_WALL_SPEED * 2f) * Time.deltaTime;
+            DrawTextureSize_X += (StartSpeed * 2f) * Time.deltaTime;
             DrawTexture.sizeDelta = new Vector2(DrawTextureSize_X, DrawTexture.sizeDelta.y);
             TopDrawTexture.sizeDelta = new Vector2(DrawTextureSize_X, DrawTexture.sizeDelta.y);
         }
@@ -83,13 +83,13 @@ public class ResultStart : MonoBehaviour
         //一つ目のマジックウォール移動
         if (MagicWall[0].transform.localPosition.x <= MoveLimit + (-transform.localPosition.x))
         {
-            WallPos_X[0] += M_WALL_SPEED * Time.deltaTime;
+            WallPos_X[0] += StartSpeed * Time.deltaTime;
             MagicWall[0].transform.localPosition = new Vector2(WallPos_X[0], MagicWall[0].transform.localPosition.y);
         }
         //二つ目のマジックウォール移動
         if (MagicWall[1].transform.localPosition.x >= -MoveLimit + (-transform.localPosition.x))
         {
-            WallPos_X[1] -= M_WALL_SPEED * Time.deltaTime;
+            WallPos_X[1] -= StartSpeed * Time.deltaTime;
             MagicWall[1].transform.localPosition = new Vector2(WallPos_X[1], MagicWall[1].transform.localPosition.y);
         }
 

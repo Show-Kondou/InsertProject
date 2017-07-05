@@ -24,6 +24,9 @@ public class GameStartButton : MonoBehaviour
 
     private bool bGameStart = false;     // ゲームを開始するフラグ
 
+    [SerializeField]
+    TitleLogo CTitleLogo;
+
     // ===== ゲーム開始 =====
     public void GameStart()
     {
@@ -59,6 +62,7 @@ public class GameStartButton : MonoBehaviour
                 float z = TitleBG.transform.position.z - fMovePosY;
                 TitleBG.transform.SetZ( z );
 
+                CTitleLogo.WallMoveShrinking(); //マジックウォール移動
             }
             else
             {
