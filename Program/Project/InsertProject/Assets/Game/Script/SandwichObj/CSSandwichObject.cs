@@ -60,7 +60,7 @@ public class CSSandwichObject : ObjectBase {
         public string HitObjName;	// 名前(前後確認)
     };
 
-    protected List<PressObject> m_PressObjList = new List<PressObject>();  // プレス機のリスト
+    public List<PressObject> m_PressObjList = new List<PressObject>();  // プレス機のリスト
     public bool m_bInsert;      // 挟まりました
 
     float life = 5.0f;
@@ -112,6 +112,11 @@ public class CSSandwichObject : ObjectBase {
 				if(Mathematics.VectorRange(m_PressObjList[i].DirectionVec, m_PressObjList[j].DirectionVec) > m_PressRangeLow) {
 					m_HitIDA = m_PressObjList[i].HitID;
 					m_HitIDB = m_PressObjList[j].HitID;
+					if(m_HitIDA > m_HitIDB) {
+						m_HitIDA = m_HitIDA ^ m_HitIDB;
+						m_HitIDB = m_HitIDA ^ m_HitIDB;
+						m_HitIDA = m_HitIDA ^ m_HitIDB;
+					}
 					SandwichedAction();	// 挟まれ処理
 					break;
 				}

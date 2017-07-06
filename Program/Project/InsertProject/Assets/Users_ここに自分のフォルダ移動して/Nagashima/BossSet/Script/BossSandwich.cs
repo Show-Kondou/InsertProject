@@ -24,6 +24,7 @@ public class BossSandwich : CSSandwichObject
     // ===== 挟まれた時 =====
     public override void SandwichedAction()
     {
+		CSameSandwichAction.AddPressMachineList(m_HitIDA, m_HitIDB, true);
         // ボスにダメージを与える  
         this.transform.FindChild("Boss").gameObject.GetComponent<BossDamage>().BossHitDamage();
     }
