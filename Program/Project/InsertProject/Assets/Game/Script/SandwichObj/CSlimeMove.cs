@@ -145,7 +145,6 @@ public class CSlimeMove : CSSandwichObject {
 					break;
 				case SLIME_TYPE.Fever:
 					// 外周移動
-					Debug.Log(pointMng.FeverSlimeDestination);
 					var containerFever = pointMng.FeverSlimeDestination;
 					m_Rotation = Mathf.Atan2(containerFever.y - transform.position.y,
 							containerFever.x - transform.position.x);

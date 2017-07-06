@@ -58,7 +58,7 @@ public class BossDamage : MonoBehaviour
                 nDamageUP = 2;
             if (TouchObj.GetComponent<touch>().bStickyE && TouchObj.GetComponent<touch>().bStickyS)
                 nDamageUP = 3;
-
+			Debug.Log(CSameSandwichAction.m_BossDamage);	// 同時挟まれ数取得
             fHitPoint -= nDamageUP;
 
             bSandwich = false;

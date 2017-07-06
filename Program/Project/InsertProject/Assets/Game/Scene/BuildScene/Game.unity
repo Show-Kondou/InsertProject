@@ -448,7 +448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fOneRoundTime: 150
-  fCreateBossTime: 60
+  fCreateBossTime: 1
   BossUI: {fileID: 1130332429}
   resultMgr: {fileID: 559336940}
   bRotateX: 0
@@ -778,6 +778,25 @@ Transform:
   m_PrefabParentObject: {fileID: 4961331200773862, guid: 551a08ce38b6f234ba6c7cb6d4496f81,
     type: 2}
   m_PrefabInternal: {fileID: 477341478}
+--- !u!1 &477341480 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1070818531792940, guid: 551a08ce38b6f234ba6c7cb6d4496f81,
+    type: 2}
+  m_PrefabInternal: {fileID: 477341478}
+--- !u!114 &477341481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 477341480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8f1ea0f5b434bc4c8e8daca8ac6d2ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OrderNumber: 0
+  m_Using: 1
+  m_ObjectID: 0
 --- !u!114 &559336940 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114054783432399960, guid: 8f9679c7b6bcc264cb7e5065ad5b44b2,
