@@ -29,8 +29,6 @@ public class Tutorial : ObjectBase {
 
 	public override void Execute(float deltaTime) {
 		if(use) {
-			if(Cursor.visible)
-				Cursor.visible = false;
 			FingerImage.rectTransform.localPosition = new Vector3(FingerPos.x + FingerImage.rectTransform.rect.width * 0.31f,
 				FingerImage.rectTransform.rect.height * 0.43f, 0.0f);
 
@@ -68,7 +66,6 @@ public class Tutorial : ObjectBase {
 
 	public void Create() {
 		Direction = 1;
-		Cursor.visible = false;
 		FingerImage.rectTransform.localRotation = Quaternion.Euler(new Vector3(0, 0, 30));
 		FingerImage.enabled = true;
 		use = true;
