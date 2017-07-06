@@ -180,7 +180,8 @@ public class CSlimeMove : CSSandwichObject {
 			m_InvincibleTimer = 1.0f;       // 無敵時間
 			SlimeMesh.SetActive(false);
 			// パーティクルを出す
-			CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.AllySlimeDeath, transform.position);
+			//CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.AllySlimeDeath, transform.position);
+			FeverEffectMgr.Instance.PlayEffect( transform.position );
 		} else if(myType == SLIME_TYPE.Nothing) {
 			SameTimeSandObjNum();
 		} else if(myType == SLIME_TYPE.Big) {
