@@ -37,6 +37,8 @@ public class SlimePop : ObjectBase
 
     public override void Execute(float deltaTime)
     {
+
+
         //時間をカウント
         fTimeCnt += Time.deltaTime;
 

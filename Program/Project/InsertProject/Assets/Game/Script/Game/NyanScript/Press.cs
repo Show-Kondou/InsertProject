@@ -24,10 +24,9 @@ public class Press : MonoBehaviour {
 
     //移動関連
     private Vector3 vSpeed = new Vector3(3.0f, 3.0f, 3.0f);
-    //private Vector3 vSpeed = new Vector3(0.1f, 0.1f, 0.1f);
     private float fRad;                 //進行方向計算用
     private Vector3 vMovePos;           //移動用
-    private float fGrace = 0.025f;      //差
+    private float fGrace = 0.1f;      //差
     private bool bStop = false;         //停止フラグ
     //private bool bWayPoint = false;   //中間地点フラグ
 
@@ -203,6 +202,12 @@ public class Press : MonoBehaviour {
                     {
                         bStop = true;
                     }
+
+                    vOldPos = vNewPos;
+                    vNewPos = transform.position;
+                    fContainer = (vNewPos - vOldPos).magnitude;
+                    fDistance += fContainer;
+
                 }
 
             }
@@ -243,13 +248,19 @@ public class Press : MonoBehaviour {
                     {
                         bStop = true;
                     }
+
+                    vOldPos = vNewPos;
+                    vNewPos = transform.position;
+                    fContainer = (vNewPos - vOldPos).magnitude;
+                    fDistance += fContainer;
+
                 }
             }
 
-            vOldPos = vNewPos;
-            vNewPos = transform.position;
-            fContainer = (vNewPos - vOldPos).magnitude;
-            fDistance += fContainer;
+            //vOldPos = vNewPos;
+            //vNewPos = transform.position;
+            //fContainer = (vNewPos - vOldPos).magnitude;
+            //fDistance += fContainer;
 
 			//半分のところでマテリアル非表示
 			if( gParentObj.GetComponent<line>().fDistanceTotal * 0.5f < fDistance ) {
