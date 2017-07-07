@@ -5,6 +5,8 @@ using UnityEngine;
 public class BossMove : MonoBehaviour 
 {
     // ----- プライベート変数 -----
+    private GameObject MainCamera;          // メインカメラ
+
     [SerializeField]
     private float fMoveSpeed = 0;
     [SerializeField]
@@ -16,7 +18,8 @@ public class BossMove : MonoBehaviour
     [SerializeField]
     private int nMoveNum = 0;
 
-    private GameObject MainCamera;          // メインカメラ
+    [SerializeField]
+    private GameObject TeleportEffectObj;         // ワームホールオブジェクト
 
     private Vector3 BossStartPos;
 
@@ -60,7 +63,11 @@ public class BossMove : MonoBehaviour
 
             if (fMoveIntervalTime >= 5.0f)
             {
-                this.transform.localPosition = new Vector3(Random.Range(-1.5f, 2.5f), Random.Range(-2, 5), 0); 
+                //Instantiate(TeleportEffectObj, new Vector3(this.transform.localPosition.x, this.transform.localPosition.y + 2.3f, this.transform.localPosition.z - 2.2f), Quaternion.identity);
+
+                this.transform.localPosition = new Vector3(Random.Range(-1.5f, 2.5f), Random.Range(-2, 5), 0);
+
+                //Instantiate(TeleportEffectObj, new Vector3(this.transform.localPosition.x, this.transform.localPosition.y + 2.3f, this.transform.localPosition.z - 2.2f), Quaternion.identity);
 
                 fMoveIntervalTime = 0.0f;
             }

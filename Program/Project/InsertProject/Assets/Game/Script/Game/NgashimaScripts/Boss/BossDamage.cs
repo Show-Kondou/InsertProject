@@ -53,7 +53,15 @@ public class BossDamage : MonoBehaviour
             this.GetComponent<BossMove>().SetMoveNum(0);
 
 			Debug.Log(CSameSandwichAction.m_BossDamage);	// 同時挟まれ数取得
-            fHitPoint -= CSameSandwichAction.m_BossDamage;
+
+            if (CSameSandwichAction.m_BossDamage <= 10)
+            {
+                fHitPoint -= CSameSandwichAction.m_BossDamage;
+            }
+            else
+            {
+                fHitPoint -= 10;
+            }
 
             EnemyHPObj.GetComponent<EnemyGauge>().AddDamage(CSameSandwichAction.m_BossDamage);
             bSandwich = false;

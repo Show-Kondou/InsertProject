@@ -2851,6 +2851,8 @@ MonoBehaviour:
   fPosX: 1.9
   RotateSpeed: 0
   nMoveNum: 1
+  TeleportEffectObj: {fileID: 1558192027905478, guid: 2f64aff157c14814591ac0ed8331818d,
+    type: 2}
 --- !u!114 &114293331955098526
 MonoBehaviour:
   m_ObjectHideFlags: 1
