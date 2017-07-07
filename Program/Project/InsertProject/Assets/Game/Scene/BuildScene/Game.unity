@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00406631, g: 0.00022231956, b: 0.000000056080918,
+  m_IndirectSpecularColor: {r: 0.004066306, g: 0.00022231914, b: 0.000000056080918,
     a: 1}
 --- !u!157 &3
 LightmapSettings:
@@ -577,7 +577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fOneRoundTime: 180
-  fCreateBossTime: 1
+  fCreateBossTime: 70
   BossUI: {fileID: 1130332429}
   resultMgr: {fileID: 559336940}
   bRotateX: 0
@@ -3437,78 +3437,6 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224872242079359506, guid: d5555448a86f0bc459ae47afc87411d9,
     type: 2}
   m_PrefabInternal: {fileID: 650345705}
---- !u!1001 &1828275413
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4131828232272178, guid: 2f64aff157c14814591ac0ed8331818d, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4131828232272178, guid: 2f64aff157c14814591ac0ed8331818d, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4131828232272178, guid: 2f64aff157c14814591ac0ed8331818d, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4131828232272178, guid: 2f64aff157c14814591ac0ed8331818d, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4131828232272178, guid: 2f64aff157c14814591ac0ed8331818d, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4131828232272178, guid: 2f64aff157c14814591ac0ed8331818d, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4131828232272178, guid: 2f64aff157c14814591ac0ed8331818d, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4131828232272178, guid: 2f64aff157c14814591ac0ed8331818d, type: 2}
-      propertyPath: m_RootOrder
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 198454903869447426, guid: 2f64aff157c14814591ac0ed8331818d,
-        type: 2}
-      propertyPath: lengthInSec
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 198454903869447426, guid: 2f64aff157c14814591ac0ed8331818d,
-        type: 2}
-      propertyPath: randomSeed
-      value: -990161762
-      objectReference: {fileID: 0}
-    - target: {fileID: 198810971281059952, guid: 2f64aff157c14814591ac0ed8331818d,
-        type: 2}
-      propertyPath: lengthInSec
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 198810971281059952, guid: 2f64aff157c14814591ac0ed8331818d,
-        type: 2}
-      propertyPath: randomSeed
-      value: 1883095944
-      objectReference: {fileID: 0}
-    - target: {fileID: 198622022697017420, guid: 2f64aff157c14814591ac0ed8331818d,
-        type: 2}
-      propertyPath: lengthInSec
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 198622022697017420, guid: 2f64aff157c14814591ac0ed8331818d,
-        type: 2}
-      propertyPath: randomSeed
-      value: 1953619310
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 2f64aff157c14814591ac0ed8331818d, type: 2}
-  m_IsPrefabParent: 0
 --- !u!65 &1836217813 stripped
 BoxCollider:
   m_PrefabParentObject: {fileID: 65041747420994628, guid: 8a2c18bf97f7484498f53bca97e93575,
