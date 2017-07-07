@@ -23,10 +23,14 @@ public class Press : MonoBehaviour {
     private Vector3 vOldPos;
 
     //移動関連
-    private Vector3 vSpeed = new Vector3(3.0f, 3.0f, 3.0f);
+    public float fSpeed = 2.0f;
+    public bool bSpeedCheck1 = false;
+    public bool bSpeedCheck2 = false;
+    public bool bSpeedCheck3 = false;
+    private Vector3 vSpeed;
     private float fRad;                 //進行方向計算用
     private Vector3 vMovePos;           //移動用
-    private float fGrace = 0.2f;      //差
+    private float fGrace = 0.25f;      //差
     private bool bStop = false;         //停止フラグ
     //private bool bWayPoint = false;   //中間地点フラグ
 
@@ -107,7 +111,9 @@ public class Press : MonoBehaviour {
         //CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.MagicWallEmarg, transform.position);
 
         //生成時にシェーダーを変更
-        
+
+        //スピード初期化
+        vSpeed = new Vector3(fSpeed, fSpeed, fSpeed);
 
     }
 
@@ -262,8 +268,31 @@ public class Press : MonoBehaviour {
             //fContainer = (vNewPos - vOldPos).magnitude;
             //fDistance += fContainer;
 
-			//半分のところでマテリアル非表示
-			if( gParentObj.GetComponent<line>().fDistanceTotal * 0.5f < fDistance ) {
+            //スピード更新
+            vSpeed = new Vector3(fSpeed, fSpeed, fSpeed);
+
+            fSpeed += 0.015f;
+
+            //if (gParentObj.GetComponent<line>().fDistanceTotal * 0.1f  < fDistance && bSpeedCheck1 == false)
+            //{
+            //    fSpeed += 1.5f;
+            //    bSpeedCheck1 = true;
+            //}
+            //if (gParentObj.GetComponent<line>().fDistanceTotal * 0.2f < fDistance && bSpeedCheck2 == false)
+            //{
+            //    fSpeed += 1.5f;
+            //    bSpeedCheck2 = true;
+            //}
+            //if (gParentObj.GetComponent<line>().fDistanceTotal * 0.3f  < fDistance && bSpeedCheck3 == false)
+            //{
+            //    fSpeed += 1.5f;
+            //    bSpeedCheck3 = true;
+            //}
+
+
+
+            //半分のところでマテリアル非表示
+            if ( gParentObj.GetComponent<line>().fDistanceTotal * 0.5f < fDistance ) {
 				//GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
 				if( bWallStart == true && bVisible == false ) {
 					bVisible = true;
