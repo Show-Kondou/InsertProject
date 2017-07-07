@@ -36,7 +36,6 @@ public class CSameSandwichAction : ObjectBase {
 
 	public override void Execute(float deltaTime) {
 		m_BossDamage = 0;
-
 	}
 
 	public override void LateExecute(float deltaTime) {
@@ -49,10 +48,11 @@ public class CSameSandwichAction : ObjectBase {
 	/// <param name="Second">2個目のID</param>
 	/// <param name="bossPress">ボスを挟んだか否か</param>
 	static public void AddPressMachineList(int First, int Second, bool bossPress = false) {
-		foreach(PressMachines obj in pressList) {
-			if(obj.HitIDA == First && obj.HitIDB == Second)
-				return;
-		}
+		//foreach(PressMachines obj in pressList) {
+		//	// 同じならやらない
+		//	if(obj.HitIDA == First && obj.HitIDB == Second)
+		//		return;
+		//}
 		foreach(CSSandwichObject sandObj in CSSandwichObjManager.m_SandwichObjList) {
 			foreach(CSSandwichObject.PressObject pressObj in sandObj.m_PressObjList) {
 				if(First == pressObj.HitID || Second == pressObj.HitID)
