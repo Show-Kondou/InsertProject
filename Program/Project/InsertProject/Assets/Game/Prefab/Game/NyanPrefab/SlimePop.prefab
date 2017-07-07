@@ -51,8 +51,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea5694e3abc3444408951c01b8676a21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_OrderNumber: 0
+  m_Using: 1
+  m_ObjectID: 0
   SummonParticle: {fileID: 1906997611894714, guid: 80bce1815e1920245bb8016265bb192e,
     type: 2}
-  fPopRange: 5
+  fPopRange: 2
   fFailedMinus: 1
-  fLotteryTime: 1
+  fLotteryTime: 0.5
+  gResult: {fileID: 0}

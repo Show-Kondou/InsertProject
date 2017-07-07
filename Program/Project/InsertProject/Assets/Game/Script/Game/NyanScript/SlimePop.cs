@@ -18,6 +18,8 @@ public class SlimePop : ObjectBase
     //タイマーカウント
     private float fTimeCnt;
 
+    public GameObject gResult;
+
     // Use this for initialization
     void Start()
     {
@@ -37,37 +39,38 @@ public class SlimePop : ObjectBase
 
     public override void Execute(float deltaTime)
     {
-
-
-        //時間をカウント
-        fTimeCnt += Time.deltaTime;
-
-        //指定時間が来たら抽選開始
-        if (fLotteryTime < fTimeCnt)
+        if (gResult.GetComponent<ResultManager>().bGameOver == true || gResult.GetComponent<ResultManager>().bTimeOver == true)
         {
-            //カウントをリセット
-            fTimeCnt = 0;
+            //時間をカウント
+            fTimeCnt += Time.deltaTime;
 
-            //抽選成功
-            if (Random.Range(0.0f, fPopRange) <= 1.0f)
+            //指定時間が来たら抽選開始
+            if (fLotteryTime < fTimeCnt)
             {
-                float width = Random.Range(-2.8f, 2.8f);
-                float height = Random.Range(-5.0f, 7.0f);
-                CSSandwichObjManager.Instance.CreateSandwichObj(CSSandwichObjManager.SandwichObjType.EnemySlime, new Vector2(width, height));
+                //カウントをリセット
+                fTimeCnt = 0;
 
-                //パーティクル生成
-                GameObject par = Instantiate(SummonParticle) as GameObject;
-                par.transform.position = new Vector2(width, height);
+                //抽選成功
+                if (Random.Range(0.0f, fPopRange) <= 1.0f)
+                {
+                    float width = Random.Range(-2.8f, 2.8f);
+                    float height = Random.Range(-5.0f, 7.0f);
+                    CSSandwichObjManager.Instance.CreateSandwichObj(CSSandwichObjManager.SandwichObjType.EnemySlime, new Vector2(width, height));
 
-                fPopRange = fPopRangeContainer;
-            }
-            else//抽選失敗
-            {
-                fPopRange-= fFailedMinus;
+                    //パーティクル生成
+                    GameObject par = Instantiate(SummonParticle) as GameObject;
+                    par.transform.position = new Vector2(width, height);
+
+                    fPopRange = fPopRangeContainer;
+                }
+                else//抽選失敗
+                {
+                    fPopRange -= fFailedMinus;
+                }
+
             }
 
         }
-
         //if (Input.GetKeyDown(KeyCode.Space))
         //{
         //    float width = Random.Range(-2.0f, 2.0f);
