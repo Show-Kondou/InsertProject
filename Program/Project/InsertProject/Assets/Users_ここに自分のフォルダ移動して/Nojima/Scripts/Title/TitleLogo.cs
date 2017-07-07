@@ -31,6 +31,7 @@ public class TitleLogo : MonoBehaviour
         new float[2] { 0f, 0f };
 
     bool bShrinking = true;
+    bool bExpansion = true;
 
     //デバッグ用
     public bool bstart = false;                    //マジックウォールの閉じる動作
@@ -82,23 +83,25 @@ public class TitleLogo : MonoBehaviour
         //マジックウォールが移動できる範囲
         float MoveLimit = (CanvasSizeX / 2f) + (WallSize_X / 2f);
 
-        //一つ目のマジックウォール移動
-        if (MagicWall[0].transform.localPosition.x <= MoveLimit)
+        if (bExpansion)
         {
-            WallPos_X[0] += StartSpeed * Time.deltaTime;
-            MagicWall[0].transform.localPosition = new Vector2(WallPos_X[0], MagicWall[0].transform.localPosition.y);
-        }
-        //二つ目のマジックウォール移動
-        if (MagicWall[1].transform.localPosition.x >= -MoveLimit)
-        {
-            WallPos_X[1] -= StartSpeed * Time.deltaTime;
-            MagicWall[1].transform.localPosition = new Vector2(WallPos_X[1], MagicWall[1].transform.localPosition.y);
-        }
+            //一つ目のマジックウォール移動
+            if (MagicWall[0].transform.localPosition.x <= MoveLimit)
+            {
+                WallPos_X[0] += StartSpeed * Time.deltaTime;
+                MagicWall[0].transform.localPosition = new Vector2(WallPos_X[0], MagicWall[0].transform.localPosition.y);
+            }
+            //二つ目のマジックウォール移動
+            if (MagicWall[1].transform.localPosition.x >= -MoveLimit && MagicWall[1] != null)
+            {
+                WallPos_X[1] -= StartSpeed * Time.deltaTime;
+                MagicWall[1].transform.localPosition = new Vector2(WallPos_X[1], MagicWall[1].transform.localPosition.y);
+            }
+            if (MagicWall[0].transform.localPosition.x >= MoveLimit || MagicWall[1].transform.localPosition.x <= -MoveLimit)
+                CTitleModelScale.ModelScale();
 
-        if (MagicWall[0].transform.localPosition.x >= MoveLimit || MagicWall[1].transform.localPosition.x <= -MoveLimit)
-            CTitleModelScale.ModelScale();
-
-        TextureExpansion();
+            TextureExpansion();
+        }
     }
 
 
@@ -145,7 +148,7 @@ public class TitleLogo : MonoBehaviour
                 for (int i = 0; i < MagicWall.Length; i++)
                     Destroy(MagicWall[i]);  //マジックウォールモデル消す
 
-                //Destroy(TitleLogoModel);
+                bExpansion = false;
                 bShrinking = false;
             }
         }
