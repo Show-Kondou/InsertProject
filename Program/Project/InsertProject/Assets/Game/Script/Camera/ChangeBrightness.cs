@@ -11,12 +11,12 @@ public class ChangeBrightness : ObjectBase {
 	[SerializeField]
 	private float m_LimitBrightness;    // 暗さの最低値
 	private const float m_colorVolMask = 0.003921f;
+	private bool m_using;
 	// Use this for initialization
 	void Start() {
 		m_OrderNumber = 0;
 		ObjectManager.Instance.RegistrationList(this, m_OrderNumber);
 		m_BrightnessDir = -1;
-		this.enabled = false;
 	}
 
 	/// <summary>
@@ -24,6 +24,8 @@ public class ChangeBrightness : ObjectBase {
 	/// </summary>
 	/// <param name="deltaTime">前フレームとの差</param>
 	public override void Execute(float deltaTime) {
+		if(!m_using)
+			return;
 		var color = m_DirectionalLight.color;
 		color.r += m_ChangeSpeed * m_colorVolMask * deltaTime * m_BrightnessDir;
 		color.b += m_ChangeSpeed * m_colorVolMask * deltaTime * m_BrightnessDir;
@@ -51,6 +53,7 @@ public class ChangeBrightness : ObjectBase {
 	}
 
 	public void StartChangeBrightness(int LightDir) {
+		m_using = true;
 		m_BrightnessDir = LightDir;
 	}
 }

@@ -209,6 +209,9 @@ public class CSSandwichObject : ObjectBase {
 			for(int i = 0; i < sameObjList.Count; i++) { 
 				for(int j = 0; j < CSSandwichObjManager.m_SandwichObjList.Count; j++) { 
 					if(CSSandwichObjManager.m_SandwichObjList[j].m_SandwichObjectID == sameObjList[i]) {
+						if(CSSandwichObjManager.m_SandwichObjList[j].tag == "Boss") {
+							continue;
+						}
 						CSSandwichObjManager.m_SandwichObjList[j].DestroySandObject();	// オブジェクト削除
 						CSSandwichObjManager.Instance.DeleteSandwichObjToList(CSSandwichObjManager.m_SandwichObjList[j].m_SandwichObjectID);
 						ObjectManager.Instance.DeleteObject(m_OrderNumber, m_ObjectID);
