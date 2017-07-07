@@ -289,7 +289,7 @@ public class line : MonoBehaviour {
             if (Input.GetMouseButtonUp(0))
             {
                 //線の長さが基準値に達していなかったら線を引かずオブジェクトも消す。
-                if (lvPointStorage.Count < 5)
+                if (lvPointStorage.Count < 5 || fDistanceTotal < 1.0f )
                 {
                     this.gameObject.SetActive(false);
                     Destroy(this.gameObject);

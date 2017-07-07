@@ -19,6 +19,7 @@ public class SlimePop : ObjectBase
     private float fTimeCnt;
 
     public GameObject gResult;
+    private bool bGameOver = false;
 
     // Use this for initialization
     void Start()
@@ -39,7 +40,14 @@ public class SlimePop : ObjectBase
 
     public override void Execute(float deltaTime)
     {
-        if (gResult.GetComponent<ResultManager>().bGameOver == false || gResult.GetComponent<ResultManager>().bTimeOver == false)
+        if (gResult.GetComponent<ResultManager>().bResultStart == true ||
+            gResult.GetComponent<ResultManager>().bGameOver == true ||
+            gResult.GetComponent<ResultManager>().bTimeOver == true)
+        {
+            bGameOver = true;
+        }
+
+        if(bGameOver == false)
         {
             //時間をカウント
             fTimeCnt += Time.deltaTime;
