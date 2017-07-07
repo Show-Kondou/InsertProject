@@ -24,7 +24,7 @@ public class EnemyGauge : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        SetHP(MAX_HP);
+        //SetHP(MAX_HP);
         GaugeImage = EnemyGaugeImg.GetComponent<Image>();
         GaugeTransform = EnemyGaugeImg.GetComponent<RectTransform>();
         EnemyHP = MAX_HP;
@@ -35,7 +35,7 @@ public class EnemyGauge : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AddDamage();                //ダメージ
+        //AddDamage();                //ダメージ
         GaugeColor(MAX_HP * 0.8f, MAX_HP * 0.5f, MAX_HP * 0.2f); //ゲージの色
 
         //倒したとき
@@ -52,13 +52,13 @@ public class EnemyGauge : MonoBehaviour
     /// <summary>
     /// ダメージ
     /// </summary>
-    void AddDamage()
+    public void AddDamage(float damage)
     {
-        if (bDamage)
-        {
-            EnemyHP -= ADD_DAMAGE;
-           bDamage = false;
-        }
+        //if (bDamage)
+        //{
+            EnemyHP -= damage;
+           //bDamage = false;
+        //}
         GaugeValue(EnemyHP);
     }
 

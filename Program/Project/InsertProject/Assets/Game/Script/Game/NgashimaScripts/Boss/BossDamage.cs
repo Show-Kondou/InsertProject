@@ -19,6 +19,7 @@ public class BossDamage : MonoBehaviour
     private float fDamageTime = 0.0f;       // ダメージアニメーションカウント
 
     private GameObject TouchObj;            // タッチオブジェクト
+    private GameObject EnemyHPObj;
 
     // ===== ボスのHPをゲットする関数 =====
     public float GetBossHitPoint()
@@ -52,8 +53,18 @@ public class BossDamage : MonoBehaviour
             this.GetComponent<BossMove>().SetMoveNum(0);
 
 			Debug.Log(CSameSandwichAction.m_BossDamage);	// 同時挟まれ数取得
-            fHitPoint -= CSameSandwichAction.m_BossDamage;
 
+            if (CSameSandwichAction.m_BossDamage <= 10)
+            {
+                fHitPoint -= CSameSandwichAction.m_BossDamage;
+                EnemyHPObj.GetComponent<EnemyGauge>().AddDamage(CSameSandwichAction.m_BossDamage);
+            }
+            else
+            {
+                fHitPoint -= 10;
+                EnemyHPObj.GetComponent<EnemyGauge>().AddDamage(10);
+            }
+      
             bSandwich = false;
         }
     }
@@ -65,6 +76,11 @@ public class BossDamage : MonoBehaviour
         animator = GetComponent<Animator>();
 
         TouchObj = GameObject.Find("Touch");
+
+        // ボスのHPバー関係
+        EnemyHPObj = GameObject.Find("UIs").transform.FindChild("EnemyHP").gameObject;
+        EnemyHPObj.GetComponent<EnemyGauge>().SetHP(this.GetComponent<BossDamage>().GetBossHitPoint());
+        EnemyHPObj.SetActive(true);
 	}
 	
 	// ===== 更新関数 =====

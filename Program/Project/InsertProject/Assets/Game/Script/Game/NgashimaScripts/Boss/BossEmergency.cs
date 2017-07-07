@@ -20,7 +20,6 @@ public class BossEmergency : MonoBehaviour
     private Vector3 CameraStartPos;         // カメラのスタート位置
     private Vector3 BossStartPos;           // ボスのスタート位置
 
-    [SerializeField]
     private ChangeBrightness _ChangeBrightness;
 
     // ===== カメラのスタート位置をゲットする関数 =====
@@ -54,6 +53,8 @@ public class BossEmergency : MonoBehaviour
         BossStartPos = GameObject.Find("BossSet(Clone)").transform.localPosition;
 
         _ChangeBrightness = GameObject.Find("Directional Light").GetComponent<ChangeBrightness>();
+
+
 	}
 	
 	// ===== 更新関数 =====

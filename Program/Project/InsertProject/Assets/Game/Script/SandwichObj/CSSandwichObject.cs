@@ -49,7 +49,8 @@ public class CSSandwichObject : ObjectBase {
 
 	private CSSandwichObject m_Type;
 
-	protected static int BigSlimeMakeNum = 5;	// ビッグスライムを生成する同時巻き込み数(初期は5)
+	protected static int BigSlimeMakeNum = 5;   // ビッグスライムを生成する同時巻き込み数(初期は5)
+	private List<CSSandwichObject> deleteObjList = new List<CSSandwichObject>();
 
 	// 当たったプレス機のステータス格納用
 	public struct PressObject { 
@@ -206,18 +207,36 @@ public class CSSandwichObject : ObjectBase {
 			// 生成
 			CSSandwichObjManager.Instance.CreateSandwichObj(CSSandwichObjManager.SandwichObjType.BigSlime, transform.position);
 			// 
-			for(int i = 0; i < sameObjList.Count; i++) { 
-				for(int j = 0; j < CSSandwichObjManager.m_SandwichObjList.Count; j++) { 
-					if(CSSandwichObjManager.m_SandwichObjList[j].m_SandwichObjectID == sameObjList[i]) {
-						if(CSSandwichObjManager.m_SandwichObjList[j].tag == "Boss") {
+			//for(int i = 0; i < sameObjList.Count; i++) { 
+			//	for(int j = 0; j < CSSandwichObjManager.m_SandwichObjList.Count; j++) { 
+			//		if(CSSandwichObjManager.m_SandwichObjList[j].m_SandwichObjectID == sameObjList[i]) {
+			//			if(CSSandwichObjManager.m_SandwichObjList[j].tag == "Boss") {
+			//				continue;
+			//			}
+			//			CSSandwichObjManager.m_SandwichObjList[j].DestroySandObject();	// オブジェクト削除
+			//			CSSandwichObjManager.Instance.DeleteSandwichObjToList(CSSandwichObjManager.m_SandwichObjList[j].m_SandwichObjectID);
+			//			ObjectManager.Instance.DeleteObject(m_OrderNumber, m_ObjectID);
+			//			j--;
+			//		}
+			//	}
+			//}
+			int loopCnt;
+			deleteObjList.Clear();
+			for(int i = 0; i < sameObjList.Count; i++) {
+				loopCnt = 0;
+				while(loopCnt < CSSandwichObjManager.m_SandwichObjList.Count) { 
+					if(CSSandwichObjManager.m_SandwichObjList[loopCnt].m_SandwichObjectID == sameObjList[i]) {
+						if(CSSandwichObjManager.m_SandwichObjList[loopCnt].tag == "Boss") {
 							continue;
 						}
-						CSSandwichObjManager.m_SandwichObjList[j].DestroySandObject();	// オブジェクト削除
-						CSSandwichObjManager.Instance.DeleteSandwichObjToList(CSSandwichObjManager.m_SandwichObjList[j].m_SandwichObjectID);
-						ObjectManager.Instance.DeleteObject(m_OrderNumber, m_ObjectID);
+						CSSandwichObjManager.m_SandwichObjList[loopCnt].DestroySandObject();	// オブジェクト削除
+						CSSandwichObjManager.Instance.DeleteSandwichObjToList(CSSandwichObjManager.m_SandwichObjList[loopCnt].m_SandwichObjectID);
+						loopCnt--;
 					}
+					loopCnt++;
 				}
 			}
+			ObjectManager.Instance.DeleteObject(m_OrderNumber, m_ObjectID);
 		}
 
 		return sandNum;
