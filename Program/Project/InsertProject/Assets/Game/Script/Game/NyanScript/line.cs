@@ -157,7 +157,7 @@ public class line : MonoBehaviour {
             bDiffCheck = true;
 
             //ホールド時処理
-            if (Input.GetMouseButton(0)) {
+            if (Input.GetMouseButton(0) && bForcedUp == false) {
 				//初回クリック時処理
 				if (bFirstClick == false)
                 {
@@ -286,7 +286,7 @@ public class line : MonoBehaviour {
 			}
 
             //リリース時処理
-            if (Input.GetMouseButtonUp(0) || bForcedUp == true)
+            if (Input.GetMouseButtonUp(0))
             {
                 //線の長さが基準値に達していなかったら線を引かずオブジェクトも消す。
                 if (lvPointStorage.Count < 5)
@@ -294,14 +294,14 @@ public class line : MonoBehaviour {
                     this.gameObject.SetActive(false);
                     Destroy(this.gameObject);
                 }
-                //アップ時格納場所を増やす
-                nPointCnt += 1;
-                lRendere.SetVertexCount(nPointCnt);
+                ////アップ時格納場所を増やす
+                //nPointCnt += 1;
+                //lRendere.SetVertexCount(nPointCnt);
 
-                //マウスリリース時の座標を格納
-                vEndPos = vRayPos;
-                lRendere.SetPosition(nPointCnt - 1, vEndPos);
-                lvPointStorage.Add(vEndPos);
+                ////マウスリリース時の座標を格納
+                //vEndPos = vRayPos;
+                //lRendere.SetPosition(nPointCnt - 1, vEndPos);
+                //lvPointStorage.Add(vEndPos);
 
                 //ラインIDをプレスIDに代入
                 nPressNum = _touch.nLineNum;
