@@ -2907,7 +2907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe5bb370e55c833499b99a9fefb27f39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fHitPoint: 15
+  fHitPoint: 75
 --- !u!114 &114572974119798452
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2969,7 +2969,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c92f9148401fc564589c3b90e3c04769, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fRotationSpeed: 5
+  fRotationSpeed: 4
   fAlphaSpeed: 0.02
 --- !u!137 &137001744313578904
 SkinnedMeshRenderer:
