@@ -271,23 +271,23 @@ public class Press : MonoBehaviour {
             //スピード更新
             vSpeed = new Vector3(fSpeed, fSpeed, fSpeed);
 
-            fSpeed += 0.015f;
+            //fSpeed += 0.015f;
 
-            //if (gParentObj.GetComponent<line>().fDistanceTotal * 0.1f  < fDistance && bSpeedCheck1 == false)
-            //{
-            //    fSpeed += 1.5f;
-            //    bSpeedCheck1 = true;
-            //}
-            //if (gParentObj.GetComponent<line>().fDistanceTotal * 0.2f < fDistance && bSpeedCheck2 == false)
-            //{
-            //    fSpeed += 1.5f;
-            //    bSpeedCheck2 = true;
-            //}
-            //if (gParentObj.GetComponent<line>().fDistanceTotal * 0.3f  < fDistance && bSpeedCheck3 == false)
-            //{
-            //    fSpeed += 1.5f;
-            //    bSpeedCheck3 = true;
-            //}
+            if (gParentObj.GetComponent<line>().fDistanceTotal * 0.05f < fDistance && bSpeedCheck1 == false)
+            {
+                fSpeed += 1.5f;
+                bSpeedCheck1 = true;
+            }
+            if (gParentObj.GetComponent<line>().fDistanceTotal * 0.15f < fDistance && bSpeedCheck2 == false)
+            {
+                fSpeed += 1.5f;
+                bSpeedCheck2 = true;
+            }
+            if (gParentObj.GetComponent<line>().fDistanceTotal * 0.25f < fDistance && bSpeedCheck3 == false)
+            {
+                fSpeed += 1.5f;
+                bSpeedCheck3 = true;
+            }
 
 
 
