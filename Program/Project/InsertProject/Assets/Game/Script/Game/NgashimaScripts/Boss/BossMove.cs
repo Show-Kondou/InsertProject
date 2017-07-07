@@ -63,11 +63,11 @@ public class BossMove : MonoBehaviour
 
             if (fMoveIntervalTime >= 5.0f)
             {
-                //Instantiate(TeleportEffectObj, new Vector3(this.transform.localPosition.x, this.transform.localPosition.y + 2.3f, this.transform.localPosition.z - 2.2f), Quaternion.identity);
+                Instantiate(TeleportEffectObj, new Vector3(this.transform.localPosition.x, this.transform.localPosition.y, this.transform.localPosition.z - 1.7f), Quaternion.identity);
 
                 this.transform.localPosition = new Vector3(Random.Range(-1.5f, 2.5f), Random.Range(-2, 5), 0);
 
-                //Instantiate(TeleportEffectObj, new Vector3(this.transform.localPosition.x, this.transform.localPosition.y + 2.3f, this.transform.localPosition.z - 2.2f), Quaternion.identity);
+                Instantiate(TeleportEffectObj, new Vector3(this.transform.localPosition.x, this.transform.localPosition.y, this.transform.localPosition.z - 1.7f), Quaternion.identity);
 
                 fMoveIntervalTime = 0.0f;
             }
