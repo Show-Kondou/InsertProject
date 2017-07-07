@@ -21,17 +21,13 @@ public class EnemyGauge : MonoBehaviour
 
     public bool bDamage = false;
 
-    [SerializeField]
-    Text HPText;
-
-    
     // Use this for initialization
     void Start()
     {
-        SetHP(100f);
+        SetHP(MAX_HP);
         GaugeImage = EnemyGaugeImg.GetComponent<Image>();
         GaugeTransform = EnemyGaugeImg.GetComponent<RectTransform>();
-        EnemyHP = EnemyHP / MAX_HP;
+        EnemyHP = MAX_HP;
 
         GaugeTransform.sizeDelta = new Vector2(EnemyHP, GaugeTransform.sizeDelta.y);
     }
@@ -43,7 +39,7 @@ public class EnemyGauge : MonoBehaviour
         GaugeColor(MAX_HP * 0.8f, MAX_HP * 0.5f, MAX_HP * 0.2f); //ゲージの色
 
         //倒したとき
-        if (EnemyHP <= 0f)
+        if (EnemyHP < 0f)
             EnemyHP = MAX_HP;
     }
 
