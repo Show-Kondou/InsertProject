@@ -51,6 +51,7 @@ public class line : MonoBehaviour {
 
     //距離計算
     public float fDistanceTotal;
+    public float fDistanceLimit;
 
     //線の色
     public Color c1 = new Color(0, 0, 0, 1);
@@ -69,6 +70,9 @@ public class line : MonoBehaviour {
     //ぬるぬるカウンター nSlimyCnt line.cs用
     public bool bSLineS;
     public bool bSLineE;
+
+    //強制リリース
+    public bool bForcedUp = false;
 
     //------
 
@@ -246,6 +250,13 @@ public class line : MonoBehaviour {
                             fDistanceTotal += (vOldPos - vRayPos).magnitude;
                             //Debug.Log((vOldPos - vWMousePos).magnitude);
 
+                            //ラインの最大距離を引いたら強制リリース
+                            if (fDistanceLimit <= fDistanceTotal)
+                            {
+                                bForcedUp = true;
+                            }
+
+
                             //線の色を設定
                             lRendere.SetColors(c1, c2);
 
@@ -275,7 +286,7 @@ public class line : MonoBehaviour {
 			}
 
             //リリース時処理
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(0) || bForcedUp == true)
             {
                 //線の長さが基準値に達していなかったら線を引かずオブジェクトも消す。
                 if (lvPointStorage.Count < 5)
