@@ -46,7 +46,6 @@ public class FeverEffectMgr : MonoBehaviour {
 			var obj = Instantiate( m_EffectOriginal );
 			obj.transform.parent = transform;
 			obj.myInit( m_FeverGauge );
-			obj.gameObject.SetActive( false );
 			m_EffectList.Add( obj );
 		}
 	}
@@ -55,7 +54,6 @@ public class FeverEffectMgr : MonoBehaviour {
 	public void PlayEffect( Vector3 pos, uint unEffectNum = 5 ) {
 		int nCnt = 0;
 		foreach( var i in m_EffectList ) {
-			i.gameObject.SetActive( true );
 			if( i.IsUse ) continue;
 			i.SetPos = pos;
 			i.Play( m_EndTargetPos );
