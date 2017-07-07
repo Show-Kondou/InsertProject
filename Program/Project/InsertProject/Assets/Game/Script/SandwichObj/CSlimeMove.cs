@@ -164,6 +164,9 @@ public class CSlimeMove : CSSandwichObject {
 	/// 挟まれた時の処理
 	/// </summary>
 	public override void SandwichedAction() {
+		if(!gameObject) {
+			return;
+		}
 		gameObject.transform.parent = null;
 		if(myType == SLIME_TYPE.Enemy) {
 			SameTimeSandObjNum();
