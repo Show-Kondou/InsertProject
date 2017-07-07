@@ -952,9 +952,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f1ea0f5b434bc4c8e8daca8ac6d2ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_OrderNumber: 0
-  m_Using: 1
-  m_ObjectID: 0
 --- !u!114 &559336940 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114054783432399960, guid: 8f9679c7b6bcc264cb7e5065ad5b44b2,
@@ -3241,7 +3238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 655f92122860d8946af3e4514eccc11c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FALL_SPEED: 2
+  FALL_SPEED: 4
   FiverImg: {fileID: 1206742959}
 --- !u!114 &1620649990 stripped
 MonoBehaviour:
