@@ -36,14 +36,14 @@ public class ChangeBrightness : ObjectBase {
 			color.b = m_LimitBrightness * m_colorVolMask;
 			color.g = m_LimitBrightness * m_colorVolMask;
 			m_DirectionalLight.color = color;
-			this.enabled = false;
+            m_using = false;
 		}
 		if(color.r > 1) {
 			color.r = 1;
 			color.b = 1;
 			color.g = 1;
 			m_DirectionalLight.color = color;
-			this.enabled = false;
+            m_using = false;
 		}
 		m_DirectionalLight.color = color;
 	}
