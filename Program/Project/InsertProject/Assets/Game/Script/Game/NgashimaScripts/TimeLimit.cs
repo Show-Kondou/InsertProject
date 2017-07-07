@@ -73,6 +73,8 @@ public class TimeLimit : MonoBehaviour
     void Update()
     {
 		if( bTimeStop ) return;
+		if( resultMgr.IsEvent )
+			return;
 
 		fLimitTime -= Time.deltaTime;
         if (!bGameOver)
