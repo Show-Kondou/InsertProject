@@ -55,8 +55,10 @@ public class CSameSandwichAction : ObjectBase {
 		//}
 		foreach(CSSandwichObject sandObj in CSSandwichObjManager.m_SandwichObjList) {
 			foreach(CSSandwichObject.PressObject pressObj in sandObj.m_PressObjList) {
-				if(First == pressObj.HitID || Second == pressObj.HitID)
+				if(First == pressObj.HitID || Second == pressObj.HitID) {
 					m_BossDamage++;
+					break;
+				}
 			}
 		}
 	}
