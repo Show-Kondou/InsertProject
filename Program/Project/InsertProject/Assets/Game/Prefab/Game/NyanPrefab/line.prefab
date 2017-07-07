@@ -58,12 +58,16 @@ MonoBehaviour:
   gPointPrefab: {fileID: 0}
   lvPointStorage: []
   fDistanceTotal: 0
+  fDistanceLimit: 75
   c1: {r: 0, g: 1, b: 1, a: 0.78431374}
   c2: {r: 0, g: 1, b: 1, a: 0.78431374}
   bFirstMove: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 1024
+  bSLineS: 0
+  bSLineE: 0
+  bForcedUp: 0
 --- !u!120 &120625925224940120
 LineRenderer:
   m_ObjectHideFlags: 1

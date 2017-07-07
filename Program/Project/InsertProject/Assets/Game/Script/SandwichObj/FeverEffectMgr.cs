@@ -27,7 +27,7 @@ public class FeverEffectMgr : MonoBehaviour {
 
 
 	// 定数
-	private readonly uint EFFECT_MAX = 100; // 生成エフェクト数
+	private readonly uint EFFECT_MAX = 0; // 生成エフェクト数
 
 	// インスペクター設定
 	[Header("エフェクトの最終地点(RectTransform)"), SerializeField]
