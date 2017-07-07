@@ -10,8 +10,6 @@ public class TitleLogo : MonoBehaviour
     float EndSpeed = 1000f;
 
     //変数
-    [SerializeField]
-    GameObject TitleLogoModel;
 
     [SerializeField]
     GameObject[] MagicWall;                 //マジックウォールオブジェクト
@@ -22,6 +20,9 @@ public class TitleLogo : MonoBehaviour
     [SerializeField]
     RectTransform DrawTexture;              //マジックウォールの間から表示される画像
 
+    [SerializeField]
+    TitleModelScale CTitleModelScale;
+
     float WallSize_X = 0f;                  //マジックウォール横幅
     float DrawTextureSize_X = 0f;           //マジックウォールの間から表示される画像の横幅
     float DefaultDrawTextureSize_X = 0f;    //マジックウォールの間から表示される画像のデフォルトのサイズ
@@ -29,11 +30,10 @@ public class TitleLogo : MonoBehaviour
     float[] WallPos_X =                     //２つのマジックウォール初期位置
         new float[2] { 0f, 0f };
 
-    bool bExpansion = true;
     bool bShrinking = true;
 
     //デバッグ用
-   public bool bstart = false;                    //マジックウォールの閉じる動作
+    public bool bstart = false;                    //マジックウォールの閉じる動作
 
     // Use this for initialization
     void Start()
@@ -48,7 +48,6 @@ public class TitleLogo : MonoBehaviour
 
         for (int i = 0; i < MagicWall.Length; i++)
             MagicWall[i].SetActive(false);                      //マジックウォールオブジェクトを非アクティブに
-        TitleLogoModel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -80,32 +79,26 @@ public class TitleLogo : MonoBehaviour
     /// </summary>
     void WallMoveExpansion()
     {
-        if (bExpansion)
+        //マジックウォールが移動できる範囲
+        float MoveLimit = (CanvasSizeX / 2f) + (WallSize_X / 2f);
+
+        //一つ目のマジックウォール移動
+        if (MagicWall[0].transform.localPosition.x <= MoveLimit)
         {
-            //マジックウォールが移動できる範囲
-            float MoveLimit = (CanvasSizeX / 2f) + (WallSize_X / 2f);
-
-            //一つ目のマジックウォール移動
-            if (MagicWall[0].transform.localPosition.x <= MoveLimit)
-            {
-                WallPos_X[0] += StartSpeed * Time.deltaTime;
-                MagicWall[0].transform.localPosition = new Vector2(WallPos_X[0], MagicWall[0].transform.localPosition.y);
-            }
-            //二つ目のマジックウォール移動
-            if (MagicWall[1].transform.localPosition.x >= -MoveLimit)
-            {
-                WallPos_X[1] -= StartSpeed * Time.deltaTime;
-                MagicWall[1].transform.localPosition = new Vector2(WallPos_X[1], MagicWall[1].transform.localPosition.y);
-            }
-
-            if (MagicWall[0].transform.localPosition.x >= MoveLimit || MagicWall[1].transform.localPosition.x <= -MoveLimit)
-            {
-                TitleLogoModel.SetActive(true);
-
-                bExpansion = false;
-            }
-            TextureExpansion();
+            WallPos_X[0] += StartSpeed * Time.deltaTime;
+            MagicWall[0].transform.localPosition = new Vector2(WallPos_X[0], MagicWall[0].transform.localPosition.y);
         }
+        //二つ目のマジックウォール移動
+        if (MagicWall[1].transform.localPosition.x >= -MoveLimit)
+        {
+            WallPos_X[1] -= StartSpeed * Time.deltaTime;
+            MagicWall[1].transform.localPosition = new Vector2(WallPos_X[1], MagicWall[1].transform.localPosition.y);
+        }
+
+        if (MagicWall[0].transform.localPosition.x >= MoveLimit || MagicWall[1].transform.localPosition.x <= -MoveLimit)
+            CTitleModelScale.ModelScale();
+
+        TextureExpansion();
     }
 
 
