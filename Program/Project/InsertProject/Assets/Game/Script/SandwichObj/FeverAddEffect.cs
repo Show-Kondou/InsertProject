@@ -49,7 +49,7 @@ public class FeverAddEffect : MonoBehaviour {
 		m_InitVec.y = 0.0F;
 		m_InitVec.z = Random.Range( -10.0F, 10.0F );
 		m_InitVec /= 25.0F;
-		Debug.Log( m_InitVec );
+
 	}
 
 
@@ -65,7 +65,6 @@ public class FeverAddEffect : MonoBehaviour {
 		pos += (m_TargetPos.position - pos) / 2.0F * Time.deltaTime * m_Speed + m_NowVec;
 		m_MyRect.position = pos;
 		var d = m_MyRect.position - m_TargetPos.position;
-		Debug.Log( d.magnitude );
 		if( d.magnitude < 0.1F ) {
 			m_isUse = false;
 			gameObject.SetActive( false );
