@@ -39,7 +39,7 @@ public class SlimePop : ObjectBase
 
     public override void Execute(float deltaTime)
     {
-        if (gResult.GetComponent<ResultManager>().bGameOver == true || gResult.GetComponent<ResultManager>().bTimeOver == true)
+        if (gResult.GetComponent<ResultManager>().bGameOver == false || gResult.GetComponent<ResultManager>().bTimeOver == false)
         {
             //時間をカウント
             fTimeCnt += Time.deltaTime;
