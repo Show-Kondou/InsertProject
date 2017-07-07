@@ -53,6 +53,7 @@ public class Press : MonoBehaviour {
 
     //プレス機非表示用フラグ
     public bool bVisible = false;
+    public bool bDestPress = false;
 
     //召喚演出プレファブ
     public GameObject gSummonPrefab;
@@ -299,12 +300,25 @@ public class Press : MonoBehaviour {
 					line lLine = gParentObj.GetComponent<line>();
 					lLine.Visible();
 					CSoundManager.Instance.PlaySE( AUDIO_LIST.SE_MAGICWALL_GATTAI );
-					// Debug.Log( "gattai" );
-				}
+                    // Debug.Log( "gattai" );
+                    
+                }
 				if( bWallStart == false ) {
 					bVisible = true;
 				}
 			}
+
+            //半分とちょっとのところでデストロイ
+            if (gParentObj.GetComponent<line>().fDistanceTotal * 0.52f < fDistance)
+            {
+                foreach (Transform child in transform)
+                {
+                    child.GetComponent<CSlimeMove>().m_Sticky = false;
+                }
+
+                gameObject.transform.DetachChildren();
+            }
+
 
             //半分とちょっとのところでデストロイ
             if (gParentObj.GetComponent<line>().fDistanceTotal *0.55f < fDistance)

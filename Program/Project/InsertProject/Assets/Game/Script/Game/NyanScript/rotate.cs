@@ -18,7 +18,8 @@ public class rotate : MonoBehaviour {
 
     //プレス機フラグ
     private bool bMoveFirst;
-    private bool bVisible;
+    private bool bVisible = false;
+    private bool bDest;
 
     //親オブジェクト
     GameObject gParentObj;
@@ -52,78 +53,96 @@ public class rotate : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        //プレス機移動フラグ取得
-        bMoveFirst = gParentObj.GetComponent<Press>().bMoveFirst;
-
-        if (bMoveFirst == false)
+        if (bVisible == false)
         {
 
-            if (bXPlus == true)
-            {
-                transform.Rotate(new Vector3(fRotateSpeed * Time.deltaTime, 0.0f, 0.0f));
-                vRotate -= new Vector3(fRotateSpeed * Time.deltaTime, 0.0f, 0.0f);
-            }
+            //プレス機非表示フラグ取得
+            bVisible = gParentObj.GetComponent<Press>().bVisible;
 
-            if (bYPlus == true)
-            {
-                transform.Rotate(new Vector3(0.0f, fRotateSpeed * Time.deltaTime, 0.0f));
-                vRotate -= new Vector3(0.0f, fRotateSpeed * Time.deltaTime, 0.0f);
-            }
 
-            if (bZPlus == true)
-            {
-                transform.Rotate(new Vector3(0.0f, 0.0f, fRotateSpeed * Time.deltaTime));
-                vRotate -= new Vector3(0.0f, 0.0f, fRotateSpeed * Time.deltaTime);
-            }
+            //プレス機移動フラグ取得
+            bMoveFirst = gParentObj.GetComponent<Press>().bMoveFirst;
 
-            if (bXMinus == true)
+            if (bMoveFirst == false)
             {
-                transform.Rotate(new Vector3(-fRotateSpeed * Time.deltaTime, 0.0f, 0.0f));
-                vRotate += new Vector3(-fRotateSpeed * Time.deltaTime, 0.0f, 0.0f);
-            }
 
-            if (bYMinus == true)
-            {
-                transform.Rotate(new Vector3(0.0f, -fRotateSpeed * Time.deltaTime, 0.0f));
-                vRotate += new Vector3(0.0f, -fRotateSpeed * Time.deltaTime, 0.0f);
-            }
-
-            if (bZMinus == true)
-            {
-                transform.Rotate(new Vector3(0.0f, 0.0f, -fRotateSpeed * Time.deltaTime));
-                vRotate += new Vector3(0.0f, 0.0f, -fRotateSpeed * Time.deltaTime);
-            }
-        }
-        else if (bMoveFirst == true)
-        {
-            if (bRotateReturn == false)
-            {
-                //回転軸を元に戻す
-                transform.Rotate(vRotate);
-                bRotateReturn = true;
-            }
-            else if (bRotateReturn == true)
-            {
-                if (bDist == true)
+                if (bXPlus == true)
                 {
                     transform.Rotate(new Vector3(fRotateSpeed * Time.deltaTime, 0.0f, 0.0f));
+                    vRotate -= new Vector3(fRotateSpeed * Time.deltaTime, 0.0f, 0.0f);
                 }
-                else if (bDist == false)
+
+                if (bYPlus == true)
+                {
+                    transform.Rotate(new Vector3(0.0f, fRotateSpeed * Time.deltaTime, 0.0f));
+                    vRotate -= new Vector3(0.0f, fRotateSpeed * Time.deltaTime, 0.0f);
+                }
+
+                if (bZPlus == true)
+                {
+                    transform.Rotate(new Vector3(0.0f, 0.0f, fRotateSpeed * Time.deltaTime));
+                    vRotate -= new Vector3(0.0f, 0.0f, fRotateSpeed * Time.deltaTime);
+                }
+
+                if (bXMinus == true)
                 {
                     transform.Rotate(new Vector3(-fRotateSpeed * Time.deltaTime, 0.0f, 0.0f));
+                    vRotate += new Vector3(-fRotateSpeed * Time.deltaTime, 0.0f, 0.0f);
+                }
+
+                if (bYMinus == true)
+                {
+                    transform.Rotate(new Vector3(0.0f, -fRotateSpeed * Time.deltaTime, 0.0f));
+                    vRotate += new Vector3(0.0f, -fRotateSpeed * Time.deltaTime, 0.0f);
+                }
+
+                if (bZMinus == true)
+                {
+                    transform.Rotate(new Vector3(0.0f, 0.0f, -fRotateSpeed * Time.deltaTime));
+                    vRotate += new Vector3(0.0f, 0.0f, -fRotateSpeed * Time.deltaTime);
                 }
             }
+            else if (bMoveFirst == true)
+            {
+                if (bRotateReturn == false)
+                {
+                    //回転軸を元に戻す
+                    transform.Rotate(vRotate);
+                    bRotateReturn = true;
+                }
+                else if (bRotateReturn == true)
+                {
+                    if (bDist == true)
+                    {
+                        transform.Rotate(new Vector3(fRotateSpeed * Time.deltaTime, 0.0f, 0.0f));
+                    }
+                    else if (bDist == false)
+                    {
+                        transform.Rotate(new Vector3(-fRotateSpeed * Time.deltaTime, 0.0f, 0.0f));
+                    }
+                }
+            }
+
         }
 
 
-        //プレス機非表示フラグ取得
-        bVisible = gParentObj.GetComponent<Press>().bVisible;
 
         if (bVisible == true && bChangeShaCheck == false)
         {
             render.material.shader = Shader.Find("Standard");
             render.material.SetColor("_Color", new Color(0.0f, 0.0f, 0.0f, 0.0f));
             bChangeShaCheck = true;
+
+            this.gameObject.transform.parent = null;
+
+            bDest = true;
+        }
+
+        //bDest = gParentObj.GetComponent<Press>().bDestPress;
+
+        if (bDest == true)
+        {
+            Destroy(this.gameObject);
         }
 
 
