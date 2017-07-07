@@ -57,13 +57,14 @@ public class BossDamage : MonoBehaviour
             if (CSameSandwichAction.m_BossDamage <= 10)
             {
                 fHitPoint -= CSameSandwichAction.m_BossDamage;
+                EnemyHPObj.GetComponent<EnemyGauge>().AddDamage(CSameSandwichAction.m_BossDamage);
             }
             else
             {
                 fHitPoint -= 10;
+                EnemyHPObj.GetComponent<EnemyGauge>().AddDamage(10);
             }
-
-            EnemyHPObj.GetComponent<EnemyGauge>().AddDamage(CSameSandwichAction.m_BossDamage);
+      
             bSandwich = false;
         }
     }
