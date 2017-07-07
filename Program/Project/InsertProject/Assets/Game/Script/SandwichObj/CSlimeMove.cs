@@ -172,9 +172,9 @@ public class CSlimeMove : CSSandwichObject {
 		} else if(myType == SLIME_TYPE.Ally) {
 			SameTimeSandObjNum();
 			myType = SLIME_TYPE.Nothing;   // 属性を味方に
-			var obj = Instantiate(m_FeverGageEffect);
-			obj.transform.parent = m_EffectCanvas.transform;
-			obj.SetFirstPosition(transform.position);
+			//var obj = Instantiate(m_FeverGageEffect);
+			//obj.transform.parent = m_EffectCanvas.transform;
+			//obj.SetFirstPosition(transform.position);
 			m_Invincible = true;            // 無敵オン
 			m_InvincibleTimer = 1.0f;       // 無敵時間
 			SlimeMesh.SetActive(false);
