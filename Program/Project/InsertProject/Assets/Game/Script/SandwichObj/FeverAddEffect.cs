@@ -67,7 +67,6 @@ public class FeverAddEffect : MonoBehaviour {
 		var d = m_MyRect.position - m_TargetPos.position;
 		if( d.magnitude < 0.1F ) {
 			m_isUse = false;
-			gameObject.SetActive( false );
 			m_FeverGauge.AddFiver( 0.8F );
 		}
 
