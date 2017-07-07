@@ -165,6 +165,7 @@ public class CSlimeMove : CSSandwichObject {
 	/// </summary>
 	public override void SandwichedAction() {
 		gameObject.transform.parent = null;
+		m_Sticky = false;
 		if(myType == SLIME_TYPE.Enemy) {
 			SameTimeSandObjNum();
 			CSParticleManager.Instance.Play(CSParticleManager.PARTICLE_TYPE.AllySlimeDeath, transform.position);
