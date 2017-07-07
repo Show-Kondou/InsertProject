@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef53943decbae48439ed2861aa3d1123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fDestLimit: 2
+  fDestLimit: 1
 --- !u!198 &198165661622068446
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -578,7 +578,7 @@ ParticleSystem:
     serializedVersion: 4
     rateOverTime:
       minMaxState: 0
-      scalar: 20
+      scalar: 10
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -3474,7 +3474,7 @@ ParticleSystem:
     serializedVersion: 4
     rateOverTime:
       minMaxState: 0
-      scalar: 40
+      scalar: 20
       maxCurve:
         serializedVersion: 2
         m_Curve:
