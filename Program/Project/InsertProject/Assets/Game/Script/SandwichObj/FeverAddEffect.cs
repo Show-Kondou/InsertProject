@@ -68,6 +68,7 @@ public class FeverAddEffect : MonoBehaviour {
 		if( d.magnitude < 0.1F ) {
 			m_isUse = false;
 			m_FeverGauge.AddFiver( 0.8F );
+			SetPos = new Vector3( -10.0F, 0.0F, 0.0F );
 		}
 
 	}

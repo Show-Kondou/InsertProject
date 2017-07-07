@@ -46,6 +46,7 @@ public class FeverEffectMgr : MonoBehaviour {
 			var obj = Instantiate( m_EffectOriginal );
 			obj.transform.parent = transform;
 			obj.myInit( m_FeverGauge );
+			obj.SetPos = new Vector3(-10.0F,0.0F,0.0F);
 			m_EffectList.Add( obj );
 		}
 	}
