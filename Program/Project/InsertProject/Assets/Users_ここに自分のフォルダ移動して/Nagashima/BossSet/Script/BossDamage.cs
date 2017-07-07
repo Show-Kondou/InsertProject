@@ -8,8 +8,7 @@ public class BossDamage : MonoBehaviour
 
     // ----- プライベート変数 -----
     [SerializeField]
-    private float fHitPoint = 5;            // ボスのヒットポイント
-    private int nDamageUP = 0;              // ダメージアップ
+    private float fHitPoint = 75;            // ボスのヒットポイント
 
     private bool bSandwich = true;          // 挟むフラグ
     private float fInvincibleTime = 0.0f;   // 無敵時間
@@ -38,7 +37,7 @@ public class BossDamage : MonoBehaviour
     {
         if (bSandwich)
         {
-            Debug.Log("ボス挟まってる？");
+            Debug.Log("挟まれた");
 
             CSoundManager.Instance.PlaySE(AUDIO_LIST.SE_BOSS_HIT_0);
 
@@ -52,14 +51,8 @@ public class BossDamage : MonoBehaviour
             // 動きを止める
             this.GetComponent<BossMove>().SetMoveNum(0);
 
-            // ダメージ計算
-            nDamageUP = 1;
-            if (TouchObj.GetComponent<touch>().bStickyE || TouchObj.GetComponent<touch>().bStickyS)
-                nDamageUP = 2;
-            if (TouchObj.GetComponent<touch>().bStickyE && TouchObj.GetComponent<touch>().bStickyS)
-                nDamageUP = 3;
 			Debug.Log(CSameSandwichAction.m_BossDamage);	// 同時挟まれ数取得
-            fHitPoint -= nDamageUP;
+            fHitPoint -= CSameSandwichAction.m_BossDamage;
 
             bSandwich = false;
         }

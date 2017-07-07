@@ -25,6 +25,8 @@ public class BossMove : MonoBehaviour
 
     private BossEmergency _BossEmergency;   // ボス出現スクリプト
 
+    private float fMoveIntervalTime = 0.0f;     // 移動間隔時間
+
     // ===== 制御番号をゲットする関数 =====
     public int GetMoveNum()
     {
@@ -54,76 +56,85 @@ public class BossMove : MonoBehaviour
     {
         if (_BossEmergency.GetBossAttack() == true && MainCamera.transform.localPosition.y <= _BossEmergency.GetCameraStartPos().y)
         {
-            // 上下に移動
-            this.transform.localPosition += new Vector3(0.0f, 0.0f, fFloatSpeed) * Time.deltaTime;
+            fMoveIntervalTime += Time.deltaTime;
 
-            // 指定地点に到達したら反転させる
-            if (transform.localPosition.z >= BossStartPos.z && bFloat == false)
+            if (fMoveIntervalTime >= 5.0f)
             {
-                bFloat = true;
-                fFloatSpeed *= -1;
+                this.transform.localPosition = new Vector3(Random.Range(-1.5f, 2.5f), Random.Range(-2, 5), 0); 
+
+                fMoveIntervalTime = 0.0f;
             }
-            if (transform.localPosition.z <= BossStartPos.z - 0.2f && bFloat == true)
-            {
-                bFloat = false;
-                fFloatSpeed *= -1;
-            }
+            
+            //// 上下に移動
+            //this.transform.localPosition += new Vector3(0.0f, 0.0f, fFloatSpeed) * Time.deltaTime;
+
+            //// 指定地点に到達したら反転させる
+            //if (transform.localPosition.z >= BossStartPos.z && bFloat == false)
+            //{
+            //    bFloat = true;
+            //    fFloatSpeed *= -1;
+            //}
+            //if (transform.localPosition.z <= BossStartPos.z - 0.2f && bFloat == true)
+            //{
+            //    bFloat = false;
+            //    fFloatSpeed *= -1;
+            //}
 
 
-            // 左右に移動
-            switch (nMoveNum)
-            {
-                case 0: // 正面を向く（待機）
-                    //if (this.transform.localEulerAngles.y <= 180)
-                    //{
-                    //    if(!bFront)
-                    //        this.transform.Rotate(0, RotateSpeed, 0);
-                    //    if (this.transform.localEulerAngles.y >= 180)
-                    //        bFront = true;
+            //// 左右に移動
+            //switch (nMoveNum)
+            //{
+            //    case 0: // 正面を向く（待機）
+            //        //if (this.transform.localEulerAngles.y <= 180)
+            //        //{
+            //        //    if(!bFront)
+            //        //        this.transform.Rotate(0, RotateSpeed, 0);
+            //        //    if (this.transform.localEulerAngles.y >= 180)
+            //        //        bFront = true;
 
-                    //}
-                    //else
-                    //{
-                    //    if(!bFront)
-                    //    this.transform.Rotate(0, -RotateSpeed, 0);
-                    //    if (this.transform.localEulerAngles.y <= 180)
-                    //        bFront = true;
-                    //}
+            //        //}
+            //        //else
+            //        //{
+            //        //    if(!bFront)
+            //        //    this.transform.Rotate(0, -RotateSpeed, 0);
+            //        //    if (this.transform.localEulerAngles.y <= 180)
+            //        //        bFront = true;
+            //        //}
 
-                    break;
-                case 1: // 右に移動
-                    this.transform.localPosition = Vector3.MoveTowards(this.transform.localPosition,
-                                                                  new Vector3(fPosX, this.transform.localPosition.y, this.transform.localPosition.z),
-                                                                  fMoveSpeed * Time.deltaTime);
+            //        break;
+            //    case 1: // 右に移動
+            //        this.transform.localPosition = Vector3.MoveTowards(this.transform.localPosition,
+            //                                                      new Vector3(fPosX, this.transform.localPosition.y, this.transform.localPosition.z),
+            //                                                      fMoveSpeed * Time.deltaTime);
 
-                    if (bFront)
-                        bFront = false;
+            //        if (bFront)
+            //            bFront = false;
 
-                    // 右に向く
-                    //if (this.transform.localEulerAngles.y >= 90)
-                    //    this.transform.Rotate(0, -RotateSpeed, 0);
+            //        // 右に向く
+            //        //if (this.transform.localEulerAngles.y >= 90)
+            //        //    this.transform.Rotate(0, -RotateSpeed, 0);
 
-                    // 右に到達したら
-                    if (this.transform.localPosition.x >= fPosX)
-                        nMoveNum = 2;
-                    break;
-                case 2: // 左に移動
-                    this.transform.localPosition = Vector3.MoveTowards(this.transform.localPosition,
-                                                                  new Vector3(-fPosX, this.transform.localPosition.y, this.transform.localPosition.z),
-                                                                  fMoveSpeed * Time.deltaTime);
+            //        // 右に到達したら
+            //        if (this.transform.localPosition.x >= fPosX)
+            //            nMoveNum = 2;
+            //        break;
+            //    case 2: // 左に移動
+            //        this.transform.localPosition = Vector3.MoveTowards(this.transform.localPosition,
+            //                                                      new Vector3(-fPosX, this.transform.localPosition.y, this.transform.localPosition.z),
+            //                                                      fMoveSpeed * Time.deltaTime);
 
-                    if (bFront)
-                        bFront = false;
+            //        if (bFront)
+            //            bFront = false;
 
-                    // 左に向く
-                    //if (this.transform.localEulerAngles.y <= 270)
-                    //    this.transform.Rotate(0, RotateSpeed, 0);
+            //        // 左に向く
+            //        //if (this.transform.localEulerAngles.y <= 270)
+            //        //    this.transform.Rotate(0, RotateSpeed, 0);
 
-                    // 左に到達したら
-                    if (this.transform.localPosition.x <= -fPosX)
-                        nMoveNum = 1;
-                    break;
-            }
+            //        // 左に到達したら
+            //        if (this.transform.localPosition.x <= -fPosX)
+            //            nMoveNum = 1;
+            //        break;
+            //}
         }
 	}
 }
