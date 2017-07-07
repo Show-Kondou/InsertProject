@@ -215,6 +215,7 @@ public class CSSandwichObject : ObjectBase {
 						CSSandwichObjManager.m_SandwichObjList[j].DestroySandObject();	// オブジェクト削除
 						CSSandwichObjManager.Instance.DeleteSandwichObjToList(CSSandwichObjManager.m_SandwichObjList[j].m_SandwichObjectID);
 						ObjectManager.Instance.DeleteObject(m_OrderNumber, m_ObjectID);
+						j--;
 					}
 				}
 			}
