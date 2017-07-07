@@ -9,7 +9,7 @@ public class FiverGauge : MonoBehaviour {
     //定数
     const float MAX_GAUGE = 42f;    //フィーバー最大値
     [SerializeField]
-    float FALL_SPEED = 2f;          //ゲージが減るスピード
+    float FALL_SPEED = 5.0f;          //ゲージが減るスピード
 
     //変数
     [SerializeField]
