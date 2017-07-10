@@ -22,6 +22,8 @@ public class Press : MonoBehaviour {
     private Vector3 vNewPos;
     private Vector3 vOldPos;
 
+    private Vector3 vMoveSize;
+
     //移動関連
     public float fSpeed = 2.0f;
     public bool bSpeedCheck1 = false;
@@ -215,9 +217,64 @@ public class Press : MonoBehaviour {
                     fContainer = (vNewPos - vOldPos).magnitude;
                     fDistance += fContainer;
 
-                }
+                    //差分計算(値を正の数にする)
+                    if (0 < vOldPos.x)
+                    {
+                        if (0 < vNewPos.x)
+                            vMoveSize.x = vOldPos.x - vNewPos.x;
 
-            }
+                        if (vNewPos.x < 0)
+                            vMoveSize.x = vOldPos.x - (vNewPos.x * -1.0f);
+                    }
+
+                    if (vOldPos.x < 0)
+                    {
+                        if (0 < vNewPos.x)
+                            vMoveSize.x = (vOldPos.x * -1.0f) - vNewPos.x;
+
+                        if (vNewPos.x < 0)
+                            vMoveSize.x = (vOldPos.x * -1.0f) - (vNewPos.x * -1.0f);
+                    }
+
+                    if (0 < vOldPos.y)
+                    {
+                        if (0 < vNewPos.y)
+                            vMoveSize.y = vOldPos.y - vNewPos.y;
+
+                        if (vNewPos.y < 0)
+                            vMoveSize.y = vOldPos.y - (vNewPos.y * -1.0f);
+                    }
+
+                    if (vOldPos.y < 0)
+                    {
+                        if (0 < vNewPos.y)
+                            vMoveSize.y = (vOldPos.y * -1.0f) - vNewPos.y;
+
+                        if (vNewPos.y < 0)
+                            vMoveSize.y = (vOldPos.y * -1.0f) - (vNewPos.y * -1.0f);
+                    }
+
+                    //差分計算
+                    if (vMoveSize.x < 0)
+                    {
+                        vMoveSize.x = vMoveSize.x * -1.0f;
+                    }
+                    if (vMoveSize.y < 0)
+                    {
+                        vMoveSize.y = vMoveSize.y * -1.0f;
+                    }
+
+                    //移動量
+                    float fDiffAbout = 0.000005f;
+                    if (vMoveSize.x < fDiffAbout || vMoveSize.y < fDiffAbout)//仮
+                    {
+                        bStop = true;
+
+                        Destroy(gParentObj);
+                        Destroy(this.gameObject);
+                    }
+
+                }
             if (bWallStart == false)
             {
 
