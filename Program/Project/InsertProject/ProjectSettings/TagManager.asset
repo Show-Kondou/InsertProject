@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - StartPress
+  - EndPress
+  - Friends
+  - Enemy
+  - Ally
+  - Fever
+  - Big
+  - Boss
+  - OutZone
   layers:
   - Default
   - TransparentFX
@@ -13,9 +22,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Press
+  - Sandwich
+  - Ray
   - 
   - 
   - 
