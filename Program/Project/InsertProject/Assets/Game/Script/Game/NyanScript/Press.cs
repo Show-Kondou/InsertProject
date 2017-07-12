@@ -22,7 +22,9 @@ public class Press : MonoBehaviour {
     private Vector3 vNewPos;
     private Vector3 vOldPos;
 
-    private Vector3 vMoveSize;
+    public Vector3 vMoveSize;
+    private int nMoveCnt;
+    private float fDiffAbout = 0.000005f;
 
     //移動関連
     public float fSpeed = 2.0f;
@@ -64,6 +66,9 @@ public class Press : MonoBehaviour {
     private GameObject gTouchObj;
     public bool bNulnulS;
     public bool bNulnulE;
+
+    //何かに当たったフラグ
+    private bool bCollAny = false;
 
 
     public GameObject DeathParticle;
@@ -174,6 +179,8 @@ public class Press : MonoBehaviour {
         if (bMoveFirst == true)
         {
 
+            nMoveCnt++;
+
             //どちらのプレス機か
             if (bWallStart == true)
             {
@@ -213,184 +220,195 @@ public class Press : MonoBehaviour {
                         bStop = true;
                     }
 
-                    vOldPos = vNewPos;
-                    vNewPos = transform.position;
-                    fContainer = (vNewPos - vOldPos).magnitude;
-                    fDistance += fContainer;
+                    //vOldPos = vNewPos;
+                    //vNewPos = transform.position;
+                    //fContainer = (vNewPos - vOldPos).magnitude;
+                    //fDistance += fContainer;
 
-                    //差分計算(値を正の数にする)
-                    if (0 < vOldPos.x)
+
+                }
+            }
+            if (bWallStart == false)
+            {
+
+                //ぬるぬるを取得
+                bNulnulE = gParentObj.GetComponent<line>().bSLineE;
+
+
+                if (/*nListCntDiv <= nNextList &&*/ bStop == false)
+                {
+                    //移動目標
+                    vLookPos = lvStorage[nNextList];
+
+                    //移動・方向転換
+                    fRad = Mathf.Atan2(vLookPos.y - transform.position.y, vLookPos.x - transform.position.x);
+
+                    vMovePos = transform.position;
+
+                    vMovePos.x += vSpeed.x * Mathf.Cos(fRad) * Time.deltaTime;
+                    vMovePos.y += vSpeed.y * Mathf.Sin(fRad) * Time.deltaTime;
+
+                    transform.position = vMovePos;
+
+                    transform.LookAt(vLookPos);
+                    transform.Rotate(new Vector3(transform.rotation.x, -90.0f, transform.rotation.z));
+
+                    //目標位置と現在位置の差を確認
+                    if (vLookPos.x - fGrace <= transform.position.x && transform.position.x <= vLookPos.x + fGrace &&
+                        vLookPos.y - fGrace <= transform.position.y && transform.position.y <= vLookPos.y + fGrace)
                     {
-                        if (0 < vNewPos.x)
-                            vMoveSize.x = vOldPos.x - vNewPos.x;
-
-                        if (vNewPos.x < 0)
-                            vMoveSize.x = vOldPos.x - (vNewPos.x * -1.0f);
+                        nNextList--;
                     }
 
-                    if (vOldPos.x < 0)
-                    {
-                        if (0 < vNewPos.x)
-                            vMoveSize.x = (vOldPos.x * -1.0f) - vNewPos.x;
-
-                        if (vNewPos.x < 0)
-                            vMoveSize.x = (vOldPos.x * -1.0f) - (vNewPos.x * -1.0f);
-                    }
-
-                    if (0 < vOldPos.y)
-                    {
-                        if (0 < vNewPos.y)
-                            vMoveSize.y = vOldPos.y - vNewPos.y;
-
-                        if (vNewPos.y < 0)
-                            vMoveSize.y = vOldPos.y - (vNewPos.y * -1.0f);
-                    }
-
-                    if (vOldPos.y < 0)
-                    {
-                        if (0 < vNewPos.y)
-                            vMoveSize.y = (vOldPos.y * -1.0f) - vNewPos.y;
-
-                        if (vNewPos.y < 0)
-                            vMoveSize.y = (vOldPos.y * -1.0f) - (vNewPos.y * -1.0f);
-                    }
-
-                    //差分計算
-                    if (vMoveSize.x < 0)
-                    {
-                        vMoveSize.x = vMoveSize.x * -1.0f;
-                    }
-                    if (vMoveSize.y < 0)
-                    {
-                        vMoveSize.y = vMoveSize.y * -1.0f;
-                    }
-
-                    //移動量
-                    float fDiffAbout = 0.000005f;
-                    if (vMoveSize.x < fDiffAbout || vMoveSize.y < fDiffAbout)//仮
+                    //衝突条件を満たさず最後まで来たら停止
+                    if (nNextList == -1)
                     {
                         bStop = true;
-
-                        Destroy(gParentObj);
-                        Destroy(this.gameObject);
                     }
+
+                    //vOldPos = vNewPos;
+                    //vNewPos = transform.position;
+                    //fContainer = (vNewPos - vOldPos).magnitude;
+                    //fDistance += fContainer;
+
+                }
+            }
+
+
+            vOldPos = vNewPos;
+            vNewPos = transform.position;
+            fContainer = (vNewPos - vOldPos).magnitude;
+            fDistance += fContainer;
+
+
+            //差分計算(値を正の数にする)
+            if (0 < vOldPos.x)
+            {
+                if (0 < vNewPos.x)
+                    vMoveSize.x = vOldPos.x - vNewPos.x;
+
+                if (vNewPos.x < 0)
+                    vMoveSize.x = vOldPos.x - (vNewPos.x * -1.0f);
+            }
+
+            if (vOldPos.x < 0)
+            {
+                if (0 < vNewPos.x)
+                    vMoveSize.x = (vOldPos.x * -1.0f) - vNewPos.x;
+
+                if (vNewPos.x < 0)
+                    vMoveSize.x = (vOldPos.x * -1.0f) - (vNewPos.x * -1.0f);
+            }
+
+            if (0 < vOldPos.y)
+            {
+                if (0 < vNewPos.y)
+                    vMoveSize.y = vOldPos.y - vNewPos.y;
+
+                if (vNewPos.y < 0)
+                    vMoveSize.y = vOldPos.y - (vNewPos.y * -1.0f);
+            }
+
+            if (vOldPos.y < 0)
+            {
+                if (0 < vNewPos.y)
+                    vMoveSize.y = (vOldPos.y * -1.0f) - vNewPos.y;
+
+                if (vNewPos.y < 0)
+                    vMoveSize.y = (vOldPos.y * -1.0f) - (vNewPos.y * -1.0f);
+            }
+
+            //差分計算
+            if (vMoveSize.x < 0)
+            {
+                vMoveSize.x = vMoveSize.x * -1.0f;
+            }
+            if (vMoveSize.y < 0)
+            {
+                vMoveSize.y = vMoveSize.y * -1.0f;
+            }
+
+            if (60 < nMoveCnt)
+            {
+                //移動量
+                if (vMoveSize.x < fDiffAbout || vMoveSize.y < fDiffAbout)//仮
+                {
+                    bStop = true;
+
+                    Destroy(gParentObj);
+                    Destroy(this.gameObject);
+                }
+            }
+
+            //スピード更新
+            vSpeed = new Vector3(fSpeed, fSpeed, fSpeed);
+
+            fSpeed = 3.0f;
+
+            //if (gParentObj.GetComponent<line>().fDistanceTotal * 0.05f < fDistance && bSpeedCheck1 == false)
+            //{
+            //    fSpeed += 1.5f;
+            //    bSpeedCheck1 = true;
+            //}
+            //if (gParentObj.GetComponent<line>().fDistanceTotal * 0.15f < fDistance && bSpeedCheck2 == false)
+            //{
+            //    fSpeed += 1.5f;
+            //    bSpeedCheck2 = true;
+            //}
+            //if (gParentObj.GetComponent<line>().fDistanceTotal * 0.25f < fDistance && bSpeedCheck3 == false)
+            //{
+            //    fSpeed += 1.5f;
+            //    bSpeedCheck3 = true;
+            //}
+
+
+
+            //半分のところでマテリアル非表示
+            if (gParentObj.GetComponent<line>().fDistanceTotal * 0.5f < fDistance)
+            {
+
+                //GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                if (bWallStart == true && bVisible == false)
+                {
+                    bVisible = true;
+                    line lLine = gParentObj.GetComponent<line>();
+                    lLine.Visible();
+                    CSoundManager.Instance.PlaySE(AUDIO_LIST.SE_MAGICWALL_GATTAI);
+                    // Debug.Log( "gattai" );
 
                 }
                 if (bWallStart == false)
                 {
-
-                    //ぬるぬるを取得
-                    bNulnulE = gParentObj.GetComponent<line>().bSLineE;
-
-
-                    if (/*nListCntDiv <= nNextList &&*/ bStop == false)
-                    {
-                        //移動目標
-                        vLookPos = lvStorage[nNextList];
-
-                        //移動・方向転換
-                        fRad = Mathf.Atan2(vLookPos.y - transform.position.y, vLookPos.x - transform.position.x);
-
-                        vMovePos = transform.position;
-
-                        vMovePos.x += vSpeed.x * Mathf.Cos(fRad) * Time.deltaTime;
-                        vMovePos.y += vSpeed.y * Mathf.Sin(fRad) * Time.deltaTime;
-
-                        transform.position = vMovePos;
-
-                        transform.LookAt(vLookPos);
-                        transform.Rotate(new Vector3(transform.rotation.x, -90.0f, transform.rotation.z));
-
-                        //目標位置と現在位置の差を確認
-                        if (vLookPos.x - fGrace <= transform.position.x && transform.position.x <= vLookPos.x + fGrace &&
-                            vLookPos.y - fGrace <= transform.position.y && transform.position.y <= vLookPos.y + fGrace)
-                        {
-                            nNextList--;
-                        }
-
-                        //衝突条件を満たさず最後まで来たら停止
-                        if (nNextList == -1)
-                        {
-                            bStop = true;
-                        }
-
-                        vOldPos = vNewPos;
-                        vNewPos = transform.position;
-                        fContainer = (vNewPos - vOldPos).magnitude;
-                        fDistance += fContainer;
-
-                    }
+                    bVisible = true;
                 }
+            }
 
-                //vOldPos = vNewPos;
-                //vNewPos = transform.position;
-                //fContainer = (vNewPos - vOldPos).magnitude;
-                //fDistance += fContainer;
-
-                //スピード更新
-                vSpeed = new Vector3(fSpeed, fSpeed, fSpeed);
-
-                fSpeed = 3.0f;
-
-                //if (gParentObj.GetComponent<line>().fDistanceTotal * 0.05f < fDistance && bSpeedCheck1 == false)
-                //{
-                //    fSpeed += 1.5f;
-                //    bSpeedCheck1 = true;
-                //}
-                //if (gParentObj.GetComponent<line>().fDistanceTotal * 0.15f < fDistance && bSpeedCheck2 == false)
-                //{
-                //    fSpeed += 1.5f;
-                //    bSpeedCheck2 = true;
-                //}
-                //if (gParentObj.GetComponent<line>().fDistanceTotal * 0.25f < fDistance && bSpeedCheck3 == false)
-                //{
-                //    fSpeed += 1.5f;
-                //    bSpeedCheck3 = true;
-                //}
-
-
-
-                //半分のところでマテリアル非表示
-                if (gParentObj.GetComponent<line>().fDistanceTotal * 0.5f < fDistance)
-                {
-                    //GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-                    if (bWallStart == true && bVisible == false)
-                    {
-                        bVisible = true;
-                        line lLine = gParentObj.GetComponent<line>();
-                        lLine.Visible();
-                        CSoundManager.Instance.PlaySE(AUDIO_LIST.SE_MAGICWALL_GATTAI);
-                        // Debug.Log( "gattai" );
-
-                    }
-                    if (bWallStart == false)
-                    {
-                        bVisible = true;
-                    }
-                }
-
-                //半分とちょっとのところでデストロイ
-                if (gParentObj.GetComponent<line>().fDistanceTotal * 0.52f < fDistance)
+            //半分とちょっとのところでデストロイ
+            if (gParentObj.GetComponent<line>().fDistanceTotal * 0.55f < fDistance)
+            {
+                if (bCollAny == true)
                 {
                     foreach (Transform child in transform)
                     {
                         child.GetComponent<CSlimeMove>().m_Sticky = false;
                     }
 
-                    gameObject.transform.DetachChildren();
                 }
 
+                gameObject.transform.DetachChildren();
 
-                //半分とちょっとのところでデストロイ
-                if (gParentObj.GetComponent<line>().fDistanceTotal * 0.55f < fDistance)
-                {
-                    bStop = true;
+            }
 
-                    Destroy(gParentObj);
-                    Destroy(this.gameObject);
 
-                    //bWayPoint = true;
-                }
+            //半分とちょっとのところでデストロイ
+            if (gParentObj.GetComponent<line>().fDistanceTotal * 0.6f < fDistance)
+            {
+                bStop = true;
+
+                Destroy(gParentObj);
+                Destroy(this.gameObject);
+
+                //bWayPoint = true;
             }
         }
     }
@@ -405,6 +423,8 @@ public class Press : MonoBehaviour {
             //当たった相手が強スライムなら
             if (collider.gameObject.tag == "Big")
             {
+                bCollAny = true;
+
                 //ぬるぬる属性をtrue
                 gParentObj.GetComponent<line>().bSLineS = true;
                 bNulnulS = gParentObj.GetComponent<line>().bSLineS;
@@ -424,6 +444,8 @@ public class Press : MonoBehaviour {
             if (collider.gameObject.tag == "Enemy" && gParentObj.GetComponent<line>().bSLineS == true ||
                 collider.gameObject.tag == "Ally"  && gParentObj.GetComponent<line>().bSLineS == true)
             {
+                bCollAny = true;
+
                 //当たった相手を子オブジェクトにして座標も弄る
                 collider.transform.parent = transform;
                 collider.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
@@ -436,6 +458,8 @@ public class Press : MonoBehaviour {
             //当たった相手が強スライムなら
             if (collider.gameObject.tag == "Big")
             {
+                bCollAny = true;
+
                 //ぬるぬる属性をtrue
                 gParentObj.GetComponent<line>().bSLineE = true;
                 bNulnulE = gParentObj.GetComponent<line>().bSLineE;
@@ -454,6 +478,8 @@ public class Press : MonoBehaviour {
             if (collider.gameObject.tag == "Enemy" && gParentObj.GetComponent<line>().bSLineE == true ||
                 collider.gameObject.tag == "Ally"  && gParentObj.GetComponent<line>().bSLineE == true)
             {
+                bCollAny = true;
+
                 //当たった相手を子オブジェクトにして座標も弄る
                 collider.transform.parent = transform;
                 collider.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
