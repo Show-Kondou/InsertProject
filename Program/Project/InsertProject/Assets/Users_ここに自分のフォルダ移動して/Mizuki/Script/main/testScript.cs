@@ -19,7 +19,7 @@ public class testScript : ObjectBase {
 		for(int i = 0; i < 5; i++) {
 			float width = Random.Range(-2.0f,2.0f);
 			float height = Random.Range(-4.0f,6.0f);
-			CSSandwichObjManager.Instance.CreateSandwichObj(0, new Vector2(width, height));
+			//CSSandwichObjManager.Instance.CreateSandwichObj(0, new Vector2(width, height));
 		}
 	}
 

@@ -44,7 +44,6 @@ public class CSlimeMove : CSSandwichObject {
 	public bool m_Sticky;		// ねばねばフラグ
 	// Use this for initialization
 	void Start() {
-		FlagObj = new GameObject();
 		m_OrderNumber = 0;
 		ObjectManager.Instance.RegistrationList(this, m_OrderNumber);
 		m_Moving = false;
@@ -52,8 +51,11 @@ public class CSlimeMove : CSSandwichObject {
 		m_MoveTimer = m_WaitTime;                                   // 移動待ち時間
 		//m_Rotation = Random.Range(0, 360 * Mathf.PI / 180);         // 初期向きをランダムで決定
 		m_Rotation = 90.0f;         // 初期向きをランダムで決定
-		transform.rotation = Quaternion.Euler(0, 0, m_Rotation);	// 向きを設定
-		FlagObj.SetActive(false);
+		transform.rotation = Quaternion.Euler(0, 0, m_Rotation);    // 向きを設定
+		// 旗がついているなら非表示にしておく
+		if(FlagObj) {
+			FlagObj.SetActive(false);
+		}
 		// 生成されたスライムごとにマテリアルと自身のタイプを設定、初期化
 		if(transform.tag == "Enemy") {
 			EnemyNum++;
